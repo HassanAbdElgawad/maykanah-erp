@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      /** @type {import('tailwindcss').Config} */
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+        plugins: [],
+      };
+    </script>
+  </head>
+  <body>
+    <div class="relative w-[1728px] h-[1117px] bg-[#f7f7f9]">
+      
+      <!-- Breadcrumb -->
+      <div class="absolute top-[24px] left-[1340px]">
+        <div class="flex items-center gap-2 [direction:rtl]">
+          <span class="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#00000080] text-sm">الرئيسية</span>
+          <span class="text-[#00000080]">></span>
+          <span class="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-black text-sm">إدارة المبيعات</span>
+        </div>
+      </div>
+
+      <!-- Page Title -->
+      <div class="absolute top-[20px] left-[1490px]">
+        <h1 class="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-black text-2xl [direction:rtl]">
+          إدارة المبيعات
+        </h1>
+      </div>
+
+      <!-- Card 1: فاتورة مبيعات -->
+      <div class="absolute top-[81px] left-[1061px] w-[341px] h-[92px] flex">
+        <div class="w-[345px] h-[92px] relative">
+          <div
+            class="absolute top-0 left-0 w-[341px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+          ></div>
+          <div class="absolute top-[25px] left-[284px] w-[45px] h-[45px] flex">
+            <div class="w-[45.06px] flex">
+              <div
+                class="w-[45.06px] h-[45.06px] relative p-2.5 bg-[#07b6641a] rounded-lg border border-solid border-[#f0f4f7] flex items-center gap-2.5"
+              >
+                <svg class="w-6 h-6 text-[#07b664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute top-[22px] left-[190px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            فاتورة مبيعات
+          </div>
+          <p
+            class="absolute top-[47px] left-[31px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#00000080] text-base tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            السند الأساسي لتحصيل المبالغ من العميل
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: أمر العمل -->
+      <div class="absolute top-[181px] left-[1061px] w-[341px] h-[92px] flex">
+        <div class="w-[345px] h-[92px] relative">
+          <div
+            class="absolute top-0 left-0 w-[341px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+          ></div>
+          <div class="absolute top-[25px] left-[284px] w-[45px] h-[45px] flex">
+            <div class="w-[45.06px] flex">
+              <div
+                class="w-[45.06px] h-[45.06px] relative p-2.5 bg-[#97c8091a] rounded-lg border border-solid border-[#f0f4f7] flex items-center gap-2.5"
+              >
+                <svg class="w-6 h-6 text-[#97c809]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute top-[22px] left-[220px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            أمر العمل
+          </div>
+          <p
+            class="absolute top-[47px] left-[35px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#00000080] text-base tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            طلب أمر العمل وتحويله لفاتورة البيع أو العمليّة
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: عرض السعر -->
+      <div class="absolute top-[81px] left-[713px] w-[344px] h-[92px]">
+        <div
+          class="absolute top-0 left-0 w-[340px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+        ></div>
+        <div
+          class="absolute top-[18px] left-[209px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+        >
+          عرض السعر
+        </div>
+        <p
+          class="absolute top-[43px] left-[17px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d2480] text-base tracking-[0] leading-[normal] [direction:rtl]"
+        >
+          عرض صديق يوضّح الأسعار قبل تأكيد البيع
+        </p>
+        <div class="absolute top-[23px] left-[283px] w-[45px] h-[45px] flex">
+          <div class="w-[45.06px] h-[45.06px] relative p-2.5 bg-[#7fa1eb1a] rounded-lg flex items-center gap-2.5">
+            <svg class="w-6 h-6 text-[#7fa1eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: مرتجعات مبيعات -->
+      <div class="absolute top-[181px] left-[713px] w-[344px] h-[92px]">
+        <div
+          class="absolute top-0 left-0 w-[340px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+        ></div>
+        <div
+          class="absolute top-[18px] left-[177px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+        >
+          مرتجعات مبيعات
+        </div>
+        <p
+          class="absolute top-[43px] left-[26px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d2480] text-base tracking-[0] leading-[normal] [direction:rtl]"
+        >
+          المنتجات أو البضائع وتسجيلها الحسابي والتخزين
+        </p>
+        <div class="absolute top-[23px] left-[283px] w-[45px] h-[45px] flex">
+          <div class="w-[45.06px] h-[45.06px] relative p-2.5 bg-[#f4433d1a] rounded-lg flex items-center gap-2.5">
+            <svg class="w-6 h-6 text-[#f4433d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16l4-2 4 2 4-2 4 2z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: سند تسليم -->
+      <div class="absolute top-[81px] left-[364px] w-[341px] h-[92px]">
+        <div class="absolute top-0 left-0 w-[345px] h-[92px]">
+          <div
+            class="absolute top-0 left-0 w-[341px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+          ></div>
+          <div
+            class="absolute top-5 left-[205px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            سند تسليم
+          </div>
+          <p
+            class="absolute top-11 left-3 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d2480] text-base tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            تستلم إلزاماء السند وتسجيلها من المخزن
+          </p>
+        </div>
+        <div
+          class="w-[45px] h-[45px] justify-center p-2.5 absolute top-6 left-[277px] bg-[#ed9f1a1a] rounded-lg flex items-center gap-2.5"
+        >
+          <svg class="w-6 h-6 text-[#ed9f1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 6: قوائم الأسعار -->
+      <div class="absolute top-[181px] left-[364px] w-[341px] h-[92px]">
+        <div class="absolute top-0 left-0 w-[345px] h-[92px]">
+          <div
+            class="absolute top-0 left-0 w-[341px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+          ></div>
+          <div
+            class="absolute top-5 left-[188px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            قوائم الأسعار
+          </div>
+          <p
+            class="absolute top-11 left-[26px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d2480] text-base tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            تحديد أسعار للبيع أو حسب البيع أو العملاء
+          </p>
+        </div>
+        <div
+          class="w-[45px] h-[45px] justify-center p-2.5 absolute top-6 left-[277px] bg-[#9b59b61a] rounded-lg flex items-center gap-2.5"
+        >
+          <svg class="w-6 h-6 text-[#9b59b6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 7: مندوبي المبيعات -->
+      <div class="absolute top-[281px] left-[1061px] w-[341px] h-[92px] flex">
+        <div class="w-[345px] h-[92px] relative">
+          <div
+            class="absolute top-0 left-0 w-[341px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+          ></div>
+          <div class="absolute top-[25px] left-[284px] w-[45px] h-[45px] flex">
+            <div class="w-[45.06px] flex">
+              <div
+                class="w-[45.06px] h-[45.06px] relative p-2.5 bg-[#3498db1a] rounded-lg border border-solid border-[#f0f4f7] flex items-center gap-2.5"
+              >
+                <svg class="w-6 h-6 text-[#3498db]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute top-[22px] left-[170px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            مندوبي المبيعات
+          </div>
+          <p
+            class="absolute top-[47px] left-[31px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#00000080] text-base tracking-[0] leading-[normal] [direction:rtl]"
+          >
+            إدارة بيانات المندوبين وعمولاتهم وتعيين عملائهم
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 8: العملاء -->
+      <div class="absolute top-[281px] left-[713px] w-[344px] h-[92px]">
+        <div
+          class="absolute top-0 left-0 w-[340px] h-[92px] bg-white rounded-xl border border-solid border-[#e2e2e2] hover:shadow-lg transition-shadow cursor-pointer"
+        ></div>
+        <div
+          class="absolute top-[18px] left-[235px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal] [direction:rtl]"
+        >
+          العملاء
+        </div>
+        <p
+          class="absolute top-[43px] left-[17px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d2480] text-base tracking-[0] leading-[normal] [direction:rtl]"
+        >
+          بيانات العملاء وتفاصيل التواصل والفواتير الخاصة
+        </p>
+        <div class="absolute top-[23px] left-[283px] w-[45px] h-[45px] flex">
+          <div class="w-[45.06px] h-[45.06px] relative p-2.5 bg-[#2f8fb21a] rounded-lg flex items-center gap-2.5">
+            <svg class="w-6 h-6 text-[#2f8fb2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

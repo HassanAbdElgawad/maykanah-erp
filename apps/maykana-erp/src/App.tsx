@@ -4,6 +4,10 @@ import { AccountingEntries } from "./screens/AccountingEntries";
 import { AccountingEntryForm } from "./screens/AccountingEntryForm";
 import { Purchases } from "./screens/Purchases";
 import { Suppliers } from "./screens/Suppliers";
+import { Sales } from "./screens/Sales";
+import { Customers, AddEditCustomer } from "./screens/Customers";
+import { Competitions } from "./screens/Competitions";
+import { VendorQualification, AddEditVendorQualification } from "./screens/VendorQualification";
 import { LoginPage } from "./screens/LoginPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
@@ -82,7 +86,31 @@ const router = createBrowserRouter([
     path: "/sales",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="إدارة المبيعات / Sales" />
+        <Sales />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/customers",
+    element: (
+      <ProtectedRoute>
+        <Customers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/customers/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditCustomer />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/customers/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditCustomer />
       </ProtectedRoute>
     ),
   },
@@ -90,7 +118,31 @@ const router = createBrowserRouter([
     path: "/competitions",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="إدارة المنافسات / Competitions" />
+        <Competitions />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-qualification",
+    element: (
+      <ProtectedRoute>
+        <VendorQualification />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-qualification/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditVendorQualification />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-qualification/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditVendorQualification />
       </ProtectedRoute>
     ),
   },
