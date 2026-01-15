@@ -1,0 +1,35 @@
+{
+  "tools": {
+    "development": [
+      {
+        "name": "API Documentation",
+        "url": "/api/docs",
+        "description": "API endpoints documentation"
+      },
+      {
+        "name": "Component Library",
+        "url": "/components",
+        "description": "UI component showcase"
+      }
+    ],
+    "utilities": [
+      {
+        "name": "Data Export",
+        "description": "Export data in various formats",
+        "formats": ["CSV", "Excel", "PDF"]
+      },
+      {
+        "name": "Backup Tool",
+        "description": "Database backup utility",
+        "schedule": "Daily at 2:00 AM"
+      }
+    ],
+    "integrations": [
+      {
+        "name": "Accounting System",
+        "status": "active",
+        "lastSync": "2026-01-14"
+      }
+    ]
+  }
+}

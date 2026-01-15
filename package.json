@@ -1,0 +1,37 @@
+{
+  "name": "maykana-erp-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Maykana ERP System - Enterprise Resource Planning",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:app": "turbo run dev --filter maykana-erp-app",
+    "build": "turbo run build",
+    "build:app": "turbo run build --filter maykana-erp-app",
+    "build:dev": "turbo run build:dev --filter maykana-erp-app",
+    "build:prod": "turbo run build:prod --filter maykana-erp-app",
+    "lint": "turbo run lint",
+    "check-types": "turbo run check-types",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.4",
+    "typescript": "5.8.3"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9.0.0"
+  }
+}

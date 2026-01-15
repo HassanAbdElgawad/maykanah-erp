@@ -1,0 +1,1 @@
+export { AccountingEntryForm } from './AccountingEntryForm';
