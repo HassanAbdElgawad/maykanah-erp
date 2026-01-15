@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd apps/maykana-erp && pnpm run build",
+  "outputDirectory": "apps/maykana-erp/dist",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "devCommand": "pnpm dev"
+}
