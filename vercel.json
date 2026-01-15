@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm turbo run build --filter=maykana-erp-app",
+  "buildCommand": "pnpm turbo run build --filter=maykana-erp-app && ls -la apps/maykana-erp/",
   "outputDirectory": "apps/maykana-erp/dist",
   "installCommand": "pnpm install",
   "framework": null
