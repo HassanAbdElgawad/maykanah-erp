@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm turbo run build --filter=maykana-erp-app --force",
+  "buildCommand": "pnpm install && pnpm run build",
   "outputDirectory": "dist",
   "installCommand": "pnpm install",
   "framework": null
