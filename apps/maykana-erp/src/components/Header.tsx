@@ -1,11 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  BellIcon,
-  ChevronDownIcon,
-  SearchIcon,
-  LogOutIcon,
-} from 'lucide-react';
+import { BellIcon, ChevronDownIcon, SearchIcon, LogOutIcon } from 'lucide-react';
 import { Input } from './ui/input';
 import { Breadcrumbs } from './Breadcrumbs';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -150,7 +145,7 @@ export const Header = (): JSX.Element => {
               <div
                 className={`absolute top-full mt-2 ${dir === 'rtl' ? 'left-0' : 'right-0'} bg-white rounded-lg shadow-lg border border-[#e2e2e2] py-2 min-w-[180px] z-50`}
               >
-                <div className="px-4 py-2 border-b border-[#e2e2e2]">
+                <div className="px-4 py-2 border-b border-[#e2e2e2] text-center">
                   <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#092e32] text-sm">
                     {t('common.user')}
                   </p>
@@ -160,7 +155,7 @@ export const Header = (): JSX.Element => {
                 </div>
                 <button
                   onClick={handleLogout}
-                  className={`w-full px-4 py-2 ${dir === 'rtl' ? 'text-right' : 'text-left'} hover:bg-[#f0f4f7] flex items-center gap-2`}
+                  className={`w-full px-4 py-2  hover:bg-[#f0f4f7] flex items-center gap-2`}
                 >
                   <LogOutIcon className="w-4 h-4 text-red-500" />
                   <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-red-500 text-sm">

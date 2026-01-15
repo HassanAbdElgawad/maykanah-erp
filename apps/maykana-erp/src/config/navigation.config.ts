@@ -32,6 +32,8 @@ export const sidebarMenuItems: MenuItem[] = [
     icon: HomeIcon,
     hasDropdown: true,
     path: '/home',
+    // badge: 'BETA',
+    status: 'BETA',
   },
   {
     titleKey: 'sidebar.inbox',
@@ -39,6 +41,7 @@ export const sidebarMenuItems: MenuItem[] = [
     hasDropdown: true,
     badge: '10',
     path: '/inbox',
+    status: 'BETA',
   },
   {
     titleKey: 'sidebar.accounting',

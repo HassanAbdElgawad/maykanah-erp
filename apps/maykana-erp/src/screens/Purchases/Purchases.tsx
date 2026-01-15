@@ -100,7 +100,7 @@ export const Purchases = (): JSX.Element => {
           <Card
             key={card.id}
             onClick={() => navigate(card.path)}
-            className="border-[#e2e2e2] hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer"
+            className={`${card.id === 'suppliers' ? 'border-[#07b664] border-2' : 'border-[#e2e2e2]'} hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer`}
           >
             <CardContent className="flex flex-col p-6 h-[92px]">
               <div className="flex items-center justify-between">

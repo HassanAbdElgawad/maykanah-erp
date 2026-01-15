@@ -10,6 +10,8 @@ import { Competitions } from "./screens/Competitions";
 import { VendorQualification, AddEditVendorQualification } from "./screens/VendorQualification";
 import { Assets } from "./screens/Assets";
 import { Maintenance } from "./screens/Maintenance";
+import { Dashboard } from "./screens/Dashboard";
+import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="الرئيسية / Home" />
+        <Dashboard />
       </ProtectedRoute>
     ),
   },
@@ -32,7 +34,7 @@ const router = createBrowserRouter([
     path: "/home",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="الرئيسية / Home" />
+        <Dashboard />
       </ProtectedRoute>
     ),
   },
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
     path: "/inbox",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="صندوق الوارد / Inbox" />
+        <Inbox />
       </ProtectedRoute>
     ),
   },

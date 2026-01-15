@@ -134,6 +134,11 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
+                        {item.status && (
+                          <Badge className="h-[20px] px-1.5 bg-[#ff6b351a] hover:bg-[#ff6b351a] text-[#ff6b35] text-[10px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold uppercase">
+                            {item.status}
+                          </Badge>
+                        )}
                         {item.badge && (
                           <Badge className="h-[25px] px-2 bg-[#f0f4f766] hover:bg-[#f0f4f766] text-white text-[13px] [font-family:'Graphik_Arabic-Medium',Helvetica] font-medium">
                             {item.badge}

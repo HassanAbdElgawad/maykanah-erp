@@ -4,14 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
-import {
-  Search,
-  SlidersHorizontal,
-  ChevronDown,
-  Download,
-  Columns3,
-  X,
-} from 'lucide-react';
+import { Search, SlidersHorizontal, ChevronDown, Download, Columns3, X } from 'lucide-react';
 
 interface MaintenanceRecord {
   id: string;

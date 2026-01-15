@@ -29,7 +29,7 @@ export const LoginPage = (): JSX.Element => {
 
       if (response.success && response.user && response.token) {
         dispatch(loginSuccess({ user: response.user, token: response.token }));
-        navigate('/accounting');
+        navigate('/');
       } else {
         setError(response.message);
       }

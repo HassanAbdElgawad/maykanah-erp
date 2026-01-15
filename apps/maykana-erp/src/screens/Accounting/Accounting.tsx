@@ -1,38 +1,40 @@
 import { Card, CardContent } from "../../components/ui/card";
 import { Layout } from "../../components/Layout";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export const Accounting = (): JSX.Element => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const featureCards = [
     {
-      title: "القيود المحاسبية",
-      description: "تسجيل العمليات المالية  في الدفاتر.",
+      title: t('accounting.accounting_entries'),
+      description: t('accounting.accounting_entries_desc'),
       icon: "https://c.animaapp.com/mkd2vucjeF4nNd/img/vuesax-linear-receipt-item.svg",
       bgColor: "bg-[#07b6641a]",
       borderColor: "border-[#f0f4f7]",
       path: "/accounting/entries",
     },
     {
-      title: "العهد النقدية",
-      description: "المبالغ التي تصرف مؤقتا وتسوى لاحقا.",
+      title: t('accounting.cash_custody'),
+      description: t('accounting.cash_custody_desc'),
       icon: "https://c.animaapp.com/mkd2vucjeF4nNd/img/vuesax-linear-money-recive.svg",
       bgColor: "bg-[#97c8091a]",
       borderColor: "",
       path: "",
     },
     {
-      title: "مستندات القبض",
-      description: "توثيق المبالغ المالية الواردة .",
+      title: t('accounting.receipt_documents'),
+      description: t('accounting.receipt_documents_desc'),
       icon: "https://c.animaapp.com/mkd2vucjeF4nNd/img/vuesax-outline-receipt.svg",
       bgColor: "bg-[#0b72211a]",
       borderColor: "",
       path: "",
     },
     {
-      title: "مستندات الدفع",
-      description: "توثيق المبالغ المالية الصادرة .",
+      title: t('accounting.payment_documents'),
+      description: t('accounting.payment_documents_desc'),
       icon: "https://c.animaapp.com/mkd2vucjeF4nNd/img/vuesax-outline-receipt-2.svg",
       bgColor: "bg-[#11383f1a]",
       borderColor: "",
@@ -47,7 +49,7 @@ export const Accounting = (): JSX.Element => {
           <Card
             key={index}
             onClick={() => card.path && navigate(card.path)}
-            className="border-[#e2e2e2] hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer"
+            className={`${card.path ? 'border-[#07b664] border-2' : 'border-[#e2e2e2]'} hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer`}
           >
             <CardContent className="flex flex-col p-6 h-[92px]">
               <div className="flex items-center justify-between">

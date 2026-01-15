@@ -322,6 +322,93 @@
       "actions": "الإجراءات",
       "status_completed": "مكتمل",
       "status_in_progress": "جاري"
+    },
+    "dashboard": {
+      "title": "لوحة التحكم",
+      "subtitle": "نظرة عامة على أداء النظام",
+      "lastUpdate": "آخر تحديث: منذ 5 دقائق",
+      "totalSales": "إجمالي المبيعات",
+      "purchaseOrders": "طلبات الشراء",
+      "totalAssets": "إجمالي الأصول",
+      "activeEmployees": "الموظفين النشطين",
+      "monthlySales": "المبيعات الشهرية",
+      "purchaseStatus": "حالة طلبات الشراء",
+      "totalOrders": "إجمالي الطلبات",
+      "topProducts": "المنتجات الأكثر مبيعًا",
+      "recentActivities": "النشاطات الأخيرة",
+      "departmentExpenses": "المصروفات حسب القسم",
+      "quickStats": "إحصائيات سريعة"
+    },
+    "inbox": {
+      "title": "صندوق الوارد",
+      "searchPlaceholder": "بحث في الرسائل...",
+      "unread": "غير مقروءة",
+      "starred": "مميزة",
+      "total": "الإجمالي",
+      "reply": "رد",
+      "forward": "إعادة توجيه",
+      "attachments": "المرفقات",
+      "replyPlaceholder": "اكتب ردك هنا...",
+      "send": "إرسال",
+      "noMessageSelected": "لم يتم تحديد رسالة",
+      "selectMessagePrompt": "اختر رسالة من القائمة لعرض محتواها"
+    },
+    "months": {
+      "january": "يناير",
+      "february": "فبراير",
+      "march": "مارس",
+      "april": "أبريل",
+      "may": "مايو",
+      "june": "يونيو"
+    },
+    "status": {
+      "completed": "مكتملة",
+      "processing": "قيد المعالجة",
+      "cancelled": "ملغاة"
+    },
+    "products": {
+      "laptop": "جهاز كمبيوتر محمول HP",
+      "printer": "طابعة Canon MX920",
+      "monitor": "شاشة Dell 27 بوصة",
+      "keyboard": "لوحة مفاتيح لاسلكية"
+    },
+    "activities": {
+      "newPurchaseOrder": "طلب شراء جديد",
+      "salesInvoice": "فاتورة مبيعات",
+      "assetMaintenance": "صيانة أصل",
+      "monthlyReport": "تقرير شهري"
+    },
+    "names": {
+      "ahmedMohamed": "أحمد محمد",
+      "saraAhmed": "سارة أحمد",
+      "khaledAli": "خالد علي",
+      "fatimaHassan": "فاطمة حسن"
+    },
+    "time": {
+      "min5": "منذ 5 دقائق",
+      "min15": "منذ 15 دقيقة",
+      "min30": "منذ 30 دقيقة",
+      "hour1": "منذ ساعة"
+    },
+    "departments": {
+      "purchases": "المشتريات",
+      "sales": "المبيعات",
+      "hr": "الموارد البشرية",
+      "it": "تقنية المعلومات",
+      "management": "الإدارة"
+    },
+    "stats": {
+      "completedTasks": "المهام المكتملة",
+      "pending": "قيد الانتظار",
+      "growthRate": "معدل النمو"
+    },
+    "table": {
+      "product": "المنتج",
+      "quantity": "الكمية",
+      "revenue": "الإيرادات"
+    },
+    "currency": {
+      "sar": "ريال"
     }
   },
   "en": {
@@ -601,6 +688,93 @@
       "actions": "Actions",
       "status_completed": "Completed",
       "status_in_progress": "In Progress"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "System Performance Overview",
+      "lastUpdate": "Last update: 5 minutes ago",
+      "totalSales": "Total Sales",
+      "purchaseOrders": "Purchase Orders",
+      "totalAssets": "Total Assets",
+      "activeEmployees": "Active Employees",
+      "monthlySales": "Monthly Sales",
+      "purchaseStatus": "Purchase Orders Status",
+      "totalOrders": "Total Orders",
+      "topProducts": "Top Selling Products",
+      "recentActivities": "Recent Activities",
+      "departmentExpenses": "Expenses by Department",
+      "quickStats": "Quick Stats"
+    },
+    "inbox": {
+      "title": "Inbox",
+      "searchPlaceholder": "Search messages...",
+      "unread": "Unread",
+      "starred": "Starred",
+      "total": "Total",
+      "reply": "Reply",
+      "forward": "Forward",
+      "attachments": "Attachments",
+      "replyPlaceholder": "Write your reply here...",
+      "send": "Send",
+      "noMessageSelected": "No Message Selected",
+      "selectMessagePrompt": "Select a message from the list to view its content"
+    },
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June"
+    },
+    "status": {
+      "completed": "Completed",
+      "processing": "Processing",
+      "cancelled": "Cancelled"
+    },
+    "products": {
+      "laptop": "HP Laptop",
+      "printer": "Canon MX920 Printer",
+      "monitor": "Dell 27\" Monitor",
+      "keyboard": "Wireless Keyboard"
+    },
+    "activities": {
+      "newPurchaseOrder": "New Purchase Order",
+      "salesInvoice": "Sales Invoice",
+      "assetMaintenance": "Asset Maintenance",
+      "monthlyReport": "Monthly Report"
+    },
+    "names": {
+      "ahmedMohamed": "Ahmed Mohamed",
+      "saraAhmed": "Sara Ahmed",
+      "khaledAli": "Khaled Ali",
+      "fatimaHassan": "Fatima Hassan"
+    },
+    "time": {
+      "min5": "5 minutes ago",
+      "min15": "15 minutes ago",
+      "min30": "30 minutes ago",
+      "hour1": "1 hour ago"
+    },
+    "departments": {
+      "purchases": "Purchases",
+      "sales": "Sales",
+      "hr": "Human Resources",
+      "it": "IT",
+      "management": "Management"
+    },
+    "stats": {
+      "completedTasks": "Completed Tasks",
+      "pending": "Pending",
+      "growthRate": "Growth Rate"
+    },
+    "table": {
+      "product": "Product",
+      "quantity": "Quantity",
+      "revenue": "Revenue"
+    },
+    "currency": {
+      "sar": "SAR"
     }
   }
 }
