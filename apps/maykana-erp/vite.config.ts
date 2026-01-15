@@ -9,6 +9,10 @@ export default defineConfig(({ mode }) => ({
   plugins: [react(), mode === "development" && screenGraphPlugin()],
   publicDir: "./public",
   base: "./",
+  build: {
+    outDir: process.env.VERCEL ? "../../dist" : "dist",
+    emptyOutDir: true,
+  },
   css: {
     postcss: {
       plugins: [tailwind(), autoprefixer()],
