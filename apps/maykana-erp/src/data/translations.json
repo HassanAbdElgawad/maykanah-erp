@@ -7,7 +7,8 @@
       "services": "الخدمات",
       "virtual_assistant": "المساعد الإفتراضي",
       "user": "مستخدم النظام",
-      "email": "user@maykana.sa"
+      "email": "user@maykana.sa",
+      "currency": "ريال"
     },
     "login": {
       "title": "حسابي",
@@ -287,7 +288,41 @@
       "active": "نشط",
       "inactive": "غير نشط",
       "sar": "ريال سعودي",
-      "usd": "دولار أمريكي"    }
+      "usd": "دولار أمريكي"
+    },
+    "assets": {
+      "asset_management": "إدارة الأصول",
+      "asset_management_desc": "قائمة رئيسية لعرض وإدارة جميع الأصول",
+      "asset_movements": "حركات الأصول",
+      "asset_movements_desc": "إدارة النقل وتتبع الأصول بين المواقع",
+      "maintenance": "الصيانة",
+      "maintenance_desc": "أعمال الصيانة الدورية والإصلاحية للأصول",
+      "asset_value_adjustment": "تعديل قيمة الأصل",
+      "asset_value_adjustment_desc": "تعديل القيمة الدفترية والإهلاك للأصول",
+      "sale_disposal": "البيع أو الاستبعاد",
+      "sale_disposal_desc": "عمليات بيع الأصول أو استبعادها من الدفاتر"
+    },
+    "maintenance": {
+      "search_placeholder": "ابحث من هنا (كود الأصل،اسم الأصل، الموقع، ...)",
+      "add_new": "صيانة جديدة",
+      "add_record": "سجل صيانة جديدة",
+      "filter": "فلتر",
+      "download": "تحميل",
+      "show_hide_columns": "إظهار/إخفاء أعمدة",
+      "maintenance_number": "رقم الصيانة",
+      "asset_name": "اسم الأصل",
+      "maintenance_type": "نوع الصيانة",
+      "maintenance_date": "تاريخ الصيانة",
+      "team": "فريق الصيانة",
+      "assigned_technician": "الفني المكلف",
+      "duration": "المدة",
+      "duration_label": "المدة",
+      "cost": "تكلفة الصيانة",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "status_completed": "مكتمل",
+      "status_in_progress": "جاري"
+    }
   },
   "en": {
     "common": {
@@ -297,7 +332,8 @@
       "services": "Services",
       "virtual_assistant": "Virtual Assistant",
       "user": "System User",
-      "email": "user@maykana.sa"
+      "email": "user@maykana.sa",
+      "currency": "SAR"
     },
     "login": {
       "title": "My Account",
@@ -532,6 +568,39 @@
       "inactive": "Inactive",
       "sar": "Saudi Riyal",
       "usd": "US Dollar"
+    },
+    "assets": {
+      "asset_management": "Asset Management",
+      "asset_management_desc": "Main list to view and manage all assets",
+      "asset_movements": "Asset Movements",
+      "asset_movements_desc": "Track asset transfers between locations",
+      "maintenance": "Maintenance",
+      "maintenance_desc": "Schedule and track asset maintenance",
+      "asset_value_adjustment": "Asset Value Adjustment",
+      "asset_value_adjustment_desc": "Adjust asset values and depreciation",
+      "sale_disposal": "Sale or Disposal",
+      "sale_disposal_desc": "Record asset sales or disposals"
+    },
+    "maintenance": {
+      "search_placeholder": "Search here (asset code, asset name, location, ...)",
+      "add_new": "New Maintenance",
+      "add_record": "New Maintenance Record",
+      "filter": "Filter",
+      "download": "Download",
+      "show_hide_columns": "Show/Hide Columns",
+      "maintenance_number": "Maintenance Number",
+      "asset_name": "Asset Name",
+      "maintenance_type": "Maintenance Type",
+      "maintenance_date": "Maintenance Date",
+      "team": "Maintenance Team",
+      "assigned_technician": "Assigned Technician",
+      "duration": "Duration",
+      "duration_label": "Duration",
+      "cost": "Maintenance Cost",
+      "status": "Status",
+      "actions": "Actions",
+      "status_completed": "Completed",
+      "status_in_progress": "In Progress"
     }
   }
 }

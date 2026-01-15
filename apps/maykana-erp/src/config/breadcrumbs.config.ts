@@ -58,8 +58,15 @@ export const breadcrumbRoutes = [
   { path: "/competitions/completion-certificate", label: "competitions.completion_certificate" },
   { path: "/competitions/bank-guarantees", label: "competitions.bank_guarantees" },
   
-  // Other Modules
+  // Assets Module
   { path: "/assets", label: "sidebar.assets" },
+  { path: "/assets/asset-management", label: "assets.asset_management" },
+  { path: "/assets/asset-movements", label: "assets.asset_movements" },
+  { path: "/assets/maintenance", label: "assets.maintenance" },
+  { path: "/assets/asset-value-adjustment", label: "assets.asset_value_adjustment" },
+  { path: "/assets/sale-disposal", label: "assets.sale_disposal" },
+  
+  // Other Modules
   { path: "/hr", label: "sidebar.hr" },
   { path: "/projects", label: "sidebar.projects" },
   { path: "/strategy", label: "sidebar.strategy" },

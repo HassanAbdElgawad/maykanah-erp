@@ -8,6 +8,8 @@ import { Sales } from "./screens/Sales";
 import { Customers, AddEditCustomer } from "./screens/Customers";
 import { Competitions } from "./screens/Competitions";
 import { VendorQualification, AddEditVendorQualification } from "./screens/VendorQualification";
+import { Assets } from "./screens/Assets";
+import { Maintenance } from "./screens/Maintenance";
 import { LoginPage } from "./screens/LoginPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
@@ -150,7 +152,15 @@ const router = createBrowserRouter([
     path: "/assets",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="إدارة الأصول / Assets" />
+        <Assets />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/maintenance",
+    element: (
+      <ProtectedRoute>
+        <Maintenance />
       </ProtectedRoute>
     ),
   },
