@@ -10,6 +10,8 @@ import { Competitions } from "./screens/Competitions";
 import { VendorQualification, AddEditVendorQualification } from "./screens/VendorQualification";
 import { Assets } from "./screens/Assets";
 import { Maintenance } from "./screens/Maintenance";
+import { Strategy } from "./screens/Strategy";
+import { Tasks, AddTask } from "./screens/Tasks";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -186,7 +188,23 @@ const router = createBrowserRouter([
     path: "/strategy",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="إدارة الإستراتيجية / Strategy" />
+        <Strategy />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/tasks",
+    element: (
+      <ProtectedRoute>
+        <Tasks />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/tasks/add",
+    element: (
+      <ProtectedRoute>
+        <AddTask />
       </ProtectedRoute>
     ),
   },

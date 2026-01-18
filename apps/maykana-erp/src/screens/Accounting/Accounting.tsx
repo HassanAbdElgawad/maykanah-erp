@@ -1,4 +1,5 @@
-import { Card, CardContent } from "../../components/ui/card";
+import { CardContent } from "../../components/ui/card";
+import { MaykanaCard } from "../../components/ui/MaykanaCard";
 import { Layout } from "../../components/Layout";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -46,10 +47,11 @@ export const Accounting = (): JSX.Element => {
     <Layout>
       <div className="grid grid-cols-4 gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {featureCards.map((card, index) => (
-          <Card
+          <MaykanaCard
             key={index}
             onClick={() => card.path && navigate(card.path)}
-            className={`${card.path ? 'border-[#07b664] border-2' : 'border-[#e2e2e2]'} hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer`}
+            isActive={!!card.path}
+            className="hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer"
           >
             <CardContent className="flex flex-col p-6 h-[92px]">
               <div className="flex items-center justify-between">
@@ -70,7 +72,7 @@ export const Accounting = (): JSX.Element => {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </MaykanaCard>
         ))}
       </div>
     </Layout>

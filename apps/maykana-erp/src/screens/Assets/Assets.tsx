@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { Card, CardContent } from '../../components/ui/card';
+import { CardContent } from '../../components/ui/card';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { 
   Package,
   ArrowRightLeft,
@@ -73,10 +74,11 @@ export const Assets: React.FC = () => {
         {cards.map((card) => {
           const Icon = card.icon;
           return (
-            <Card
+            <MaykanaCard
               key={card.id}
               onClick={() => navigate(card.path)}
-              className={`${card.id === 'maintenance' ? 'border-[#07b664] border-2' : 'border-[#e2e2e2]'} hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer`}
+              isActive={card.id === 'maintenance'}
+              className="hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer"
             >
               <CardContent className="flex flex-col p-6 h-[92px]">
                 <div className="flex items-center justify-between">
@@ -93,7 +95,7 @@ export const Assets: React.FC = () => {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </MaykanaCard>
           );
         })}
       </div>

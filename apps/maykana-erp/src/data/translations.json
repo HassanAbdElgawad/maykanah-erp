@@ -409,6 +409,25 @@
     },
     "currency": {
       "sar": "ريال"
+    },
+    "strategy": {
+      "budget_management": "إدارة المبالغ",
+      "budget_management_desc": "إدارة الميزانيات التشغيلية للمشاريع والخطط",
+      "project_management": "إدارة المشاريع",
+      "project_management_desc": "إنشاء ومتابعة المشاريع الاستراتيجية",
+      "task_management": "إدارة المهام",
+      "task_management_desc": "إدارة وتوزيع المهام ومتابعة تنفيذها",
+      "add_task": "مهمة جديدة",
+      "plan_tracking": "ربط الخطط وتتبع التقدم",
+      "plan_tracking_desc": "ربط المتطلبات ومتابعة الأداء والإنجاز",
+      "strategic_plans": "إدارة الخطط الاستراتيجية",
+      "strategic_plans_desc": "إنشاء وتعديل ومتابعة الخطط الاستراتيجية",
+      "meeting_records": "سجلات الاجتماعات",
+      "meeting_records_desc": "توثيق محاضر الاجتماعات والقرارات",
+      "document_records": "سجلات المستندات",
+      "document_records_desc": "إدارة الوثائق والملفات المرتبطة",
+      "approvals": "وحدة الموافقات",
+      "approvals_desc": "نظام الموافقات على الأهداف والخطط"
     }
   },
   "en": {
@@ -775,6 +794,25 @@
     },
     "currency": {
       "sar": "SAR"
+    },
+    "strategy": {
+      "budget_management": "Budget Management",
+      "budget_management_desc": "Manage operational budgets for projects and plans",
+      "project_management": "Project Management",
+      "project_management_desc": "Create and track strategic projects",
+      "task_management": "Task Management",
+      "task_management_desc": "Manage and distribute tasks and track execution",
+      "add_task": "New Task",
+      "plan_tracking": "Plan Tracking & Progress",
+      "plan_tracking_desc": "Link requirements and monitor performance",
+      "strategic_plans": "Strategic Plans Management",
+      "strategic_plans_desc": "Create, modify, and monitor strategic plans",
+      "meeting_records": "Meeting Records",
+      "meeting_records_desc": "Document meeting minutes and decisions",
+      "document_records": "Document Records",
+      "document_records_desc": "Manage related documents and files",
+      "approvals": "Approvals Module",
+      "approvals_desc": "Approval system for goals and plans"
     }
   }
 }
