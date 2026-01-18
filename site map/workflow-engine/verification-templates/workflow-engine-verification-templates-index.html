@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      /** @type {import('tailwindcss').Config} */
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+        plugins: [],
+      };
+    </script>
+  </head>
+  <body>
+    <div class="bg-[#f7f7f9] w-full min-w-[1728px] min-h-[1117px] relative">
+      <div
+        class="absolute top-2 left-[15px] w-[1638px] h-[61px] bg-white rounded-xl border border-solid border-[#e1e1e1]"
+      >
+        <div class="absolute top-4 left-[1443px] w-[135px] h-[27px] flex gap-0.5">
+          <div
+            class="w-[120px] h-[27px] font-light text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+          >
+            محرك سير الأعمال
+          </div>
+          <img class="mt-[10.0px] w-[11px] h-[11px]" src="https://c.animaapp.com/mkjp8l7nAET0rY/img/arrow-down.png" />
+        </div>
+        <div class="absolute top-4 left-[1337px] w-[104px] h-[27px] flex gap-[3px]">
+          <div
+            class="w-[88px] h-[27px] font-normal text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+          >
+            قوائم التحقق
+          </div>
+          <img class="mt-[10.0px] w-[11px] h-[11px]" src="https://c.animaapp.com/mkjp8l7nAET0rY/img/arrow-down-1.png" />
+        </div>
+        <div class="absolute top-[9px] left-[1586px] w-[42px] h-[42px] bg-[#f0f4f7] rounded-lg"></div>
+        <img
+          class="absolute top-5 left-[1597px] w-[21px] h-[21px]"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-home-2.svg"
+        />
+        <img
+          class="absolute top-2 left-[13px] w-[79px] h-[55px]"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-79824.png"
+        />
+        <div class="absolute top-2 left-[101px] w-[45px] h-[45px] bg-[#f0f4f7] rounded-lg">
+          <img
+            class="absolute top-2.5 left-[9px] w-[26px] h-[26px]"
+            src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-notification.svg"
+          />
+          <div
+            class="absolute top-[11px] left-[22px] w-3 h-3 bg-[#ff0000] rounded-md border border-solid border-white shadow-[0px_4px_4px_#00000040]"
+          ></div>
+        </div>
+        <img
+          class="absolute top-2 left-[155px] w-[71px] h-[45px]"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-79826.png"
+        />
+      </div>
+      <div
+        class="absolute top-[75px] left-[15px] w-[1638px] h-[73px] bg-white rounded-xl border border-solid border-[#e2e2e2]"
+      ></div>
+      <div class="absolute top-[93px] left-[1601px] w-[42px] h-[42px] flex bg-[#f0f4f7] rounded-lg">
+        <img class="mt-[9px] w-6 h-6 ml-[9px]" src="https://c.animaapp.com/mkjp8l7nAET0rY/img/arrow-left.png" />
+      </div>
+      <div class="absolute top-[93px] left-[119px] w-[147px] h-[43px] flex bg-slate-50 rounded-lg">
+        <div class="mt-[12.5px] w-[129.19px] ml-[10.2px] flex">
+          <img class="mt-[4.5px] w-[9px] h-[9px]" src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-79820.png" />
+          <div
+            class="mt-[1.5px] w-[81px] h-[15px] ml-[9.0px] font-normal text-[#092e32] text-base leading-[15px] whitespace-nowrap [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+          >
+            تصفية بالحالة
+          </div>
+          <img
+            class="w-[18px] h-[18px] ml-[10.2px]"
+            src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-sort.svg"
+          />
+        </div>
+      </div>
+      <div class="fixed top-2 left-[1416px] w-[305px] h-[1099px]">
+        <div
+          class="absolute top-0 left-[252px] w-[53px] h-[1099px] rounded-lg [background:linear-gradient(222deg,rgba(9,53,54,1)_0%,rgba(13,84,86,1)_100%)]"
+        ></div>
+        <img
+          class="absolute top-[809px] left-[215px] w-[97px] h-32"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-79834.png"
+        />
+        <img
+          class="top-[891px] left-0 w-[305px] h-0.5 absolute object-cover"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/line-1-1.svg"
+        />
+        <img
+          class="top-[61px] left-[252px] w-[53px] h-px absolute object-cover"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/line-5.svg"
+        />
+        <div class="absolute top-[191px] left-[259px] w-10 h-10 flex bg-[#ffffff0a] rounded-lg">
+          <div
+            class="mt-[10.5px] w-[19px] h-[19px] ml-[10.5px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-home-2-10.svg)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <div class="absolute top-[246px] left-[259px] w-10 h-10 flex bg-[#ffffff0a] rounded-lg">
+          <div
+            class="mt-[10.5px] w-[19px] h-[19px] ml-[10.5px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-home-2-2.svg)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <div class="absolute top-[301px] left-[259px] w-10 h-10 flex bg-[#ffffff0a] rounded-lg">
+          <div
+            class="mt-3 w-[19px] h-[19px] ml-[10.4px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-home-2-3.svg)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <img
+          class="absolute top-[356px] left-[259px] w-10 h-10"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-21021.png"
+        />
+        <img
+          class="absolute top-[411px] left-[259px] w-10 h-10"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-21022.png"
+        />
+        <div class="absolute top-[466px] left-[259px] w-10 h-10 flex bg-[#cfcfcf0a] rounded-lg">
+          <div
+            class="mt-3 w-[18px] h-[18px] ml-[10.7px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-home-2-4.svg)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <div class="absolute top-[521px] left-[259px] w-10 h-10 flex bg-[#cfcfcf0a] rounded-lg">
+          <div
+            class="mt-[11.5px] w-[17px] h-[17px] ml-[11.5px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/home-2.png)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <div class="absolute top-[924px] left-[259px] w-10 h-10 flex bg-[#ffffff0a] rounded-lg">
+          <div
+            class="mt-[11.5px] w-[17px] h-[17px] ml-[11.5px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/status-up.png)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <div class="absolute top-[576px] left-[259px] w-10 h-10 flex bg-[#cfcfcf0a] rounded-lg">
+          <img
+            class="mt-[10.5px] w-[19px] h-[19px] ml-[10.5px]"
+            src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-home-2-1.svg"
+          />
+        </div>
+        <div class="absolute top-[979px] left-[259px] w-10 h-10 flex bg-[#ffffff0a] rounded-lg">
+          <div
+            class="mt-[11px] w-[18px] h-[18px] ml-[11.0px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/home-2-1.png)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <div class="absolute top-[631px] left-[259px] w-10 h-10 flex bg-[#cfcfcf0a] rounded-lg">
+          <div
+            class="mt-3 w-[18px] h-[18px] ml-[11.0px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/home-2-2.png)] bg-[100%_100%]"
+          ></div>
+        </div>
+        <div class="absolute top-[686px] left-[259px] w-10 h-10 flex bg-white rounded-lg">
+          <img
+            class="mt-[11px] w-[18px] h-[18px] ml-[11.0px]"
+            src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-home-2-5.svg"
+          />
+        </div>
+        <img
+          class="absolute top-[1034px] left-[259px] w-10 h-10"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-21030.png"
+        />
+        <img
+          class="absolute top-[81px] left-[259px] w-10 h-10"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-21018.png"
+        />
+        <div class="absolute top-[136px] left-[259px] w-10 h-10 flex bg-[#ffffff0a] rounded-lg">
+          <div class="mt-[10.5px] w-[21.59px] h-[19px] ml-[9.2px] relative">
+            <img
+              class="absolute top-0 left-[3px] w-[19px] h-[19px]"
+              src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-directbox-receive-1.svg"
+            />
+            <div
+              class="absolute top-[3px] left-0 w-2 h-2 bg-[#ff0000] rounded-[3.87px] border-[0.8px] border-solid border-white shadow-[0px_4px_4px_#00000040]"
+            ></div>
+          </div>
+        </div>
+        <img
+          class="absolute top-[26px] left-[269px] w-5 h-3"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-2.png"
+        />
+      </div>
+      <div
+        class="fixed top-[159px] left-[1389px] w-[264px] h-[194px] bg-white rounded-xl border border-solid border-[#e2e2e2]"
+      ></div>
+      <div
+        class="inline-flex items-center justify-center gap-1.5 p-1.5 fixed right-[92px] bottom-[778px] bg-[#e6ebeb] rounded-lg"
+      >
+        <div
+          class="text-[#092e32] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          مسودة
+        </div>
+      </div>
+      <div
+        class="fixed top-[220px] left-[1550px] font-medium text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        نظافة يومية
+      </div>
+      <p
+        class="fixed top-[253px] left-[1402px] w-[234px] font-normal text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        التحقق من نظافة المكان والمعدات.
+      </p>
+      <div class="fixed top-[175px] left-[1599px] w-[37px] h-[37px] flex">
+        <div class="w-[36.92px] h-[36.92px] flex bg-[#40d2fe1a] rounded-lg">
+          <img
+            class="mt-[6.6px] ml-[6.8px] w-6 h-6"
+            src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-task.svg"
+          />
+        </div>
+      </div>
+      <div
+        class="top-[365px] left-[1389px] border border-solid border-[#e2e2e2] fixed w-[264px] h-[194px] bg-white rounded-xl"
+      ></div>
+      <img
+        class="fixed top-[382px] left-[1599px] w-[37px] h-[37px]"
+        src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-79906.png"
+      />
+      <div
+        class="right-[92px] bottom-[572px] bg-[#e6ebeb] inline-flex items-center justify-center gap-1.5 p-1.5 fixed rounded-lg"
+      >
+        <div
+          class="text-[#092e32] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          مسودة
+        </div>
+      </div>
+      <div
+        class="fixed top-[426px] left-[1551px] font-normal text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        خدمة الزبائن
+      </div>
+      <p
+        class="fixed top-[460px] left-[1402px] w-[234px] font-light text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        مراقبة تعامل الطاقم مع الزبائن.
+      </p>
+      <div
+        class="top-[365px] left-[1114px] border border-solid border-[#e2e2e2] fixed w-[264px] h-[194px] bg-white rounded-xl"
+      ></div>
+      <img
+        class="fixed top-[382px] left-[1324px] w-[37px] h-[37px]"
+        src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-79906-1.png"
+      />
+      <div
+        class="right-[367px] bottom-[572px] bg-[#2cc28d26] inline-flex items-center justify-center gap-1.5 p-1.5 fixed rounded-lg"
+      >
+        <div
+          class="text-[#2cc28d] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          تم إطلاقه
+        </div>
+      </div>
+      <div
+        class="fixed top-[426px] left-[1268px] font-normal text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        فحص المعدات
+      </div>
+      <p
+        class="fixed top-[463px] left-[1127px] w-[234px] font-light text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        التأكد من جاهزية وصيانة الأجهزة.
+      </p>
+      <div
+        class="top-[159px] left-[839px] border border-solid border-[#e2e2e2] fixed w-[264px] h-[194px] bg-white rounded-xl"
+      ></div>
+      <div class="fixed top-44 left-[1049px] w-[37px] h-[37px]">
+        <img
+          class="absolute top-[7px] left-[7px] w-6 h-6"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-task.svg"
+        />
+        <div class="absolute top-0 left-0 w-[37px] h-[37px] bg-[#40d2fe1a] rounded-lg"></div>
+      </div>
+      <div
+        class="right-[642px] bottom-[778px] bg-[#2cc28d26] inline-flex items-center justify-center gap-1.5 p-1.5 fixed rounded-lg"
+      >
+        <div
+          class="text-[#2cc28d] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          تم إطلاقه
+        </div>
+      </div>
+      <div
+        class="fixed top-[220px] left-[1011px] font-normal text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        إغلاق الفرع
+      </div>
+      <div
+        class="fixed top-64 left-[852px] w-[234px] font-light text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        مراجعة المهام قبل الإغلاق.
+      </div>
+      <div
+        class="top-[159px] left-[290px] border border-solid border-[#e2e2e2] fixed w-[264px] h-[194px] bg-white rounded-xl"
+      ></div>
+      <div class="fixed top-44 left-[500px] w-[37px] h-[37px]">
+        <img
+          class="absolute top-[7px] left-[7px] w-6 h-6"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-task.svg"
+        />
+        <div class="absolute top-0 left-0 w-[37px] h-[37px] bg-[#40d2fe1a] rounded-lg"></div>
+      </div>
+      <div
+        class="right-[1191px] bottom-[778px] bg-[#e6ebeb] inline-flex items-center justify-center gap-1.5 p-1.5 fixed rounded-lg"
+      >
+        <div
+          class="text-[#092e32] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          مسودة
+        </div>
+      </div>
+      <div
+        class="fixed top-[220px] left-[447px] font-normal text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        سلامة الأغذية
+      </div>
+      <p
+        class="fixed top-64 left-[302px] w-[234px] font-light text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        التأكد من التخزين ودرجات الحرارة.
+      </p>
+      <div
+        class="top-[159px] left-[1114px] border-2 border-solid border-[#dadada] shadow-[0px_22px_44px_#00000014] fixed w-[264px] h-[194px] bg-white rounded-xl"
+      ></div>
+      <div class="fixed top-44 left-[1117px] w-[245px] h-[189px]">
+        <div class="absolute top-0 left-52 w-[37px] h-[37px] bg-[#40d2fe1a] rounded-lg"></div>
+        <img
+          class="absolute top-2 left-[214px] w-6 h-6"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-task.svg"
+        />
+        <img
+          class="absolute top-[147px] left-0 w-[42px] h-[42px]"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/image-5.png"
+        />
+      </div>
+      <img
+        class="fixed top-44 left-[1127px] w-[37px] h-[37px]"
+        src="https://c.animaapp.com/mkjp8l7nAET0rY/img/group-20960.png"
+      />
+      <div class="fixed top-44 left-[1171px] w-[37px] h-[37px] flex bg-slate-100 rounded-lg">
+        <img
+          class="mt-[9.2px] w-[18px] h-[18px] ml-[9.1px]"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-edit-2.svg"
+        />
+      </div>
+      <div class="fixed top-[93px] left-7 w-[76px] h-[43px]">
+        <div
+          class="absolute top-0 left-0 w-[74px] h-[43px] bg-[#093738] rounded-lg shadow-[0px_4px_4px_#0000001a]"
+        ></div>
+        <div
+          class="absolute top-2.5 left-5 font-normal text-white text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+        >
+          جديد
+        </div>
+      </div>
+      <div class="fixed top-[175px] left-[1214px] w-[37px] h-[37px] flex bg-slate-100 rounded-lg">
+        <div
+          class="mt-[8.8px] w-5 h-[19px] ml-[8.3px] bg-[url(https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-document-copy.png)] bg-[100%_100%]"
+        ></div>
+      </div>
+      <div
+        class="right-[367px] bottom-[778px] bg-[#e6ebeb] inline-flex items-center justify-center gap-1.5 p-1.5 fixed rounded-lg"
+      >
+        <div
+          class="text-[#092e32] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          مسودة
+        </div>
+      </div>
+      <div
+        class="fixed top-[220px] left-[1265px] font-medium text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        عرض المنتجات
+      </div>
+      <div
+        class="fixed top-[253px] left-[1127px] w-[234px] font-normal text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        فحص ترتيب وجودة الواجهة.
+      </div>
+      <div
+        class="top-[159px] left-[565px] border border-solid border-[#e2e2e2] fixed w-[264px] h-[194px] bg-white rounded-xl"
+      ></div>
+      <div class="fixed top-44 left-[774px] w-[37px] h-[37px]">
+        <img
+          class="absolute top-[7px] left-[7px] w-6 h-6"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-task.svg"
+        />
+        <div class="absolute top-0 left-0 w-[37px] h-[37px] bg-[#40d2fe1a] rounded-lg"></div>
+      </div>
+      <div
+        class="right-[916px] bottom-[778px] bg-[#2cc28d26] inline-flex items-center justify-center gap-1.5 p-1.5 fixed rounded-lg"
+      >
+        <div
+          class="text-[#2cc28d] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          تم إطلاقه
+        </div>
+      </div>
+      <div
+        class="fixed top-[220px] left-[713px] font-normal text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        جودة المخبوزات
+      </div>
+      <div
+        class="fixed top-64 left-[577px] w-[234px] font-light text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        تقييم طزاجة وجودة المعروض.
+      </div>
+      <div
+        class="top-[159px] left-[15px] border border-solid border-[#e2e2e2] fixed w-[264px] h-[194px] bg-white rounded-xl"
+      ></div>
+      <div class="fixed top-44 left-[225px] w-[37px] h-[37px]">
+        <img
+          class="absolute top-[7px] left-[7px] w-6 h-6"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-task.svg"
+        />
+        <div class="absolute top-0 left-0 w-[37px] h-[37px] bg-[#40d2fe1a] rounded-lg"></div>
+      </div>
+      <div
+        class="right-[1466px] bottom-[778px] bg-[#2cc28d26] inline-flex items-center justify-center gap-1.5 p-1.5 fixed rounded-lg"
+      >
+        <div
+          class="text-[#2cc28d] relative w-fit mt-[-1.00px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-sm tracking-[0] leading-[15px] whitespace-nowrap [direction:rtl]"
+        >
+          تم إطلاقه
+        </div>
+      </div>
+      <div
+        class="fixed top-[220px] left-[177px] font-normal text-black text-lg leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        تجهيز الصباح
+      </div>
+      <p
+        class="fixed top-64 left-7 w-[234px] font-light text-[#00000080] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+      >
+        متابعة تحضير الفرع قبل الافتتاح.
+      </p>
+      <div class="fixed top-[92px] left-[1060px] w-[535px] h-[45px]">
+        <div
+          class="absolute top-0 left-0 w-[533px] h-[45px] bg-white rounded-lg border border-solid border-[#cfcfcf]"
+        ></div>
+        <img
+          class="absolute top-[15px] left-[503px] w-4 h-4"
+          src="https://c.animaapp.com/mkjp8l7nAET0rY/img/vuesax-linear-search-normal.svg"
+        />
+        <div
+          class="absolute top-2.5 left-[397px] font-normal text-[#99a09e] text-base leading-[normal] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] [direction:rtl]"
+        >
+          ابحث من هنا ...
+        </div>
+      </div>
+    </div>
+  <script>window.__ANIMA_PLAYGROUND_ID__="mkjp8l7nAET0rY"</script>
+<script src="https://unpkg.com/@animaapp/playground-sdk@0"></script></body>
+</html>

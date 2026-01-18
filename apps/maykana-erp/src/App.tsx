@@ -12,6 +12,8 @@ import { Assets } from "./screens/Assets";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
+import { WorkflowEngine } from "./screens/WorkflowEngine";
+import { VerificationTemplates, AddEditVerificationTemplate } from "./screens/VerificationTemplates";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -205,6 +207,38 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddTask />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow-engine",
+    element: (
+      <ProtectedRoute>
+        <WorkflowEngine />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow-engine/verification-templates",
+    element: (
+      <ProtectedRoute>
+        <VerificationTemplates />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow-engine/verification-templates/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditVerificationTemplate />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow-engine/verification-templates/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditVerificationTemplate />
       </ProtectedRoute>
     ),
   },

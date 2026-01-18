@@ -707,6 +707,127 @@ pnpm install
 
 ---
 
+## 🎯 دليل سريع لإضافة وحدة جديدة
+
+### خطوات عامة لإضافة وحدة كاملة (مثل: محرك سير الأعمال)
+
+1. **إنشاء Site Map**
+   ```
+   site map/[module-name]/
+   ├── _STRUCTURE.md        # الهيكل التنظيمي
+   ├── module-overview.md   # نظرة عامة
+   ├── README.md           # الملف الرئيسي
+   └── [sub-modules]/      # الوحدات الفرعية
+       └── README.md
+   ```
+
+2. **إنشاء Component الصفحة الرئيسية**
+   ```typescript
+   // apps/maykana-erp/src/screens/[ModuleName]/[ModuleName].tsx
+   import { CardContent } from "../../components/ui/card";
+   import { MaykanaCard } from "../../components/ui/MaykanaCard";
+   import { Layout } from "../../components/Layout";
+   import { useNavigate } from "react-router-dom";
+   import { useLanguage } from "../../contexts/LanguageContext";
+   
+   export const ModuleName = (): JSX.Element => {
+     const navigate = useNavigate();
+     const { t } = useLanguage();
+     
+     const featureCards = [
+       {
+         title: t("module.feature1"),
+         description: t("module.feature1_desc"),
+         icon: IconComponent,
+         bgColor: "bg-[#07b6641a]",
+         path: "/module/feature1",
+       },
+       // المزيد من الكروت...
+     ];
+     
+     return (
+       <Layout>
+         <div className="grid grid-cols-4 gap-4">
+           {featureCards.map((card, index) => {
+             const IconComponent = card.icon;
+             return (
+               <MaykanaCard
+                 key={index}
+                 onClick={() => card.path && navigate(card.path)}
+                 isActive={false}  // أو true للصفحات النشطة
+                 className="hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer"
+               >
+                 <CardContent className="flex flex-col p-6 h-[92px]">
+                   {/* محتوى الكارت */}
+                 </CardContent>
+               </MaykanaCard>
+             );
+           })}
+         </div>
+       </Layout>
+     );
+   };
+   ```
+
+3. **إضافة الترجمات**
+   ```json
+   // في translations.json
+   {
+     "ar": {
+       "module_name": {
+         "feature1": "اسم الميزة",
+         "feature1_desc": "وصف الميزة",
+         // المزيد...
+       }
+     },
+     "en": {
+       "module_name": {
+         "feature1": "Feature Name",
+         "feature1_desc": "Feature Description",
+         // المزيد...
+       }
+     }
+   }
+   ```
+
+4. **إضافة Breadcrumb Routes**
+   ```typescript
+   // في breadcrumbs.config.ts
+   { path: "/module-name", label: "sidebar.module_name" },
+   { path: "/module-name/feature1", label: "module_name.feature1" },
+   ```
+
+5. **إضافة Route في App.tsx**
+   ```typescript
+   import { ModuleName } from "./screens/ModuleName";
+   
+   // في router
+   {
+     path: "/module-name",
+     element: (
+       <ProtectedRoute>
+         <ModuleName />
+       </ProtectedRoute>
+     ),
+   },
+   ```
+
+### استخدام MaykanaCard الموحد
+
+جميع الكروت في النظام تستخدم `MaykanaCard` الذي يدعم:
+- `isActive`: لعرض border أخضر للصفحات النشطة
+- `border-[#e2e2e2]`: Border رمادي افتراضي
+- `border-2 border-[#2cc28d]`: Border أخضر عند `isActive={true}`
+
+**مثال:**
+```typescript
+<MaykanaCard isActive={card.id === 'active-feature'}>
+  {/* محتوى الكارت */}
+</MaykanaCard>
+```
+
+---
+
 ## 📚 مراجع مفيدة
 
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)

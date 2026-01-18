@@ -101,7 +101,7 @@ export const sidebarMenuItems: MenuItem[] = [
     titleKey: 'sidebar.workflow',
     icon: WorkflowIcon,
     hasDropdown: true,
-    path: '/workflow',
+    path: '/workflow-engine',
   },
 ];
 
