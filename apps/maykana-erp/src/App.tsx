@@ -14,6 +14,9 @@ import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
 import { WorkflowEngine } from "./screens/WorkflowEngine";
 import { VerificationTemplates, AddEditVerificationTemplate } from "./screens/VerificationTemplates";
+import { Warehouses } from "./screens/Warehouses";
+import { InventoryMaterials } from "./screens/InventoryMaterials";
+import { InventoryCount, AddEditInventoryCount } from "./screens/InventoryCount";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -246,7 +249,39 @@ const router = createBrowserRouter([
     path: "/warehouses",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="إدارة المخازن / Warehouses" />
+        <Warehouses />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/warehouses/inventory-materials",
+    element: (
+      <ProtectedRoute>
+        <InventoryMaterials />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/warehouses/inventory-count",
+    element: (
+      <ProtectedRoute>
+        <InventoryCount />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/warehouses/inventory-count/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditInventoryCount />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/warehouses/inventory-count/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditInventoryCount />
       </ProtectedRoute>
     ),
   },

@@ -32,7 +32,7 @@ export const ErrorPage = (): JSX.Element => {
         </div>
 
         <Button
-          onClick={() => navigate('/accounting')}
+          onClick={() => navigate('/home')}
           className="bg-[#093738] hover:bg-[#093738]/90 text-white rounded-lg h-auto px-8 py-3"
         >
           <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-base">

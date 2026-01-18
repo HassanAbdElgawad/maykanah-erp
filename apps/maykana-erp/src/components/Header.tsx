@@ -7,11 +7,49 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useAppDispatch } from '../store/hooks';
 import { logout } from '../store/slices/authSlice';
 
+interface SearchResult {
+  title: string;
+  titleEn: string;
+  path: string;
+  location: string;
+  locationEn: string;
+}
+
+const searchablePages: SearchResult[] = [
+  // Accounting
+  { title: 'القيود المحاسبية', titleEn: 'Accounting Entries', path: '/accounting/entries', location: 'إدارة الحسابات', locationEn: 'Accounting Management' },
+  
+  // Purchases
+  { title: 'الموردين', titleEn: 'Suppliers', path: '/purchases/suppliers', location: 'إدارة المشتريات', locationEn: 'Purchases Management' },
+  
+  // Sales
+  { title: 'العملاء', titleEn: 'Customers', path: '/sales/customers', location: 'إدارة المبيعات', locationEn: 'Sales Management' },
+  
+  // Competitions
+  { title: 'تأهيل الموردين', titleEn: 'Vendor Qualification', path: '/competitions/vendor-qualification', location: 'إدارة المنافسات', locationEn: 'Competitions Management' },
+  
+  // Assets
+  { title: 'الصيانة', titleEn: 'Maintenance', path: '/assets/maintenance', location: 'إدارة الأصول', locationEn: 'Assets Management' },
+  
+  // Strategy
+  { title: 'إدارة المهام', titleEn: 'Task Management', path: '/strategy/tasks', location: 'إدارة الإستراتيجية', locationEn: 'Strategy Management' },
+  
+  // Warehouses
+  { title: 'جرد المخزون', titleEn: 'Inventory Count', path: '/warehouses/inventory-count', location: 'إدارة المخازن', locationEn: 'Warehouses Management' },
+  
+  // Workflow
+  { title: 'قوائم التحقيق', titleEn: 'Verification Lists', path: '/workflow-engine/verification-templates', location: 'محرك سير الأعمال', locationEn: 'Workflow Engine' },
+];
+
 export const Header = (): JSX.Element => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage, t, dir } = useLanguage();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -24,11 +62,34 @@ export const Header = (): JSX.Element => {
       if (languageMenuRef.current && !languageMenuRef.current.contains(event.target as Node)) {
         setIsLanguageMenuOpen(false);
       }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim().length > 0) {
+      const query = searchQuery.toLowerCase();
+      const filtered = searchablePages.filter((page) => {
+        const titleMatch = language === 'ar' 
+          ? page.title.toLowerCase().includes(query)
+          : page.titleEn.toLowerCase().includes(query);
+        const locationMatch = language === 'ar'
+          ? page.location.toLowerCase().includes(query)
+          : page.locationEn.toLowerCase().includes(query);
+        return titleMatch || locationMatch;
+      });
+      setSearchResults(filtered);
+      setIsSearchOpen(filtered.length > 0);
+    } else {
+      setSearchResults([]);
+      setIsSearchOpen(false);
+    }
+  }, [searchQuery, language]);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -38,6 +99,12 @@ export const Header = (): JSX.Element => {
   const handleLanguageSwitch = (lang: 'ar' | 'en') => {
     setLanguage(lang);
     setIsLanguageMenuOpen(false);
+  };
+
+  const handleSearchResultClick = (path: string) => {
+    navigate(path);
+    setSearchQuery('');
+    setIsSearchOpen(false);
   };
 
   return (
@@ -51,18 +118,40 @@ export const Header = (): JSX.Element => {
         {/* Left Section - Search + Language + Notifications + User */}
         <div className="flex items-center gap-2">
           {/* Search */}
-          <div className="relative w-[350px]">
+          <div className="relative w-[350px]" ref={searchRef}>
             <Input
               className={`w-full h-[45px] bg-[#F8FAFC] rounded-lg border-0 ${
                 dir === 'rtl' ? 'pr-10 text-right' : 'pl-10 text-left'
               } [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-light text-[#00000080]`}
               placeholder={dir === 'rtl' ? 'بحثك عن هنا ...' : 'Search here ...'}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <SearchIcon
               className={`absolute top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-[#00000080] ${
                 dir === 'rtl' ? 'right-3' : 'left-3'
               }`}
             />
+            
+            {/* Search Results Dropdown */}
+            {isSearchOpen && searchResults.length > 0 && (
+              <div className={`absolute top-full mt-2 ${dir === 'rtl' ? 'right-0' : 'left-0'} bg-white rounded-lg shadow-lg border border-[#e2e2e2] py-2 w-full max-h-[400px] overflow-y-auto z-50`}>
+                {searchResults.map((result, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSearchResultClick(result.path)}
+                    className={`w-full px-4 py-3 ${dir === 'rtl' ? 'text-right' : 'text-left'} hover:bg-[#f0f4f7] flex flex-col gap-1 transition-colors`}
+                  >
+                    <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-[#092e32] text-sm">
+                      {language === 'ar' ? result.title : result.titleEn}
+                    </span>
+                    <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#5f6c72] text-xs">
+                      {language === 'ar' ? result.location : result.locationEn}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Language Switcher - Flag with small dropdown icon */}

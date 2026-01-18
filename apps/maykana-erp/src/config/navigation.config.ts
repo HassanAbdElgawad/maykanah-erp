@@ -7,7 +7,6 @@ import {
   TrophyIcon,
   BuildingIcon,
   UsersIcon,
-  FolderKanbanIcon,
   TrendingUpIcon,
   WarehouseIcon,
   WorkflowIcon,
@@ -79,12 +78,12 @@ export const sidebarMenuItems: MenuItem[] = [
     hasDropdown: true,
     path: '/hr',
   },
-  {
-    titleKey: 'sidebar.projects',
-    icon: FolderKanbanIcon,
-    hasDropdown: true,
-    path: '/projects',
-  },
+  // {
+  //   titleKey: 'sidebar.projects',
+  //   icon: FolderKanbanIcon,
+  //   hasDropdown: true,
+  //   path: '/projects',
+  // },
   {
     titleKey: 'sidebar.strategy',
     icon: TrendingUpIcon,

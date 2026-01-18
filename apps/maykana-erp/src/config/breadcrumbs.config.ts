@@ -78,7 +78,19 @@ export const breadcrumbRoutes = [
   { path: "/strategy/approvals", label: "strategy.approvals" },
   { path: "/strategy/documents", label: "strategy.document_records" },
   { path: "/strategy/meetings", label: "strategy.meeting_records" },
+  
+  // Warehouses Module
   { path: "/warehouses", label: "sidebar.warehouses" },
+  { path: "/warehouses/inventory-materials", label: "warehouses.inventory_materials" },
+  { path: "/warehouses/warehouse-management", label: "warehouses.warehouse_management" },
+  { path: "/warehouses/material-spending", label: "warehouses.material_spending" },
+  { path: "/warehouses/item-groups", label: "warehouses.item_groups" },
+  { path: "/warehouses/inventory-count", label: "warehouses.inventory_count" },
+  { path: "/warehouses/reserved-services", label: "warehouses.reserved_services" },
+  { path: "/warehouses/opening-balances", label: "warehouses.opening_balances" },
+  { path: "/warehouses/warehouse-settings", label: "warehouses.warehouse_settings" },
+  
+  // Workflow Engine Module
   { path: "/workflow-engine", label: "sidebar.workflow" },
   { path: "/workflow-engine/workflows", label: "workflow_engine.workflows" },
   { path: "/workflow-engine/verification-templates", label: "workflow_engine.verification_templates" },

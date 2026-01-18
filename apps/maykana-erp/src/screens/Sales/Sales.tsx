@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { CardContent } from '../../components/ui/card';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { FeatureCard } from '../../components/ui/FeatureCard';
 import {
   FileText,
   ClipboardList,
@@ -107,28 +106,16 @@ export const Sales = (): JSX.Element => {
     <Layout>
       <div className="grid grid-cols-4 gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {cards.map((card) => (
-          <MaykanaCard
+          <FeatureCard
             key={card.id}
+            title={card.title}
+            description={card.description}
+            icon={() => <span className={card.iconColor}>{card.icon}</span>}
+            bgColor={card.bgColor}
             onClick={() => navigate(card.path)}
             isActive={card.id === 'customers'}
-            className="hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1 cursor-pointer"
-          >
-            <CardContent className="flex flex-col p-6 h-[92px]">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col gap-1">
-                  <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#092e32] text-base">
-                    {card.title}
-                  </p>
-                  <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#5f6c72] text-xs">
-                    {card.description}
-                  </p>
-                </div>
-                <div className={`flex items-center justify-center w-[53px] h-[53px] rounded-full ${card.bgColor}`}>
-                  <span className={card.iconColor}>{card.icon}</span>
-                </div>
-              </div>
-            </CardContent>
-          </MaykanaCard>
+            isClickable={card.id === 'customers'}
+          />
         ))}
       </div>
     </Layout>
