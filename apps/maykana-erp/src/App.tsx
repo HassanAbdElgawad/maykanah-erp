@@ -17,6 +17,8 @@ import { VerificationTemplates, AddEditVerificationTemplate } from "./screens/Ve
 import { Warehouses } from "./screens/Warehouses";
 import { InventoryMaterials } from "./screens/InventoryMaterials";
 import { InventoryCount, AddEditInventoryCount } from "./screens/InventoryCount";
+import { HR } from "./screens/HR";
+import { EmployeeCenter, AddEmployee } from "./screens/HR/EmployeeCenter";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -177,7 +179,23 @@ const router = createBrowserRouter([
     path: "/hr",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="إدارة الموارد البشرية / Human Resources" />
+        <HR />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/employee-center",
+    element: (
+      <ProtectedRoute>
+        <EmployeeCenter />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/employee-center/add",
+    element: (
+      <ProtectedRoute>
+        <AddEmployee />
       </ProtectedRoute>
     ),
   },

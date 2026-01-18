@@ -28,6 +28,7 @@ interface CompetitionCard {
   descKey: string;
   icon: React.ElementType;
   color: string;
+  iconColor: string;
   path: string;
 }
 
@@ -42,6 +43,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.vendor_qualification_desc",
       icon: CheckCircle,
       color: "bg-[#E8F5E9]",
+      iconColor: "#388e3c",
       path: "/competitions/vendor-qualification",
     },
     {
@@ -50,6 +52,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.vendor_notifications_desc",
       icon: Send,
       color: "bg-[#FFF3E0]",
+      iconColor: "#f57c00",
       path: "/competitions/vendor-notifications",
     },
     {
@@ -58,6 +61,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.vendor_users_desc",
       icon: Users,
       color: "bg-[#E3F2FD]",
+      iconColor: "#1976d2",
       path: "/competitions/vendor-users",
     },
     {
@@ -66,6 +70,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.vendor_certificates_desc",
       icon: Award,
       color: "bg-[#F3E5F5]",
+      iconColor: "#7b1fa2",
       path: "/competitions/vendor-certificates",
     },
     {
@@ -74,6 +79,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.committee_formation_desc",
       icon: Users,
       color: "bg-[#FCE4EC]",
+      iconColor: "#c2185b",
       path: "/competitions/committee-formation",
     },
     {
@@ -82,6 +88,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.competition_launch_desc",
       icon: Send,
       color: "bg-[#FCE4EC]",
+      iconColor: "#c2185b",
       path: "/competitions/competition-launch",
     },
     {
@@ -90,6 +97,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.offers_inspection_desc",
       icon: Eye,
       color: "bg-[#E0F2F1]",
+      iconColor: "#00897b",
       path: "/competitions/offers-inspection",
     },
     {
@@ -98,6 +106,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.receive_offers_desc",
       icon: Inbox,
       color: "bg-[#FFF9C4]",
+      iconColor: "#f9a825",
       path: "/competitions/receive-offers",
     },
     {
@@ -106,6 +115,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.evaluation_criteria_desc",
       icon: FileText,
       color: "bg-[#FFEBEE]",
+      iconColor: "#d32f2f",
       path: "/competitions/evaluation-criteria",
     },
     {
@@ -114,6 +124,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.award_desc",
       icon: Trophy,
       color: "bg-[#FFF8E1]",
+      iconColor: "#f9a825",
       path: "/competitions/award",
     },
     {
@@ -122,6 +133,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.competition_definition_desc",
       icon: Settings,
       color: "bg-[#E8EAF6]",
+      iconColor: "#5e35b1",
       path: "/competitions/competition-definition",
     },
     {
@@ -130,6 +142,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.commitment_desc",
       icon: FileCheck,
       color: "bg-[#E0F7FA]",
+      iconColor: "#0097a7",
       path: "/competitions/commitment",
     },
     {
@@ -138,6 +151,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.agreements_desc",
       icon: Handshake,
       color: "bg-[#F1F8E9]",
+      iconColor: "#689f38",
       path: "/competitions/agreements",
     },
     {
@@ -146,6 +160,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.contract_desc",
       icon: FileSignature,
       color: "bg-[#FFF3E0]",
+      iconColor: "#f57c00",
       path: "/competitions/contract",
     },
     {
@@ -154,6 +169,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.financial_claim_desc",
       icon: DollarSign,
       color: "bg-[#FCE4EC]",
+      iconColor: "#c2185b",
       path: "/competitions/financial-claim",
     },
     {
@@ -162,6 +178,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.work_order_desc",
       icon: Briefcase,
       color: "bg-[#E8F5E9]",
+      iconColor: "#388e3c",
       path: "/competitions/work-order",
     },
     {
@@ -170,6 +187,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.completion_certificate_desc",
       icon: Medal,
       color: "bg-[#E3F2FD]",
+      iconColor: "#1976d2",
       path: "/competitions/completion-certificate",
     },
     {
@@ -178,6 +196,7 @@ export const Competitions: React.FC = () => {
       descKey: "competitions.bank_guarantees_desc",
       icon: Shield,
       color: "bg-[#F3E5F5]",
+      iconColor: "#7b1fa2",
       path: "/competitions/bank-guarantees",
     },
   ];
@@ -192,6 +211,7 @@ export const Competitions: React.FC = () => {
             description={t(card.descKey)}
             icon={card.icon}
             bgColor={card.color}
+            iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
             isActive={card.id === 'vendor-qualification'}
             isClickable={card.id === 'vendor-qualification'}

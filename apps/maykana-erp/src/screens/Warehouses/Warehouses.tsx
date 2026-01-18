@@ -20,6 +20,7 @@ interface FeatureCard {
   icon: React.ElementType;
   path: string;
   bgColor: string;
+  iconColor: string;
   hasContent?: boolean;
 }
 
@@ -35,6 +36,7 @@ export const Warehouses = (): JSX.Element => {
       icon: Package,
       path: '/warehouses/inventory-materials',
       bgColor: 'bg-[#07b6641a]',
+      iconColor: '#07b664',
       hasContent: false,
     },
     {
@@ -43,6 +45,7 @@ export const Warehouses = (): JSX.Element => {
       icon: ShoppingBag,
       path: '/warehouses/product-management',
       bgColor: 'bg-[#97c8091a]',
+      iconColor: '#97c809',
       hasContent: false,
     },
     {
@@ -51,6 +54,7 @@ export const Warehouses = (): JSX.Element => {
       icon: Lock,
       path: '/warehouses/closing-service',
       bgColor: 'bg-[#7fa1eb1a]',
+      iconColor: '#7fa1eb',
       hasContent: false,
     },
     {
@@ -59,6 +63,7 @@ export const Warehouses = (): JSX.Element => {
       icon: DollarSign,
       path: '/warehouses/opening-balances',
       bgColor: 'bg-[#10488f1a]',
+      iconColor: '#10488f',
       hasContent: false,
     },
     {
@@ -67,6 +72,7 @@ export const Warehouses = (): JSX.Element => {
       icon: Warehouse,
       path: '/warehouses/warehouse-management',
       bgColor: 'bg-[#fd7aa61a]',
+      iconColor: '#fd7aa6',
       hasContent: false,
     },
     {
@@ -75,6 +81,7 @@ export const Warehouses = (): JSX.Element => {
       icon: Archive,
       path: '/warehouses/material-damage',
       bgColor: 'bg-[#2f8fb21a]',
+      iconColor: '#2f8fb2',
       hasContent: false,
     },
     {
@@ -83,6 +90,7 @@ export const Warehouses = (): JSX.Element => {
       icon: FolderTree,
       path: '/warehouses/item-groups',
       bgColor: 'bg-[#7718691a]',
+      iconColor: '#771869',
       hasContent: false,
     },
     {
@@ -91,6 +99,7 @@ export const Warehouses = (): JSX.Element => {
       icon: ClipboardList,
       path: '/warehouses/inventory-count',
       bgColor: 'bg-[#803d191a]',
+      iconColor: '#803d19',
       hasContent: true,
     },
     {
@@ -99,6 +108,7 @@ export const Warehouses = (): JSX.Element => {
       icon: Settings,
       path: '/warehouses/warehouse-settings',
       bgColor: 'bg-[#e2791a1a]',
+      iconColor: '#e2791a',
       hasContent: false,
     },
   ];
@@ -113,6 +123,7 @@ export const Warehouses = (): JSX.Element => {
             description={t(card.descKey)}
             icon={card.icon}
             bgColor={card.bgColor}
+            iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
             isActive={card.hasContent || location.pathname.startsWith(card.path)}
             isClickable={card.hasContent}

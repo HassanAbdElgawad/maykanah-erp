@@ -18,6 +18,7 @@ export const WorkflowEngine = (): JSX.Element => {
       description: t("workflow_engine.workflows_desc"),
       icon: Workflow,
       bgColor: "bg-[#07b6641a]",
+      iconColor: "#07b664",
       path: "/workflow-engine/workflows",
     },
     {
@@ -25,6 +26,7 @@ export const WorkflowEngine = (): JSX.Element => {
       description: t("workflow_engine.verification_templates_desc"),
       icon: FileCheck2,
       bgColor: "bg-[#97c8091a]",
+      iconColor: "#97c809",
       path: "/workflow-engine/verification-templates",
     },
     {
@@ -32,6 +34,7 @@ export const WorkflowEngine = (): JSX.Element => {
       description: t("workflow_engine.predefined_rules_desc"),
       icon: Settings2,
       bgColor: "bg-[#e2791a1a]",
+      iconColor: "#e2791a",
       path: "/workflow-engine/predefined-rules",
     },
   ];
@@ -46,6 +49,7 @@ export const WorkflowEngine = (): JSX.Element => {
             description={card.description}
             icon={card.icon}
             bgColor={card.bgColor}
+            iconColor={card.iconColor}
             onClick={() => card.path && navigate(card.path)}
             isActive={card.path === '/workflow-engine/verification-templates'}
             isClickable={card.path === '/workflow-engine/verification-templates'}

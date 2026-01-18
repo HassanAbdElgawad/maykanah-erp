@@ -7,7 +7,7 @@ interface Breadcrumb {
 }
 
 export function useBreadcrumbs(): Breadcrumb[] {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   const pathSegments = pathname
     .split('/')
@@ -51,6 +51,22 @@ export function useBreadcrumbs(): Breadcrumb[] {
       };
     })
     .filter((breadcrumb): breadcrumb is Breadcrumb => breadcrumb.label !== null);
+
+  // Add tab breadcrumb if we have a query parameter
+  if (search && pathname === '/hr/employee-center') {
+    const params = new URLSearchParams(search);
+    const tab = params.get('tab');
+    
+    if (tab) {
+      const tabRoute = breadcrumbRoutes.find(route => route.path === `/hr/employee-center?tab=${tab}`);
+      if (tabRoute) {
+        breadcrumbs.push({
+          label: tabRoute.label,
+          href: `/hr/employee-center?tab=${tab}`,
+        });
+      }
+    }
+  }
 
   return breadcrumbs;
 }

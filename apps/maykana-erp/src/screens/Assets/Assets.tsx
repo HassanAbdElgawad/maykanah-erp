@@ -17,6 +17,7 @@ interface AssetCard {
   descKey: string;
   icon: React.ElementType;
   color: string;
+  iconColor: string;
   path: string;
 }
 
@@ -31,6 +32,7 @@ export const Assets: React.FC = () => {
       descKey: 'assets.asset_management_desc',
       icon: Package,
       color: 'bg-[#E8F5E9]',
+      iconColor: '#388e3c',
       path: '/assets/asset-management',
     },
     {
@@ -39,6 +41,7 @@ export const Assets: React.FC = () => {
       descKey: 'assets.asset_movements_desc',
       icon: ArrowRightLeft,
       color: 'bg-[#E3F2FD]',
+      iconColor: '#1976d2',
       path: '/assets/asset-movements',
     },
     {
@@ -47,6 +50,7 @@ export const Assets: React.FC = () => {
       descKey: 'assets.maintenance_desc',
       icon: Wrench,
       color: 'bg-[#FFF3E0]',
+      iconColor: '#f57c00',
       path: '/assets/maintenance',
     },
     {
@@ -55,6 +59,7 @@ export const Assets: React.FC = () => {
       descKey: 'assets.asset_value_adjustment_desc',
       icon: TrendingUp,
       color: 'bg-[#F3E5F5]',
+      iconColor: '#7b1fa2',
       path: '/assets/asset-value-adjustment',
     },
     {
@@ -63,6 +68,7 @@ export const Assets: React.FC = () => {
       descKey: 'assets.sale_disposal_desc',
       icon: DollarSign,
       color: 'bg-[#FCE4EC]',
+      iconColor: '#c2185b',
       path: '/assets/sale-disposal',
     }
   ];
@@ -77,6 +83,7 @@ export const Assets: React.FC = () => {
             description={t(card.descKey)}
             icon={card.icon}
             bgColor={card.color}
+            iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
             isActive={card.id === 'maintenance'}
             isClickable={card.id === 'maintenance'}

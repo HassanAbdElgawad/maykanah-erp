@@ -17,8 +17,9 @@ interface PurchaseCard {
   id: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: React.ElementType;
   bgColor: string;
+  iconColor: string;
   path: string;
 }
 
@@ -31,64 +32,72 @@ export const Purchases = (): JSX.Element => {
       id: 'suppliers',
       title: t('purchases.suppliers'),
       description: t('purchases.suppliers_desc'),
-      icon: <Frame className="w-6 h-6" />,
+      icon: Frame,
       bgColor: 'bg-[#07b6641a]',
+      iconColor: '#07b664',
       path: '/purchases/suppliers',
     },
     {
       id: 'purchase-requests',
       title: t('purchases.purchase_requests'),
       description: t('purchases.purchase_requests_desc'),
-      icon: <ReceiptText className="w-6 h-6" />,
+      icon: ReceiptText,
       bgColor: 'bg-[#97c8091a]',
+      iconColor: '#97c809',
       path: '/purchases/purchase-requests',
     },
     {
       id: 'price-quote-requests',
       title: t('purchases.price_quote_requests'),
       description: t('purchases.price_quote_requests_desc'),
-      icon: <FileText className="w-6 h-6" />,
+      icon: FileText,
       bgColor: 'bg-[#7fa1eb1a]',
+      iconColor: '#7fa1eb',
       path: '/purchases/price-quote-requests',
     },
     {
       id: 'supplier-price-quotes',
       title: t('purchases.supplier_price_quotes'),
       description: t('purchases.supplier_price_quotes_desc'),
-      icon: <DollarSign className="w-6 h-6" />,
+      icon: DollarSign,
       bgColor: 'bg-[#10488f1a]',
+      iconColor: '#10488f',
       path: '/purchases/supplier-price-quotes',
     },
     {
       id: 'purchase-orders',
       title: t('purchases.purchase_orders'),
       description: t('purchases.purchase_orders_desc'),
-      icon: <ShoppingCart className="w-6 h-6" />,
+      icon: ShoppingCart,
       bgColor: 'bg-[#fd7aa61a]',
+      iconColor: '#fd7aa6',
       path: '/purchases/purchase-orders',
     },
     {
       id: 'material-receipts',
       title: t('purchases.material_receipts'),
       description: t('purchases.material_receipts_desc'),
-      icon: <Package className="w-6 h-6" />,
+      icon: Package,
       bgColor: 'bg-[#2f8fb21a]',
+      iconColor: '#2f8fb2',
       path: '/purchases/material-receipts',
     },
     {
       id: 'purchase-invoices',
       title: t('purchases.purchase_invoices'),
       description: t('purchases.purchase_invoices_desc'),
-      icon: <FileCheck className="w-6 h-6" />,
+      icon: FileCheck,
       bgColor: 'bg-[#7718691a]',
+      iconColor: '#771869',
       path: '/purchases/purchase-invoices',
     },
     {
       id: 'purchase-returns',
       title: t('purchases.purchase_returns'),
       description: t('purchases.purchase_returns_desc'),
-      icon: <RefreshCcw className="w-6 h-6" />,
+      icon: RefreshCcw,
       bgColor: 'bg-[#803d191a]',
+      iconColor: '#803d19',
       path: '/purchases/purchase-returns',
     },
   ];
@@ -101,8 +110,9 @@ export const Purchases = (): JSX.Element => {
             key={card.id}
             title={card.title}
             description={card.description}
-            icon={() => <>{card.icon}</>}
+            icon={card.icon}
             bgColor={card.bgColor}
+            iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
             isActive={card.id === 'suppliers'}
             isClickable={card.id === 'suppliers'}

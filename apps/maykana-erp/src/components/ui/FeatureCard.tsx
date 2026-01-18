@@ -9,6 +9,7 @@ interface FeatureCardProps {
   description: string;
   icon: LucideIcon | React.ElementType;
   bgColor: string;
+  iconColor?: string;
   onClick?: () => void;
   isActive?: boolean;
   isClickable?: boolean;
@@ -19,6 +20,7 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   description,
   icon: Icon,
   bgColor,
+  iconColor = '#093738',
   onClick,
   isActive = false,
   isClickable = true,
@@ -41,8 +43,8 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
               {description}
             </p>
           </div>
-          <div className={`flex items-center justify-center w-[53px] h-[53px] rounded-full ${bgColor}`}>
-            <Icon className="w-6 h-6 text-[#093738]" />
+          <div className={`flex items-center justify-center w-[53px] h-[53px] rounded-full`} style={{ backgroundColor: bgColor }}>
+            <Icon className="w-6 h-6" style={{ color: iconColor }} />
           </div>
         </div>
       </CardContent>

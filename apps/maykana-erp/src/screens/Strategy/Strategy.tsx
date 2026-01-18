@@ -22,6 +22,7 @@ export const Strategy = (): JSX.Element => {
       description: t("strategy.strategic_plans_desc"),
       icon: TrendingUp,
       bgColor: "bg-[#07b6641a]",
+      iconColor: "#07b664",
       borderColor: "",
       path: "/strategy/strategic-plans",
     },
@@ -30,6 +31,7 @@ export const Strategy = (): JSX.Element => {
       description: t("strategy.plan_tracking_desc"),
       icon: Target,
       bgColor: "bg-[#97c8091a]",
+      iconColor: "#97c809",
       borderColor: "",
       path: "/strategy/plan-tracking",
     },
@@ -38,6 +40,7 @@ export const Strategy = (): JSX.Element => {
       description: t("strategy.project_management_desc"),
       icon: FolderKanban,
       bgColor: "bg-[#2f8fb21a]",
+      iconColor: "#2f8fb2",
       borderColor: "",
       path: "/strategy/projects",
     },
@@ -46,6 +49,7 @@ export const Strategy = (): JSX.Element => {
       description: t("strategy.task_management_desc"),
       icon: ListTodo,
       bgColor: "bg-[#0b72211a]",
+      iconColor: "#0b7221",
       path: "/strategy/tasks",
     },
     {
@@ -53,6 +57,7 @@ export const Strategy = (): JSX.Element => {
       description: t("strategy.approvals_desc"),
       icon: CheckCircle,
       bgColor: "bg-[#0b42211a]",
+      iconColor: "#0b4221",
       borderColor: "",
       path: "/strategy/approvals",
     },
@@ -61,6 +66,7 @@ export const Strategy = (): JSX.Element => {
       description: t("strategy.document_records_desc"),
       icon: FileText,
       bgColor: "bg-[#e2791a1a]",
+      iconColor: "#e2791a",
       borderColor: "",
       path: "/strategy/documents",
     },
@@ -69,6 +75,7 @@ export const Strategy = (): JSX.Element => {
       description: t("strategy.meeting_records_desc"),
       icon: Calendar,
       bgColor: "bg-[#11383f1a]",
+      iconColor: "#11383f",
       borderColor: "",
       path: "/strategy/meetings",
     },
@@ -84,6 +91,7 @@ export const Strategy = (): JSX.Element => {
             description={card.description}
             icon={card.icon}
             bgColor={card.bgColor}
+            iconColor={card.iconColor}
             onClick={() => card.path && navigate(card.path)}
             isActive={card.path === '/strategy/tasks'}
             isClickable={card.path === '/strategy/tasks'}

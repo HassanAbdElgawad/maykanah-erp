@@ -68,6 +68,12 @@ export const breadcrumbRoutes = [
   
   // Other Modules
   { path: "/hr", label: "sidebar.hr" },
+  { path: "/hr/employee-center", label: "hr.employee_center" },
+  { path: "/hr/employee-center?tab=new-employee", label: "hr.new_employees" },
+  { path: "/hr/employee-center?tab=work-start", label: "hr.work_start_requests" },
+  { path: "/hr/employee-center?tab=contract-renewal", label: "hr.contract_renewal" },
+  { path: "/hr/employee-center?tab=resignation", label: "hr.resignation_termination" },
+  { path: "/hr/employee-center/add", label: "hr.add_employee" },
   { path: "/projects", label: "sidebar.projects" },
   { path: "/strategy", label: "sidebar.strategy" },
   { path: "/strategy/tasks", label: "strategy.task_management" },
