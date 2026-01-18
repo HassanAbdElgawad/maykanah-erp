@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { FeatureCard } from '../../components/ui/FeatureCard';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -30,6 +30,7 @@ type ViewMode = 'admin' | 'employee';
 
 export const HR: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<ViewMode>('admin');
 
@@ -167,10 +168,23 @@ export const HR: React.FC = () => {
 
   const cards = viewMode === 'admin' ? adminCards : employeeCards;
 
+  const isCardActive = (card: HRCard) => {
+    // If on /hr main page, show default active card based on mode
+    if (location.pathname === '/hr') {
+      if (viewMode === 'admin') {
+        return card.id === 'employee-center';
+      } else {
+        return card.id === 'my-requests';
+      }
+    }
+    // If on a sub-page, show that card as active
+    return location.pathname.startsWith(card.path);
+  };
+
   return (
     <Layout>
       <div className="space-y-6">
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
           {cards.map((card) => (
             <FeatureCard
               key={card.id}
@@ -180,7 +194,7 @@ export const HR: React.FC = () => {
               bgColor={card.bgColor}
               iconColor={card.iconColor}
               onClick={() => navigate(card.path)}
-              isActive={card.id === 'employee-center'}
+              isActive={isCardActive(card)}
               isClickable={true}
             />
           ))}

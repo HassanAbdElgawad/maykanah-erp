@@ -4,13 +4,16 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { App } from "./App";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { CustomizationProvider } from "./contexts/CustomizationContext";
 import "../tailwind.css";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <Provider store={store}>
       <LanguageProvider>
-        <App />
+        <CustomizationProvider>
+          <App />
+        </CustomizationProvider>
       </LanguageProvider>
     </Provider>
   </StrictMode>,

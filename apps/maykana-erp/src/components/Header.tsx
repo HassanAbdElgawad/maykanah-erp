@@ -4,6 +4,7 @@ import { BellIcon, ChevronDownIcon, SearchIcon, LogOutIcon } from 'lucide-react'
 import { Input } from './ui/input';
 import { Breadcrumbs } from './Breadcrumbs';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useCustomization } from '../contexts/CustomizationContext';
 import { useAppDispatch } from '../store/hooks';
 import { logout } from '../store/slices/authSlice';
 
@@ -13,6 +14,18 @@ interface SearchResult {
   path: string;
   location: string;
   locationEn: string;
+}
+
+interface Notification {
+  id: string;
+  title: string;
+  titleEn: string;
+  description: string;
+  descriptionEn: string;
+  time: string;
+  isRead: boolean;
+  type: 'info' | 'success' | 'warning' | 'error';
+  icon?: string;
 }
 
 const searchablePages: SearchResult[] = [
@@ -41,18 +54,106 @@ const searchablePages: SearchResult[] = [
   { title: 'قوائم التحقيق', titleEn: 'Verification Lists', path: '/workflow-engine/verification-templates', location: 'محرك سير الأعمال', locationEn: 'Workflow Engine' },
 ];
 
+const notifications: Notification[] = [
+  {
+    id: '1',
+    title: 'طلب إجازة جديد',
+    titleEn: 'New Leave Request',
+    description: 'قام أحمد محمد بتقديم طلب إجازة سنوية لمدة 5 أيام',
+    descriptionEn: 'Ahmed Mohammed submitted an annual leave request for 5 days',
+    time: 'منذ 5 دقائق',
+    isRead: false,
+    type: 'info',
+  },
+  {
+    id: '2',
+    title: 'تمت الموافقة على طلب الشراء',
+    titleEn: 'Purchase Request Approved',
+    description: 'تم اعتماد طلب الشراء رقم PR-2024-156 من قبل المدير المالي',
+    descriptionEn: 'Purchase request PR-2024-156 has been approved by the Financial Manager',
+    time: 'منذ 15 دقيقة',
+    isRead: false,
+    type: 'success',
+  },
+  {
+    id: '3',
+    title: 'تذكير: اجتماع قادم',
+    titleEn: 'Reminder: Upcoming Meeting',
+    description: 'لديك اجتماع مع فريق الموارد البشرية في تمام الساعة 2:00 مساءً',
+    descriptionEn: 'You have a meeting with the HR team at 2:00 PM',
+    time: 'منذ 30 دقيقة',
+    isRead: true,
+    type: 'warning',
+  },
+  {
+    id: '4',
+    title: 'مستند جديد يحتاج توقيعك',
+    titleEn: 'New Document Requires Your Signature',
+    description: 'عقد الموظف الجديد "سارة أحمد" يحتاج إلى التوقيع والاعتماد',
+    descriptionEn: 'New employee contract for "Sarah Ahmed" requires signature and approval',
+    time: 'منذ ساعة',
+    isRead: false,
+    type: 'warning',
+  },
+  {
+    id: '5',
+    title: 'تم تحديث ملف الرواتب',
+    titleEn: 'Payroll File Updated',
+    description: 'تم تحديث ملف رواتب شهر يناير 2024 بنجاح',
+    descriptionEn: 'January 2024 payroll file has been successfully updated',
+    time: 'منذ ساعتين',
+    isRead: true,
+    type: 'success',
+  },
+  {
+    id: '6',
+    title: 'تنبيه: موعد انتهاء عقد',
+    titleEn: 'Alert: Contract Expiration',
+    description: 'عقد الموظف محمد علي سينتهي خلال 30 يوماً',
+    descriptionEn: 'Mohammed Ali\'s contract will expire in 30 days',
+    time: 'منذ 3 ساعات',
+    isRead: true,
+    type: 'error',
+  },
+  {
+    id: '7',
+    title: 'طلب تجديد عقد',
+    titleEn: 'Contract Renewal Request',
+    description: 'تم استلام طلب تجديد عقد من الموظفة نورة سعد',
+    descriptionEn: 'Contract renewal request received from employee Noura Saad',
+    time: 'منذ 4 ساعات',
+    isRead: true,
+    type: 'info',
+  },
+  {
+    id: '8',
+    title: 'تقرير الحضور الشهري جاهز',
+    titleEn: 'Monthly Attendance Report Ready',
+    description: 'تقرير حضور وانصراف الموظفين لشهر ديسمبر متاح للمراجعة',
+    descriptionEn: 'Employee attendance report for December is available for review',
+    time: 'منذ 5 ساعات',
+    isRead: true,
+    type: 'info',
+  },
+];
+
 export const Header = (): JSX.Element => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
+  const notificationsRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage, t, dir } = useLanguage();
+  const { customization } = useCustomization();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const unreadCount = notifications.filter(n => !n.isRead).length;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -61,6 +162,9 @@ export const Header = (): JSX.Element => {
       }
       if (languageMenuRef.current && !languageMenuRef.current.contains(event.target as Node)) {
         setIsLanguageMenuOpen(false);
+      }
+      if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node)) {
+        setIsNotificationsOpen(false);
       }
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setIsSearchOpen(false);
@@ -105,6 +209,32 @@ export const Header = (): JSX.Element => {
     navigate(path);
     setSearchQuery('');
     setIsSearchOpen(false);
+  };
+
+  const getNotificationIcon = (type: string) => {
+    switch (type) {
+      case 'success':
+        return '✓';
+      case 'warning':
+        return '⚠';
+      case 'error':
+        return '✕';
+      default:
+        return 'ℹ';
+    }
+  };
+
+  const getNotificationColor = (type: string) => {
+    switch (type) {
+      case 'success':
+        return 'bg-green-100 text-green-600';
+      case 'warning':
+        return 'bg-yellow-100 text-yellow-600';
+      case 'error':
+        return 'bg-red-100 text-red-600';
+      default:
+        return 'bg-blue-100 text-blue-600';
+    }
   };
 
   return (
@@ -211,10 +341,83 @@ export const Header = (): JSX.Element => {
           </div>
 
           {/* Notifications - Bell with red dot */}
-          <button className="h-[45px] w-[45px] bg-[#F8FAFC] hover:opacity-80 transition-opacity flex items-center justify-center rounded-lg relative">
-            <BellIcon className="w-[22px] h-[22px] text-gray-700" />
-            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full" />
-          </button>
+          <div className="relative" ref={notificationsRef}>
+            <button 
+              onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+              className="h-[45px] w-[45px] bg-[#F8FAFC] hover:opacity-80 transition-opacity flex items-center justify-center rounded-lg relative"
+            >
+              <BellIcon className="w-[22px] h-[22px] text-gray-700" />
+              {unreadCount > 0 && (
+                <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-[9px] font-semibold">{unreadCount}</span>
+                </span>
+              )}
+            </button>
+
+            {isNotificationsOpen && (
+              <div
+                className={`absolute top-full mt-2 ${dir === 'rtl' ? 'left-0' : 'right-0'} bg-white rounded-lg shadow-lg border border-[#e2e2e2] w-[400px] max-h-[500px] overflow-hidden z-50`}
+              >
+                {/* Header */}
+                <div className="px-4 py-3 border-b border-[#e2e2e2] flex items-center justify-between">
+                  <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#092e32] text-base">
+                    {language === 'ar' ? 'الإشعارات' : 'Notifications'}
+                  </h3>
+                  {unreadCount > 0 && (
+                    <span className="px-2 py-1 bg-red-100 text-red-600 rounded-full text-xs font-semibold">
+                      {unreadCount} {language === 'ar' ? 'جديد' : 'new'}
+                    </span>
+                  )}
+                </div>
+
+                {/* Notifications List */}
+                <div className="max-h-[400px] overflow-y-auto">
+                  {notifications.map((notification) => (
+                    <div
+                      key={notification.id}
+                      className={`px-4 py-3 border-b border-[#e2e2e214] hover:bg-[#f0f4f7] cursor-pointer transition-colors ${
+                        !notification.isRead ? 'bg-blue-50' : ''
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* Icon */}
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${getNotificationColor(notification.type)}`}>
+                          <span className="text-lg font-bold">{getNotificationIcon(notification.type)}</span>
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <h4 className={`[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#092e32] text-sm ${
+                              !notification.isRead ? 'text-[#093738]' : ''
+                            }`}>
+                              {language === 'ar' ? notification.title : notification.titleEn}
+                            </h4>
+                            {!notification.isRead && (
+                              <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 mt-1" />
+                            )}
+                          </div>
+                          <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#5f6c72] text-xs mt-1 line-clamp-2">
+                            {language === 'ar' ? notification.description : notification.descriptionEn}
+                          </p>
+                          <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#5f6c7280] text-xs mt-1 inline-block">
+                            {notification.time}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Footer */}
+                <div className="px-4 py-3 border-t border-[#e2e2e2] text-center">
+                  <button className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-[#093738] text-sm hover:underline">
+                    {language === 'ar' ? 'عرض جميع الإشعارات' : 'View All Notifications'}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* User Menu - Avatar with small dropdown icon */}
           <div className="relative" ref={userMenuRef}>
@@ -225,7 +428,7 @@ export const Header = (): JSX.Element => {
               <img
                 className="w-[35px] h-[35px] rounded-full object-cover"
                 alt="User Avatar"
-                src="/images/icons/dummy_user_avatar.png"
+                src={customization.avatarImage || "/images/icons/dummy_user_avatar.png"}
               />
               <ChevronDownIcon className="w-3 h-3 text-gray-600" />
             </button>
@@ -239,7 +442,7 @@ export const Header = (): JSX.Element => {
                     {t('common.user')}
                   </p>
                   <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#092e3280] text-xs">
-                    {t('common.email')}
+                    {customization.userEmail || t('common.email')}
                   </p>
                 </div>
                 <button

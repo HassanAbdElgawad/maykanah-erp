@@ -74,6 +74,8 @@ export const breadcrumbRoutes = [
   { path: "/hr/employee-center?tab=contract-renewal", label: "hr.contract_renewal" },
   { path: "/hr/employee-center?tab=resignation", label: "hr.resignation_termination" },
   { path: "/hr/employee-center/add", label: "hr.add_employee" },
+  { path: "/hr/my-requests", label: "hr.my_requests" },
+  { path: "/hr/my-requests/new", label: "hr.work_start_request" },
   { path: "/projects", label: "sidebar.projects" },
   { path: "/strategy", label: "sidebar.strategy" },
   { path: "/strategy/tasks", label: "strategy.task_management" },

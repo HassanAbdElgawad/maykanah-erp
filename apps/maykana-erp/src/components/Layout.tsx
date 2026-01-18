@@ -9,7 +9,9 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import { Header } from './Header';
+import { CustomizationButton } from './CustomizationButton';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useCustomization } from '../contexts/CustomizationContext';
 import { sidebarMenuItems, bottomMenuItems } from '../config/navigation.config';
 
 interface LayoutProps {
@@ -19,6 +21,7 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { t, dir } = useLanguage();
+  const { customization } = useCustomization();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,6 +32,9 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <div className="relative min-h-screen w-full bg-[#f7f7f9]" dir={dir}>
+      {/* Customization Button */}
+      <CustomizationButton />
+
       {/* Header */}
       <div
         className={`fixed top-2 z-20 transition-all duration-300 ${
@@ -64,6 +70,16 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
         className={`fixed top-2 ${dir === 'rtl' ? 'right-4' : 'left-4'} ${
           isSidebarOpen ? 'w-[305px]' : 'w-[70px]'
         } h-[calc(100vh-16px)] bg-[url(https://c.animaapp.com/mkd2vucjeF4nNd/img/rectangle-1.png)] bg-cover bg-center rounded-lg overflow-hidden z-30 transition-all duration-300`}
+        style={
+          customization.sidebarMainColor && 
+          customization.sidebarMainColor !== '#0A3B3D' && 
+          customization.sidebarMainColor !== '#093738'
+            ? {
+                backgroundColor: customization.sidebarMainColor,
+                backgroundBlendMode: 'overlay',
+              }
+            : undefined
+        }
       >
         <div className="flex flex-col h-full">
           {/* Logo & Toggle */}
@@ -108,6 +124,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
           <nav className="flex-1 px-[13px] py-5 space-y-[5px]">
             {sidebarMenuItems.map((item, index) => {
               const isActive = isMenuItemActive(item.path);
+              const secondaryColor = customization.sidebarSecondaryColor || '#ffffff0a';
               return (
                 <Button
                   key={index}
@@ -118,8 +135,9 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                   } px-2 rounded-lg flex-row ${
                     isActive
                       ? 'bg-white hover:bg-white/90 text-[#104633]'
-                      : 'bg-[#ffffff0a] hover:bg-[#ffffff1a] text-white'
+                      : 'hover:bg-[#ffffff1a] text-white'
                   }`}
+                  style={!isActive ? { backgroundColor: secondaryColor } : {}}
                 >
                   {isSidebarOpen ? (
                     <>
@@ -192,15 +210,18 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
             <Separator className="bg-white/20" />
 
             {/* Bottom Menu Items */}
-            {bottomMenuItems.map((item, index) => (
-              <Button
-                key={index}
-                variant="ghost"
-                onClick={() => item.path && navigate(item.path)}
-                className={`w-full h-10 ${
-                  isSidebarOpen ? 'justify-between' : 'justify-center'
-                } px-2 rounded-lg flex-row bg-[#ffffff0a] hover:bg-[#ffffff1a] text-white`}
-              >
+            {bottomMenuItems.map((item, index) => {
+              const secondaryColor = customization.sidebarSecondaryColor || '#ffffff0a';
+              return (
+                <Button
+                  key={index}
+                  variant="ghost"
+                  onClick={() => item.path && navigate(item.path)}
+                  className={`w-full h-10 ${
+                    isSidebarOpen ? 'justify-between' : 'justify-center'
+                  } px-2 rounded-lg flex-row hover:bg-[#ffffff1a] text-white`}
+                  style={{ backgroundColor: secondaryColor }}
+                >
                 {isSidebarOpen ? (
                   <>
                     <div className="flex items-center gap-2">
@@ -232,7 +253,8 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                   </div>
                 )}
               </Button>
-            ))}
+            );
+            })}
 
             <Separator className="bg-white/20 my-2" />
           </div>

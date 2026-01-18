@@ -19,6 +19,7 @@ import { InventoryMaterials } from "./screens/InventoryMaterials";
 import { InventoryCount, AddEditInventoryCount } from "./screens/InventoryCount";
 import { HR } from "./screens/HR";
 import { EmployeeCenter, AddEmployee } from "./screens/HR/EmployeeCenter";
+import { MyRequests, NewRequest } from "./screens/HR/MyRequests";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -196,6 +197,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEmployee />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/my-requests",
+    element: (
+      <ProtectedRoute>
+        <MyRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/my-requests/new",
+    element: (
+      <ProtectedRoute>
+        <NewRequest />
       </ProtectedRoute>
     ),
   },

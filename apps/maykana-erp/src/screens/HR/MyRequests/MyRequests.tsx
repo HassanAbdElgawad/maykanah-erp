@@ -1,0 +1,222 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Layout } from '../../../components/Layout';
+import { useLanguage } from '../../../contexts/LanguageContext';
+import { ArrowLeft, ArrowRight, Eye, FileText } from 'lucide-react';
+
+interface Request {
+  id: string;
+  requestNumber: string;
+  requestType: string;
+  submissionDate: string;
+  status: 'pending' | 'approved' | 'rejected';
+}
+
+export const MyRequests: React.FC = () => {
+  const navigate = useNavigate();
+  const { t, language } = useLanguage();
+  const isRTL = language === 'ar';
+
+  // Sample data - set to empty array [] for empty state
+  const requests: Request[] = [
+    {
+      id: '1',
+      requestNumber: 'REQ-2024-001',
+      requestType: 'طلب مباشرة عمل',
+      submissionDate: '2024-01-15',
+      status: 'pending',
+    },
+    {
+      id: '2',
+      requestNumber: 'REQ-2024-002',
+      requestType: 'طلب إجازة',
+      submissionDate: '2024-01-10',
+      status: 'approved',
+    },
+    {
+      id: '3',
+      requestNumber: 'REQ-2024-003',
+      requestType: 'طلب تجديد عقد',
+      submissionDate: '2024-01-05',
+      status: 'rejected',
+    },
+  ];
+
+  const hasRequests = requests.length > 0;
+
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'approved':
+        return t('hr.approved');
+      case 'rejected':
+        return t('hr.rejected');
+      case 'pending':
+        return t('hr.pending');
+      default:
+        return status;
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'approved':
+        return 'bg-green-100 text-green-800';
+      case 'rejected':
+        return 'bg-red-100 text-red-800';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  return (
+    <Layout>
+      <div className="space-y-6">
+        {/* Header */}
+        <div
+          className="flex items-center justify-between bg-white p-4 rounded-xl border border-[#e2e2e2]"
+          dir={isRTL ? 'rtl' : 'ltr'}
+        >
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate('/hr')}
+              className="flex items-center justify-center w-10 h-10 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
+            >
+              {isRTL ? (
+                <ArrowRight className="w-5 h-5 text-gray-600" />
+              ) : (
+                <ArrowLeft className="w-5 h-5 text-gray-600" />
+              )}
+            </button>
+            <h1 className="text-xl font-medium text-gray-900 relative">{t('hr.my_requests')}</h1>
+          </div>
+          <button
+            onClick={() => navigate('/hr/my-requests/new')}
+            className="flex items-center gap-2 px-4 py-2 bg-[#093738] text-white rounded-lg shadow-sm hover:bg-[#0b4445] transition-colors"
+          >
+            <FileText className="w-4 h-4" />
+            {t('hr.add_new_request')}
+          </button>
+        </div>
+
+        {/* Main Content */}
+        {!hasRequests ? (
+          /* Empty State */
+          <div className="bg-white rounded-xl border border-[#e2e2e2] py-20">
+            <div className="flex flex-col items-center gap-14 max-w-md mx-auto">
+              {/* Illustration */}
+              <div className="flex flex-col items-center gap-10">
+                <svg
+                  width="248"
+                  height="248"
+                  viewBox="0 0 248 248"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="124" cy="124" r="124" fill="#F0F4F7" />
+                  <path
+                    d="M124 60C88.6538 60 60 88.6538 60 124C60 159.346 88.6538 188 124 188C159.346 188 188 159.346 188 124C188 88.6538 159.346 60 124 60ZM124 172C97.4903 172 76 150.51 76 124C76 97.4903 97.4903 76 124 76C150.51 76 172 97.4903 172 124C172 150.51 150.51 172 124 172Z"
+                    fill="#093738"
+                    fillOpacity="0.3"
+                  />
+                  <path
+                    d="M140 108H108C104.686 108 102 110.686 102 114V134C102 137.314 104.686 140 108 140H140C143.314 140 146 137.314 146 134V114C146 110.686 143.314 108 140 108Z"
+                    fill="#093738"
+                  />
+                  <circle cx="124" cy="100" r="12" fill="#093738" fillOpacity="0.5" />
+                </svg>
+
+                {/* Text */}
+                <div className="flex flex-col items-center gap-1.5 w-full">
+                  <h2
+                    className="text-2xl font-bold text-black text-center"
+                    style={{ fontFamily: 'IBM Plex Sans Arabic, Helvetica' }}
+                  >
+                    {t('hr.as_new_employee')}
+                  </h2>
+                  <p
+                    className="text-base font-medium text-black text-center"
+                    style={{ fontFamily: 'IBM Plex Sans Arabic, Helvetica' }}
+                  >
+                    {t('hr.confirm_work_start_request')}
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => navigate('/hr/my-requests/new')}
+                className="w-full h-[43px] flex items-center justify-center px-4 py-[9px] bg-[#093738] text-white rounded-lg shadow-[0px_4px_4px_#0000001a] hover:bg-[#0b4445] transition-colors"
+                style={{ fontFamily: 'IBM Plex Sans Arabic, Helvetica' }}
+              >
+                {t('hr.work_start_request')}
+              </button>
+            </div>
+          </div>
+        ) : (
+          /* Requests List */
+          <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
+            {/* Table Header */}
+            <div className="overflow-x-auto">
+              <table className="w-full" dir={isRTL ? 'rtl' : 'ltr'}>
+                <thead className="bg-[#f0f4f7]">
+                  <tr>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      {t('hr.request_number')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      {t('hr.request_type')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      {t('hr.submission_date')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      {t('hr.status')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
+                      {t('hr.actions')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {requests.map((request) => (
+                    <tr key={request.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {request.requestNumber}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                        {request.requestType}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                        {request.submissionDate}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span
+                          className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(
+                            request.status
+                          )}`}
+                        >
+                          {getStatusText(request.status)}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button
+                          onClick={() => navigate(`/hr/my-requests/${request.id}`)}
+                          className="flex items-center gap-2 text-[#093738] hover:text-[#0b4445]"
+                        >
+                          <Eye className="w-4 h-4" />
+                          {t('hr.view_details')}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
+    </Layout>
+  );
+};
