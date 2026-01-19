@@ -181,6 +181,14 @@ export const HR: React.FC = () => {
     return location.pathname.startsWith(card.path);
   };
 
+  const isCardClickable = (card: HRCard) => {
+    if (viewMode === 'admin') {
+      return card.id === 'employee-center';
+    } else {
+      return card.id === 'my-requests';
+    }
+  };
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -195,7 +203,7 @@ export const HR: React.FC = () => {
               iconColor={card.iconColor}
               onClick={() => navigate(card.path)}
               isActive={isCardActive(card)}
-              isClickable={true}
+              isClickable={isCardClickable(card)}
             />
           ))}
         </div>

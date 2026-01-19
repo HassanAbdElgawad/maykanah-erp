@@ -15,13 +15,21 @@ const moduleIcons: Record<string, string> = {
   '/warehouses': 'Warehouse',
   '/workflow-engine': 'Workflow',
   '/reports': 'FileBarChart2',
+  '/settings': 'Settings',
+  '/support': 'Headphones',
 };
 
 export function ModuleIcon() {
   const { pathname } = useLocation();
   
   // Get the first segment of the path (module name)
-  const moduleSegment = '/' + pathname.split('/').filter(Boolean)[0];
+  let moduleSegment = '/' + pathname.split('/').filter(Boolean)[0];
+  
+  // If root path, default to home
+  if (pathname === '/' || moduleSegment === '/') {
+    moduleSegment = '/home';
+  }
+  
   const iconName = moduleIcons[moduleSegment];
   
   if (!iconName) return null;

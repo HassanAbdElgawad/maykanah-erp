@@ -25,6 +25,8 @@ import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
 import { ForgotPasswordPage } from "./screens/ForgotPasswordPage";
 import { ReportsPage } from "./screens/ReportsPage";
+import { SettingsPage } from "./screens/SettingsPage";
+import { SupportPage } from "./screens/SupportPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -346,7 +348,7 @@ const router = createBrowserRouter([
     path: "/settings",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="الإعدادات / Settings" />
+        <SettingsPage />
       </ProtectedRoute>
     ),
   },
@@ -354,7 +356,7 @@ const router = createBrowserRouter([
     path: "/support",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="الدعم الفني / Support" />
+        <SupportPage />
       </ProtectedRoute>
     ),
   },
