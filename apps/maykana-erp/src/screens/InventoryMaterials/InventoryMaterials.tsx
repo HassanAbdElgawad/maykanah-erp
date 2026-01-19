@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { AdvancedTable } from '../../components/ui/Table';
 import {
   Search,
   Plus,
@@ -253,88 +254,64 @@ export const InventoryMaterials = (): JSX.Element => {
 
         {/* Materials Table */}
         <MaykanaCard>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.material_code')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.material_name')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.category')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.unit')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.quantity')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.price')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.status')}
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-medium text-gray-500 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('common.actions')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredMaterials.map((material) => (
-                  <tr key={material.id} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm text-gray-900 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      {material.code}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      {language === 'ar' ? material.nameAr : material.nameEn}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      {material.category}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      {material.unit}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      <span className={material.quantity <= material.minQuantity ? 'text-red-500 font-bold' : ''}>
-                        {material.quantity}
-                      </span>
-                      <span className="text-gray-400 text-xs mr-1">/ {material.minQuantity}</span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      {material.price.toFixed(2)} {t('common.currency')}
-                    </td>
-                    <td className="px-6 py-4">
-                      {getStatusBadge(material.status)}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center justify-center gap-2">
-                        <button
-                          onClick={() => navigate(`/warehouses/inventory-materials/edit/${material.id}`)}
-                          className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center hover:bg-slate-200"
-                        >
-                          <Edit2 className="w-4 h-4 text-[#092e32]" />
-                        </button>
-                        <button
-                          className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center hover:bg-red-50 hover:text-red-500"
-                        >
-                          <Trash2 className="w-4 h-4 text-[#092e32]" />
-                        </button>
-                        <button
-                          className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center hover:bg-slate-200"
-                        >
-                          <MoreVertical className="w-4 h-4 text-[#092e32]" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <AdvancedTable
+            data={filteredMaterials}
+            columns={[
+              {
+                key: 'code',
+                label: t('warehouses.material_code'),
+              },
+              {
+                key: 'name',
+                label: t('warehouses.material_name'),
+                render: (item) => language === 'ar' ? item.nameAr : item.nameEn,
+              },
+              {
+                key: 'category',
+                label: t('warehouses.category'),
+              },
+              {
+                key: 'unit',
+                label: t('warehouses.unit'),
+              },
+              {
+                key: 'quantity',
+                label: t('warehouses.quantity'),
+                render: (item) => (
+                  <>
+                    <span className={item.quantity <= item.minQuantity ? 'text-red-500 font-bold' : ''}>
+                      {item.quantity}
+                    </span>
+                    <span className="text-gray-400 text-xs mr-1">/ {item.minQuantity}</span>
+                  </>
+                ),
+              },
+              {
+                key: 'price',
+                label: t('warehouses.price'),
+                render: (item) => `${item.price.toFixed(2)} ${t('common.currency')}`,
+              },
+              {
+                key: 'status',
+                label: t('warehouses.status'),
+                render: (item) => getStatusBadge(item.status),
+              },
+            ]}
+            actions={[
+              {
+                icon: Edit2,
+                label: t('common.edit'),
+                onClick: (item) => navigate(`/warehouses/inventory-materials/edit/${item.id}`),
+                color: 'blue',
+              },
+              {
+                icon: Trash2,
+                label: t('common.delete'),
+                onClick: (item) => console.log('Delete', item.id),
+                color: 'red',
+              },
+            ]}
+          />
         </MaykanaCard>
       </div>
     </Layout>

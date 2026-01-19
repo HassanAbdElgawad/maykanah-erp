@@ -5,6 +5,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Card } from '../../components/ui/card';
+import { AdvancedTable } from '../../components/ui/Table';
 import {
   Filter,
   Upload,
@@ -572,112 +573,49 @@ export const AccountingEntries = (): JSX.Element => {
 
         {/* Table Card */}
         <Card className="bg-white rounded-xl border border-[#e2e2e2]">
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              {/* Header */}
-              <thead className="bg-[#f1f5f980] border-b border-slate-100">
-                <tr>
-                  <th className="px-4 py-4 text-right text-base font-semibold text-[#0e0d24]">
-                    {t('accounting.entries.date')}
-                  </th>
-                  <th className="px-4 py-4 text-right text-base font-semibold text-[#0e0d24]">
-                    {t('accounting.entries.type')}
-                  </th>
-                  <th className="px-4 py-4 text-right text-base font-semibold text-[#0e0d24]">
-                    {t('accounting.entries.debit')}
-                  </th>
-                  <th className="px-4 py-4 text-right text-base font-semibold text-[#0e0d24]">
-                    {t('accounting.entries.credit')}
-                  </th>
-                  <th className="px-4 py-4 text-right text-base font-semibold text-[#0e0d24]">
-                    {t('accounting.entries.status')}
-                  </th>
-                  <th className="px-4 py-4 w-20"></th>
-                </tr>
-              </thead>
-
-              {/* Body */}
-              <tbody>
-                {filteredEntries.length === 0 ? (
-                  <tr>
-                    <td colSpan={6} className="py-20 text-center">
-                      <div className="flex flex-col items-center gap-4">
-                        <div className="text-gray-400 text-lg">
-                          {searchQuery ? t('common.no_search_results') : t('common.no_data')}
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ) : (
-                  filteredEntries.map((entry, index) => (
-                    <tr
-                      key={entry.id}
-                      className={`border-b border-gray-100 hover:bg-gray-50 transition-colors ${
-                        index % 2 === 0 ? 'bg-[#e73d4005]' : 'bg-[#31c75b05]'
-                      }`}
-                    >
-                      <td className="px-4 py-4 text-right text-base text-[#0e0d24]">
-                        {entry.date}
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <EntryTypeBadge type={entry.type} />
-                      </td>
-                      <td className="px-4 py-4 text-right text-base text-[#0e0d24]">
-                        {entry.debit.toFixed(2)}
-                      </td>
-                      <td className="px-4 py-4 text-right text-base text-[#0e0d24]">
-                        {entry.credit.toFixed(2)}
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <StatusBadge status={entry.status} />
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex items-center justify-center relative actions-menu-wrapper">
-                          <button
-                            onClick={() =>
-                              setOpenActionMenuId(openActionMenuId === entry.id ? null : entry.id)
-                            }
-                            className="w-[35px] h-[35px] rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
-                          >
-                            <MoreVertical className="w-4 h-4 text-gray-600" />
-                          </button>
-
-                          {/* Actions Menu */}
-                          {openActionMenuId === entry.id && (
-                            <div className="absolute left-0 top-full mt-1 z-50">
-                              <Card className=" w-[150px] py-2 bg-white rounded-lg border border-[#e2e2e2] shadow-lg">
-                                <button
-                                  onClick={() => {
-                                    console.log('Edit entry:', entry.id);
-                                    setOpenActionMenuId(null);
-                                  }}
-                                  className="w-full px-4 py-2 text-center text-sm text-[#0e0d24] hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                                >
-                                  <Pencil className="w-4 h-4" />
-                                  <span>{t('common.edit')}</span>
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    console.log('Delete entry:', entry.id);
-                                    setOpenActionMenuId(null);
-                                  }}
-                                  className="w-full px-4 py-2 text-center text-sm text-red-600 hover:bg-red-50 transition-colors flex items-center justify-center gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                                >
-                                  <Trash2 className="w-4 h-4" />
-                                  <span>{t('common.delete')}</span>
-                                </button>
-                              </Card>
-                            </div>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+          <AdvancedTable
+            data={filteredEntries}
+            columns={[
+              {
+                key: 'date',
+                label: t('accounting.entries.date'),
+              },
+              {
+                key: 'type',
+                label: t('accounting.entries.type'),
+                render: (entry) => <EntryTypeBadge type={entry.type} />,
+              },
+              {
+                key: 'debit',
+                label: t('accounting.entries.debit'),
+                render: (entry) => entry.debit.toFixed(2),
+              },
+              {
+                key: 'credit',
+                label: t('accounting.entries.credit'),
+                render: (entry) => entry.credit.toFixed(2),
+              },
+              {
+                key: 'status',
+                label: t('accounting.entries.status'),
+                render: (entry) => <StatusBadge status={entry.status} />,
+              },
+            ]}
+            actions={[
+              {
+                icon: Pencil,
+                label: t('common.edit'),
+                onClick: (entry) => console.log('Edit entry:', entry.id),
+                color: 'blue',
+              },
+              {
+                icon: Trash2,
+                label: t('common.delete'),
+                onClick: (entry) => console.log('Delete entry:', entry.id),
+                color: 'red',
+              },
+            ]}
+          />
         </Card>
       </div>
     </Layout>

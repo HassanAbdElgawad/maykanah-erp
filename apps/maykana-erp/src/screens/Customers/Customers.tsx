@@ -6,6 +6,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
+import { AdvancedTable } from '../../components/ui/Table';
 import { 
   Search, 
   Filter, 
@@ -315,103 +316,57 @@ export const Customers = (): JSX.Element => {
           </div>
         ) : (
           <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-[#f1f5f9] border-b border-gray-200">
-                  <tr className="[direction:rtl]">
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      اسم العميل
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      نوع العميل
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      الدولة
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      الرقم الضريبي
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      الرمز البريدي
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      العملة
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      شروط الدفع
-                    </th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      رقم الجوال
-                    </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      الإجراءات
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {filteredCustomers.map((customer) => (
-                    <tr
-                      key={customer.id}
-                      className="hover:bg-gray-50 transition-colors [direction:rtl]"
-                    >
-                      <td className="px-6 py-4 text-sm text-gray-900 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {customer.name}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {customer.type}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {customer.country}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 font-mono">
-                        {customer.taxNumber}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 font-mono">
-                        {customer.postalCode}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {customer.currency}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {customer.paymentTerms}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600 font-mono">
-                        {customer.phone}
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <div className="relative inline-block" ref={el => actionMenuRefs.current[customer.id] = el}>
-                          <button
-                            onClick={() => setOpenActionMenuId(openActionMenuId === customer.id ? null : customer.id)}
-                            className="p-1 hover:bg-gray-100 rounded"
-                          >
-                            <MoreVertical className="w-4 h-4 text-gray-600" />
-                          </button>
-
-                          {openActionMenuId === customer.id && (
-                            <div className="absolute left-0 mt-1 w-[140px] bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                              <button
-                                onClick={() => handleEdit(customer)}
-                                className="w-full px-4 py-2 text-right hover:bg-gray-50 flex items-center gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
-                              >
-                                <Edit2 className="w-3.5 h-3.5" />
-                                <span>تعديل</span>
-                              </button>
-                              <button
-                                onClick={() => handleDelete(customer.id)}
-                                className="w-full px-4 py-2 text-right hover:bg-gray-50 flex items-center gap-2 text-red-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                                <span>حذف</span>
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <AdvancedTable
+              data={filteredCustomers}
+              columns={[
+                {
+                  key: 'name',
+                  label: 'اسم العميل',
+                },
+                {
+                  key: 'type',
+                  label: 'نوع العميل',
+                },
+                {
+                  key: 'country',
+                  label: 'الدولة',
+                },
+                {
+                  key: 'taxNumber',
+                  label: 'الرقم الضريبي',
+                },
+                {
+                  key: 'postalCode',
+                  label: 'الرمز البريدي',
+                },
+                {
+                  key: 'currency',
+                  label: 'العملة',
+                },
+                {
+                  key: 'paymentTerms',
+                  label: 'شروط الدفع',
+                },
+                {
+                  key: 'phone',
+                  label: 'رقم الجوال',
+                },
+              ]}
+              actions={[
+                {
+                  icon: Edit2,
+                  label: 'تعديل',
+                  onClick: (customer) => handleEdit(customer),
+                  color: 'blue',
+                },
+                {
+                  icon: Trash2,
+                  label: 'حذف',
+                  onClick: (customer) => handleDelete(customer.id),
+                  color: 'red',
+                },
+              ]}
+            />
           </div>
         )}
       </div>

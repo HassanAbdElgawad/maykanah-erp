@@ -4,7 +4,8 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
-import { Search, SlidersHorizontal, ChevronDown, Download, Columns3, X } from 'lucide-react';
+import { AdvancedTable } from '../../components/ui/Table';
+import { Search, SlidersHorizontal, ChevronDown, Download, Columns3, X, Eye, Edit2, Trash2 } from 'lucide-react';
 
 interface MaintenanceRecord {
   id: string;
@@ -273,113 +274,74 @@ export const Maintenance = (): JSX.Element => {
 
         {/* Table */}
         <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
-          <div className="overflow-x-auto" dir={dir}>
-            <table className="w-full" style={{ direction: dir }}>
-              <thead>
-                <tr className="bg-[#f1f5f980] border-b border-slate-100">
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.maintenance_number')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.asset_name')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.maintenance_type')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.maintenance_date')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.team')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.assigned_technician')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.duration')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.cost')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.status')}
-                    </span>
-                  </th>
-                  <th className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                    <span className="font-semibold text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                      {t('maintenance.actions')}
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {mockData.map((record) => (
-                  <tr
-                    key={record.id}
-                    className="border-b border-gray-100 hover:bg-gray-50/50 cursor-pointer"
-                  >
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {record.maintenanceNumber}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {record.assetName}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {record.maintenanceType}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {record.maintenanceDate}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {record.team}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {record.assignedTechnician}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {t('maintenance.duration_label')}: {record.duration}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <span className="font-normal text-[#0e0d24] text-base font-['IBM_Plex_Sans_Arabic']">
-                        {record.cost} {t('common.currency')}
-                      </span>
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      {getStatusBadge(record.status)}
+          <AdvancedTable
+            data={mockData}
+            columns={[
+              {
+                key: 'maintenanceNumber',
+                label: t('maintenance.maintenance_number'),
+              },
+              {
+                key: 'assetName',
+                label: t('maintenance.asset_name'),
+              },
+              {
+                key: 'maintenanceType',
+                label: t('maintenance.maintenance_type'),
+              },
+              {
+                key: 'maintenanceDate',
+                label: t('maintenance.maintenance_date'),
+              },
+              {
+                key: 'team',
+                label: t('maintenance.team'),
+              },
+              {
+                key: 'assignedTechnician',
+                label: t('maintenance.assigned_technician'),
+              },
+              {
+                key: 'duration',
+                label: t('maintenance.duration'),
+                render: (record) => `${t('maintenance.duration_label')}: ${record.duration}`,
+              },
+              {
+                key: 'cost',
+                label: t('maintenance.cost'),
+                render: (record) => `${record.cost} ${t('common.currency')}`,
+              },
+              {
+                key: 'status',
+                label: t('maintenance.status'),
+                render: (record) => getStatusBadge(record.status),
+              },
+            ]}
+            actions={[
+              {
+                icon: Eye,
+                label: t('common.view'),
+                onClick: (record) => console.log('View', record.id),
+                color: 'blue',
+              },
+              {
+                icon: Edit2,
+                label: t('common.edit'),
+                onClick: (record) => console.log('Edit', record.id),
+                color: 'green',
+              },
+              {
+                icon: Trash2,
+                label: t('common.delete'),
+                onClick: (record) => console.log('Delete', record.id),
+                color: 'red',
+              },
+            ]}
+          />
+        </div>
 
-                      {/* Add Maintenance Modal */}
-                      {showAddMaintenanceModal && (
+        {/* Add Maintenance Modal */}
+        {showAddMaintenanceModal && (
                         <div
                           className="fixed inset-0 bg-black/20 flex items-center justify-center z-50"
                           onClick={() => setShowAddMaintenanceModal(false)}
@@ -653,8 +615,8 @@ export const Maintenance = (): JSX.Element => {
                         </div>
                       )}
 
-                      {/* Add Record Modal */}
-                      {showAddRecordModal && (
+        {/* Add Record Modal */}
+        {showAddRecordModal && (
                         <div
                           className="fixed inset-0 bg-black/20 flex items-center justify-center z-50"
                           onClick={() => setShowAddRecordModal(false)}
@@ -896,22 +858,6 @@ export const Maintenance = (): JSX.Element => {
                           </div>
                         </div>
                       )}
-                    </td>
-                    <td className={`px-6 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
-                      <div className="flex items-center gap-2">
-                        <img
-                          src="https://c.animaapp.com/mkfsucexRBifOq/img/group-20960.png"
-                          alt="action"
-                          className="w-[35px] h-[35px]"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </Layout>
   );

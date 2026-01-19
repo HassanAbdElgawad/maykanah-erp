@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { AdvancedTable } from '../../components/ui/Table';
 import {
   Search,
   Plus,
@@ -151,96 +152,68 @@ export const InventoryCount = (): JSX.Element => {
 
         {/* Table Section */}
         <MaykanaCard>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-[#f1f5f980] border-b border-gray-200">
-                  <th className="px-6 py-4 text-right text-base font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.warehouse_name')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-base font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.count_date')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-base font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.notes')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-base font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.system_quantity')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-base font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.actual_quantity')}
-                  </th>
-                  <th className="px-6 py-4 text-right text-base font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('warehouses.difference')}
-                  </th>
-                  <th className="px-6 py-4 text-center text-base font-semibold text-[#0e0d24] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    {t('common.actions')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredInventoryCount.map((item) => {
-                  const name = language === 'ar' ? item.nameAr : item.nameEn;
-                  const notes = language === 'ar' ? item.notesAr : item.notesEn;
+          <AdvancedTable
+            data={filteredInventoryCount}
+            columns={[
+              {
+                key: 'name',
+                label: t('warehouses.warehouse_name'),
+                render: (item) => language === 'ar' ? item.nameAr : item.nameEn,
+              },
+              {
+                key: 'countDate',
+                label: t('warehouses.count_date'),
+                render: (item) => new Date(item.countDate).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US'),
+              },
+              {
+                key: 'notes',
+                label: t('warehouses.notes'),
+                render: (item) => language === 'ar' ? item.notesAr : item.notesEn,
+              },
+              {
+                key: 'systemQuantity',
+                label: t('warehouses.system_quantity'),
+              },
+              {
+                key: 'actualQuantity',
+                label: t('warehouses.actual_quantity'),
+              },
+              {
+                key: 'difference',
+                label: t('warehouses.difference'),
+                render: (item) => {
                   const difference = item.actualQuantity - item.systemQuantity;
-
                   return (
-                    <tr
-                      key={item.id}
-                      className="border-b border-gray-200 hover:bg-gray-50"
+                    <span
+                      className={
+                        difference < 0
+                          ? 'text-red-600 font-semibold'
+                          : difference > 0
+                          ? 'text-green-600 font-semibold'
+                          : 'text-black'
+                      }
                     >
-                      <td className="px-6 py-4 text-right text-base text-black [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {name}
-                      </td>
-                      <td className="px-6 py-4 text-right text-base text-black [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {new Date(item.countDate).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
-                      </td>
-                      <td className="px-6 py-4 text-right text-base text-black [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {notes}
-                      </td>
-                      <td className="px-6 py-4 text-right text-base text-black [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {item.systemQuantity}
-                      </td>
-                      <td className="px-6 py-4 text-right text-base text-black [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {item.actualQuantity}
-                      </td>
-                      <td className="px-6 py-4 text-right text-base [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        <span
-                          className={
-                            difference < 0
-                              ? 'text-red-600 font-semibold'
-                              : difference > 0
-                              ? 'text-green-600 font-semibold'
-                              : 'text-black'
-                          }
-                        >
-                          {difference > 0 ? '+' : ''}{difference}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center justify-center gap-2">
-                          <button
-                            onClick={() =>
-                              navigate(`/warehouses/inventory-count/edit/${item.id}`)
-                            }
-                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                          >
-                            <Edit2 className="w-5 h-5 text-gray-600" />
-                          </button>
-                          <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                            <Trash2 className="w-5 h-5 text-red-600" />
-                          </button>
-                          <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                            <MoreVertical className="w-5 h-5 text-gray-600" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                      {difference > 0 ? '+' : ''}{difference}
+                    </span>
                   );
-                })}
-              </tbody>
-            </table>
-          </div>
+                },
+              },
+            ]}
+            actions={[
+              {
+                icon: Edit2,
+                label: t('common.edit'),
+                onClick: (item) => navigate(`/warehouses/inventory-count/edit/${item.id}`),
+                color: 'blue',
+              },
+              {
+                icon: Trash2,
+                label: t('common.delete'),
+                onClick: (item) => console.log('Delete', item.id),
+                color: 'red',
+              },
+            ]}
+          />
         </MaykanaCard>
       </div>
     </Layout>

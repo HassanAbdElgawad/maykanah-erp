@@ -1,6 +1,7 @@
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Card, CardContent } from '../../components/ui/card';
+import { Table } from '../../components/ui/Table';
 import {
   TrendingUp,
   TrendingDown,
@@ -333,38 +334,23 @@ export const Dashboard = (): JSX.Element => {
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.topProducts')}
               </h3>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
-                    <tr>
-                      <th className="px-4 py-3 text-sm font-semibold text-gray-700 font-['IBM_Plex_Sans_Arabic']">
-                        {t('table.product')}
-                      </th>
-                      <th className="px-4 py-3 text-sm font-semibold text-gray-700 font-['IBM_Plex_Sans_Arabic']">
-                        {t('table.quantity')}
-                      </th>
-                      <th className="px-4 py-3 text-sm font-semibold text-gray-700 font-['IBM_Plex_Sans_Arabic']">
-                        {t('table.revenue')}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {topProducts.map((product, index) => (
-                      <tr key={index} className="border-b hover:bg-gray-50">
-                        <td className="px-4 py-3 text-sm text-gray-900 font-['IBM_Plex_Sans_Arabic']">
-                          {product.name}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-gray-700 font-['IBM_Plex_Sans_Arabic']">
-                          {product.quantity}
-                        </td>
-                        <td className="px-4 py-3 text-sm font-semibold text-gray-900 font-['IBM_Plex_Sans_Arabic']">
-                          {product.revenue}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <Table
+                data={topProducts}
+                columns={[
+                  {
+                    key: 'name',
+                    label: t('table.product'),
+                  },
+                  {
+                    key: 'quantity',
+                    label: t('table.quantity'),
+                  },
+                  {
+                    key: 'revenue',
+                    label: t('table.revenue'),
+                  },
+                ]}
+              />
             </CardContent>
           </Card>
 

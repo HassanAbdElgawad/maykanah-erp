@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
+import { AdvancedTable } from '../../../components/ui/Table';
 import {
   UserPlus,
   FileText,
@@ -281,92 +282,74 @@ export const EmployeeCenter: React.FC = () => {
           </div>
 
           {/* Table */}
-          <div className=" pb-6" dir={isRTL ? 'rtl' : 'ltr'}>
-            <div className="border border-gray-200 rounded-xl overflow-hidden text-start flex ">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="py-4 px-6 text-right text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                      {t('hr.employee_name')}
-                    </th>
-                    <th className="py-4 px-6 text-right text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                      {t('hr.position')}
-                    </th>
-                    <th className="py-4 px-6 text-right text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                      {t('hr.department')}
-                    </th>
-                    <th className="py-4 px-6 text-right text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                      {t('hr.application_date')}
-                    </th>
-                    <th className="py-4 px-6 text-right text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                      {t('hr.status')}
-                    </th>
-                    <th className="py-4 px-6 text-right text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                      {t('hr.actions')}
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody className="bg-white divide-y divide-gray-100 " dir={isRTL ? 'ltr' : 'rtl'}>
-                  {currentData.map((employee) => (
-                    <tr key={employee.id} className="hover:bg-gray-50/50 transition-colors">
-                      <td className="py-4 px-6 text-start">
-                        <div className="flex items-center gap-3 justify-end">
-                          <div className="text-right">
-                            <div className="font-medium text-gray-900">{employee.name}</div>
-                          </div>
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
-                            <span className="text-white font-semibold text-sm">
-                              {employee.name.charAt(0)}
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <span className="text-gray-700 text-sm">{employee.position}</span>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <span className="text-gray-700 text-sm">{employee.department}</span>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <span className="text-gray-600 text-sm">{employee.date}</span>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <span
-                          className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                            employee.status
-                          )}`}
-                        >
-                          {getStatusText(employee.status)}
+          <div className="pb-6">
+            <AdvancedTable
+              columns={[
+                {
+                  key: 'name',
+                  label: t('hr.employee_name'),
+                  align: 'right',
+                  render: (row) => (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+                        <span className="text-white font-semibold text-sm">
+                          {row.name.charAt(0)}
                         </span>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <div className="flex items-center gap-1 justify-end">
-                          <button
-                            title={t('hr.view_details')}
-                            className="p-2 hover:bg-blue-50 rounded-lg transition-all hover:scale-105"
-                          >
-                            <FileText className="w-4 h-4 text-blue-600" />
-                          </button>
-                          <button
-                            title={t('hr.approve')}
-                            className="p-2 hover:bg-green-50 rounded-lg transition-all hover:scale-105"
-                          >
-                            <UserCheck className="w-4 h-4 text-green-600" />
-                          </button>
-                          <button
-                            title={t('hr.reject')}
-                            className="p-2 hover:bg-red-50 rounded-lg transition-all hover:scale-105"
-                          >
-                            <UserX className="w-4 h-4 text-red-600" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                      </div>
+                      <div className="font-medium text-gray-900">{row.name}</div>
+                    </div>
+                  ),
+                },
+                {
+                  key: 'position',
+                  label: t('hr.position'),
+                  align: 'right',
+                },
+                {
+                  key: 'department',
+                  label: t('hr.department'),
+                  align: 'right',
+                },
+                {
+                  key: 'date',
+                  label: t('hr.application_date'),
+                  align: 'right',
+                },
+                {
+                  key: 'status',
+                  label: t('hr.status'),
+                  align: 'right',
+                  render: (row) => (
+                    <span
+                      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getStatusColor(row.status)}`}
+                    >
+                      {getStatusText(row.status)}
+                    </span>
+                  ),
+                },
+              ]}
+              data={currentData}
+              actions={[
+                {
+                  icon: FileText,
+                  label: t('hr.view_details'),
+                  onClick: (row) => console.log('View', row),
+                  color: 'blue',
+                },
+                {
+                  icon: UserCheck,
+                  label: t('hr.approve'),
+                  onClick: (row) => console.log('Approve', row),
+                  color: 'green',
+                },
+                {
+                  icon: UserX,
+                  label: t('hr.reject'),
+                  onClick: (row) => console.log('Reject', row),
+                  color: 'red',
+                },
+              ]}
+            />
           </div>
 
           {/* Pagination */}

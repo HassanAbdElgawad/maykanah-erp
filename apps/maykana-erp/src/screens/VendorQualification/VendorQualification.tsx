@@ -6,6 +6,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
+import { AdvancedTable } from '../../components/ui/Table';
 
 interface Vendor {
   id: string;
@@ -170,103 +171,43 @@ export const VendorQualification = () => {
 
         {/* Table */}
         <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-[#f1f5f980] border-b border-slate-100">
-                <tr>
-                  <th className="px-4 py-4 text-right">
-                    <span className="text-[#0e0d24] font-semibold text-base" dir={dir}>
-                      {t('actions')}
-                    </span>
-                  </th>
-                  <th className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                    <span className="text-[#0e0d24] font-semibold text-base" dir={dir}>
-                      {t('vendor_qualification.account_number')}
-                    </span>
-                  </th>
-                  <th className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                    <span className="text-[#0e0d24] font-semibold text-base" dir={dir}>
-                      {t('vendor_qualification.commercial_register')}
-                    </span>
-                  </th>
-                  <th className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                    <span className="text-[#0e0d24] font-semibold text-base" dir={dir}>
-                      {t('vendor_qualification.nationality')}
-                    </span>
-                  </th>
-                  <th className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                    <span className="text-[#0e0d24] font-semibold text-base" dir={dir}>
-                      {t('vendor_qualification.vendor_type')}
-                    </span>
-                  </th>
-                  <th className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                    <span className="text-[#0e0d24] font-semibold text-base" dir={dir}>
-                      {t('vendor_qualification.registration_number')}
-                    </span>
-                  </th>
-                  <th className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                    <span className="text-[#0e0d24] font-semibold text-base" dir={dir}>
-                      {t('name')}
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {vendors.map((vendor) => (
-                  <tr
-                    key={vendor.id}
-                    className="border-b border-[#e2e2e2] hover:bg-gray-50 transition-colors cursor-pointer"
-                    onClick={() => handleEdit(vendor.id)}
-                  >
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-2">
-                        <button
-                          className="w-[35px] h-[35px] flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleEdit(vendor.id);
-                          }}
-                          title={t('edit')}
-                        >
-                          <Pencil className="w-5 h-5 text-gray-600" />
-                        </button>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                      <span className="text-[#0e0d24] text-base" dir="ltr">
-                        {vendor.accountNumber}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                      <span className="text-[#0e0d24] text-base" dir={dir}>
-                        {vendor.commercialRegister}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                      <span className="text-[#0e0d24] text-base" dir={dir}>
-                        {vendor.nationality}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                      <span className="text-[#0e0d24] text-base" dir={dir}>
-                        {vendor.vendorType}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                      <span className="text-[#0e0d24] text-base" dir="ltr">
-                        {vendor.registrationNumber}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 text-right border-r border-[#e2e2e2]">
-                      <span className="text-[#0e0d24] text-base" dir={dir}>
-                        {vendor.name}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <AdvancedTable
+            data={vendors}
+            columns={[
+              {
+                key: 'name',
+                label: t('name'),
+              },
+              {
+                key: 'registrationNumber',
+                label: t('vendor_qualification.registration_number'),
+              },
+              {
+                key: 'vendorType',
+                label: t('vendor_qualification.vendor_type'),
+              },
+              {
+                key: 'nationality',
+                label: t('vendor_qualification.nationality'),
+              },
+              {
+                key: 'commercialRegister',
+                label: t('vendor_qualification.commercial_register'),
+              },
+              {
+                key: 'accountNumber',
+                label: t('vendor_qualification.account_number'),
+              },
+            ]}
+            actions={[
+              {
+                icon: Pencil,
+                label: t('edit'),
+                onClick: (vendor) => handleEdit(vendor.id),
+                color: 'blue',
+              },
+            ]}
+          />
 
           {/* Pagination */}
           <div className="flex items-center justify-between px-8 py-4 border-t border-[#e2e2e2]">

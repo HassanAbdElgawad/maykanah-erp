@@ -5,12 +5,12 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
+import { AdvancedTable } from '../../components/ui/Table';
 import { 
   Search, 
   Filter, 
   Download, 
   Columns3, 
-  MoreVertical, 
   Edit2, 
   Trash2,
   X
@@ -126,7 +126,6 @@ export const Suppliers = (): JSX.Element => {
   const [showColumnsFilter, setShowColumnsFilter] = useState(false);
   const [showExportOptions, setShowExportOptions] = useState(false);
   const [showFilterOptions, setShowFilterOptions] = useState(false);
-  const [openActionMenuId, setOpenActionMenuId] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState<'create' | 'edit'>('create');
   const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
@@ -134,7 +133,6 @@ export const Suppliers = (): JSX.Element => {
   const columnsRef = useRef<HTMLDivElement>(null);
   const exportRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
-  const actionMenuRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -147,18 +145,11 @@ export const Suppliers = (): JSX.Element => {
       if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
         setShowFilterOptions(false);
       }
-      
-      if (openActionMenuId !== null) {
-        const currentMenuRef = actionMenuRefs.current[openActionMenuId];
-        if (currentMenuRef && !currentMenuRef.contains(event.target as Node)) {
-          setOpenActionMenuId(null);
-        }
-      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [openActionMenuId]);
+  }, []);
 
   const filteredSuppliers = suppliers.filter(supplier =>
     supplier.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -177,7 +168,6 @@ export const Suppliers = (): JSX.Element => {
     setModalMode('edit');
     setSelectedSupplier(supplier);
     setShowModal(true);
-    setOpenActionMenuId(null);
   };
 
   const handleDelete = (id: number) => {
@@ -295,95 +285,74 @@ export const Suppliers = (): JSX.Element => {
           </div>
         ) : (
           /* Table */
-          <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
-            {/* Table Header */}
-            <div className="bg-[#f1f5f980] border-b border-slate-100 h-[54px] flex items-center px-4">
-              <div className="grid gap-4 w-full [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base" style={{gridTemplateColumns: '1fr 1fr 1.2fr 0.8fr 1fr 1.5fr 1.5fr 0.8fr 0.5fr'}}>
-                <div className="text-right">الاسم</div>
-                <div className="text-right">نوع المورد</div>
-                <div className="text-right">الدولة</div>
-                <div className="text-right">العملة</div>
-                <div className="text-right">شروط الدفع</div>
-                <div className="text-right" dir="ltr">رقم الهاتف</div>
-                <div className="text-right" dir="ltr">الرقم الضريبي</div>
-                <div className="text-right">الحالة</div>
-                <div className="text-center"></div>
-              </div>
-            </div>
-
-            {/* Table Body */}
-            <div>
-              {filteredSuppliers.map((supplier, index) => (
-                <div
-                  key={supplier.id}
-                  className={`grid gap-4 px-4 py-4 items-center border-b border-gray-100 ${
-                    index % 2 === 0 ? 'bg-white' : 'bg-[#f7f7f9]'
-                  }`}
-                  style={{gridTemplateColumns: '1fr 1fr 1.2fr 0.8fr 1fr 1.5fr 1.5fr 0.8fr 0.5fr'}}
-                >
-                  <div className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#0e0d24] text-base text-right">
-                    {supplier.name}
-                  </div>
-                  <div className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#0e0d24] text-base text-right">
-                    {supplier.type}
-                  </div>
-                  <div className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#0e0d24] text-base text-right">
-                    {supplier.country}
-                  </div>
-                  <div className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#0e0d24] text-base text-right">
-                    {supplier.currency}
-                  </div>
-                  <div className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#0e0d24] text-base text-right">
-                    {supplier.paymentTerms}
-                  </div>
-                  <div className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#0e0d24] text-base text-right" dir="ltr">
-                    {supplier.phone}
-                  </div>
-                  <div className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#0e0d24] text-base text-right" dir="ltr">
-                    {supplier.taxNumber}
-                  </div>
-                  <div className="text-right">
-                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
-                      supplier.status === 'active' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>
-                      {supplier.status === 'active' ? 'نشط' : 'غير نشط'}
-                    </span>
-                  </div>
-                  <div className="relative flex justify-center">
-                    <button
-                      onClick={() => setOpenActionMenuId(openActionMenuId === supplier.id ? null : supplier.id)}
-                      className="p-1 hover:bg-gray-200 rounded"
-                    >
-                      <MoreVertical className="w-5 h-5 text-gray-600" />
-                    </button>
-                    {openActionMenuId === supplier.id && (
-                      <div
-                        ref={(el) => (actionMenuRefs.current[supplier.id] = el)}
-                        className={`absolute top-8 ${dir === 'rtl' ? 'left-0' : 'right-0'} w-32 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10`}
-                      >
-                        <button
-                          onClick={() => handleEdit(supplier)}
-                          className="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100 text-right"
-                        >
-                          <Edit2 className="w-4 h-4" />
-                          <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">تعديل</span>
-                        </button>
-                        <button
-                          onClick={() => handleDelete(supplier.id)}
-                          className="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100 text-right text-red-600"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                          <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">حذف</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <AdvancedTable
+            data={filteredSuppliers}
+            columns={[
+              {
+                key: 'name',
+                label: 'الاسم',
+                align: 'right',
+              },
+              {
+                key: 'type',
+                label: 'نوع المورد',
+                align: 'right',
+              },
+              {
+                key: 'country',
+                label: 'الدولة',
+                align: 'right',
+              },
+              {
+                key: 'currency',
+                label: 'العملة',
+                align: 'right',
+              },
+              {
+                key: 'paymentTerms',
+                label: 'شروط الدفع',
+                align: 'right',
+              },
+              {
+                key: 'phone',
+                label: 'رقم الهاتف',
+                align: 'right',
+              },
+              {
+                key: 'taxNumber',
+                label: 'الرقم الضريبي',
+                align: 'right',
+              },
+              {
+                key: 'status',
+                label: 'الحالة',
+                align: 'right',
+                render: (row) => (
+                  <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
+                    row.status === 'active' 
+                      ? 'bg-green-100 text-green-800' 
+                      : 'bg-gray-100 text-gray-800'
+                  }`}>
+                    {row.status === 'active' ? 'نشط' : 'غير نشط'}
+                  </span>
+                ),
+              },
+            ]}
+            actions={[
+              {
+                icon: Edit2,
+                label: 'تعديل',
+                onClick: (row) => handleEdit(row),
+                color: 'blue',
+              },
+              {
+                icon: Trash2,
+                label: 'حذف',
+                onClick: (row) => handleDelete(row.id),
+                color: 'red',
+              },
+            ]}
+          />
         )}
 
         {/* Slide-in Modal */}

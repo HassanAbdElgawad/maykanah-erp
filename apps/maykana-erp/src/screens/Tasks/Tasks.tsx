@@ -4,6 +4,7 @@ import { Layout } from '../../components/Layout';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { AdvancedTable } from '../../components/ui/Table';
 import { Filter, Upload, RowsIcon, Plus, Search, MoreVertical } from 'lucide-react';
 
 interface Task {
@@ -163,114 +164,98 @@ export const Tasks = (): JSX.Element => {
 
         {/* Table */}
         <MaykanaCard>
-          <div className="overflow-x-auto">
-            <table className="w-full" dir="rtl">
-              <thead className="bg-[#f1f5f980] border-b border-slate-100">
-                <tr>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    م
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    رقم المهمة
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    اسم المهمة
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    نوع المهمة
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    الأولوية
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    المكلف
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    تاريخ التكليف
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    تاريخ الاستحقاق
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    نسبة الإنجاز
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    الحالة
-                  </th>
-                  <th className="px-4 py-4 text-right [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                    الإجراءات
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {tasks.map((task, index) => (
-                  <tr key={task.id} className="border-b border-[#e2e2e2] hover:bg-gray-50">
-                    <td className="px-4 py-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                      {index + 1}
-                    </td>
-                    <td className="px-4 py-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d24] text-base">
-                      {task.taskNumber}
-                    </td>
-                    <td className="px-4 py-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d24] text-base">
-                      {task.taskName}
-                    </td>
-                    <td className="px-4 py-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d24] text-base">
-                      {task.taskType}
-                    </td>
-                    <td className="px-4 py-4">
+          <AdvancedTable
+            columns={[
+              {
+                key: 'index',
+                label: 'م',
+                align: 'right',
+                width: '60px',
+                render: (row) => tasks.findIndex(t => t.id === row.id) + 1,
+              },
+              {
+                key: 'taskNumber',
+                label: 'رقم المهمة',
+                align: 'right',
+              },
+              {
+                key: 'taskName',
+                label: 'اسم المهمة',
+                align: 'right',
+              },
+              {
+                key: 'taskType',
+                label: 'نوع المهمة',
+                align: 'right',
+              },
+              {
+                key: 'priority',
+                label: 'الأولوية',
+                align: 'right',
+                render: (row) => (
+                  <div className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-[#e8ecec87] text-[#0e0d24]">
+                    <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-xs">
+                      {row.priority}
+                    </span>
+                  </div>
+                ),
+              },
+              {
+                key: 'assignedTo',
+                label: 'المكلف',
+                align: 'right',
+              },
+              {
+                key: 'assignedDate',
+                label: 'تاريخ التكليف',
+                align: 'right',
+              },
+              {
+                key: 'dueDate',
+                label: 'تاريخ الاستحقاق',
+                align: 'right',
+              },
+              {
+                key: 'progress',
+                label: 'نسبة الإنجاز',
+                align: 'right',
+                render: (row) => (
+                  <div className="flex flex-col gap-1">
+                    <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-xs">
+                      {row.progress}%
+                    </span>
+                    <div className="w-[71px] h-[13px] bg-[#68686817] rounded-full relative">
                       <div
-                        className={`inline-flex items-center justify-center px-3 py-1.5 rounded-lg ${getStatusColor(
-                          task.status
-                        )}`}
-                      >
-                        <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-sm">
-                          {task.priority}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d24] text-base">
-                      {task.assignedTo}
-                    </td>
-                    <td className="px-4 py-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d24] text-base">
-                      {task.assignedDate}
-                    </td>
-                    <td className="px-4 py-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#0e0d24] text-base">
-                      {task.dueDate}
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex flex-col gap-1">
-                        <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#0e0d24] text-base">
-                          {task.progress}%
-                        </span>
-                        <div className="w-[71px] h-[13px] bg-[#68686817] rounded-full relative">
-                          <div
-                            className="h-full bg-[#2cc28d] rounded-full"
-                            style={{ width: `${task.progress}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div
-                        className={`inline-flex items-center justify-center px-3 py-1.5 rounded-lg ${getStatusColor(
-                          task.status
-                        )}`}
-                      >
-                        <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-sm">
-                          {getStatusText(task.status)}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <button className="p-1 hover:bg-gray-100 rounded">
-                        <MoreVertical className="w-5 h-5 text-gray-500" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                        className="h-full bg-[#2cc28d] rounded-full"
+                        style={{ width: `${row.progress}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                key: 'status',
+                label: 'الحالة',
+                align: 'right',
+                render: (row) => (
+                  <div className={`inline-flex items-center justify-center px-3 py-1.5 rounded-lg ${getStatusColor(row.status)}`}>
+                    <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-xs">
+                      {getStatusText(row.status)}
+                    </span>
+                  </div>
+                ),
+              },
+            ]}
+            data={tasks}
+            actions={[
+              {
+                icon: MoreVertical,
+                label: 'المزيد',
+                onClick: (row) => console.log('More actions', row),
+                color: 'gray',
+              },
+            ]}
+          />
         </MaykanaCard>
       </div>
     </Layout>

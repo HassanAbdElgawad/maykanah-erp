@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, Eye, FileText } from 'lucide-react';
+import { AdvancedTable, TableColumn } from '../../../components/ui/Table';
 
 interface Request {
   id: string;
@@ -156,65 +157,47 @@ export const MyRequests: React.FC = () => {
           </div>
         ) : (
           /* Requests List */
-          <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
-            {/* Table Header */}
-            <div className="overflow-x-auto">
-              <table className="w-full" dir={isRTL ? 'rtl' : 'ltr'}>
-                <thead className="bg-[#f0f4f7]">
-                  <tr>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
-                      {t('hr.request_number')}
-                    </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
-                      {t('hr.request_type')}
-                    </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
-                      {t('hr.submission_date')}
-                    </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
-                      {t('hr.status')}
-                    </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">
-                      {t('hr.actions')}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {requests.map((request) => (
-                    <tr key={request.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {request.requestNumber}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        {request.requestType}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        {request.submissionDate}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span
-                          className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(
-                            request.status
-                          )}`}
-                        >
-                          {getStatusText(request.status)}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <button
-                          onClick={() => navigate(`/hr/my-requests/${request.id}`)}
-                          className="flex items-center gap-2 text-[#093738] hover:text-[#0b4445]"
-                        >
-                          <Eye className="w-4 h-4" />
-                          {t('hr.view_details')}
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <AdvancedTable
+            columns={[
+              {
+                key: 'requestNumber',
+                label: t('hr.request_number'),
+                align: 'right',
+              },
+              {
+                key: 'requestType',
+                label: t('hr.request_type'),
+                align: 'right',
+              },
+              {
+                key: 'submissionDate',
+                label: t('hr.submission_date'),
+                align: 'right',
+              },
+              {
+                key: 'status',
+                label: t('hr.status'),
+                align: 'right',
+                render: (value) => (
+                  <span
+                    className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(value)}`}
+                  >
+                    {getStatusText(value)}
+                  </span>
+                ),
+              },
+            ]}
+            data={requests}
+            actions={[
+              {
+                icon: Eye,
+                label: t('hr.view_details'),
+                onClick: (row) => navigate(`/hr/my-requests/${row.id}`),
+                color: 'blue',
+              },
+            ]}
+            emptyMessage={t('hr.no_requests')}
+          />
         )}
       </div>
     </Layout>
