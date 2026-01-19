@@ -211,6 +211,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
 
             {/* Bottom Menu Items */}
             {bottomMenuItems.map((item, index) => {
+              const isActive = isMenuItemActive(item.path);
               const secondaryColor = customization.sidebarSecondaryColor || '#ffffff0a';
               return (
                 <Button
@@ -219,14 +220,20 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                   onClick={() => item.path && navigate(item.path)}
                   className={`w-full h-10 ${
                     isSidebarOpen ? 'justify-between' : 'justify-center'
-                  } px-2 rounded-lg flex-row hover:bg-[#ffffff1a] text-white`}
-                  style={{ backgroundColor: secondaryColor }}
+                  } px-2 rounded-lg flex-row ${
+                    isActive
+                      ? 'bg-white hover:bg-white/90 text-[#104633]'
+                      : 'hover:bg-[#ffffff1a] text-white'
+                  }`}
+                  style={!isActive ? { backgroundColor: secondaryColor } : {}}
                 >
                 {isSidebarOpen ? (
                   <>
                     <div className="flex items-center gap-2">
                       <item.icon className="w-[18px] h-[18px]" />
-                      <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-base">
+                      <span className={`[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base ${
+                        isActive ? 'font-semibold' : 'font-normal'
+                      }`}>
                         {t(item.titleKey)}
                       </span>
                     </div>

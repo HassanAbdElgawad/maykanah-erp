@@ -24,6 +24,7 @@ import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
 import { ForgotPasswordPage } from "./screens/ForgotPasswordPage";
+import { ReportsPage } from "./screens/ReportsPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -337,7 +338,7 @@ const router = createBrowserRouter([
     path: "/reports",
     element: (
       <ProtectedRoute>
-        <ComingSoon pageName="التقارير / Reports" />
+        <ReportsPage />
       </ProtectedRoute>
     ),
   },

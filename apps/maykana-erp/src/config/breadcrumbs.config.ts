@@ -106,7 +106,15 @@ export const breadcrumbRoutes = [
   { path: "/workflow-engine/verification-templates/edit/:id", label: "workflow_engine.edit_verification_list" },
   { path: "/workflow-engine/predefined-rules", label: "workflow_engine.predefined_rules" },
   { path: "/workflow", label: "sidebar.workflow" },
+  
+  // Reports Module
   { path: "/reports", label: "sidebar.reports" },
+  { path: "/reports/general-ledger", label: "reports.general_ledger" },
+  { path: "/reports/trial-balance", label: "reports.trial_balance" },
+  { path: "/reports/financial-position", label: "reports.financial_position" },
+  { path: "/reports/income-statement", label: "reports.income_statement" },
+  { path: "/reports/trial-balance-movement", label: "reports.trial_balance_movement" },
+  
   { path: "/settings", label: "sidebar.settings" },
   { path: "/support", label: "sidebar.support" },
 ];

@@ -256,6 +256,21 @@
       "support": "الدعم الفني",
       "available": "متصل"
     },
+    "reports": {
+      "page_title": "التقارير",
+      "page_subtitle": "تفاصيل المركز المالي للحساب، والأرصدة، والوظائف",
+      "general_ledger": "تقرير الأستاذ العام",
+      "general_ledger_desc": "تفاصيل الحركات المالية لكل حساب مع الأرصدة والوظائف",
+      "trial_balance": "ميزان المراجعة",
+      "trial_balance_desc": "موقف الحساب من الأرصدة المدينة والدائنة والوظائف",
+      "financial_position": "تقرير المركز المالي",
+      "financial_position_desc": "تفاصيل المركز المالي للحساب، والأرصدة، والوظائف",
+      "income_statement": "تقرير قائمة الدخل",
+      "income_statement_desc": "توضيح الإيرادات والمصروفات والأرباح والخسائر خلال فترة معينة",
+      "trial_balance_movement": "تقرير ميزان المراجعة للحركة",
+      "trial_balance_movement_desc": "عرض الحركات التفصيلية للحسابات مع الأرصدة المدينة والدائنة",
+      "no_reports": "لا توجد تقارير متاحة"
+    },
     "vendor_qualification": {
       "new_vendor": "مورد جديد",
       "add_vendor": "إضافة مورد جديد",
@@ -710,6 +725,21 @@
       "settings": "Settings",
       "support": "Technical Support",
       "available": "Online"
+    },
+    "reports": {
+      "page_title": "Reports",
+      "page_subtitle": "Financial position details, balances, and operations",
+      "general_ledger": "General Ledger Report",
+      "general_ledger_desc": "Detailed financial transactions for each account with balances and operations",
+      "trial_balance": "Trial Balance",
+      "trial_balance_desc": "Account position showing debit and credit balances and operations",
+      "financial_position": "Financial Position Report",
+      "financial_position_desc": "Financial position details including balances and operations",
+      "income_statement": "Income Statement Report",
+      "income_statement_desc": "Shows revenues, expenses, profits and losses during a specific period",
+      "trial_balance_movement": "Trial Balance Movement Report",
+      "trial_balance_movement_desc": "Displays detailed account movements with debit and credit balances",
+      "no_reports": "No reports available"
     },
     "login": {
       "title": "My Account",

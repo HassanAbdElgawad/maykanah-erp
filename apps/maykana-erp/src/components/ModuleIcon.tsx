@@ -2,6 +2,8 @@ import { useLocation } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 
 const moduleIcons: Record<string, string> = {
+  '/home': 'Home',
+  '/inbox': 'Inbox',
   '/accounting': 'DollarSign',
   '/purchases': 'ShoppingCart',
   '/sales': 'TrendingUp',
@@ -12,6 +14,7 @@ const moduleIcons: Record<string, string> = {
   '/strategy': 'Target',
   '/warehouses': 'Warehouse',
   '/workflow-engine': 'Workflow',
+  '/reports': 'FileBarChart2',
 };
 
 export function ModuleIcon() {
