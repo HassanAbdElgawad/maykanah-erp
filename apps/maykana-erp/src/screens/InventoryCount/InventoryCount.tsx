@@ -11,7 +11,6 @@ import {
   Plus,
   Edit2,
   Trash2,
-  MoreVertical,
 } from 'lucide-react';
 
 interface InventoryCountItem {

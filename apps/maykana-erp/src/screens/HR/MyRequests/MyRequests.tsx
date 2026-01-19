@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, Eye, FileText } from 'lucide-react';
-import { AdvancedTable, TableColumn } from '../../../components/ui/Table';
+import { AdvancedTable } from '../../../components/ui/Table';
 
 interface Request {
   id: string;

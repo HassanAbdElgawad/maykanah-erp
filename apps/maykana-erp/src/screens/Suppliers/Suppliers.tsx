@@ -172,7 +172,6 @@ export const Suppliers = (): JSX.Element => {
 
   const handleDelete = (id: number) => {
     setSuppliers(suppliers.filter(s => s.id !== id));
-    setOpenActionMenuId(null);
   };
 
   const handleSaveSupplier = () => {

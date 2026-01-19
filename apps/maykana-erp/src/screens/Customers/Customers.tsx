@@ -12,7 +12,6 @@ import {
   Filter, 
   Download, 
   Columns3, 
-  MoreVertical, 
   Edit2, 
   Trash2,
   UserPlus

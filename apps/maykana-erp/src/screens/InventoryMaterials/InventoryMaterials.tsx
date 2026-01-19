@@ -12,7 +12,6 @@ import {
   Edit2,
   Trash2,
   Package,
-  MoreVertical,
 } from 'lucide-react';
 
 interface InventoryMaterial {

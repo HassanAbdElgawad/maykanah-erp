@@ -15,7 +15,6 @@ import {
   Calendar,
   Pencil,
   Trash2,
-  MoreVertical,
 } from 'lucide-react';
 
 // Types
