@@ -23,6 +23,7 @@ import { MyRequests, NewRequest } from "./screens/HR/MyRequests";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
+import { ForgotPasswordPage } from "./screens/ForgotPasswordPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/login-page",
     element: <LoginPage />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPasswordPage />,
   },
   {
     path: "/",

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BellIcon, ChevronDownIcon, SearchIcon, LogOutIcon } from 'lucide-react';
 import { Input } from './ui/input';
 import { Breadcrumbs } from './Breadcrumbs';
+import { ModuleIcon } from './ModuleIcon';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCustomization } from '../contexts/CustomizationContext';
 import { useAppDispatch } from '../store/hooks';
@@ -242,6 +243,7 @@ export const Header = (): JSX.Element => {
       <div className="flex items-center justify-between h-full px-4 gap-3">
         {/* Right Section - Breadcrumbs */}
         <div className={`flex items-center gap-4`}>
+          <ModuleIcon />
           <Breadcrumbs />
         </div>
 
