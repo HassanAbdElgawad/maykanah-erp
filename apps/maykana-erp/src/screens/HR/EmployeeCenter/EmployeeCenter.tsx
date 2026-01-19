@@ -16,6 +16,7 @@ import {
 interface TabButton {
   id: string;
   label: string;
+  isEnabled: boolean;
 }
 
 export const EmployeeCenter: React.FC = () => {
@@ -27,10 +28,10 @@ export const EmployeeCenter: React.FC = () => {
   const isRTL = language === 'ar';
 
   const tabs: TabButton[] = [
-    { id: 'new-employee', label: t('hr.new_employees') },
-    { id: 'work-start', label: t('hr.work_start_requests') },
-    { id: 'contract-renewal', label: t('hr.contract_renewal') },
-    { id: 'resignation', label: t('hr.resignation_termination') },
+    { id: 'new-employee', label: t('hr.new_employees'), isEnabled: true },
+    { id: 'work-start', label: t('hr.work_start_requests'), isEnabled: true },
+    { id: 'contract-renewal', label: t('hr.contract_renewal'), isEnabled: true },
+    { id: 'resignation', label: t('hr.resignation_termination'), isEnabled: true },
   ];
 
   useEffect(() => {
@@ -65,6 +66,114 @@ export const EmployeeCenter: React.FC = () => {
     },
   ];
 
+  // Mock data for work start requests
+  const workStartRequests = [
+    {
+      id: 1,
+      name: 'سارة أحمد الحربي',
+      position: 'مدير موارد بشرية',
+      department: 'الموارد البشرية',
+      date: '2024-01-18',
+      status: 'pending',
+    },
+    {
+      id: 2,
+      name: 'خالد عبدالرحمن القحطاني',
+      position: 'محلل مالي',
+      department: 'قسم المالية',
+      date: '2024-01-17',
+      status: 'approved',
+    },
+    {
+      id: 3,
+      name: 'نورة محمد الدوسري',
+      position: 'مصمم جرافيك',
+      department: 'قسم التسويق',
+      date: '2024-01-16',
+      status: 'approved',
+    },
+    {
+      id: 4,
+      name: 'عبدالعزيز سعد المطيري',
+      position: 'مهندس شبكات',
+      department: 'قسم تقنية المعلومات',
+      date: '2024-01-15',
+      status: 'pending',
+    },
+  ];
+
+  // Mock data for contract renewal
+  const contractRenewalRequests = [
+    {
+      id: 1,
+      name: 'ريم عبدالله الشمري',
+      position: 'مسؤول مشتريات',
+      department: 'قسم المشتريات',
+      date: '2024-02-01',
+      status: 'pending',
+    },
+    {
+      id: 2,
+      name: 'طلال فهد العتيبي',
+      position: 'محاسب رئيسي',
+      department: 'قسم المحاسبة',
+      date: '2024-02-05',
+      status: 'approved',
+    },
+    {
+      id: 3,
+      name: 'منى سليمان الزهراني',
+      position: 'مدير مبيعات',
+      department: 'قسم المبيعات',
+      date: '2024-02-10',
+      status: 'pending',
+    },
+    {
+      id: 4,
+      name: 'فيصل ماجد الغامدي',
+      position: 'مدير مشروع',
+      department: 'قسم المشاريع',
+      date: '2024-02-15',
+      status: 'rejected',
+    },
+    {
+      id: 5,
+      name: 'هند عمر البقمي',
+      position: 'مسؤول علاقات عامة',
+      department: 'قسم العلاقات العامة',
+      date: '2024-02-20',
+      status: 'approved',
+    },
+  ];
+
+  // Mock data for resignation and termination
+  const resignationRequests = [
+    {
+      id: 1,
+      name: 'بدر أحمد الشهري',
+      position: 'مطور واجهات',
+      department: 'قسم التطوير',
+      date: '2024-01-20',
+      status: 'pending',
+    },
+    {
+      id: 2,
+      name: 'أمل ناصر الحارثي',
+      position: 'محلل بيانات',
+      department: 'قسم التحليل',
+      date: '2024-01-18',
+      status: 'approved',
+    },
+    {
+      id: 3,
+      name: 'يوسف راشد العمري',
+      position: 'مدير عمليات',
+      department: 'قسم العمليات',
+      date: '2024-01-15',
+      status: 'approved',
+    },
+  ];
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'approved':
@@ -90,6 +199,24 @@ export const EmployeeCenter: React.FC = () => {
         return status;
     }
   };
+
+  // Get data based on active tab
+  const getCurrentData = () => {
+    switch (activeTab) {
+      case 'new-employee':
+        return newEmployees;
+      case 'work-start':
+        return workStartRequests;
+      case 'contract-renewal':
+        return contractRenewalRequests;
+      case 'resignation':
+        return resignationRequests;
+      default:
+        return newEmployees;
+    }
+  };
+
+  const currentData = getCurrentData();
 
   return (
     <Layout>
@@ -138,9 +265,10 @@ export const EmployeeCenter: React.FC = () => {
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => tab.isEnabled && setActiveTab(tab.id)}
+                  disabled={!tab.isEnabled}
                   className={`pb-3 px-1 text-sm font-medium transition-all relative whitespace-nowrap ${
-                    activeTab === tab.id ? 'text-[#093738]' : 'text-gray-600 hover:text-[#093738]'
+                    activeTab === tab.id ? 'text-[#093738]' : tab.isEnabled ? 'text-gray-600 hover:text-[#093738]' : 'text-gray-400 cursor-not-allowed'
                   }`}
                 >
                   {tab.label}
@@ -180,7 +308,7 @@ export const EmployeeCenter: React.FC = () => {
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-100 " dir={isRTL ? 'ltr' : 'rtl'}>
-                  {newEmployees.map((employee) => (
+                  {currentData.map((employee) => (
                     <tr key={employee.id} className="hover:bg-gray-50/50 transition-colors">
                       <td className="py-4 px-6 text-start">
                         <div className="flex items-center gap-3 justify-end">
@@ -245,8 +373,8 @@ export const EmployeeCenter: React.FC = () => {
           <div className="px-6 py-4 bg-white border-t border-gray-200">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
-                {t('hr.showing')} <span className="font-semibold text-gray-900">1-3</span>{' '}
-                {t('hr.of')} <span className="font-semibold text-gray-900">3</span>{' '}
+                {t('hr.showing')} <span className="font-semibold text-gray-900">1-{currentData.length}</span>{' '}
+                {t('hr.of')} <span className="font-semibold text-gray-900">{currentData.length}</span>{' '}
                 {t('hr.employee')}
               </div>
               <div className="flex items-center gap-2">

@@ -81,7 +81,8 @@ export function Breadcrumbs() {
   };
 
   // Check if the first breadcrumb (after Reports) is a module that should be selectable
-  const isFirstBreadcrumbModule = breadcrumbs.length > 1 && 
+  // Only show dropdown on the main module page (breadcrumbs.length === 1)
+  const isFirstBreadcrumbModule = breadcrumbs.length === 1 && 
     mainModules.some(module => breadcrumbs[0]?.label === module.titleKey);
 
   return (
@@ -92,14 +93,13 @@ export function Breadcrumbs() {
             <ArrowIcon className="w-4 h-4 text-gray-500" />
           )}
           {/* If it's the first breadcrumb and it's a module, show dropdown */}
-          {index === 0 && isFirstBreadcrumbModule && !isReportsPage ? (
+          {index === 0 && isFirstBreadcrumbModule && !isReportsPage && !isSettingsPage ? (
             <div ref={dropdownRef} className="relative">
               <button
                 onClick={() => setIsModuleDropdownOpen(!isModuleDropdownOpen)}
                 className="flex items-center gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#093738] text-sm hover:underline whitespace-nowrap cursor-pointer"
               >
                 {t(crumb.label)}
-                <ChevronDownIcon className="w-4 h-4" />
               </button>
               
               {/* Dropdown Menu */}

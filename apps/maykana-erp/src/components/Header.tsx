@@ -53,6 +53,14 @@ const searchablePages: SearchResult[] = [
   
   // Workflow
   { title: 'قوائم التحقيق', titleEn: 'Verification Lists', path: '/workflow-engine/verification-templates', location: 'محرك سير الأعمال', locationEn: 'Workflow Engine' },
+  
+  // HR
+  { title: 'مركز الموظفين', titleEn: 'Employee Center', path: '/hr/employee-center', location: 'إدارة الموارد البشرية', locationEn: 'HR Management' },
+  { title: 'الموظفون الجدد', titleEn: 'New Employees', path: '/hr/employee-center?tab=new-employee', location: 'إدارة الموارد البشرية', locationEn: 'HR Management' },
+  { title: 'طلبات مباشرة العمل', titleEn: 'Work Start Requests', path: '/hr/employee-center?tab=work-start', location: 'إدارة الموارد البشرية', locationEn: 'HR Management' },
+  { title: 'تجديد العقد', titleEn: 'Contract Renewal', path: '/hr/employee-center?tab=contract-renewal', location: 'إدارة الموارد البشرية', locationEn: 'HR Management' },
+  { title: 'الاستقالة وإنهاء الخدمة', titleEn: 'Resignation & Termination', path: '/hr/employee-center?tab=resignation', location: 'إدارة الموارد البشرية', locationEn: 'HR Management' },
+  { title: 'طلباتي', titleEn: 'My Requests', path: '/hr/my-requests', location: 'إدارة الموارد البشرية', locationEn: 'HR Management' },
 ];
 
 const notifications: Notification[] = [

@@ -29,10 +29,16 @@ interface Message {
   hasAttachment: boolean;
   category: 'inbox' | 'sent' | 'draft';
   avatar?: string;
+  // Bilingual support
+  senderEn?: string;
+  subjectEn?: string;
+  previewEn?: string;
+  bodyEn?: string;
+  timestampEn?: string;
 }
 
 export const Inbox = (): JSX.Element => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [replyText, setReplyText] = useState('');
@@ -41,9 +47,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '1',
       sender: 'أحمد محمد العلي',
+      senderEn: 'Ahmed Mohammed Al-Ali',
       senderEmail: 'ahmed.ali@company.com',
       subject: 'طلب شراء جديد - معدات مكتبية',
+      subjectEn: 'New Purchase Request - Office Equipment',
       preview: 'السلام عليكم، أود تقديم طلب شراء جديد للمعدات المكتبية التالية...',
+      previewEn: 'Hello, I would like to submit a new purchase request for the following office equipment...',
       body: `السلام عليكم ورحمة الله وبركاته،
 
 أود تقديم طلب شراء جديد للمعدات المكتبية التالية:
@@ -56,7 +65,20 @@ export const Inbox = (): JSX.Element => {
 يرجى مراجعة الطلب والموافقة عليه في أقرب وقت ممكن.
 
 شكراً لتعاونكم`,
+      bodyEn: `Hello,
+
+I would like to submit a new purchase request for the following office equipment:
+
+1. Laptops (5 units)
+2. Laser printers (2 units)
+3. Office chairs (10 units)
+4. Work desks (10 units)
+
+Please review and approve the request at your earliest convenience.
+
+Thank you for your cooperation`,
       timestamp: 'منذ 5 دقائق',
+      timestampEn: '5 minutes ago',
       isRead: false,
       isStarred: true,
       hasAttachment: true,
@@ -65,9 +87,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '2',
       sender: 'سارة أحمد حسن',
+      senderEn: 'Sara Ahmed Hassan',
       senderEmail: 'sara.hassan@company.com',
       subject: 'تقرير المبيعات الشهري - يناير 2026',
+      subjectEn: 'Monthly Sales Report - January 2026',
       preview: 'تحية طيبة، إليكم تقرير المبيعات الشهري لشهر يناير...',
+      previewEn: 'Greetings, here is the monthly sales report for January...',
       body: `تحية طيبة،
 
 إليكم تقرير المبيعات الشهري لشهر يناير 2026:
@@ -79,7 +104,19 @@ export const Inbox = (): JSX.Element => {
 التفاصيل الكاملة في الملف المرفق.
 
 مع أطيب التحيات`,
+      bodyEn: `Greetings,
+
+Here is the monthly sales report for January 2026:
+
+- Total Sales: 2,450,000 SAR
+- Number of Orders: 1,248 orders
+- Growth Rate: +12.5%
+
+Full details in the attached file.
+
+Best regards`,
       timestamp: 'منذ ساعة',
+      timestampEn: '1 hour ago',
       isRead: false,
       isStarred: false,
       hasAttachment: true,
@@ -88,9 +125,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '3',
       sender: 'خالد عبدالله المطيري',
+      senderEn: 'Khalid Abdullah Al-Mutairi',
       senderEmail: 'khalid.almutairi@company.com',
       subject: 'استفسار حول طلب رقم #12345',
+      subjectEn: 'Inquiry about Request #12345',
       preview: 'مرحباً، لدي استفسار بخصوص طلب الشراء رقم 12345...',
+      previewEn: 'Hello, I have an inquiry about purchase request #12345...',
       body: `مرحباً،
 
 لدي استفسار بخصوص طلب الشراء رقم 12345 الذي تم تقديمه بتاريخ 10 يناير.
@@ -99,7 +139,16 @@ export const Inbox = (): JSX.Element => {
 متى سيتم توفير المعدات المطلوبة؟
 
 في انتظار ردكم`,
+      bodyEn: `Hello,
+
+I have an inquiry about purchase request #12345 submitted on January 10.
+
+Has the request been approved by management?
+When will the requested equipment be available?
+
+Looking forward to your response`,
       timestamp: 'منذ ساعتين',
+      timestampEn: '2 hours ago',
       isRead: false,
       isStarred: false,
       hasAttachment: false,
@@ -108,9 +157,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '4',
       sender: 'فاطمة إبراهيم',
+      senderEn: 'Fatima Ibrahim',
       senderEmail: 'fatima.ibrahim@company.com',
       subject: 'دعوة لحضور اجتماع الفريق',
+      subjectEn: 'Invitation to Team Meeting',
       preview: 'يسعدنا دعوتكم لحضور اجتماع الفريق القادم...',
+      previewEn: 'We are pleased to invite you to the upcoming team meeting...',
       body: `عزيزي الزميل،
 
 يسعدنا دعوتكم لحضور اجتماع الفريق القادم:
@@ -125,7 +177,22 @@ export const Inbox = (): JSX.Element => {
 3. مناقشة التحديثات الجديدة
 
 نأمل تأكيد حضوركم`,
+      bodyEn: `Dear Colleague,
+
+We are pleased to invite you to the upcoming team meeting:
+
+Date: January 20, 2026
+Time: 10:00 AM
+Location: Main Conference Room
+
+Proposed Topics:
+1. Review of Q1 goals
+2. Work plan for next month
+3. Discussion of new updates
+
+We hope you can confirm your attendance`,
       timestamp: 'منذ 3 ساعات',
+      timestampEn: '3 hours ago',
       isRead: false,
       isStarred: true,
       hasAttachment: false,
@@ -134,9 +201,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '5',
       sender: 'محمد سعيد الغامدي',
+      senderEn: 'Mohammed Saeed Al-Ghamdi',
       senderEmail: 'mohammed.alghamdi@company.com',
       subject: 'مشكلة تقنية في النظام',
+      subjectEn: 'Technical Issue in the System',
       preview: 'السلام عليكم، أواجه مشكلة تقنية في نظام إدارة المشتريات...',
+      previewEn: 'Hello, I am facing a technical issue in the procurement management system...',
       body: `السلام عليكم،
 
 أواجه مشكلة تقنية في نظام إدارة المشتريات:
@@ -149,7 +219,20 @@ export const Inbox = (): JSX.Element => {
 يرجى المساعدة في حل هذه المشكلة في أقرب وقت.
 
 شكراً`,
+      bodyEn: `Hello,
+
+I am facing a technical issue in the procurement management system:
+
+Error: Cannot load orders page
+Error message: "Failed to connect to server"
+Browser: Chrome
+Time: January 15, 2026, 2:00 PM
+
+Please help resolve this issue as soon as possible.
+
+Thank you`,
       timestamp: 'منذ يوم',
+      timestampEn: '1 day ago',
       isRead: false,
       isStarred: false,
       hasAttachment: true,
@@ -158,9 +241,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '6',
       sender: 'نورة عبدالعزيز',
+      senderEn: 'Noura Abdulaziz',
       senderEmail: 'noura.abdulaziz@company.com',
       subject: 'تحديث بيانات الموظفين',
+      subjectEn: 'Update Employee Data',
       preview: 'تحية طيبة، نرجو منكم تحديث بيانات الموظفين في النظام...',
+      previewEn: 'Greetings, please update employee data in the system...',
       body: `تحية طيبة،
 
 نرجو منكم تحديث بيانات الموظفين التالية في النظام:
@@ -172,7 +258,19 @@ export const Inbox = (): JSX.Element => {
 الموعد النهائي للتحديث: 25 يناير 2026
 
 شكراً لتعاونكم`,
+      bodyEn: `Greetings,
+
+Please update the following employee data in the system:
+
+1. Update contact information
+2. Add new certificates
+3. Update job titles
+
+Deadline for update: January 25, 2026
+
+Thank you for your cooperation`,
       timestamp: 'منذ يومين',
+      timestampEn: '2 days ago',
       isRead: false,
       isStarred: false,
       hasAttachment: false,
@@ -181,9 +279,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '7',
       sender: 'يوسف عمر الشهري',
+      senderEn: 'Yousef Omar Al-Shehri',
       senderEmail: 'yousef.alshehri@company.com',
       subject: 'موافقة على طلب الإجازة',
+      subjectEn: 'Leave Request Approved',
       preview: 'مرحباً، تمت الموافقة على طلب الإجازة الخاص بك...',
+      previewEn: 'Hello, your leave request has been approved...',
       body: `مرحباً،
 
 تمت الموافقة على طلب الإجازة الخاص بك:
@@ -195,7 +296,19 @@ export const Inbox = (): JSX.Element => {
 نتمنى لك إجازة سعيدة.
 
 قسم الموارد البشرية`,
+      bodyEn: `Hello,
+
+Your leave request has been approved:
+
+From: February 1, 2026
+To: February 7, 2026
+Duration: 7 days
+
+Wishing you a pleasant vacation.
+
+Human Resources Department`,
       timestamp: 'منذ 3 أيام',
+      timestampEn: '3 days ago',
       isRead: false,
       isStarred: false,
       hasAttachment: false,
@@ -204,9 +317,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '8',
       sender: 'عبدالرحمن الشمري',
+      senderEn: 'Abdulrahman Al-Shammari',
       senderEmail: 'abdulrahman.alshammari@company.com',
       subject: 'موافقة مدير القسم على الطلب',
+      subjectEn: 'Department Manager Approval on Request',
       preview: 'السلام عليكم، تمت الموافقة على الطلب المقدم من قبلكم...',
+      previewEn: 'Hello, the request submitted by you has been approved...',
       body: `السلام عليكم،
 
 تمت الموافقة على الطلب المقدم من قبلكم رقم #54321.
@@ -214,7 +330,15 @@ export const Inbox = (): JSX.Element => {
 يرجى المتابعة مع قسم المشتريات لاستكمال الإجراءات.
 
 شكراً`,
+      bodyEn: `Hello,
+
+The request submitted by you #54321 has been approved.
+
+Please follow up with the procurement department to complete the procedures.
+
+Thank you`,
       timestamp: 'منذ 4 أيام',
+      timestampEn: '4 days ago',
       isRead: false,
       isStarred: false,
       hasAttachment: false,
@@ -223,9 +347,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '9',
       sender: 'منى القحطاني',
+      senderEn: 'Mona Al-Qahtani',
       senderEmail: 'mona.alqahtani@company.com',
       subject: 'دورة تدريبية جديدة',
+      subjectEn: 'New Training Course',
       preview: 'تحية طيبة، يسرنا دعوتكم للتسجيل في الدورة التدريبية الجديدة...',
+      previewEn: 'Greetings, we are pleased to invite you to register for the new training course...',
       body: `تحية طيبة،
 
 يسرنا دعوتكم للتسجيل في الدورة التدريبية الجديدة:
@@ -237,7 +364,19 @@ export const Inbox = (): JSX.Element => {
 للتسجيل، يرجى التواصل مع قسم التدريب.
 
 مع التحية`,
+      bodyEn: `Greetings,
+
+We are pleased to invite you to register for the new training course:
+
+Topic: Professional Project Management
+Duration: 5 days
+Date: February 1 to February 5, 2026
+
+To register, please contact the training department.
+
+Best regards`,
       timestamp: 'منذ 5 أيام',
+      timestampEn: '5 days ago',
       isRead: false,
       isStarred: true,
       hasAttachment: true,
@@ -246,9 +385,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '10',
       sender: 'طلال الدوسري',
+      senderEn: 'Talal Al-Dosari',
       senderEmail: 'talal.aldosari@company.com',
       subject: 'تحديث السياسات الداخلية',
+      subjectEn: 'Internal Policies Update',
       preview: 'مرحباً، نود إعلامكم بتحديث السياسات الداخلية للشركة...',
+      previewEn: 'Hello, we would like to inform you of the company internal policies update...',
       body: `مرحباً،
 
 نود إعلامكم بتحديث السياسات الداخلية للشركة:
@@ -260,7 +402,19 @@ export const Inbox = (): JSX.Element => {
 يرجى الاطلاع على المرفقات وتطبيق السياسات الجديدة.
 
 قسم الموارد البشرية`,
+      bodyEn: `Hello,
+
+We would like to inform you of the company internal policies update:
+
+1. Remote work policy
+2. Leave policy
+3. Expenses policy
+
+Please review the attachments and apply the new policies.
+
+Human Resources Department`,
       timestamp: 'منذ أسبوع',
+      timestampEn: '1 week ago',
       isRead: false,
       isStarred: false,
       hasAttachment: true,
@@ -269,9 +423,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '11',
       sender: 'ريم الزهراني',
+      senderEn: 'Reem Al-Zahrani',
       senderEmail: 'reem.alzahrani@company.com',
       subject: 'ملاحظات على التقرير السنوي',
+      subjectEn: 'Comments on Annual Report',
       preview: 'السلام عليكم، لدي بعض الملاحظات على التقرير السنوي...',
+      previewEn: 'Hello, I have some comments on the annual report...',
       body: `السلام عليكم،
 
 لدي بعض الملاحظات على التقرير السنوي المقدم:
@@ -283,7 +440,19 @@ export const Inbox = (): JSX.Element => {
 في انتظار التعديلات.
 
 شكراً`,
+      bodyEn: `Hello,
+
+I have some comments on the submitted annual report:
+
+1. Please update the numbers on page 15
+2. Add the required charts
+3. Review final recommendations
+
+Waiting for the modifications.
+
+Thank you`,
       timestamp: 'منذ أسبوع',
+      timestampEn: '1 week ago',
       isRead: true,
       isStarred: false,
       hasAttachment: false,
@@ -292,9 +461,12 @@ export const Inbox = (): JSX.Element => {
     {
       id: '12',
       sender: 'بدر المالكي',
+      senderEn: 'Badr Al-Malki',
       senderEmail: 'badr.almalki@company.com',
       subject: 'اجتماع طارئ',
+      subjectEn: 'Urgent Meeting',
       preview: 'تحية طيبة، هناك اجتماع طارئ اليوم الساعة 3 مساءً...',
+      previewEn: 'Greetings, there is an urgent meeting today at 3 PM...',
       body: `تحية طيبة،
 
 هناك اجتماع طارئ اليوم الساعة 3 مساءً لمناقشة:
@@ -306,7 +478,19 @@ export const Inbox = (): JSX.Element => {
 يرجى التأكيد على الحضور.
 
 الإدارة`,
+      bodyEn: `Greetings,
+
+There is an urgent meeting today at 3 PM to discuss:
+
+- New project updates
+- Annual budget
+- Hiring plan
+
+Please confirm your attendance.
+
+Management`,
       timestamp: 'منذ أسبوعين',
+      timestampEn: '2 weeks ago',
       isRead: true,
       isStarred: true,
       hasAttachment: false,
@@ -315,10 +499,17 @@ export const Inbox = (): JSX.Element => {
   ];
 
   const filteredMessages = messages.filter(
-    (msg) =>
-      msg.sender.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      msg.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      msg.preview.toLowerCase().includes(searchQuery.toLowerCase())
+    (msg) => {
+      const query = searchQuery.toLowerCase();
+      return (
+        msg.sender.toLowerCase().includes(query) ||
+        msg.subject.toLowerCase().includes(query) ||
+        msg.preview.toLowerCase().includes(query) ||
+        (msg.senderEn && msg.senderEn.toLowerCase().includes(query)) ||
+        (msg.subjectEn && msg.subjectEn.toLowerCase().includes(query)) ||
+        (msg.previewEn && msg.previewEn.toLowerCase().includes(query))
+      );
+    }
   );
 
   const handleReply = () => {
@@ -349,9 +540,7 @@ export const Inbox = (): JSX.Element => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 bg-gray-50 border-gray-200 font-['IBM_Plex_Sans_Arabic']"
               />
-              <Search
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
-              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             </div>
           </div>
 
@@ -363,14 +552,14 @@ export const Inbox = (): JSX.Element => {
                 onClick={() => setSelectedMessage(message)}
                 className={`p-4 border-b border-gray-100 cursor-pointer transition-colors ${
                   selectedMessage?.id === message.id
-                    ? 'bg-[#093738]/5 border-l-4 border-l-[#093738]'
+                    ? `bg-[#093738]/5  ${language === 'ar' ? 'border-r-4 border-r-[#093738]' : 'border-l-4 border-l-[#093738]'}`
                     : 'hover:bg-gray-50'
                 } ${!message.isRead ? 'bg-blue-50/30' : ''}`}
               >
                 <div className="flex items-start gap-3">
                   {/* Avatar */}
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#093738] to-[#0d5556] flex items-center justify-center text-white font-semibold flex-shrink-0 font-['IBM_Plex_Sans_Arabic']">
-                    {message.sender.charAt(0)}
+                    {(language === 'ar' ? message.sender : (message.senderEn || message.sender)).charAt(0)}
                   </div>
 
                   {/* Message Info */}
@@ -381,7 +570,7 @@ export const Inbox = (): JSX.Element => {
                           !message.isRead ? 'font-bold' : 'font-medium'
                         }`}
                       >
-                        {message.sender}
+                        {language === 'ar' ? message.sender : (message.senderEn || message.sender)}
                       </h3>
                       <button
                         onClick={(e) => {
@@ -404,21 +593,17 @@ export const Inbox = (): JSX.Element => {
                         !message.isRead ? 'font-semibold text-gray-900' : 'text-gray-700'
                       }`}
                     >
-                      {message.subject}
+                      {language === 'ar' ? message.subject : (message.subjectEn || message.subject)}
                     </p>
                     <p className="text-xs text-gray-500 truncate font-['IBM_Plex_Sans_Arabic']">
-                      {message.preview}
+                      {language === 'ar' ? message.preview : (message.previewEn || message.preview)}
                     </p>
                     <div className="flex items-center gap-2 mt-2">
                       <span className="text-xs text-gray-400 font-['IBM_Plex_Sans_Arabic']">
-                        {message.timestamp}
+                        {language === 'ar' ? message.timestamp : (message.timestampEn || message.timestamp)}
                       </span>
-                      {message.hasAttachment && (
-                        <Paperclip className="w-3 h-3 text-gray-400" />
-                      )}
-                      {!message.isRead && (
-                        <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                      )}
+                      {message.hasAttachment && <Paperclip className="w-3 h-3 text-gray-400" />}
+                      {!message.isRead && <div className="w-2 h-2 bg-blue-500 rounded-full" />}
                     </div>
                   </div>
                 </div>
@@ -466,15 +651,15 @@ export const Inbox = (): JSX.Element => {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold text-gray-900 mb-2 font-['IBM_Plex_Sans_Arabic']">
-                      {selectedMessage.subject}
+                      {language === 'ar' ? selectedMessage.subject : (selectedMessage.subjectEn || selectedMessage.subject)}
                     </h2>
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#093738] to-[#0d5556] flex items-center justify-center text-white font-semibold font-['IBM_Plex_Sans_Arabic']">
-                        {selectedMessage.sender.charAt(0)}
+                        {(language === 'ar' ? selectedMessage.sender : (selectedMessage.senderEn || selectedMessage.sender)).charAt(0)}
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-gray-900 font-['IBM_Plex_Sans_Arabic']">
-                          {selectedMessage.sender}
+                          {language === 'ar' ? selectedMessage.sender : (selectedMessage.senderEn || selectedMessage.sender)}
                         </p>
                         <p className="text-xs text-gray-500 font-['IBM_Plex_Sans_Arabic']">
                           {selectedMessage.senderEmail}
@@ -484,7 +669,7 @@ export const Inbox = (): JSX.Element => {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500 font-['IBM_Plex_Sans_Arabic']">
-                      {selectedMessage.timestamp}
+                      {language === 'ar' ? selectedMessage.timestamp : (selectedMessage.timestampEn || selectedMessage.timestamp)}
                     </span>
                     <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                       <Star
@@ -524,7 +709,7 @@ export const Inbox = (): JSX.Element => {
               <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                 <div className="prose max-w-none">
                   <p className="text-gray-700 whitespace-pre-wrap font-['IBM_Plex_Sans_Arabic'] leading-relaxed">
-                    {selectedMessage.body}
+                    {language === 'ar' ? selectedMessage.body : (selectedMessage.bodyEn || selectedMessage.body)}
                   </p>
                 </div>
 
