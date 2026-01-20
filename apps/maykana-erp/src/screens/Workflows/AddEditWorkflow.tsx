@@ -1001,7 +1001,17 @@ export const AddEditWorkflow = (): JSX.Element => {
         >
           {/* Flow View - Full Screen */}
           {viewMode === 'flow' ? (
-            <div style={{ width: '100%', height: 'calc(100vh - 200px)' }}>
+            <div style={{ width: '100%', height: 'calc(100vh - 200px)' }} className="react-flow-cursor-fix">
+              <style>{`
+                .react-flow-cursor-fix .react-flow__pane,
+                .react-flow-cursor-fix .react-flow__renderer,
+                .react-flow-cursor-fix .react-flow__container {
+                  cursor: default !important;
+                }
+                .react-flow-cursor-fix .react-flow__pane.dragging {
+                  cursor: grabbing !important;
+                }
+              `}</style>
               <ReactFlow
                 nodes={nodes}
                 edges={edges}
