@@ -51,8 +51,8 @@ export const WorkflowEngine = (): JSX.Element => {
             bgColor={card.bgColor}
             iconColor={card.iconColor}
             onClick={() => card.path && navigate(card.path)}
-            isActive={card.path === '/workflow-engine/verification-templates'}
-            isClickable={card.path === '/workflow-engine/verification-templates'}
+            isActive={card.path === '/workflow-engine/verification-templates' || card.path === '/workflow-engine/workflows'}
+            isClickable={card.path === '/workflow-engine/verification-templates' || card.path === '/workflow-engine/workflows'}
           />
         ))}
       </div>

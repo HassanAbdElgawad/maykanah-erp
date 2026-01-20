@@ -611,7 +611,29 @@
       "type_checkbox": "صح/خطأ",
       "type_yesno": "نعم/لا",
       "type_text": "نص",
-      "type_number": "رقم"
+      "type_number": "رقم",
+      "workflow_cards": {
+        "purchase_request": "طلب شراء",
+        "purchase_request_desc": "نموذج لطلب شراء مواد ومواقفة حسب الصلاحيات.",
+        "business_travel": "سفر عمل",
+        "business_travel_desc": "طلب رحلة إلى مكان من خلال البيانات اللازمة من الموافقات والرحلات.",
+        "maintenance_request": "طلب صيانة",
+        "maintenance_request_desc": "معالجة إتصال الهدف من لوحة المبادئ إلى الإصلاح.",
+        "new_recruitment": "توظيف جديد",
+        "new_recruitment_desc": "خطوات تسجيل موظف جديد وتحديد رتبته عملية التعيين.",
+        "invoice_approval": "اعتماد فاتورة",
+        "invoice_approval_desc": "مسار لمراجعة واعتماد الفواتير قبل الدفع المالي.",
+        "leave_request": "طلب إجازة",
+        "leave_request_desc": "نموذج بسيط لتقديم طلب إجازة ومتابعة حالة الموافقة.",
+        "training_request": "طلب تدريب",
+        "training_request_desc": "سير عمل لطلب مواد ومواقفة حسب مركزه للحصول المقصدة.",
+        "ui_design": "تصميم واجهة جديدة",
+        "ui_design_desc": "مسار لتصميم واجهة جديدة واعتمادها.",
+        "new_project": "مشروع جديد",
+        "new_project_desc": "سير عمل لإنشاء مشروع جديد وتحديد الباراميتران والمسؤولين.",
+        "status_launched": "تم إطلاقه",
+        "status_draft": "مسودة"
+      }
     },
     "hr": {
       "admin_mode": "وضع الإداري",
@@ -1342,7 +1364,29 @@
       "type_checkbox": "Checkbox",
       "type_yesno": "Yes/No",
       "type_text": "Text",
-      "type_number": "Number"
+      "type_number": "Number",
+      "workflow_cards": {
+        "purchase_request": "Purchase Request",
+        "purchase_request_desc": "Form to request purchase of materials with approvals.",
+        "business_travel": "Business Travel",
+        "business_travel_desc": "Request travel with required documentation and approvals.",
+        "maintenance_request": "Maintenance Request",
+        "maintenance_request_desc": "Process to submit and track maintenance needs.",
+        "new_recruitment": "New Recruitment",
+        "new_recruitment_desc": "Steps to register a new employee and define their position.",
+        "invoice_approval": "Invoice Approval",
+        "invoice_approval_desc": "Workflow to review and approve invoices before payment.",
+        "leave_request": "Leave Request",
+        "leave_request_desc": "Simple form to submit leave requests and track approval status.",
+        "training_request": "Training Request",
+        "training_request_desc": "Workflow to request materials and approvals according to requirements.",
+        "ui_design": "UI Design",
+        "ui_design_desc": "Workflow to design and approve new user interfaces.",
+        "new_project": "New Project",
+        "new_project_desc": "Workflow to create a new project and define parameters and managers.",
+        "status_launched": "Launched",
+        "status_draft": "Draft"
+      }
     },
     "hr": {
       "admin_mode": "Admin Mode",

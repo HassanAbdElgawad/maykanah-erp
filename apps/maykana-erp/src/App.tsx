@@ -13,6 +13,7 @@ import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
 import { WorkflowEngine } from "./screens/WorkflowEngine";
+import { Workflows, AddEditWorkflow } from "./screens/Workflows";
 import { VerificationTemplates, AddEditVerificationTemplate } from "./screens/VerificationTemplates";
 import { Warehouses } from "./screens/Warehouses";
 import { InventoryMaterials } from "./screens/InventoryMaterials";
@@ -261,6 +262,30 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <WorkflowEngine />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow-engine/workflows",
+    element: (
+      <ProtectedRoute>
+        <Workflows />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow-engine/workflows/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditWorkflow />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow-engine/workflows/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditWorkflow />
       </ProtectedRoute>
     ),
   },
