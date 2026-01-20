@@ -578,7 +578,7 @@
     "workflow_engine": {
       "workflows": "مسارات العمل",
       "workflows_desc": "كتابة تسجيل به البيانات والمعاملات الحالي",
-      "verification_templates": "قوائم التحقيق",
+      "verification_templates": "قوائم التحقق",
       "verification_templates_desc": "كيفية التسلسات حسب التصنيف المناسب",
       "predefined_rules": "النوائح المسبقة",
       "predefined_rules_desc": "ضبط الصلاحيات العامة للحسابات الدائنة",

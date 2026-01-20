@@ -178,11 +178,11 @@ export const MyRequests: React.FC = () => {
                 key: 'status',
                 label: t('hr.status'),
                 align: 'right',
-                render: (value) => (
+                render: (row) => (
                   <span
-                    className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(value)}`}
+                    className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(row.status)}`}
                   >
-                    {getStatusText(value)}
+                    {getStatusText(row.status)}
                   </span>
                 ),
               },

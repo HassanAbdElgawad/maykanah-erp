@@ -52,7 +52,7 @@ const searchablePages: SearchResult[] = [
   { title: 'جرد المخزون', titleEn: 'Inventory Count', path: '/warehouses/inventory-count', location: 'إدارة المخازن', locationEn: 'Warehouses Management' },
   
   // Workflow
-  { title: 'قوائم التحقيق', titleEn: 'Verification Lists', path: '/workflow-engine/verification-templates', location: 'محرك سير الأعمال', locationEn: 'Workflow Engine' },
+  { title: 'قوائم التحقق', titleEn: 'Verification Lists', path: '/workflow-engine/verification-templates', location: 'محرك سير الأعمال', locationEn: 'Workflow Engine' },
   
   // HR
   { title: 'مركز الموظفين', titleEn: 'Employee Center', path: '/hr/employee-center', location: 'إدارة الموارد البشرية', locationEn: 'HR Management' },
