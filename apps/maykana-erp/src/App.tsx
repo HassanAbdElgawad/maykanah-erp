@@ -14,7 +14,6 @@ import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
 import { WorkflowEngine } from "./screens/WorkflowEngine";
 import { Workflows, AddEditWorkflow } from "./screens/Workflows";
-import { WorkflowFormBuilder } from "./screens/Workflows/WorkflowFormBuilder";
 import { VerificationTemplates, AddEditVerificationTemplate } from "./screens/VerificationTemplates";
 import { Warehouses } from "./screens/Warehouses";
 import { InventoryMaterials } from "./screens/InventoryMaterials";
@@ -287,14 +286,6 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEditWorkflow />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/workflow-engine/workflows/form-builder",
-    element: (
-      <ProtectedRoute>
-        <WorkflowFormBuilder />
       </ProtectedRoute>
     ),
   },

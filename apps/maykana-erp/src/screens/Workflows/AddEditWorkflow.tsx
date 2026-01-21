@@ -48,57 +48,8 @@ import {
   Palette,
   X,
 } from 'lucide-react';
-
-// Custom Node Components for Form Builder
-const StartNode = ({ data }: any) => (
-  <div className="w-96 bg-[#ecfbff] rounded-xl p-4">
-    <div className="flex items-center gap-3">
-      <div className="w-9 h-9 bg-[#41d1fe] rounded flex items-center justify-center flex-shrink-0">
-        <Zap className="w-5 h-5 text-white" />
-      </div>
-      <span className="text-sm font-semibold text-[#41d1fe]">
-        {data.label}
-      </span>
-    </div>
-  </div>
-);
-
-const ActionNode = ({ data }: any) => (
-  <div className="w-96">
-    <div className="w-full bg-[#0c4749] text-white px-4 py-3 rounded-xl text-sm font-semibold">
-      {data.label}
-    </div>
-  </div>
-);
-
-const BranchNode = ({ data }: any) => (
-  <div className="w-[362px] bg-[#e7eded] rounded-xl p-3 flex items-center gap-2">
-    <GitBranch className="w-4 h-4 text-[#0c4749] flex-shrink-0" />
-    <span className="text-sm font-semibold text-[#0c4749]">
-      {data.label}
-    </span>
-  </div>
-);
-
-const EndNode = ({ data }: any) => (
-  <div className="w-96 bg-[#eaf9f4] rounded-xl p-4">
-    <div className="flex items-center gap-3">
-      <div className="w-9 h-9 bg-[#2cc28d] rounded flex items-center justify-center flex-shrink-0">
-        <CheckSquare className="w-5 h-5 text-white" />
-      </div>
-      <span className="text-sm font-semibold text-[#2cc28d]">
-        {data.label}
-      </span>
-    </div>
-  </div>
-);
-
-const nodeTypes = {
-  startNode: StartNode,
-  actionNode: ActionNode,
-  branchNode: BranchNode,
-  endNode: EndNode,
-};
+import { formBuilderNodeTypes } from './components/FormBuilderNodes';
+import { ColumnModal, ChecklistItemModal } from './components/WorkflowModals';
 
 export const AddEditWorkflow = (): JSX.Element => {
   const { dir } = useLanguage();
@@ -128,63 +79,17 @@ export const AddEditWorkflow = (): JSX.Element => {
   // Form Builder States
   const [formBuilderTitle, setFormBuilderTitle] = useState('منطقة بدون عنوان');
   const [formBuilderDescription, setFormBuilderDescription] = useState('إبدأ بكتابة وصف لهذه المنطقة هنا .......');
-  const [formBuilderFields, setFormBuilderFields] = useState<any[]>([
+  const [formBuilderFields] = useState<any[]>([
     { id: '1', type: 'text', label: 'رقم الطلب', placeholder: 'رقم الطلب هنا ...', required: true, width: 'half' },
     { id: '2', type: 'text', label: 'اسم مقدم الطلب', placeholder: 'اسم مقدم الطلب من هنا ...', required: true, width: 'half' },
     { id: '3', type: 'text', label: 'القسم', placeholder: '', required: true, width: 'half' },
     { id: '4', type: 'date', label: 'تاريخ الطلب', required: true, width: 'half' },
     { id: '5', type: 'select', label: 'قائمة منسدلة بدون عنوان', required: true, width: 'half' },
   ]);
-  const [formBuilderTableColumns] = useState([
-    { id: '1', label: 'فئة المادة' },
-    { id: '2', label: 'الوصف' },
-  ]);
   const [formBuilderTableRows, setFormBuilderTableRows] = useState<any[]>([
     { id: '1', data: { '1': '', '2': '' } },
     { id: '2', data: { '1': '', '2': '' } },
   ]);
-
-  // Form Builder Nodes - RTL Workflow Tree
-  const formBuilderNodeTypes = useMemo(() => ({
-    processStart: ({ data }: any) => (
-      <div style={{ width: '380px', height: '64px', padding: '0 18px', background: '#E8F7FF', borderRadius: '14px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
-        <Handle type="source" position={Position.Right} style={{ opacity: 0 }} />
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', flexShrink: 0 }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#41D1FE" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        </div>
-        <span style={{ fontSize: '15px', fontWeight: 700, color: '#41D1FE', textAlign: 'right', flex: 1 }}>{data.label}</span>
-      </div>
-    ),
-    processActive: ({ data }: any) => (
-      <div style={{ width: '380px', height: '64px', padding: '0 18px', background: '#0A4847', borderRadius: '14px', boxShadow: '0 2px 6px rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
-        <Handle type="target" position={Position.Right} style={{ opacity: 0 }} />
-        <Handle type="source" position={Position.Right} style={{ opacity: 0 }} />
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', flexShrink: 0 }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        </div>
-        <span style={{ fontSize: '15px', fontWeight: 700, color: '#FFFFFF', textAlign: 'right', flex: 1 }}>{data.label}</span>
-      </div>
-    ),
-    processBranch: ({ data }: any) => (
-      <div style={{ width: '320px', height: '60px', padding: '0 16px', background: '#E8EDED', borderRadius: '14px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '10px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
-        <Handle type="target" position={Position.Right} style={{ opacity: 0 }} />
-        <Handle type="source" position={Position.Right} style={{ opacity: 0 }} />
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', flexShrink: 0 }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A7A79" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
-        </div>
-        <span style={{ fontSize: '14px', fontWeight: 700, color: '#5A7A79', textAlign: 'right', flex: 1 }}>{data.label}</span>
-      </div>
-    ),
-    processEnd: ({ data }: any) => (
-      <div style={{ width: '380px', height: '64px', padding: '0 18px', background: '#E8FAF3', borderRadius: '14px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
-        <Handle type="target" position={Position.Right} style={{ opacity: 0 }} />
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px', background: '#2CC28D', borderRadius: '50%', flexShrink: 0 }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        </div>
-        <span style={{ fontSize: '15px', fontWeight: 700, color: '#2CC28D', textAlign: 'right', flex: 1 }}>{data.label}</span>
-      </div>
-    ),
-  }), []);
 
   const formBuilderInitialNodes: Node[] = useMemo(() => [
     { id: '1', type: 'processStart', position: { x: 15, y: 0 }, data: { label: 'بداية العملية عند تقديم نموذج الطلب' }, sourcePosition: Position.Right },
@@ -681,32 +586,6 @@ export const AddEditWorkflow = (): JSX.Element => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   // Form Builder Helper Functions
-  const removeFormBuilderField = (id: string) => {
-    setFormBuilderFields(formBuilderFields.filter((field) => field.id !== id));
-  };
-
-  const duplicateFormBuilderField = (field: any) => {
-    const newField = { ...field, id: Date.now().toString() };
-    const index = formBuilderFields.findIndex((f) => f.id === field.id);
-    const newFields = [...formBuilderFields];
-    newFields.splice(index + 1, 0, newField);
-    setFormBuilderFields(newFields);
-  };
-
-  const addFormBuilderTableRow = () => {
-    const newRow: any = {
-      id: Date.now().toString(),
-      data: formBuilderTableColumns.reduce((acc: any, col: any) => ({ ...acc, [col.id]: '' }), {}),
-    };
-    setFormBuilderTableRows([...formBuilderTableRows, newRow]);
-  };
-
-  const removeFormBuilderTableRow = (id: string) => {
-    if (formBuilderTableRows.length > 1) {
-      setFormBuilderTableRows(formBuilderTableRows.filter((row) => row.id !== id));
-    }
-  };
-
   const updateFormBuilderTableCell = (rowId: string, colId: string, value: string) => {
     setFormBuilderTableRows(
       formBuilderTableRows.map((row) =>
@@ -2527,49 +2406,26 @@ export const AddEditWorkflow = (): JSX.Element => {
         )}
       </div>
 
-      {/* Column Add Modal */}
-      {showColumnModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 w-[400px] shadow-2xl" dir={dir}>
-            <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-lg mb-4 [direction:rtl]">
-              إضافة عمود جديد
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <label className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm [direction:rtl] block mb-2">
-                  <span className="text-black">اسم العمود</span>
-                  <span className="text-red-600">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={newColumnName}
-                  onChange={(e) => setNewColumnName(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && addColumn()}
-                  placeholder="أدخل اسم العمود هنا ..."
-                  autoFocus
-                  className="w-full h-10 px-3 bg-white rounded-lg border border-gray-300 text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl] outline-none focus:border-[#0c4749]"
-                />
-              </div>
-              <div className="flex gap-3 justify-end">
-                <button
-                  onClick={() => setShowColumnModal(false)}
-                  className="h-10 px-6 bg-slate-100 text-gray-700 rounded-lg hover:bg-slate-200 transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
-                >
-                  إلغاء
-                </button>
-                <button
-                  onClick={addColumn}
-                  disabled={!newColumnName.trim()}
-                  className="h-10 px-6 text-white rounded-lg transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ backgroundColor: primaryColor }}
-                >
-                  إضافة
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Modals */}
+      <ColumnModal
+        showColumnModal={showColumnModal}
+        setShowColumnModal={setShowColumnModal}
+        newColumnName={newColumnName}
+        setNewColumnName={setNewColumnName}
+        addColumn={addColumn}
+        primaryColor={primaryColor}
+        dir={dir}
+      />
+
+      <ChecklistItemModal
+        showChecklistItemModal={showChecklistItemModal}
+        setShowChecklistItemModal={setShowChecklistItemModal}
+        newChecklistItemText={newChecklistItemText}
+        setNewChecklistItemText={setNewChecklistItemText}
+        addChecklistItem={addChecklistItem}
+        primaryColor={primaryColor}
+        dir={dir}
+      />
 
       {/* Add Node Modal */}
       {showNodeModal && (
@@ -2622,50 +2478,6 @@ export const AddEditWorkflow = (): JSX.Element => {
               >
                 إلغاء
               </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Checklist Item Modal */}
-      {showChecklistItemModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 w-[400px] shadow-2xl" dir={dir}>
-            <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-lg mb-4 [direction:rtl]">
-              إضافة عنصر جديد
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <label className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm [direction:rtl] block mb-2">
-                  <span className="text-black">نص العنصر</span>
-                  <span className="text-red-600">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={newChecklistItemText}
-                  onChange={(e) => setNewChecklistItemText(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && addChecklistItem()}
-                  placeholder="أدخل نص العنصر هنا ..."
-                  autoFocus
-                  className="w-full h-10 px-3 bg-white rounded-lg border border-gray-300 text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl] outline-none focus:border-[#0c4749]"
-                />
-              </div>
-              <div className="flex gap-3 justify-end">
-                <button
-                  onClick={() => setShowChecklistItemModal(false)}
-                  className="h-10 px-6 bg-slate-100 text-gray-700 rounded-lg hover:bg-slate-200 transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
-                >
-                  إلغاء
-                </button>
-                <button
-                  onClick={addChecklistItem}
-                  disabled={!newChecklistItemText.trim()}
-                  className="h-10 px-6 text-white rounded-lg transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ backgroundColor: primaryColor }}
-                >
-                  إضافة
-                </button>
-              </div>
             </div>
           </div>
         </div>
