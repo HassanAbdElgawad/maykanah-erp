@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { CardContainer } from '../../components/ui/CardContainer';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buttonClasses } from '../../styles';
 import {
@@ -109,7 +110,7 @@ export const VerificationTemplates = (): JSX.Element => {
     <Layout>
       <div className="space-y-4">
         {/* Header with Search and New Button */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="flex items-center justify-between gap-4 p-3">
             {/* Right side: Search */}
             <div className="relative w-[535px]">
@@ -140,7 +141,7 @@ export const VerificationTemplates = (): JSX.Element => {
               </button>
             </div>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
         {/* Templates Grid */}
         <div className="flex flex-wrap gap-4">

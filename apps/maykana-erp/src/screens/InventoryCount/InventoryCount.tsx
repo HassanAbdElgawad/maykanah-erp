@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { Input } from '../../components/ui/input';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { CardContainer } from '../../components/ui/CardContainer';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { AdvancedTable } from '../../components/ui/Table';
 import { buttonClasses } from '../../styles';
@@ -125,7 +125,7 @@ export const InventoryCount = (): JSX.Element => {
     <Layout>
       <div className="space-y-4">
         {/* Header Section */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="p-4 flex items-center justify-between">
             <div className="flex items-center gap-4 flex-1">
               <div className="relative flex-1 max-w-md">
@@ -147,10 +147,10 @@ export const InventoryCount = (): JSX.Element => {
               {t('warehouses.add_inventory_count')}
             </button>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
         {/* Table Section */}
-        <MaykanaCard>
+        <CardContainer>
           <AdvancedTable
             data={filteredInventoryCount}
             columns={[
@@ -213,7 +213,7 @@ export const InventoryCount = (): JSX.Element => {
               },
             ]}
           />
-        </MaykanaCard>
+        </CardContainer>
       </div>
     </Layout>
   );

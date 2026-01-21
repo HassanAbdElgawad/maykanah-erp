@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
+import { CardContainer } from '../../components/ui/CardContainer';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Search, Plus, MoreVertical, Edit2, Copy, Workflow } from 'lucide-react';
 import { buttonClasses } from '../../styles';
@@ -97,7 +99,8 @@ export const Workflows = (): JSX.Element => {
     <Layout>
       <div className="space-y-6 animate-fade-in">
         {/* Header with search and new button */}
-        <div className="flex justify-between items-center gap-4">
+        <CardContainer>
+          <div className="flex justify-between items-center gap-4 p-4">
           {/* Search Bar */}
           <div className="flex-1 relative max-w-md">
             <Search
@@ -117,38 +120,35 @@ export const Workflows = (): JSX.Element => {
           </div>
 
           {/* New Button */}
-          <button 
+          <button
             onClick={() => navigate('/workflow-engine/workflows/add')}
             className={buttonClasses.primary}
           >
             <Plus className="w-4 h-4" />
-            <span className="text-xs">
-              {t('workflow_engine.new_button')}
-            </span>
+            <span className="text-xs">{t('workflow_engine.new_button')}</span>
           </button>
-        </div>
+          </div>
+        </CardContainer>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {filteredCards.map((card, index) => {
+        <div className="flex flex-wrap gap-4">
+          {filteredCards.map((card) => {
             return (
-              <div
+              <MaykanaCard
                 key={card.id}
-                className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-all duration-300 cursor-pointer group relative"
-                style={{
-                  animationDelay: `${index * 50}ms`,
-                }}
+                className="cursor-pointer"
                 onMouseEnter={() => setHoveredCard(card.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                {/* Card Header with Action Icons */}
-                <div className="flex items-start justify-between mb-3">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center"
-                    style={{ backgroundColor: card.iconBg }}
-                  >
-                    <Workflow className="w-5 h-5" style={{ color: card.iconColor }} />
-                  </div>
+                <div className="p-4">
+                  {/* Card Header with Action Icons */}
+                  <div className="flex items-start justify-between mb-3">
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center"
+                      style={{ backgroundColor: card.iconBg }}
+                    >
+                      <Workflow className="w-5 h-5" style={{ color: card.iconColor }} />
+                    </div>
 
                   {/* Action Icons - Show on Hover */}
                   <div
@@ -189,7 +189,8 @@ export const Workflows = (): JSX.Element => {
                       : t('workflow_engine.workflow_cards.status_draft')}
                   </span>
                 </div>
-              </div>
+                </div>
+              </MaykanaCard>
             );
           })}
         </div>
