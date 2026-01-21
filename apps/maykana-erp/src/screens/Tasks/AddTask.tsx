@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { CardContainer } from '../../components/ui/CardContainer';
 import { ArrowLeft, ArrowRight, Paperclip, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buttonClasses } from '../../styles';
@@ -34,7 +34,7 @@ export const AddTask = (): JSX.Element => {
     <Layout>
       <div className="space-y-4">
         {/* Header */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <button
@@ -70,10 +70,10 @@ export const AddTask = (): JSX.Element => {
               </button>
             </div>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
         {/* Basic Information Section */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="p-6">
             <div className={`flex items-center justify-between mb-6 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
               <div className="w-[42px] h-[42px] bg-[#f0f4f7] rounded-lg"></div>
@@ -185,10 +185,10 @@ export const AddTask = (): JSX.Element => {
               <div></div>
             </div>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
-        {/* Dates Section */}
-        <MaykanaCard>
+        {/* Description Section */}
+        <CardContainer>
           <div className="p-6">
             <div className={`flex items-center justify-between mb-6 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
               <div className="w-[42px] h-[42px] bg-[#f0f4f7] rounded-lg"></div>
@@ -230,10 +230,10 @@ export const AddTask = (): JSX.Element => {
               </div>
             </div>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
         {/* Additional Information Section */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="p-6">
             <div className={`flex items-center justify-between mb-6 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
               <div className="w-[42px] h-[42px] bg-[#f0f4f7] rounded-lg"></div>
@@ -303,7 +303,7 @@ export const AddTask = (): JSX.Element => {
               </div>
             </div>
           </div>
-        </MaykanaCard>
+        </CardContainer>
       </div>
     </Layout>
   );

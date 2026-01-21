@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { Input } from '../../components/ui/input';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { CardContainer } from '../../components/ui/CardContainer';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buttonClasses } from '../../styles';
 import {
@@ -46,7 +46,7 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
     <Layout>
       <div className="space-y-4">
         {/* Header */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <button
@@ -70,13 +70,13 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
               {t('workflow_engine.save')}
             </button>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
         <div className="grid grid-cols-12 gap-4">
           {/* Main Content */}
           <div className="col-span-9 space-y-4">
             {/* Basic Information */}
-            <MaykanaCard>
+            <CardContainer>
               <div className="p-6 space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-black text-lg">
@@ -117,10 +117,10 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
                   </div>
                 </div>
               </div>
-            </MaykanaCard>
+            </CardContainer>
 
             {/* Checklist Items */}
-            <MaykanaCard>
+            <CardContainer>
               <div className="p-6 space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-black text-lg">
@@ -187,13 +187,13 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
                   </button>
                 </div>
               </div>
-            </MaykanaCard>
+            </CardContainer>
           </div>
 
           {/* Sidebar */}
           <div className="col-span-3 space-y-4">
             {/* Settings */}
-            <MaykanaCard>
+            <CardContainer>
               <div className="p-4 space-y-4">
                 <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-black text-base">
                   {t('workflow_engine.settings')}
@@ -226,10 +226,10 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
                   </div>
                 </div>
               </div>
-            </MaykanaCard>
+            </CardContainer>
 
             {/* Field Types Reference */}
-            <MaykanaCard>
+            <CardContainer>
               <div className="p-4 space-y-4">
                 <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-black text-base">
                   {t('workflow_engine.field_types')}
@@ -251,7 +251,7 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
                   </div>
                 </div>
               </div>
-            </MaykanaCard>
+            </CardContainer>
           </div>
         </div>
       </div>

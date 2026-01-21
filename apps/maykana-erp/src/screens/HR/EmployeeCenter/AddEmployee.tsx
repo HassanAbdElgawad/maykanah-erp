@@ -51,7 +51,7 @@ export const AddEmployee: React.FC = () => {
         </div>
 
         {/* Basic Information Section */}
-        <div className="bg-white rounded-xl border border-gray-200" dir={isRTL ? 'ltr' : ' rtl'}>
+        <div className="bg-white rounded-xl border border-gray-200" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <button
               onClick={() => toggleSection('basicInfo')}
@@ -167,7 +167,7 @@ export const AddEmployee: React.FC = () => {
         </div>
 
         {/* Employment Information Section */}
-        <div className="bg-white rounded-xl border border-gray-200" dir={isRTL ? 'ltr' : ' rtl'}>
+        <div className="bg-white rounded-xl border border-gray-200" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <button
               onClick={() => toggleSection('employmentInfo')}
@@ -281,7 +281,7 @@ export const AddEmployee: React.FC = () => {
         </div>
 
         {/* Contact Information Section */}
-        <div className="bg-white rounded-xl border border-gray-200" dir={isRTL ? 'ltr' : ' rtl'}>
+        <div className="bg-white rounded-xl border border-gray-200" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <button
               onClick={() => toggleSection('contactInfo')}

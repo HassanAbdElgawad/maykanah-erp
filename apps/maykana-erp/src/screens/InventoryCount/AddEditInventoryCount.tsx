@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { Input } from '../../components/ui/input';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { CardContainer } from '../../components/ui/CardContainer';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { buttonClasses } from '../../styles';
@@ -31,7 +31,7 @@ export const AddEditInventoryCount = (): JSX.Element => {
     <Layout>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Header */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="p-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <button
@@ -58,10 +58,10 @@ export const AddEditInventoryCount = (): JSX.Element => {
               {t('warehouses.save')}
             </button>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
         {/* Basic Information Section */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="p-6">
             <h2 className="text-xl font-medium text-black mb-6 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
               {t('warehouses.basic_info')}
@@ -128,10 +128,10 @@ export const AddEditInventoryCount = (): JSX.Element => {
               </div>
             </div>
           </div>
-        </MaykanaCard>
+        </CardContainer>
 
         {/* Order Items Section */}
-        <MaykanaCard>
+        <CardContainer>
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-medium text-black [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
@@ -187,7 +187,7 @@ export const AddEditInventoryCount = (): JSX.Element => {
               </p>
             </div>
           </div>
-        </MaykanaCard>
+        </CardContainer>
       </form>
     </Layout>
   );
