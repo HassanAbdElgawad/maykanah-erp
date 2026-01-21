@@ -2226,7 +2226,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                           <option>مدير فرع</option>
                         </select>
                       </div>
-                      <button className="w-full h-10 bg-gray-200 text-gray-700 rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm hover:bg-gray-300 transition-colors">
+                      <button className="w-full h-10 bg-gray-200 text-gray-700 rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-xs hover:bg-gray-300 transition-colors">
                         أضف شرط ظهور
                       </button>
                     </div>
@@ -2260,7 +2260,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                             </p>
                           </div>
                         </div>
-                        <button className="w-full h-10 bg-gray-200 text-gray-700 rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm hover:bg-gray-300 transition-colors">
+                        <button className="w-full h-10 bg-gray-200 text-gray-700 rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-xs hover:bg-gray-300 transition-colors">
                           أضف شرط تحقق
                         </button>
                       </div>

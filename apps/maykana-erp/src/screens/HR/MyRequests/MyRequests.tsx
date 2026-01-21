@@ -4,6 +4,7 @@ import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, Eye, FileText } from 'lucide-react';
 import { AdvancedTable } from '../../../components/ui/Table';
+import { buttonClasses } from '../../../styles';
 
 interface Request {
   id: string;
@@ -94,7 +95,7 @@ export const MyRequests: React.FC = () => {
           </div>
           <button
             onClick={() => navigate('/hr/my-requests/new')}
-            className="flex items-center gap-2 px-4 py-2 bg-[#093738] text-white rounded-lg shadow-sm hover:bg-[#0b4445] transition-colors"
+            className={buttonClasses.primary}
           >
             <FileText className="w-4 h-4" />
             {t('hr.add_new_request')}
@@ -148,8 +149,7 @@ export const MyRequests: React.FC = () => {
               {/* CTA Button */}
               <button
                 onClick={() => navigate('/hr/my-requests/new')}
-                className="w-full h-[43px] flex items-center justify-center px-4 py-[9px] bg-[#093738] text-white rounded-lg shadow-[0px_4px_4px_#0000001a] hover:bg-[#0b4445] transition-colors"
-                style={{ fontFamily: 'IBM Plex Sans Arabic, Helvetica' }}
+                className={buttonClasses.primary}
               >
                 {t('hr.work_start_request')}
               </button>

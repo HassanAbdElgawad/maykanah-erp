@@ -578,6 +578,8 @@
     "workflow_engine": {
       "workflows": "مسارات العمل",
       "workflows_desc": "كتابة تسجيل به البيانات والمعاملات الحالي",
+      "add_workflow": "إضافة مسار عمل",
+      "edit_workflow": "تعديل مسار عمل",
       "verification_templates": "قوائم التحقق",
       "verification_templates_desc": "كيفية التسلسات حسب التصنيف المناسب",
       "predefined_rules": "النوائح المسبقة",
@@ -1416,6 +1418,8 @@
     "workflow_engine": {
       "workflows": "Workflows",
       "workflows_desc": "Register data and current transactions",
+      "add_workflow": "Add Workflow",
+      "edit_workflow": "Edit Workflow",
       "verification_templates": "Verification Lists",
       "verification_templates_desc": "Sequences according to appropriate classification",
       "predefined_rules": "Predefined Rules",

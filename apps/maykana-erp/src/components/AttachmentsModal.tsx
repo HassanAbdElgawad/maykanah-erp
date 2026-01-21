@@ -2,6 +2,7 @@ import { useState, useRef, DragEvent } from 'react';
 import { X, Maximize2, Upload, Paperclip, Trash2, Download } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from './ui/button';
+import { buttonClasses } from '../styles';
 
 interface AttachmentFile {
   id: string;
@@ -242,12 +243,12 @@ export const AttachmentsModal = ({
 
         {/* Footer */}
         <div className={`h-[74px] border-t border-gray-200 flex items-center px-5 gap-3 ${dir === 'rtl' ? 'justify-end' : 'justify-start'}`}>
-          <Button
+          <button
             onClick={handleSave}
-            className="w-[100px] h-[43px] bg-[#093738] hover:opacity-90 text-white rounded-lg shadow-[0px_4px_4px_#0000001a] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+            className={buttonClasses.primary + " w-[100px]"}
           >
             حفظ
-          </Button>
+          </button>
           <Button
             onClick={onClose}
             variant="outline"

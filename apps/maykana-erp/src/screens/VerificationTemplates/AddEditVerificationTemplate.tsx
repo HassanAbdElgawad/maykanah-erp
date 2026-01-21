@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { buttonClasses } from '../../styles';
 import {
   ArrowLeft,
   ArrowRight,
@@ -63,12 +64,12 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
                 {id ? t('workflow_engine.edit_verification_list') : t('workflow_engine.add_verification_list')}
               </h1>
             </div>
-            <Button
+            <button
               onClick={handleSubmit}
-              className="bg-[#093738] hover:bg-[#0d5556] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              className={buttonClasses.primary}
             >
               {t('workflow_engine.save')}
-            </Button>
+            </button>
           </div>
         </MaykanaCard>
 

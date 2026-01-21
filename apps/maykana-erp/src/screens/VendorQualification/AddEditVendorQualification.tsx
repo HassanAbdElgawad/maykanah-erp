@@ -6,6 +6,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
+import { buttonClasses } from '../../styles';
 
 export const AddEditVendorQualification = () => {
   const navigate = useNavigate();
@@ -105,12 +106,12 @@ export const AddEditVendorQualification = () => {
               <span className="text-[#092e32]">{t('add_attachments')}</span>
               <div className="bg-[#092e321f] px-2 py-1 rounded-md text-[#0000005e] text-sm">0</div>
             </div>
-            <Button
+            <button
               onClick={handleSave}
-              className="bg-[#093738] hover:bg-[#0d4849] text-white px-4 py-2 rounded-lg shadow-[0px_4px_4px_#0000001a]"
+              className={buttonClasses.primary}
             >
               {t('save')}
-            </Button>
+            </button>
 
             {/* <h1 className="text-xl font-medium" dir={dir}> */}
             {/* {isEditMode ? t("vendor_qualification.edit_vendor") : t("vendor_qualification.add_vendor")} */}
@@ -596,7 +597,7 @@ export const AddEditVendorQualification = () => {
                       value={formData.commercialRegisterDate}
                       onChange={(e) => handleChange('commercialRegisterDate', e.target.value)}
                       className="h-[45px] border-[#cfcfcf]"
-                      dir={dir}
+                      style={{ direction: 'rtl', textAlign: 'right' }}
                     />
                   </div>
                 </div>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Search, Plus, MoreVertical, Edit2, Copy, Workflow } from 'lucide-react';
+import { buttonClasses } from '../../styles';
 
 interface WorkflowCard {
   id: string;
@@ -102,14 +103,14 @@ export const Workflows = (): JSX.Element => {
             <Search
               className={`absolute top-1/2 -translate-y-1/2 ${
                 dir === 'rtl' ? 'right-3' : 'left-3'
-              } w-5 h-5 text-gray-400`}
+              } w-4 h-4 text-gray-400`}
             />
             <input
               type="text"
               placeholder={t('workflow_engine.search_placeholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className={`w-full h-12 ${
+              className={`w-full h-[43px] text-sm ${
                 dir === 'rtl' ? 'pr-10 pl-4' : 'pl-10 pr-4'
               } border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a5f7a] focus:border-transparent bg-white`}
             />
@@ -118,10 +119,10 @@ export const Workflows = (): JSX.Element => {
           {/* New Button */}
           <button 
             onClick={() => navigate('/workflow-engine/workflows/add')}
-            className="h-[43px] px-[18px] py-[9px] bg-[#093738] hover:bg-[#0a4546] text-white shadow-[0px_4px_4px_#0000001a] rounded-lg flex items-center gap-2 transition-colors"
+            className={buttonClasses.primary}
           >
-            <Plus className="w-5 h-5" />
-            <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base">
+            <Plus className="w-4 h-4" />
+            <span className="text-xs">
               {t('workflow_engine.new_button')}
             </span>
           </button>
@@ -133,7 +134,7 @@ export const Workflows = (): JSX.Element => {
             return (
               <div
                 key={card.id}
-                className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-all duration-300 cursor-pointer group relative"
+                className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-all duration-300 cursor-pointer group relative"
                 style={{
                   animationDelay: `${index * 50}ms`,
                 }}
@@ -141,42 +142,42 @@ export const Workflows = (): JSX.Element => {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Card Header with Action Icons */}
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-3">
                   <div
-                    className="w-12 h-12 rounded-lg flex items-center justify-center"
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{ backgroundColor: card.iconBg }}
                   >
-                    <Workflow className="w-6 h-6" style={{ color: card.iconColor }} />
+                    <Workflow className="w-5 h-5" style={{ color: card.iconColor }} />
                   </div>
 
                   {/* Action Icons - Show on Hover */}
                   <div
-                    className={`flex items-center gap-1 transition-opacity duration-200 ${
+                    className={`flex items-center gap-0.5 transition-opacity duration-200 ${
                       hoveredCard === card.id ? 'opacity-100' : 'opacity-0'
                     }`}
                   >
-                    <button className="p-1.5 hover:bg-gray-100 rounded transition-colors">
-                      <Copy className="w-4 h-4 text-gray-400" />
+                    <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+                      <Copy className="w-3.5 h-3.5 text-gray-400" />
                     </button>
-                    <button className="p-1.5 hover:bg-gray-100 rounded transition-colors">
-                      <Edit2 className="w-4 h-4 text-gray-400" />
+                    <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+                      <Edit2 className="w-3.5 h-3.5 text-gray-400" />
                     </button>
-                    <button className="p-1.5 hover:bg-gray-100 rounded transition-colors">
-                      <MoreVertical className="w-4 h-4 text-gray-400" />
+                    <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+                      <MoreVertical className="w-3.5 h-3.5 text-gray-400" />
                     </button>
                   </div>
                 </div>
 
                 {/* Card Title */}
-                <h3 className="text-base font-semibold text-gray-900 mb-2">{card.title}</h3>
+                <h3 className="text-sm font-semibold text-gray-900 mb-1.5">{card.title}</h3>
 
                 {/* Card Description */}
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">{card.description}</p>
+                <p className="text-xs text-gray-600 mb-3 line-clamp-2">{card.description}</p>
 
                 {/* Status Badge */}
                 <div className="flex items-center justify-between">
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
                       card.status === 'launched' ? 'text-[#2CC28D]' : 'text-[#092E32]'
                     }`}
                     style={{

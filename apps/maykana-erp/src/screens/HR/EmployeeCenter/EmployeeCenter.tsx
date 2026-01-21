@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { AdvancedTable } from '../../../components/ui/Table';
+import { buttonClasses } from '../../../styles';
 import {
   UserPlus,
   FileText,
@@ -240,17 +241,17 @@ export const EmployeeCenter: React.FC = () => {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-transparent border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all text-sm font-medium">
+            <button className={buttonClasses.secondary}>
               <Download className="w-4 h-4" />
               {t('hr.download')}
             </button>
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-transparent border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all text-sm font-medium">
+            <button className={buttonClasses.secondary}>
               <Filter className="w-4 h-4" />
               {t('hr.filter')}
             </button>
             <button
               onClick={() => navigate('/hr/employee-center/add')}
-              className="flex items-center gap-2 px-5 py-2.5 bg-[#093738] text-white rounded-lg hover:bg-[#0b4445] transition-all text-sm font-medium shadow-sm"
+              className={buttonClasses.primary}
             >
               <UserPlus className="w-4 h-4" />
               {t('hr.new_employee')}
@@ -361,13 +362,13 @@ export const EmployeeCenter: React.FC = () => {
                 {t('hr.employee')}
               </div>
               <div className="flex items-center gap-2">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
-                  {t('hr.previous')}
+                <button className={buttonClasses.secondary + " text-xs"}>
+                  {isRTL ? t('hr.next') : t('hr.previous')}
                 </button>
-                <button className="min-w-[40px] h-10 bg-[#093738] text-white rounded-lg text-sm font-medium shadow-sm">
+                <button className={buttonClasses.primary + " min-w-[40px] h-10 text-xs"}>
                   1
                 </button>
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                <button className={buttonClasses.secondary + " text-xs"}>
                   {t('hr.next')}
                 </button>
               </div>

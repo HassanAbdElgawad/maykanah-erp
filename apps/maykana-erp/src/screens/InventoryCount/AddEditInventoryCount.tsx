@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { buttonClasses } from '../../styles';
 
 export const AddEditInventoryCount = (): JSX.Element => {
   const navigate = useNavigate();
@@ -51,12 +52,12 @@ export const AddEditInventoryCount = (): JSX.Element => {
                   : t('warehouses.add_inventory_count')}
               </h1>
             </div>
-            <Button
+            <button
               type="submit"
-              className="bg-[#093738] hover:bg-[#0a4849] text-white h-[43px] px-[26px]"
+              className={buttonClasses.primary}
             >
               {t('warehouses.save')}
-            </Button>
+            </button>
           </div>
         </MaykanaCard>
 

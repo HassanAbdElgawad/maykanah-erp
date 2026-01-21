@@ -7,6 +7,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { AdvancedTable } from '../../components/ui/Table';
+import { buttonClasses } from '../../styles';
 
 interface Vendor {
   id: string;
@@ -83,7 +84,7 @@ export const VendorQualification = () => {
             <div className="relative">
               <Input
                 type="text"
-                placeholder={t('search')}
+                placeholder={t('customers.search')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className={`w-[300px] bg-slate-50 border-[#cfcfcf] ${dir === 'rtl' ? 'pr-10' : 'pl-10'}`}
@@ -103,19 +104,19 @@ export const VendorQualification = () => {
               className="flex items-center gap-2 px-4 py-2 rounded-lg"
             >
               <SlidersHorizontal className="w-4 h-4" />
-              {t('filter')}
+              {t('customers.filter')}
               {showFilters ? (
                 <ChevronUp className="w-4 h-4" />
               ) : (
                 <ChevronDown className="w-4 h-4" />
               )}
             </Button>
-            <Button
+            <button
               onClick={handleCreateNew}
-              className="bg-[#093738] hover:bg-[#0d4849] text-white px-4 py-2 rounded-lg shadow-[0px_4px_4px_#0000001a]"
+              className={buttonClasses.primary}
             >
               {t('vendor_qualification.new_vendor')}
-            </Button>
+            </button>
           </div>
         </div>
 
@@ -128,7 +129,7 @@ export const VendorQualification = () => {
                   {t('vendor_qualification.vendor_type')}
                 </Label>
                 <select className="w-full h-[45px] border border-[#cfcfcf] rounded-lg px-3 bg-white">
-                  <option value="">{t('select')}</option>
+                  <option value="">{t('customers.select')}</option>
                 </select>
               </div>
 
@@ -137,7 +138,7 @@ export const VendorQualification = () => {
                   {t('vendor_qualification.nationality')}
                 </Label>
                 <select className="w-full h-[45px] border border-[#cfcfcf] rounded-lg px-3 bg-white">
-                  <option value="">{t('select')}</option>
+                  <option value="">{t('customers.select')}</option>
                 </select>
               </div>
 
@@ -146,7 +147,7 @@ export const VendorQualification = () => {
                   {t('vendor_qualification.status')}
                 </Label>
                 <select className="w-full h-[45px] border border-[#cfcfcf] rounded-lg px-3 bg-white">
-                  <option value="">{t('select')}</option>
+                  <option value="">{t('customers.select')}</option>
                 </select>
               </div>
 
@@ -154,17 +155,22 @@ export const VendorQualification = () => {
                 <Label className="text-[#00000099]" dir={dir}>
                   {t('vendor_qualification.registration_date')}
                 </Label>
-                <Input type="date" className="w-full h-[45px] border-[#cfcfcf]" />
+                <input 
+                  type="date" 
+                  className="w-full h-[45px] border border-[#cfcfcf] rounded-md px-3 bg-white" 
+                  style={{ direction: 'rtl', textAlign: 'right' }}
+                  dir="rtl"
+                />
               </div>
             </div>
 
             <div className="flex justify-end gap-3 mt-4">
               <Button variant="outline" onClick={() => setShowFilters(false)} className="px-6 py-2">
-                {t('cancel')}
+                {t('customers.cancel')}
               </Button>
-              <Button className="bg-[#093738] hover:bg-[#0d4849] text-white px-6 py-2">
-                {t('apply')}
-              </Button>
+              <button className={buttonClasses.primary}>
+                {t('customers.apply')}
+              </button>
             </div>
           </div>
         )}
@@ -176,7 +182,7 @@ export const VendorQualification = () => {
             columns={[
               {
                 key: 'name',
-                label: t('name'),
+                label: t('customers.name'),
               },
               {
                 key: 'registrationNumber',
@@ -202,7 +208,7 @@ export const VendorQualification = () => {
             actions={[
               {
                 icon: Pencil,
-                label: t('edit'),
+                label: t('customers.edit'),
                 onClick: (vendor) => handleEdit(vendor.id),
                 color: 'blue',
               },
@@ -212,7 +218,7 @@ export const VendorQualification = () => {
           {/* Pagination */}
           <div className="flex items-center justify-between px-8 py-4 border-t border-[#e2e2e2]">
             <Button variant="outline" className="px-6 py-2 border-[#e7e7e7]">
-              {t('previous')}
+              {t('customers.previous')}
             </Button>
 
             <div className="flex items-center gap-3">
@@ -227,9 +233,9 @@ export const VendorQualification = () => {
               </button>
             </div>
 
-            <Button className="bg-[#11383f] hover:bg-[#0d4849] text-white px-6 py-2">
-              {t('next')}
-            </Button>
+            <button className={buttonClasses.primary}>
+              {t('customers.next')}
+            </button>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { Input } from '../../components/ui/input';
 import { Card } from '../../components/ui/card';
 import { AttachmentsModal } from '../../components/AttachmentsModal';
 import { Plus, Paperclip, RowsIcon, Trash2, ArrowRight } from 'lucide-react';
+import { buttonClasses } from '../../styles';
 
 // Types
 interface EntryLine {
@@ -129,9 +130,9 @@ export const AccountingEntryForm = (): JSX.Element => {
               </Button>
 
               {/* Submit Button - Last */}
-              <Button className="bg-[#093738] hover:opacity-90 text-white px-6 h-[43px] rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold">
+              <button className={buttonClasses.primary}>
                 {t('accounting.entries.submit')}
-              </Button>
+              </button>
             </div>
           </div>
         </Card>

@@ -6,6 +6,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Card } from '../../components/ui/card';
 import { AdvancedTable } from '../../components/ui/Table';
+import { buttonClasses } from '../../styles';
 import {
   Filter,
   Upload,
@@ -353,6 +354,7 @@ const DateRangeFilter = ({
                 value={dateFrom}
                 onChange={(e) => onDateFromChange(e.target.value)}
                 className="w-full h-[34px] rounded-lg border border-[#cfcfcf]"
+                style={{ direction: 'rtl', textAlign: 'right' }}
               />
               <Calendar className="absolute left-2 top-2 h-4 w-4 text-gray-400 pointer-events-none" />
             </div>
@@ -367,6 +369,7 @@ const DateRangeFilter = ({
                 value={dateTo}
                 onChange={(e) => onDateToChange(e.target.value)}
                 className="w-full h-[34px] rounded-lg border border-[#cfcfcf]"
+                style={{ direction: 'rtl', textAlign: 'right' }}
               />
               <Calendar className="absolute left-2 top-2 h-4 w-4 text-gray-400 pointer-events-none" />
             </div>
@@ -560,13 +563,13 @@ export const AccountingEntries = (): JSX.Element => {
             </div>
 
             {/* New Entry Button */}
-            <Button 
+            <button 
               onClick={() => navigate('/accounting/entries/create')}
-              className="bg-[#093738] hover:opacity-90 text-white px-6 h-[43px] rounded-lg shadow-[0px_4px_4px_#0000001a] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold"
+              className={buttonClasses.primary}
             >
               <Plus className={`h-4 w-4 ${dir === 'rtl' ? 'ml-2' : 'mr-2'}`} />
               {t('accounting.entries.create_new')}
-            </Button>
+            </button>
           </div>
         </div>
 

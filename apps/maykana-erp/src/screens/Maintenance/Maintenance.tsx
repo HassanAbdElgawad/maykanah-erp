@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { AdvancedTable } from '../../components/ui/Table';
 import { Search, SlidersHorizontal, ChevronDown, Download, Columns3, X, Eye, Edit2, Trash2 } from 'lucide-react';
+import { buttonClasses } from '../../styles';
 
 interface MaintenanceRecord {
   id: string;
@@ -123,12 +124,12 @@ export const Maintenance = (): JSX.Element => {
           <div className="flex gap-2">
             {dir === 'ltr' ? (
               <>
-                <Button
+                <button
                   onClick={() => setShowAddMaintenanceModal(true)}
-                  className="bg-[#093738] hover:bg-[#0d4849] text-white px-4 py-2 rounded-lg shadow-[0px_4px_4px_#0000001a] font-['IBM_Plex_Sans_Arabic']"
+                  className={buttonClasses.primary}
                 >
                   {t('maintenance.add_new')}
-                </Button>
+                </button>
                 <Button
                   onClick={() => setShowAddRecordModal(true)}
                   className="bg-slate-50 hover:bg-slate-100 text-[#092e32] px-4 py-2 rounded-lg shadow-[0px_4px_4px_#0000001a] font-['IBM_Plex_Sans_Arabic']"
@@ -196,12 +197,12 @@ export const Maintenance = (): JSX.Element => {
                 >
                   {t('maintenance.add_record')}
                 </Button>
-                <Button
+                <button
                   onClick={() => setShowAddMaintenanceModal(true)}
-                  className="bg-[#093738] hover:bg-[#0d4849] text-white px-4 py-2 rounded-lg shadow-[0px_4px_4px_#0000001a] font-['IBM_Plex_Sans_Arabic']"
+                  className={buttonClasses.primary}
                 >
                   {t('maintenance.add_new')}
-                </Button>
+                </button>
               </>
             )}
           </div>
@@ -210,7 +211,7 @@ export const Maintenance = (): JSX.Element => {
         {/* Filters Section */}
         {showFilters && (
           <div className="bg-white p-6 rounded-xl border border-[#e2e2e2] animate-fade-in">
-            <div className="grid grid-cols-4 gap-4" dir={dir}>
+            <div className="flex flex-wrap gap-4" dir={dir}>
               <div className="flex flex-col gap-1.5">
                 <Label
                   className={`text-[#00000099] font-['IBM_Plex_Sans_Arabic'] ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
@@ -596,12 +597,12 @@ export const Maintenance = (): JSX.Element => {
                             {/* Modal Footer */}
                             <div className="border-t border-gray-200 p-3">
                               <div className="flex gap-2 justify-start">
-                                <Button
+                                <button
                                   onClick={() => setShowAddMaintenanceModal(false)}
-                                  className="bg-[#093738] hover:bg-[#0d4849] text-white px-4 py-2.5 rounded-lg shadow-[0px_4px_4px_#0000001a] font-['IBM_Plex_Sans_Arabic']"
+                                  className={buttonClasses.primary}
                                 >
                                   إرسال الطلب
-                                </Button>
+                                </button>
                                 <Button
                                   onClick={() => setShowAddMaintenanceModal(false)}
                                   variant="outline"
@@ -840,12 +841,12 @@ export const Maintenance = (): JSX.Element => {
                             {/* Modal Footer */}
                             <div className="border-t border-gray-200 p-3">
                               <div className="flex gap-2 justify-start">
-                                <Button
+                                <button
                                   onClick={() => setShowAddRecordModal(false)}
-                                  className="bg-[#093738] hover:bg-[#0d4849] text-white px-4 py-2.5 rounded-lg shadow-[0px_4px_4px_#0000001a] font-['IBM_Plex_Sans_Arabic']"
+                                  className={buttonClasses.primary}
                                 >
                                   إرسال الطلب
-                                </Button>
+                                </button>
                                 <Button
                                   onClick={() => setShowAddRecordModal(false)}
                                   variant="outline"

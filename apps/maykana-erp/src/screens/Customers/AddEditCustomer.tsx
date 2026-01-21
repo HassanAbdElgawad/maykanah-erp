@@ -6,6 +6,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
+import { buttonClasses } from "../../styles";
 import {
   Select,
   SelectContent,
@@ -99,13 +100,13 @@ export const AddEditCustomer: React.FC = () => {
                   {isEdit ? t("customers.edit_customer") : t("customers.add_customer")}
                 </h1>
               </div>
-              <Button
+              <button
                 onClick={handleSave}
-                className="bg-[#093738] hover:bg-[#0d5456] text-white h-[43px] px-[26px] rounded-lg shadow-sm"
+                className={buttonClasses.primary}
                 style={{ fontFamily: "IBM Plex Sans Arabic" }}
               >
                 {t("customers.save")}
-              </Button>
+              </button>
             </div>
           </CardContent>
         </Card>

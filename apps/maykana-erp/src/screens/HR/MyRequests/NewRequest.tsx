@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, Paperclip, FileEdit, ChevronDown } from 'lucide-react';
+import { buttonClasses } from '../../../styles';
 
 export const NewRequest: React.FC = () => {
   const navigate = useNavigate();
@@ -134,7 +135,7 @@ export const NewRequest: React.FC = () => {
                     // TODO: Submit request
                     navigate('/hr/my-requests');
                   }}
-                  className="px-6 py-2.5 bg-[#093738] text-white rounded-lg hover:bg-[#0b4445] transition-colors shadow-[0px_4px_4px_#0000001a]"
+                  className={buttonClasses.primary + " text-xs"}
                 >
                   {t('hr.submit_request')}
                 </button>

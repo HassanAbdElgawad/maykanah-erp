@@ -422,7 +422,7 @@ export const Header = (): JSX.Element => {
 
                 {/* Footer */}
                 <div className="px-4 py-3 border-t border-[#e2e2e2] text-center">
-                  <button className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-[#093738] text-sm hover:underline">
+                  <button className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-[#093738] text-xs hover:underline">
                     {language === 'ar' ? 'عرض جميع الإشعارات' : 'View All Notifications'}
                   </button>
                 </div>

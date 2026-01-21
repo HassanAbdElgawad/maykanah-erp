@@ -94,6 +94,8 @@ export const breadcrumbRoutes = [
   { path: "/warehouses/material-spending", label: "warehouses.material_spending" },
   { path: "/warehouses/item-groups", label: "warehouses.item_groups" },
   { path: "/warehouses/inventory-count", label: "warehouses.inventory_count" },
+  { path: "/warehouses/inventory-count/add", label: "warehouses.add_inventory_count" },
+  { path: "/warehouses/inventory-count/edit/:id", label: "warehouses.edit_inventory_count" },
   { path: "/warehouses/reserved-services", label: "warehouses.reserved_services" },
   { path: "/warehouses/opening-balances", label: "warehouses.opening_balances" },
   { path: "/warehouses/warehouse-settings", label: "warehouses.warehouse_settings" },
@@ -101,6 +103,8 @@ export const breadcrumbRoutes = [
   // Workflow Engine Module
   { path: "/workflow-engine", label: "sidebar.workflow" },
   { path: "/workflow-engine/workflows", label: "workflow_engine.workflows" },
+  { path: "/workflow-engine/workflows/add", label: "workflow_engine.add_workflow" },
+  { path: "/workflow-engine/workflows/edit/:id", label: "workflow_engine.edit_workflow" },
   { path: "/workflow-engine/verification-templates", label: "workflow_engine.verification_templates" },
   { path: "/workflow-engine/verification-templates/add", label: "workflow_engine.add_verification_list" },
   { path: "/workflow-engine/verification-templates/edit/:id", label: "workflow_engine.edit_verification_list" },

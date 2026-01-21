@@ -1,5 +1,6 @@
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { buttonClasses } from '../../styles';
 import {
   PhoneIcon,
   MailIcon,
@@ -164,7 +165,7 @@ export const SupportPage = (): JSX.Element => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#093738] text-white py-3 rounded-lg hover:bg-[#104633] transition-colors font-semibold [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                  className={buttonClasses.primary + " w-full"}
                 >
                   {t('support.send_request')}
                 </button>

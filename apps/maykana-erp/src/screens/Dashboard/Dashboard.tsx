@@ -175,7 +175,7 @@ export const Dashboard = (): JSX.Element => {
           {statsCards.map((stat, index) => (
             <Card
               key={index}
-              className="flex-1 min-w-[250px] border-gray-200 hover:shadow-lg transition-shadow"
+              className="flex-1 min-w-[250px] max-w-[350px] border-gray-200 hover:shadow-lg transition-shadow"
             >
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">

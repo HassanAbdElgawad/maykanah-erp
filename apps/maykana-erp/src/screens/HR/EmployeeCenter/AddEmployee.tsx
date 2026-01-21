@@ -4,6 +4,7 @@ import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { ChevronDown, Paperclip, FileEdit, ArrowRight } from 'lucide-react';
 import { Button } from '../../../components/ui/button';
+import { buttonClasses } from '../../../styles';
 
 export const AddEmployee: React.FC = () => {
   const navigate = useNavigate();
@@ -44,9 +45,9 @@ export const AddEmployee: React.FC = () => {
               <span className="text-gray-700">{t('hr.add_attachments')}</span>
               <span className="px-2 py-0.5 bg-[#092e321f] text-[#0000005e] rounded text-sm">0</span>
             </button>
-            <Button className="bg-[#093738] hover:bg-[#0d4849] text-white px-4 py-2 rounded-lg shadow-[0px_4px_4px_#0000001a]">
+            <button className={buttonClasses.primary}>
               {t('hr.submit_request')}
-            </Button>
+            </button>
           </div>
         </div>
 
@@ -346,11 +347,11 @@ export const AddEmployee: React.FC = () => {
               <div className="flex items-center justify-end gap-4 pt-4">
                 <button
                   onClick={() => navigate('/hr/employee-center')}
-                  className="px-6 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className={buttonClasses.secondary + " text-xs"}
                 >
                   {t('hr.cancel')}
                 </button>
-                <button className="px-6 py-2.5 bg-[#093738] text-white rounded-lg hover:bg-[#0b4445] transition-colors">
+                <button className={buttonClasses.primary + " text-xs"}>
                   {t('hr.save_and_add')}
                 </button>
               </div>

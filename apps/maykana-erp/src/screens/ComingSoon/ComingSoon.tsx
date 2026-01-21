@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { buttonClasses } from "../../styles";
 
 interface ComingSoonProps {
   pageName?: string;
@@ -49,14 +50,14 @@ export const ComingSoon = ({ pageName }: ComingSoonProps): JSX.Element => {
           </p>
         </div>
 
-        <Button
+        <button
           onClick={() => navigate('/')}
-          className="bg-[#093738] hover:bg-[#093738]/90 text-white rounded-lg h-auto px-8 py-3"
+          className={buttonClasses.primary}
         >
           <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-base">
             {dir === 'rtl' ? 'العودة إلى الرئيسية' : 'Back to Home'}
           </span>
-        </Button>
+        </button>
       </div>
     </div>
   );

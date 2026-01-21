@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { ArrowLeft, ArrowRight, Paperclip, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { buttonClasses } from '../../styles';
 
 export const AddTask = (): JSX.Element => {
   const navigate = useNavigate();
@@ -61,12 +62,12 @@ export const AddTask = (): JSX.Element => {
                 </span>
                 إضافة مرفقات
               </Button>
-              <Button
+              <button
                 onClick={handleSubmit}
-                className="bg-[#093738] hover:bg-[#0d5556] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                className={buttonClasses.primary}
               >
                 ارسل الطلب
-              </Button>
+              </button>
             </div>
           </div>
         </MaykanaCard>
@@ -209,7 +210,7 @@ export const AddTask = (): JSX.Element => {
                   type="date"
                   value={formData.startDate}
                   onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-right"
                   dir="rtl"
                 />
               </div>
@@ -223,7 +224,7 @@ export const AddTask = (): JSX.Element => {
                   type="date"
                   value={formData.dueDate}
                   onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-right"
                   dir="rtl"
                 />
               </div>
@@ -254,7 +255,7 @@ export const AddTask = (): JSX.Element => {
                   type="date"
                   value={formData.plannedStartDate}
                   onChange={(e) => setFormData({ ...formData, plannedStartDate: e.target.value })}
-                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-right"
                   dir="rtl"
                 />
               </div>
@@ -268,7 +269,7 @@ export const AddTask = (): JSX.Element => {
                   type="date"
                   value={formData.plannedEndDate}
                   onChange={(e) => setFormData({ ...formData, plannedEndDate: e.target.value })}
-                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                  className="bg-white border-[#cfcfcf] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-right"
                   dir="rtl"
                 />
               </div>

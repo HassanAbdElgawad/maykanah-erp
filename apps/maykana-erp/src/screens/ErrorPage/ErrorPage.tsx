@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { AlertCircle } from "lucide-react";
+import { buttonClasses } from "../../styles";
 
 export const ErrorPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -31,14 +32,14 @@ export const ErrorPage = (): JSX.Element => {
           </p>
         </div>
 
-        <Button
+        <button
           onClick={() => navigate('/home')}
-          className="bg-[#093738] hover:bg-[#093738]/90 text-white rounded-lg h-auto px-8 py-3"
+          className={buttonClasses.primary}
         >
           <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-base">
             {dir === 'rtl' ? 'العودة إلى الصفحة الرئيسية' : 'Back to Home'}
           </span>
-        </Button>
+        </button>
       </div>
     </div>
   );

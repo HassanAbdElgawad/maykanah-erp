@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
 import { AdvancedTable } from '../../components/ui/Table';
+import { buttonClasses } from '../../styles';
 import { 
   Search, 
   Filter, 
@@ -255,14 +256,12 @@ export const Suppliers = (): JSX.Element => {
             </div>
 
             {/* Create New Button */}
-            <Button
+            <button
               onClick={handleCreateNew}
-              className="h-[43px] px-[18px] py-[9px] bg-[#093738] hover:bg-[#0a4546] text-white shadow-[0px_4px_4px_#0000001a]"
+              className={buttonClasses.primary}
             >
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base">
-                مورّد جديد
-              </span>
-            </Button>
+              مورّد جديد
+            </button>
           </div>
         </div>
 
@@ -509,12 +508,12 @@ export const Suppliers = (): JSX.Element => {
                 >
                   إلغاء
                 </Button>
-                <Button
+                <button
                   onClick={handleSaveSupplier}
-                  className="px-6 bg-[#093738] hover:bg-[#0a4546] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                  className={buttonClasses.primary}
                 >
                   {modalMode === 'create' ? 'إضافة المورّد' : 'حفظ التعديلات'}
-                </Button>
+                </button>
               </div>
             </div>
           </>

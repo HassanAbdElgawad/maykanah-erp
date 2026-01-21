@@ -7,6 +7,7 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
 import { AdvancedTable } from '../../components/ui/Table';
+import { buttonClasses } from '../../styles';
 import { 
   Search, 
   Filter, 
@@ -214,9 +215,9 @@ export const Customers = (): JSX.Element => {
                         </SelectContent>
                       </Select>
                     </div>
-                    <Button className="w-full bg-[#093738] hover:bg-[#0a4849] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    <button className={buttonClasses.primary + " w-full"}>
                       تطبيق
-                    </Button>
+                    </button>
                   </div>
                 </div>
               )}
@@ -235,13 +236,13 @@ export const Customers = (): JSX.Element => {
 
               {showExportOptions && (
                 <div className="absolute left-0 mt-2 w-[180px] bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50 [direction:rtl]">
-                  <button className="w-full px-4 py-2 text-right hover:bg-gray-50 text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                  <button className="w-full px-4 py-2 text-right hover:bg-gray-50 text-xs [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
                     تصدير إلى Excel
                   </button>
-                  <button className="w-full px-4 py-2 text-right hover:bg-gray-50 text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                  <button className="w-full px-4 py-2 text-right hover:bg-gray-50 text-xs [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
                     تصدير إلى PDF
                   </button>
-                  <button className="w-full px-4 py-2 text-right hover:bg-gray-50 text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                  <button className="w-full px-4 py-2 text-right hover:bg-gray-50 text-xs [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
                     تصدير إلى CSV
                   </button>
                 </div>
@@ -279,13 +280,13 @@ export const Customers = (): JSX.Element => {
             </div>
 
             {/* Add Customer Button */}
-            <Button
-              className="h-[43px] gap-2 bg-[#093738] hover:bg-[#0a4849] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl]"
+            <button
+              className={buttonClasses.primary}
               onClick={handleCreateNew}
             >
               <UserPlus className="w-4 h-4" />
-              <span className="text-sm">عميل جديد</span>
-            </Button>
+              <span>عميل جديد</span>
+            </button>
           </div>
         </div>
 
@@ -303,13 +304,13 @@ export const Customers = (): JSX.Element => {
                 <p className="text-gray-500 mb-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
                   ابدأ بإضافة عميل جديد لإدارة عملائك
                 </p>
-                <Button
-                  className="bg-[#093738] hover:bg-[#0a4849] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                <button
+                  className={buttonClasses.primary}
                   onClick={handleCreateNew}
                 >
                   <UserPlus className="w-4 h-4 ml-2" />
                   إضافة عميل جديد
-                </Button>
+                </button>
               </div>
             </div>
           </div>

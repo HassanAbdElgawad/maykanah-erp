@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { AdvancedTable } from '../../components/ui/Table';
+import { buttonClasses } from '../../styles';
 import {
   Search,
   Plus,
@@ -165,13 +166,13 @@ export const InventoryMaterials = (): JSX.Element => {
 
             {/* Actions */}
             <div className="flex items-center gap-3">
-              <Button
+              <button
                 onClick={() => navigate('/warehouses/inventory-materials/add')}
-                className="bg-[#093738] hover:bg-[#0d5556] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica] gap-2"
+                className={buttonClasses.primary}
               >
                 <Plus className="w-5 h-5" />
                 {t('warehouses.add_material')}
-              </Button>
+              </button>
             </div>
           </div>
         </MaykanaCard>

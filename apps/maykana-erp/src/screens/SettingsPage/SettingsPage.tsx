@@ -254,7 +254,7 @@ export const SettingsPage = (): JSX.Element => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-4 gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
+      <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {settingCards.map((card) => (
           <FeatureCard
             key={card.id}

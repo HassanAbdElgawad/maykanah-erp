@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { LanguageSelector } from '../../components/LanguageSelector';
+import { buttonClasses } from '../../styles';
 
 export const ForgotPasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -144,7 +145,7 @@ export const ForgotPasswordPage = (): JSX.Element => {
                     type="submit"
                     onClick={handleSubmit}
                     disabled={isLoading || !!success}
-                    className="flex w-full h-[48px] sm:h-[50px] lg:h-[50px] xl:h-[4.9vh] xl:max-h-[60px] items-center justify-center gap-2.5 lg:gap-[0.7vw] px-20 sm:px-24 lg:px-[8.8vw] py-1 lg:py-[0.3vh] bg-[#093738] rounded-lg hover:bg-[#0b4445] transition-colors disabled:opacity-50"
+                    className={buttonClasses.primary + " w-full h-[48px] sm:h-[50px] lg:h-[50px] xl:h-[4.9vh] xl:max-h-[60px] disabled:opacity-50"}
                   >
                     <div className={`font-normal text-slate-50 text-[18px] sm:text-xl lg:text-xl xl:text-[1.4vw] xl:max-text-[24px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] tracking-[0] leading-[normal] ${dir === 'rtl' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                       {isLoading

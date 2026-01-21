@@ -3,6 +3,7 @@ import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
+import { buttonClasses } from '../../styles';
 import {
   Search,
   Star,
@@ -694,10 +695,10 @@ Management`,
 
                 {/* Action Buttons */}
                 <div className="flex gap-2">
-                  <Button className="bg-[#093738] hover:bg-[#0d4849] text-white font-['IBM_Plex_Sans_Arabic']">
+                  <button className={buttonClasses.primary}>
                     <Reply className="w-4 h-4 mr-2" />
                     <span>{t('inbox.reply')}</span>
-                  </Button>
+                  </button>
                   <Button variant="outline" className="font-['IBM_Plex_Sans_Arabic']">
                     <Forward className="w-4 h-4 mr-2" />
                     <span>{t('inbox.forward')}</span>
@@ -758,13 +759,13 @@ Management`,
                   />
                   <div className="flex items-center justify-between">
                     <div className="flex gap-2">
-                      <Button
+                      <button
                         onClick={handleReply}
-                        className="bg-[#093738] hover:bg-[#0d4849] text-white font-['IBM_Plex_Sans_Arabic']"
+                        className={buttonClasses.primary}
                       >
                         <Send className="w-4 h-4 mr-2" />
                         <span>{t('inbox.send')}</span>
-                      </Button>
+                      </button>
                       <Button variant="outline" className="font-['IBM_Plex_Sans_Arabic']">
                         <Paperclip className="w-4 h-4" />
                       </Button>

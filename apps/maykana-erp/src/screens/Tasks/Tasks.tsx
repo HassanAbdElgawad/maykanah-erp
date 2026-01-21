@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { AdvancedTable } from '../../components/ui/Table';
 import { Filter, Upload, RowsIcon, Plus, Search, MoreVertical } from 'lucide-react';
+import { buttonClasses } from '../../styles';
 
 interface Task {
   id: string;
@@ -151,13 +152,13 @@ export const Tasks = (): JSX.Element => {
                 فلتر
               </Button>
 
-              <Button
+              <button
                 onClick={() => navigate('/strategy/tasks/add')}
-                className="bg-[#093738] hover:bg-[#0d5556] text-white gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                className={buttonClasses.primary}
               >
                 <Plus className="w-5 h-5" />
                 مهمة جديدة
-              </Button>
+              </button>
             </div>
           </div>
         </MaykanaCard>
