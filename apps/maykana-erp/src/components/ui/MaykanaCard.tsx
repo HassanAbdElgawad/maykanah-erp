@@ -41,8 +41,7 @@ export const MaykanaCard = React.forwardRef<HTMLDivElement, MaykanaCardProps>(
         <Card
           ref={ref}
           className={cn(
-            'border-[#e2e2e2] bg-white',
-            isSidebarOpen ? 'w-[320px]' : 'w-[300px]',
+            'border-[#e2e2e2] bg-white w-full',
             isActive && 'border border-[#09373890]',
             className
           )}
