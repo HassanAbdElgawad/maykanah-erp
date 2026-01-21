@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { ChevronDown, Paperclip, FileEdit, ArrowRight } from 'lucide-react';
-import { Button } from '../../../components/ui/button';
 import { buttonClasses } from '../../../styles';
 
 export const AddEmployee: React.FC = () => {

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../components/ui/button";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { AlertCircle } from "lucide-react";
 import { buttonClasses } from "../../styles";

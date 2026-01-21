@@ -1,4 +1,4 @@
-import { useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   ChevronLeftIcon, 
@@ -12,6 +12,7 @@ import { Header } from './Header';
 import { CustomizationButton } from './CustomizationButton';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCustomization } from '../contexts/CustomizationContext';
+import { useSidebar } from '../contexts/SidebarContext';
 import { sidebarMenuItems, bottomMenuItems } from '../config/navigation.config';
 
 interface LayoutProps {
@@ -19,7 +20,7 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const { isSidebarOpen, setIsSidebarOpen } = useSidebar();
   const { t, dir } = useLanguage();
   const { customization } = useCustomization();
   const navigate = useNavigate();
