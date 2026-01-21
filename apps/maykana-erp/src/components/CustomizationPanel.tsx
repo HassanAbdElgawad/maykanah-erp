@@ -32,7 +32,7 @@ export const CustomizationPanel = ({ isOpen, onClose }: CustomizationPanelProps)
     brandImage: customization.brandImage || '',
     avatarImage: customization.avatarImage || '',
     userEmail: customization.userEmail || '',
-    sidebarMainColor: customization.sidebarMainColor || '#0A3B3D',
+    primaryColor: customization.primaryColor || '#0A3B3D',
     sidebarSecondaryColor: customization.sidebarSecondaryColor || '#ffffff0a',
   });
 
@@ -62,7 +62,7 @@ export const CustomizationPanel = ({ isOpen, onClose }: CustomizationPanelProps)
       brandImage: '',
       avatarImage: '',
       userEmail: '',
-      sidebarMainColor: '#0A3B3D',
+      primaryColor: '#0A3B3D',
       sidebarSecondaryColor: '#ffffff0a',
     };
     
@@ -77,7 +77,7 @@ export const CustomizationPanel = ({ isOpen, onClose }: CustomizationPanelProps)
       brandImage: '',
       avatarImage: '',
       userEmail: '',
-      sidebarMainColor: '#0A3B3D',
+      primaryColor: '#0A3B3D',
       sidebarSecondaryColor: '#ffffff0a',
     });
   };
@@ -258,14 +258,14 @@ export const CustomizationPanel = ({ isOpen, onClose }: CustomizationPanelProps)
               </p>
             </div>
 
-            {/* Sidebar Main Color */}
+            {/* Primary Color */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('customization.sidebar_main_color') || 'اللون الرئيسي للشريط الجانبي'}
+                  {t('customization.primary_color') || 'اللون الرئيسي'}
                 </Label>
                 <button
-                  onClick={() => handleReset('sidebarMainColor')}
+                  onClick={() => handleReset('primaryColor')}
                   className="text-xs text-gray-500 hover:text-[#0A3B3D] flex items-center gap-1"
                 >
                   <RotateCcw className="w-3 h-3" />
@@ -275,16 +275,16 @@ export const CustomizationPanel = ({ isOpen, onClose }: CustomizationPanelProps)
               <div className="flex items-center gap-3">
                 <input
                   type="color"
-                  value={tempValues.sidebarMainColor}
+                  value={tempValues.primaryColor}
                   onChange={(e) =>
-                    setTempValues((prev) => ({ ...prev, sidebarMainColor: e.target.value }))
+                    setTempValues((prev) => ({ ...prev, primaryColor: e.target.value }))
                   }
                   className="w-12 h-12 rounded-lg cursor-pointer border-2 border-gray-300"
                 />
                 <Input
-                  value={tempValues.sidebarMainColor}
+                  value={tempValues.primaryColor}
                   onChange={(e) =>
-                    setTempValues((prev) => ({ ...prev, sidebarMainColor: e.target.value }))
+                    setTempValues((prev) => ({ ...prev, primaryColor: e.target.value }))
                   }
                   className="flex-1 font-mono"
                 />
@@ -295,10 +295,10 @@ export const CustomizationPanel = ({ isOpen, onClose }: CustomizationPanelProps)
                   <button
                     key={color}
                     onClick={() =>
-                      setTempValues((prev) => ({ ...prev, sidebarMainColor: color }))
+                      setTempValues((prev) => ({ ...prev, primaryColor: color }))
                     }
                     className={`w-8 h-8 rounded-lg border-2 transition-all ${
-                      tempValues.sidebarMainColor === color
+                      tempValues.primaryColor === color
                         ? 'border-[#0A3B3D] scale-110'
                         : 'border-gray-300 hover:scale-105'
                     }`}
@@ -308,7 +308,7 @@ export const CustomizationPanel = ({ isOpen, onClose }: CustomizationPanelProps)
                 ))}
               </div>
               <p className="text-xs text-gray-500">
-                {t('customization.sidebar_main_color_note') || 'لون خلفية الشريط الجانبي'}
+                {t('customization.primary_color_note') || 'يتم تطبيق هذا اللون على جميع عناصر التطبيق'}
               </p>
             </div>
 

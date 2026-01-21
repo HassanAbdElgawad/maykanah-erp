@@ -5,7 +5,7 @@ export interface CustomizationData {
   brandImage?: string;
   avatarImage?: string;
   userEmail?: string;
-  sidebarMainColor?: string;
+  primaryColor?: string;
   sidebarSecondaryColor?: string;
 }
 
@@ -26,7 +26,7 @@ const DEFAULT_CUSTOMIZATION: CustomizationData = {
   brandImage: '',
   avatarImage: '',
   userEmail: '',
-  sidebarMainColor: '#0A3B3D',
+  primaryColor: '#0A3B3D',
   sidebarSecondaryColor: '#ffffff0a',
 };
 

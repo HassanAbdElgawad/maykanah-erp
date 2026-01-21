@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useCustomization } from '../../contexts/CustomizationContext';
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -19,6 +20,9 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import {
   Eye,
+  EyeOff,
+  Lock,
+  Pencil,
   Trash2,
   Copy,
   ArrowDown,
@@ -45,9 +49,62 @@ import {
   X,
 } from 'lucide-react';
 
+// Custom Node Components for Form Builder
+const StartNode = ({ data }: any) => (
+  <div className="w-96 bg-[#ecfbff] rounded-xl p-4">
+    <div className="flex items-center gap-3">
+      <div className="w-9 h-9 bg-[#41d1fe] rounded flex items-center justify-center flex-shrink-0">
+        <Zap className="w-5 h-5 text-white" />
+      </div>
+      <span className="text-sm font-semibold text-[#41d1fe]">
+        {data.label}
+      </span>
+    </div>
+  </div>
+);
+
+const ActionNode = ({ data }: any) => (
+  <div className="w-96">
+    <div className="w-full bg-[#0c4749] text-white px-4 py-3 rounded-xl text-sm font-semibold">
+      {data.label}
+    </div>
+  </div>
+);
+
+const BranchNode = ({ data }: any) => (
+  <div className="w-[362px] bg-[#e7eded] rounded-xl p-3 flex items-center gap-2">
+    <GitBranch className="w-4 h-4 text-[#0c4749] flex-shrink-0" />
+    <span className="text-sm font-semibold text-[#0c4749]">
+      {data.label}
+    </span>
+  </div>
+);
+
+const EndNode = ({ data }: any) => (
+  <div className="w-96 bg-[#eaf9f4] rounded-xl p-4">
+    <div className="flex items-center gap-3">
+      <div className="w-9 h-9 bg-[#2cc28d] rounded flex items-center justify-center flex-shrink-0">
+        <CheckSquare className="w-5 h-5 text-white" />
+      </div>
+      <span className="text-sm font-semibold text-[#2cc28d]">
+        {data.label}
+      </span>
+    </div>
+  </div>
+);
+
+const nodeTypes = {
+  startNode: StartNode,
+  actionNode: ActionNode,
+  branchNode: BranchNode,
+  endNode: EndNode,
+};
+
 export const AddEditWorkflow = (): JSX.Element => {
   const { dir } = useLanguage();
   const navigate = useNavigate();
+  const { customization } = useCustomization();
+  const primaryColor = customization.primaryColor || '#0A3B3D';
 
   const [showColumnModal, setShowColumnModal] = useState(false);
   const [currentTableIndex, setCurrentTableIndex] = useState<number | null>(null);
@@ -62,11 +119,94 @@ export const AddEditWorkflow = (): JSX.Element => {
     fieldIndex?: number;
   } | null>(null);
   const [draggedField, setDraggedField] = useState<any>(null);
-  const [viewMode, setViewMode] = useState<'form' | 'flow'>('form');
+  const [viewMode, setViewMode] = useState<'form' | 'flow' | 'formBuilder'>('form');
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<Edge | null>(null);
   const [showNodeModal, setShowNodeModal] = useState(false);
   const [nodeModalType, setNodeModalType] = useState<'task' | 'condition'>('task');
+
+  // Form Builder States
+  const [formBuilderTitle, setFormBuilderTitle] = useState('منطقة بدون عنوان');
+  const [formBuilderDescription, setFormBuilderDescription] = useState('إبدأ بكتابة وصف لهذه المنطقة هنا .......');
+  const [formBuilderFields, setFormBuilderFields] = useState<any[]>([
+    { id: '1', type: 'text', label: 'رقم الطلب', placeholder: 'رقم الطلب هنا ...', required: true, width: 'half' },
+    { id: '2', type: 'text', label: 'اسم مقدم الطلب', placeholder: 'اسم مقدم الطلب من هنا ...', required: true, width: 'half' },
+    { id: '3', type: 'text', label: 'القسم', placeholder: '', required: true, width: 'half' },
+    { id: '4', type: 'date', label: 'تاريخ الطلب', required: true, width: 'half' },
+    { id: '5', type: 'select', label: 'قائمة منسدلة بدون عنوان', required: true, width: 'half' },
+  ]);
+  const [formBuilderTableColumns] = useState([
+    { id: '1', label: 'فئة المادة' },
+    { id: '2', label: 'الوصف' },
+  ]);
+  const [formBuilderTableRows, setFormBuilderTableRows] = useState<any[]>([
+    { id: '1', data: { '1': '', '2': '' } },
+    { id: '2', data: { '1': '', '2': '' } },
+  ]);
+
+  // Form Builder Nodes - RTL Workflow Tree
+  const formBuilderNodeTypes = useMemo(() => ({
+    processStart: ({ data }: any) => (
+      <div style={{ width: '380px', height: '64px', padding: '0 18px', background: '#E8F7FF', borderRadius: '14px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
+        <Handle type="source" position={Position.Right} style={{ opacity: 0 }} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', flexShrink: 0 }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#41D1FE" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        </div>
+        <span style={{ fontSize: '15px', fontWeight: 700, color: '#41D1FE', textAlign: 'right', flex: 1 }}>{data.label}</span>
+      </div>
+    ),
+    processActive: ({ data }: any) => (
+      <div style={{ width: '380px', height: '64px', padding: '0 18px', background: '#0A4847', borderRadius: '14px', boxShadow: '0 2px 6px rgba(0,0,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
+        <Handle type="target" position={Position.Right} style={{ opacity: 0 }} />
+        <Handle type="source" position={Position.Right} style={{ opacity: 0 }} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px', flexShrink: 0 }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        </div>
+        <span style={{ fontSize: '15px', fontWeight: 700, color: '#FFFFFF', textAlign: 'right', flex: 1 }}>{data.label}</span>
+      </div>
+    ),
+    processBranch: ({ data }: any) => (
+      <div style={{ width: '320px', height: '60px', padding: '0 16px', background: '#E8EDED', borderRadius: '14px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '10px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
+        <Handle type="target" position={Position.Right} style={{ opacity: 0 }} />
+        <Handle type="source" position={Position.Right} style={{ opacity: 0 }} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', flexShrink: 0 }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A7A79" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+        </div>
+        <span style={{ fontSize: '14px', fontWeight: 700, color: '#5A7A79', textAlign: 'right', flex: 1 }}>{data.label}</span>
+      </div>
+    ),
+    processEnd: ({ data }: any) => (
+      <div style={{ width: '380px', height: '64px', padding: '0 18px', background: '#E8FAF3', borderRadius: '14px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
+        <Handle type="target" position={Position.Right} style={{ opacity: 0 }} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px', background: '#2CC28D', borderRadius: '50%', flexShrink: 0 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <span style={{ fontSize: '15px', fontWeight: 700, color: '#2CC28D', textAlign: 'right', flex: 1 }}>{data.label}</span>
+      </div>
+    ),
+  }), []);
+
+  const formBuilderInitialNodes: Node[] = useMemo(() => [
+    { id: '1', type: 'processStart', position: { x: 15, y: 0 }, data: { label: 'بداية العملية عند تقديم نموذج الطلب' }, sourcePosition: Position.Right },
+    { id: '2', type: 'processActive', position: { x: 15, y: 85 }, data: { label: 'تعبئة نموذج الطلب' }, sourcePosition: Position.Right, targetPosition: Position.Right },
+    { id: '3', type: 'processBranch', position: { x: -60, y: 170 }, data: { label: 'الفرع الأول : موافقة رئيس القسم' }, sourcePosition: Position.Right, targetPosition: Position.Right },
+    { id: '4', type: 'processBranch', position: { x: -60, y: 255 }, data: { label: 'الفرع الثاني: موافقة قسم المالية' }, sourcePosition: Position.Right, targetPosition: Position.Right },
+    { id: '5', type: 'processBranch', position: { x: -60, y: 340 }, data: { label: 'الفرع الثالث: تنفيذ قسم المشتريات' }, sourcePosition: Position.Right, targetPosition: Position.Right },
+    { id: '6', type: 'processEnd', position: { x: 15, y: 425 }, data: { label: 'إنتهاء عملية طلب مواد' }, targetPosition: Position.Right },
+  ], []);
+
+  const formBuilderInitialEdges: Edge[] = useMemo(() => [
+    { id: 'e1-2', source: '1', target: '2', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
+    { id: 'e2-3', source: '2', target: '3', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
+    { id: 'e2-4', source: '2', target: '4', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
+    { id: 'e2-5', source: '2', target: '5', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
+    { id: 'e3-6', source: '3', target: '6', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
+    { id: 'e4-6', source: '4', target: '6', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
+    { id: 'e5-6', source: '5', target: '6', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
+  ], []);
+
+  const [formBuilderNodes, , onFormBuilderNodesChange] = useNodesState(formBuilderInitialNodes);
+  const [formBuilderEdges, , onFormBuilderEdgesChange] = useEdgesState(formBuilderInitialEdges);
 
   const [sections, setSections] = useState<any[]>([
     {
@@ -540,6 +680,86 @@ export const AddEditWorkflow = (): JSX.Element => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
+  // Form Builder Helper Functions
+  const removeFormBuilderField = (id: string) => {
+    setFormBuilderFields(formBuilderFields.filter((field) => field.id !== id));
+  };
+
+  const duplicateFormBuilderField = (field: any) => {
+    const newField = { ...field, id: Date.now().toString() };
+    const index = formBuilderFields.findIndex((f) => f.id === field.id);
+    const newFields = [...formBuilderFields];
+    newFields.splice(index + 1, 0, newField);
+    setFormBuilderFields(newFields);
+  };
+
+  const addFormBuilderTableRow = () => {
+    const newRow: any = {
+      id: Date.now().toString(),
+      data: formBuilderTableColumns.reduce((acc: any, col: any) => ({ ...acc, [col.id]: '' }), {}),
+    };
+    setFormBuilderTableRows([...formBuilderTableRows, newRow]);
+  };
+
+  const removeFormBuilderTableRow = (id: string) => {
+    if (formBuilderTableRows.length > 1) {
+      setFormBuilderTableRows(formBuilderTableRows.filter((row) => row.id !== id));
+    }
+  };
+
+  const updateFormBuilderTableCell = (rowId: string, colId: string, value: string) => {
+    setFormBuilderTableRows(
+      formBuilderTableRows.map((row) =>
+        row.id === rowId ? { ...row, data: { ...row.data, [colId]: value } } : row
+      )
+    );
+  };
+
+  const renderFormBuilderField = (field: any) => {
+    const widthClass =
+      field.width === 'half'
+        ? 'w-[calc(50%-8px)]'
+        : field.width === 'third'
+          ? 'w-[calc(33.333%-8px)]'
+          : 'w-full';
+
+    return (
+      <div key={field.id} className={`${widthClass} mb-6`}>
+        <div className="relative group">
+          <label
+            className="block text-sm font-normal text-black mb-2"
+            style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}
+          >
+            {field.label}
+            {field.required && <span className="text-red-600">*</span>}
+          </label>
+
+          {field.type === 'text' || field.type === 'number' ? (
+            <input
+              type={field.type}
+              placeholder={field.placeholder}
+              className="w-full h-9 px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm text-[#99a09e] focus:outline-none focus:ring-1 focus:ring-[#0c4749] focus:border-[#0c4749]"
+              style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl', textAlign: 'right' }}
+            />
+          ) : field.type === 'date' ? (
+            <input
+              type="date"
+              className="w-full h-9 px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-[#0c4749] focus:border-[#0c4749]"
+              style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl', textAlign: 'right' }}
+            />
+          ) : field.type === 'select' ? (
+            <select
+              className="w-full h-9 px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-[#0c4749] focus:border-[#0c4749]"
+              style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl', textAlign: 'right' }}
+            >
+              <option value="">اختر...</option>
+            </select>
+          ) : null}
+        </div>
+      </div>
+    );
+  };
+
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
@@ -659,7 +879,10 @@ export const AddEditWorkflow = (): JSX.Element => {
   const CustomNode = ({ data, isSelected, onAddNode }: any) => {
     if (data.type === 'start') {
       return (
-        <div className={`bg-white rounded-xl border-2 shadow-sm p-6 relative ${isSelected ? 'ring-2 ring-[#0c4749] border-[#41d1fe]' : 'border-[#41d1fe]'}`}>
+        <div 
+          className={`bg-white rounded-xl border-2 shadow-sm p-6 relative ${isSelected ? 'ring-2 border-[#41d1fe]' : 'border-[#41d1fe]'}`}
+          style={isSelected ? { '--tw-ring-color': primaryColor } as any : undefined}
+        >
           <Handle type="source" position={Position.Bottom} style={{ background: '#41d1fe' }} />
           
           {/* Action Buttons */}
@@ -704,7 +927,10 @@ export const AddEditWorkflow = (): JSX.Element => {
 
     if (data.type === 'task') {
       return (
-        <div className={`bg-white rounded-xl border-2 shadow-sm p-6 relative ${isSelected ? 'ring-2 ring-[#0c4749]' : 'border-gray-200'}`}>
+        <div 
+          className={`bg-white rounded-xl border-2 shadow-sm p-6 relative ${isSelected ? 'ring-2' : 'border-gray-200'}`}
+          style={isSelected ? { '--tw-ring-color': primaryColor } as any : undefined}
+        >
           <Handle type="target" position={Position.Top} style={{ background: '#0a3738' }} />
           <Handle type="source" position={Position.Bottom} style={{ background: '#0a3738' }} />
           
@@ -767,7 +993,13 @@ export const AddEditWorkflow = (): JSX.Element => {
       const iconBg = data.type === 'success' ? '#12a773' : '#c40303';
       
       return (
-        <div className={`bg-white rounded-xl border-2 shadow-sm overflow-hidden relative ${isSelected ? 'ring-2 ring-[#0c4749]' : ''}`} style={{ borderColor: bgColor }}>
+        <div 
+          className={`bg-white rounded-xl border-2 shadow-sm overflow-hidden relative ${isSelected ? 'ring-2' : ''}`} 
+          style={{ 
+            borderColor: bgColor,
+            ...(isSelected ? { '--tw-ring-color': primaryColor } as any : {})
+          }}
+        >
           <Handle type="target" position={Position.Top} style={{ background: bgColor }} />
           <Handle type="source" position={Position.Bottom} style={{ background: bgColor }} />
           
@@ -860,9 +1092,10 @@ export const AddEditWorkflow = (): JSX.Element => {
             onClick={() => setViewMode('form')}
             className={`w-10 h-10 rounded-lg flex items-center justify-center ${
               viewMode === 'form' 
-                ? 'bg-[#0a3738] hover:bg-[#0c4749]' 
+                ? 'text-white' 
                 : 'bg-[#0a37381a] hover:bg-[#0a37382a]'
             }`}
+            style={viewMode === 'form' ? { backgroundColor: primaryColor } : undefined}
           >
             <SquareCode className={`w-5 h-5 ${viewMode === 'form' ? 'text-white' : 'text-[#0a3738]'}`} />
           </button>
@@ -870,14 +1103,23 @@ export const AddEditWorkflow = (): JSX.Element => {
             onClick={() => setViewMode('flow')}
             className={`w-10 h-10 rounded-lg flex items-center justify-center ${
               viewMode === 'flow' 
-                ? 'bg-[#0a3738] hover:bg-[#0c4749]' 
+                ? 'text-white' 
                 : 'bg-[#0a37381a] hover:bg-[#0a37382a]'
             }`}
+            style={viewMode === 'flow' ? { backgroundColor: primaryColor } : undefined}
           >
             <GitBranch className={`w-5 h-5 ${viewMode === 'flow' ? 'text-white' : 'text-[#0a3738]'}`} />
           </button>
-          <button className="w-10 h-10 bg-[#0a37381a] rounded-lg hover:bg-[#0a37382a] flex items-center justify-center">
-            <ShieldCheck className="w-5 h-5 text-[#0a3738]" />
+          <button 
+            onClick={() => setViewMode('formBuilder')}
+            className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+              viewMode === 'formBuilder' 
+                ? 'text-white' 
+                : 'bg-[#0a37381a] hover:bg-[#0a37382a]'
+            }`}
+            style={viewMode === 'formBuilder' ? { backgroundColor: primaryColor } : undefined}
+          >
+            <ShieldCheck className={`w-5 h-5 ${viewMode === 'formBuilder' ? 'text-white' : 'text-[#0a3738]'}`} />
           </button>
         </div>
 
@@ -992,15 +1234,209 @@ export const AddEditWorkflow = (): JSX.Element => {
 
         {/* Center - Canvas */}
         <div
-          className="flex-1 bg-white rounded-xl overflow-y-auto scrollbar-thin p-6"
+          className={`flex-1 ${viewMode === 'formBuilder' ? 'bg-[#f7f7f9]' : 'bg-white'} rounded-xl overflow-y-auto scrollbar-thin ${viewMode !== 'formBuilder' ? 'p-6' : ''}`}
           dir={dir}
-          style={{
+          style={viewMode !== 'formBuilder' ? {
             backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
             backgroundSize: '20px 20px',
-          }}
+          } : {}}
         >
-          {/* Flow View - Full Screen */}
-          {viewMode === 'flow' ? (
+          {/* Workflow Form Builder View */}
+          {viewMode === 'formBuilder' ? (
+            <div className="flex gap-4 h-full" style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}>
+              {/* Right Sidebar - Workflow Steps with React Flow */}
+              <div className="w-[400px] bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
+                <div className="h-full" style={{ direction: 'rtl', height: '600px' }}>
+                  <ReactFlow
+                    nodes={formBuilderNodes}
+                    edges={formBuilderEdges}
+                    onNodesChange={onFormBuilderNodesChange}
+                    onEdgesChange={onFormBuilderEdgesChange}
+                    nodeTypes={formBuilderNodeTypes}
+                    fitView
+                    fitViewOptions={{ padding: 0.1, maxZoom: 1 }}
+                    minZoom={0.5}
+                    maxZoom={1.5}
+                    defaultViewport={{ x: 20, y: 20, zoom: 1 }}
+                    nodesDraggable={true}
+                    nodesConnectable={true}
+                    elementsSelectable={true}
+                    zoomOnScroll={true}
+                    panOnScroll={true}
+                    panOnDrag={true}
+                    zoomOnDoubleClick={true}
+                    preventScrolling={true}
+                    translateExtent={[[-200, -100], [700, 700]]}
+                    nodeExtent={[[-200, -100], [700, 700]]}
+                    proOptions={{ hideAttribution: true }}
+                    style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica" }}
+                  />
+                </div>
+              </div>
+              
+              {/* Main Form Builder Area */}
+              <div 
+                className="flex-1 bg-[#f7f7f9] rounded-xl overflow-auto"
+                style={{
+                  direction: 'rtl',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#D9D9D9 transparent'
+                }}
+              >
+                <style>{`
+                  .flex-1.bg-\\[\\#f7f7f9\\]::-webkit-scrollbar {
+                    width: 4px;
+                  }
+                  .flex-1.bg-\\[\\#f7f7f9\\]::-webkit-scrollbar-track {
+                    background: transparent;
+                  }
+                  .flex-1.bg-\\[\\#f7f7f9\\]::-webkit-scrollbar-thumb {
+                    background-color: #D9D9D9;
+                    border-radius: 10px;
+                  }
+                  .flex-1.bg-\\[\\#f7f7f9\\]::-webkit-scrollbar-thumb:hover {
+                    background-color: #BFBFBF;
+                  }
+                `}</style>
+
+                <div className="px-2">
+                  {/* Form Area */}
+                  <div className="bg-slate-50 rounded-xl border border-[#0c474921] shadow-[0px_5px_10px_#00000014] p-8 mb-6">
+                    {/* Form Title and Actions */}
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          value={formBuilderTitle}
+                          onChange={(e) => setFormBuilderTitle(e.target.value)}
+                          className="text-lg font-bold text-black border-0 focus:outline-none w-full mb-2 bg-transparent"
+                          style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}
+                        />
+                        <textarea
+                          value={formBuilderDescription}
+                          onChange={(e) => setFormBuilderDescription(e.target.value)}
+                          className="w-full text-base text-[#00000099] border-0 focus:outline-none resize-none bg-transparent"
+                          style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}
+                          rows={1}
+                        />
+                      </div>
+                      <div className="flex gap-3  items-center">
+                        <button
+                          className="w-[40px] h-[40px] flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors"
+                          title="إخفاء"
+                        >
+                          <EyeOff className="w-4 h-4 text-[#555555]" />
+                        </button>
+                        <button
+                          className="w-[40px] h-[40px] flex items-center justify-center bg-[#0c4749] rounded-[14px] hover:bg-[#0d4849] transition-colors shadow-sm"
+                          title="قفل"
+                        >
+                          <Lock className="w-4 h-4 text-white" />
+                        </button>
+                        <button
+                          className="w-[40px] h-[40px] flex items-center justify-center rounded-lg hover:bg-slate-100 transition-colors"
+                          title="تحرير"
+                        >
+                          <Pencil className="w-4 h-4 text-[#555555]" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Form Fields */}
+                    <div className="flex flex-wrap gap-4 mb-4">
+                      {formBuilderFields.map((field) => renderFormBuilderField(field))}
+                    </div>
+                  </div>
+
+                  {/* Table Section */}
+                  <div className="bg-white rounded-xl border border-[#0c474921] shadow-[0px_5px_10px_#00000014] p-6 mb-6">
+                    <div className="mb-4">
+                      <h3 className="text-lg font-bold text-black mb-2">جدول المواد</h3>
+                      <p className="text-base text-[#00000099]">
+                        إبدأ بكتابة وصف لهذه الجدول هنا&nbsp;&nbsp;.......
+                      </p>
+                    </div>
+
+                    <div className="border border-slate-100 rounded-lg overflow-hidden">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="bg-[#f1f5f980]">
+                            <th className="px-4 py-3 text-right text-sm font-semibold text-[#0e0d24] border-b border-slate-100">
+                              فئة المادة
+                            </th>
+                            <th className="px-4 py-3 text-right text-sm font-semibold text-[#0e0d24] border-b border-slate-100">
+                              الوصف
+                            </th>
+                            <th className="px-4 py-3 text-right text-sm font-semibold text-[#0e0d24] border-b border-slate-100 w-20"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {formBuilderTableRows.map((row, index) => (
+                            <tr key={row.id} className="hover:bg-gray-50">
+                              <td className="px-4 py-3 border-b border-slate-100 text-right text-sm font-semibold text-[#0e0d24]">
+                                {index + 1}
+                              </td>
+                              <td className="px-4 py-3 border-b border-slate-100">
+                                <input
+                                  type="text"
+                                  value={row.data['1'] || ''}
+                                  onChange={(e) => updateFormBuilderTableCell(row.id, '1', e.target.value)}
+                                  className="w-full px-3 py-2 border-0 bg-transparent text-sm focus:outline-none"
+                                  style={{
+                                    fontFamily: "'IBM Plex Sans Arabic', Helvetica",
+                                    direction: 'rtl',
+                                  }}
+                                />
+                              </td>
+                              <td className="px-4 py-3 border-b border-slate-100">
+                                <input
+                                  type="text"
+                                  value={row.data['2'] || ''}
+                                  onChange={(e) => updateFormBuilderTableCell(row.id, '2', e.target.value)}
+                                  className="w-full px-3 py-2 border-0 bg-transparent text-sm focus:outline-none"
+                                  style={{
+                                    fontFamily: "'IBM Plex Sans Arabic', Helvetica",
+                                    direction: 'rtl',
+                                  }}
+                                />
+                              </td>
+                              
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Bottom Action Buttons - Sticky */}
+                  <div 
+                    className="sticky bottom-0 left-0 right-0 z-10 p-4 flex gap-3 justify-end mt-6 mb-6"
+                    style={{
+                      borderRadius: '12px',
+                      border: '1px solid #E2E2E2',
+                      background: '#FFF',
+                      boxShadow: '0 4px 12px 0 rgba(0, 0, 0, 0.06)'
+                    }}
+                  >
+                    <button
+                      onClick={() => navigate('/workflow-engine/workflows')}
+                      className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors font-medium"
+                      style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica" }}
+                    >
+                      حفظ وإغلاق
+                    </button>
+                    <button className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors font-medium flex items-center gap-2">
+                      <Eye className="w-5 h-5" />
+                      معاينة
+                    </button>
+                    <button className="h-10 px-6 bg-[#0c4749] hover:bg-[#0d4849] text-white rounded-lg transition-colors font-medium">
+                      انشر مباشر
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : viewMode === 'flow' ? (
             <div style={{ width: '100%', height: 'calc(100vh - 200px)' }} className="react-flow-cursor-fix">
               <style>{`
                 .react-flow-cursor-fix .react-flow__pane,
@@ -1202,20 +1638,28 @@ export const AddEditWorkflow = (): JSX.Element => {
               <div className="flex justify-center gap-2 mb-6">
                 <button
                   onClick={() => setScreenSize('desktop')}
-                  className={`w-10 h-10 ${screenSize === 'desktop' ? 'bg-[#0c4749] text-white' : 'bg-[#f6f8f8] text-gray-600'} rounded-lg border border-[#0c47493b] flex items-center justify-center hover:bg-[#0c4749] hover:text-white transition-colors`}
+                  className={`w-10 h-10 rounded-lg border flex items-center justify-center transition-colors ${screenSize === 'desktop' ? 'text-white' : 'bg-[#f6f8f8] text-gray-600'}`}
+                  style={screenSize === 'desktop' ? {
+                    backgroundColor: primaryColor,
+                    borderColor: `${primaryColor}3b`
+                  } : {
+                    borderColor: `${primaryColor}3b`
+                  }}
                 >
                   <Monitor className="w-5 h-5" />
                 </button>
 
                 <button
                   onClick={() => setScreenSize('tablet')}
-                  className={`w-10 h-10 ${screenSize === 'tablet' ? 'bg-[#0c4749] text-white' : 'bg-slate-100 text-gray-700'} rounded-lg hover:bg-slate-200 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity`}
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-opacity ${screenSize === 'tablet' ? 'text-white' : 'bg-slate-100 text-gray-700 hover:bg-slate-200'} opacity-60 hover:opacity-100`}
+                  style={screenSize === 'tablet' ? { backgroundColor: primaryColor } : undefined}
                 >
                   <Tablet className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => setScreenSize('mobile')}
-                  className={`w-10 h-10 ${screenSize === 'mobile' ? 'bg-[#0c4749] text-white' : 'bg-slate-100 text-gray-700'} rounded-lg hover:bg-slate-200 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity`}
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-opacity ${screenSize === 'mobile' ? 'text-white' : 'bg-slate-100 text-gray-700 hover:bg-slate-200'} opacity-60 hover:opacity-100`}
+                  style={screenSize === 'mobile' ? { backgroundColor: primaryColor } : undefined}
                 >
                   <Smartphone className="w-5 h-5" />
                 </button>
@@ -1248,11 +1692,11 @@ export const AddEditWorkflow = (): JSX.Element => {
                     }}
                     className={`bg-white rounded-xl border-2 shadow-sm p-6 cursor-pointer transition-all ${
                       isSelected
-                        ? 'border-[#0c4749] shadow-lg'
+                        ? 'shadow-lg'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
-                    style={
-                      sectionColor
+                    style={{
+                      ...(sectionColor
                         ? {
                             borderTopColor: sectionColor,
                             borderTopWidth: '4px',
@@ -1260,8 +1704,9 @@ export const AddEditWorkflow = (): JSX.Element => {
                               ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
                               : `0 0 0 1px ${sectionColor}20 inset, 0 1px 2px 0 rgba(0, 0, 0, 0.05)`,
                           }
-                        : {}
-                    }
+                        : {}),
+                      ...(isSelected ? { borderColor: primaryColor } : {})
+                    }}
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
@@ -1273,7 +1718,8 @@ export const AddEditWorkflow = (): JSX.Element => {
                             newSections[index].title = e.target.value;
                             setSections(newSections);
                           }}
-                          className="text-lg font-bold text-black border-0 focus:outline-none w-full [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl]"
+                          className="text-lg font-bold text-black border-0 focus:outline-none w-full"
+                          style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}
                         />
                         <textarea
                           value={section.description}
@@ -1283,7 +1729,8 @@ export const AddEditWorkflow = (): JSX.Element => {
                             setSections(newSections);
                           }}
                           placeholder="إبدأ بكتابة وصف لهذه المنطقة هنا ......."
-                          className="mt-2 w-full text-sm text-gray-600 border-0 focus:outline-none resize-none [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl]"
+                          className="mt-2 w-full text-sm text-gray-600 border-0 focus:outline-none resize-none"
+                          style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}
                           rows={1}
                         />
                       </div>
@@ -1442,7 +1889,8 @@ export const AddEditWorkflow = (): JSX.Element => {
                                   <th className="px-2 py-3 text-center border-b border-l border-gray-300 w-16">
                                     <button
                                       onClick={() => openColumnModal(index)}
-                                      className="w-8 h-8 bg-[#0c4749] text-white rounded-lg hover:bg-[#0a3738] transition-colors flex items-center justify-center mx-auto"
+                                      className="w-8 h-8 text-white rounded-lg transition-colors flex items-center justify-center mx-auto"
+                                      style={{ backgroundColor: primaryColor }}
                                       title="إضافة عمود جديد"
                                     >
                                       <Plus className="w-5 h-5" />
@@ -1566,24 +2014,27 @@ export const AddEditWorkflow = (): JSX.Element => {
           )}
 
           {/* Bottom Action Buttons - Sticky في المنتصف */}
-          <div className="sticky bottom-0 left-0 right-0 z-10 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 flex gap-3 justify-end mt-6">
-            <button
-              onClick={handleSave}
-              className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
-            >
-              حفظ وإغلاق
-            </button>
-            <button className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium flex items-center gap-2">
-              <Eye className="w-5 h-5" />
-              معاينة
-            </button>
-            <button
-              onClick={handlePublish}
-              className="h-10 px-6 bg-[#0c4749] text-white rounded-lg hover:bg-[#0a3738] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
-            >
-              انشر مباشر
-            </button>
-          </div>
+          {viewMode !== 'formBuilder' && (
+            <div className="sticky bottom-0 left-0 right-0 z-10 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 flex gap-3 justify-end mt-6">
+              <button
+                onClick={handleSave}
+                className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
+              >
+                حفظ وإغلاق
+              </button>
+              <button className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium flex items-center gap-2">
+                <Eye className="w-5 h-5" />
+                معاينة
+              </button>
+              <button
+                onClick={handlePublish}
+                className="h-10 px-6 text-white rounded-lg transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
+                style={{ backgroundColor: primaryColor }}
+              >
+                انشر مباشر
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Left Sidebar - Properties Panel */}
@@ -2109,7 +2560,8 @@ export const AddEditWorkflow = (): JSX.Element => {
                 <button
                   onClick={addColumn}
                   disabled={!newColumnName.trim()}
-                  className="h-10 px-6 bg-[#0c4749] text-white rounded-lg hover:bg-[#0a3738] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-10 px-6 text-white rounded-lg transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ backgroundColor: primaryColor }}
                 >
                   إضافة
                 </button>
@@ -2208,7 +2660,8 @@ export const AddEditWorkflow = (): JSX.Element => {
                 <button
                   onClick={addChecklistItem}
                   disabled={!newChecklistItemText.trim()}
-                  className="h-10 px-6 bg-[#0c4749] text-white rounded-lg hover:bg-[#0a3738] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-10 px-6 text-white rounded-lg transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ backgroundColor: primaryColor }}
                 >
                   إضافة
                 </button>

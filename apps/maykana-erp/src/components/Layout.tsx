@@ -71,11 +71,11 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
           isSidebarOpen ? 'w-[305px]' : 'w-[70px]'
         } h-[calc(100vh-16px)] bg-[url(https://c.animaapp.com/mkd2vucjeF4nNd/img/rectangle-1.png)] bg-cover bg-center rounded-lg overflow-hidden z-30 transition-all duration-300`}
         style={
-          customization.sidebarMainColor && 
-          customization.sidebarMainColor !== '#0A3B3D' && 
-          customization.sidebarMainColor !== '#093738'
+          customization.primaryColor && 
+          customization.primaryColor !== '#0A3B3D' && 
+          customization.primaryColor !== '#093738'
             ? {
-                backgroundColor: customization.sidebarMainColor,
+                backgroundColor: customization.primaryColor,
                 backgroundBlendMode: 'overlay',
               }
             : undefined

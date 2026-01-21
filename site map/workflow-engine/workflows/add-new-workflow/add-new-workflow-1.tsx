@@ -629,20 +629,11 @@ export const Accounting = (): JSX.Element => {
           العمليات
         </div>
 
-        <img
-          className="absolute top-[-3917px] left-[-5562px] w-[69px] h-px"
-          alt="Line"
-        />
+        <img className="absolute top-[-3917px] left-[-5562px] w-[69px] h-px" alt="Line" />
 
-        <img
-          className="absolute top-[-3917px] left-[-5562px] w-[69px] h-px"
-          alt="Line"
-        />
+        <img className="absolute top-[-3917px] left-[-5562px] w-[69px] h-px" alt="Line" />
 
-        <img
-          className="absolute top-[-3917px] left-[-5562px] w-[69px] h-px"
-          alt="Line"
-        />
+        <img className="absolute top-[-3917px] left-[-5562px] w-[69px] h-px" alt="Line" />
 
         <div className="absolute top-[52px] left-[215px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-[#0c4749] text-[13px] text-center tracking-[0] leading-[normal] [direction:rtl]">
           الإعدادات
