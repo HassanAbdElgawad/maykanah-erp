@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Layout } from "../../components/Layout";
 import { useLanguage } from "../../contexts/LanguageContext";
-import { FeatureCard } from "../../components/ui/FeatureCard";
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import {
   Workflow,
   FileCheck2,
@@ -17,24 +17,24 @@ export const WorkflowEngine = (): JSX.Element => {
       title: t("workflow_engine.workflows"),
       description: t("workflow_engine.workflows_desc"),
       icon: Workflow,
-      bgColor: "bg-[#07b6641a]",
-      iconColor: "#07b664",
+      bgColor: "#f5faf5",
+      iconColor: "#388e3c",
       path: "/workflow-engine/workflows",
     },
     {
       title: t("workflow_engine.verification_templates"),
       description: t("workflow_engine.verification_templates_desc"),
       icon: FileCheck2,
-      bgColor: "bg-[#97c8091a]",
-      iconColor: "#97c809",
+      bgColor: "#fffef5",
+      iconColor: "#f9a825",
       path: "/workflow-engine/verification-templates",
     },
     {
       title: t("workflow_engine.predefined_rules"),
       description: t("workflow_engine.predefined_rules_desc"),
       icon: Settings2,
-      bgColor: "bg-[#e2791a1a]",
-      iconColor: "#e2791a",
+      bgColor: "#fff9f0",
+      iconColor: "#f57c00",
       path: "/workflow-engine/predefined-rules",
     },
   ];
@@ -43,7 +43,7 @@ export const WorkflowEngine = (): JSX.Element => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {featureCards.map((card, index) => (
-          <FeatureCard
+          <MaykanaCard
             key={index}
             title={card.title}
             description={card.description}

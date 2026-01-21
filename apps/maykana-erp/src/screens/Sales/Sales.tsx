@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { FeatureCard } from '../../components/ui/FeatureCard';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import {
   FileText,
   ClipboardList,
@@ -33,8 +33,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.customers') || 'العملاء',
       description: t('sales.customers_desc') || 'بيانات العملاء وتفاصيل التواصل والدفع.',
       icon: Users,
-      bgColor: 'bg-[#2f8fb21a]',
-      iconColor: '#2f8fb2',
+      bgColor: '#f0f7ff',
+      iconColor: '#1976d2',
       path: '/sales/customers',
     },
     {
@@ -42,8 +42,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.price_quotes') || 'عرض السعر',
       description: t('sales.price_quotes_desc') || 'عرض مبدئي يوضح الأسعار قبل تأكيد البيع.',
       icon: Receipt,
-      bgColor: 'bg-[#7fa1eb1a]',
-      iconColor: '#7fa1eb',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       path: '/sales/price-quotes',
     },
     {
@@ -51,8 +51,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.work_orders') || 'أمر العمل',
       description: t('sales.work_orders_desc') || 'تنفيذ الطلب وتحويله للتسليم أو الفاتورة',
       icon: ClipboardList,
-      bgColor: 'bg-[#97c8091a]',
-      iconColor: '#97c809',
+      bgColor: '#fffef5',
+      iconColor: '#f9a825',
       path: '/sales/work-orders',
     },
     {
@@ -60,8 +60,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.sales_invoices') || 'فاتورة مبيعات',
       description: t('sales.sales_invoices_desc') || 'المستند المالي لتحصيل المبلغ من العميل',
       icon: FileText,
-      bgColor: 'bg-[#07b6641a]',
-      iconColor: '#07b664',
+      bgColor: '#f5faf5',
+      iconColor: '#388e3c',
       path: '/sales/sales-invoices',
     },
     {
@@ -69,8 +69,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.delivery_notes') || 'سند تسليم',
       description: t('sales.delivery_notes_desc') || 'تسليم البضاعة للعميل وخصمها من المخزون',
       icon: Package,
-      bgColor: 'bg-[#ed9f1a1a]',
-      iconColor: '#ed9f1a',
+      bgColor: '#fff9f0',
+      iconColor: '#f57c00',
       path: '/sales/delivery-notes',
     },
     {
@@ -78,8 +78,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.sales_returns') || 'مردودات مبيعات',
       description: t('sales.sales_returns_desc') || 'البضاعة المرتجعة وتحديث الحساب والمخزون',
       icon: RotateCcw,
-      bgColor: 'bg-[#f4433d1a]',
-      iconColor: '#f4433d',
+      bgColor: '#fef5f8',
+      iconColor: '#d32f2f',
       path: '/sales/sales-returns',
     },
     {
@@ -87,8 +87,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.price_lists') || 'قوائم الأسعار',
       description: t('sales.price_lists_desc') || 'تحديد أسعار البيع حسب النوع أو العميل.',
       icon: ListChecks,
-      bgColor: 'bg-[#9b59b61a]',
-      iconColor: '#9b59b6',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       path: '/sales/price-lists',
     },
     {
@@ -96,8 +96,8 @@ export const Sales = (): JSX.Element => {
       title: t('sales.sales_representatives') || 'مندوبي المبيعات',
       description: t('sales.sales_representatives_desc') || 'إدارة بيانات المندوبين وعمولاتهم.',
       icon: UserCircle,
-      bgColor: 'bg-[#3498db1a]',
-      iconColor: '#3498db',
+      bgColor: '#f0f7ff',
+      iconColor: '#1976d2',
       path: '/sales/sales-representatives',
     },
   ];
@@ -106,7 +106,7 @@ export const Sales = (): JSX.Element => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {cards.map((card) => (
-          <FeatureCard
+          <MaykanaCard
             key={card.id}
             title={card.title}
             description={card.description}

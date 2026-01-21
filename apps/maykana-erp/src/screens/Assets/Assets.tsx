@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { FeatureCard } from '../../components/ui/FeatureCard';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { 
   Package,
   ArrowRightLeft,
@@ -31,7 +31,7 @@ export const Assets: React.FC = () => {
       titleKey: 'assets.asset_management',
       descKey: 'assets.asset_management_desc',
       icon: Package,
-      color: 'bg-[#E8F5E9]',
+      color: '#f5faf5',
       iconColor: '#388e3c',
       path: '/assets/asset-management',
     },
@@ -40,7 +40,7 @@ export const Assets: React.FC = () => {
       titleKey: 'assets.asset_movements',
       descKey: 'assets.asset_movements_desc',
       icon: ArrowRightLeft,
-      color: 'bg-[#E3F2FD]',
+      color: '#f0f7ff',
       iconColor: '#1976d2',
       path: '/assets/asset-movements',
     },
@@ -49,7 +49,7 @@ export const Assets: React.FC = () => {
       titleKey: 'assets.maintenance',
       descKey: 'assets.maintenance_desc',
       icon: Wrench,
-      color: 'bg-[#FFF3E0]',
+      color: '#fff9f0',
       iconColor: '#f57c00',
       path: '/assets/maintenance',
     },
@@ -58,7 +58,7 @@ export const Assets: React.FC = () => {
       titleKey: 'assets.asset_value_adjustment',
       descKey: 'assets.asset_value_adjustment_desc',
       icon: TrendingUp,
-      color: 'bg-[#F3E5F5]',
+      color: '#faf6fb',
       iconColor: '#7b1fa2',
       path: '/assets/asset-value-adjustment',
     },
@@ -67,7 +67,7 @@ export const Assets: React.FC = () => {
       titleKey: 'assets.sale_disposal',
       descKey: 'assets.sale_disposal_desc',
       icon: DollarSign,
-      color: 'bg-[#FCE4EC]',
+      color: '#fef5f8',
       iconColor: '#c2185b',
       path: '/assets/sale-disposal',
     }
@@ -77,7 +77,7 @@ export const Assets: React.FC = () => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {cards.map((card) => (
-          <FeatureCard
+          <MaykanaCard
             key={card.id}
             title={t(card.titleKey)}
             description={t(card.descKey)}

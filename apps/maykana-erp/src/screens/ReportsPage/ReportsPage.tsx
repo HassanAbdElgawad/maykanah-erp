@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FileTextIcon, BarChart3Icon, TrendingUpIcon, ReceiptIcon, ActivityIcon, PackageIcon, ClipboardListIcon, FileSpreadsheetIcon, TruckIcon, BoxIcon } from 'lucide-react';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { FeatureCard } from '../../components/ui/FeatureCard';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 
 interface ReportCard {
   id: string;
@@ -35,8 +35,8 @@ export const ReportsPage = (): JSX.Element => {
       descriptionKey: 'reports.accounting.general_ledger_desc',
       icon: FileTextIcon,
       path: '/reports/general-ledger',
-      bgColor: '#6366F11a',
-      iconColor: '#6366F1',
+      bgColor: '#f0f7ff',
+      iconColor: '#1976d2',
       module: 'accounting',
     },
     {
@@ -45,8 +45,8 @@ export const ReportsPage = (): JSX.Element => {
       descriptionKey: 'reports.accounting.financial_position_desc',
       icon: TrendingUpIcon,
       path: '/reports/financial-position',
-      bgColor: '#EC48991a',
-      iconColor: '#EC4899',
+      bgColor: '#fef5f8',
+      iconColor: '#c2185b',
       module: 'accounting',
     },
     {
@@ -55,8 +55,8 @@ export const ReportsPage = (): JSX.Element => {
       descriptionKey: 'reports.accounting.trial_balance_desc',
       icon: BarChart3Icon,
       path: '/reports/trial-balance',
-      bgColor: '#8B5CF61a',
-      iconColor: '#8B5CF6',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       module: 'accounting',
     },
     {
@@ -65,8 +65,8 @@ export const ReportsPage = (): JSX.Element => {
       descriptionKey: 'reports.accounting.income_statement_desc',
       icon: ReceiptIcon,
       path: '/reports/income-statement',
-      bgColor: '#14B8A61a',
-      iconColor: '#14B8A6',
+      bgColor: '#f0faf9',
+      iconColor: '#00897b',
       module: 'accounting',
     },
     {
@@ -75,8 +75,8 @@ export const ReportsPage = (): JSX.Element => {
       descriptionKey: 'reports.accounting.trial_balance_movement_desc',
       icon: ActivityIcon,
       path: '/reports/trial-balance-movement',
-      bgColor: '#F59E0B1a',
-      iconColor: '#F59E0B',
+      bgColor: '#fffef5',
+      iconColor: '#f9a825',
       module: 'accounting',
     },
     // Purchases Reports
@@ -86,8 +86,8 @@ export const ReportsPage = (): JSX.Element => {
       descriptionKey: 'reports.purchases.purchases_analysis_desc',
       icon: ClipboardListIcon,
       path: '/reports/purchases-analysis',
-      bgColor: '#6366F11a',
-      iconColor: '#6366F1',
+      bgColor: '#f0f7ff',
+      iconColor: '#1976d2',
       module: 'purchases',
     },
     {
@@ -96,8 +96,8 @@ export const ReportsPage = (): JSX.Element => {
       descriptionKey: 'reports.purchases.supplier_accounts_desc',
       icon: FileTextIcon,
       path: '/reports/supplier-accounts',
-      bgColor: '#EC48991a',
-      iconColor: '#EC4899',
+      bgColor: '#fef5f8',
+      iconColor: '#c2185b',
       module: 'purchases',
     },
     {
@@ -216,7 +216,7 @@ export const ReportsPage = (): JSX.Element => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {reportCards.map((card) => (
-          <FeatureCard
+          <MaykanaCard
             key={card.id}
             title={t(card.titleKey)}
             description={t(card.descriptionKey)}

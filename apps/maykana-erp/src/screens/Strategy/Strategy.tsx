@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Layout } from "../../components/Layout";
 import { useLanguage } from "../../contexts/LanguageContext";
-import { FeatureCard } from "../../components/ui/FeatureCard";
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import {
   TrendingUp,
   Target,
@@ -21,8 +21,8 @@ export const Strategy = (): JSX.Element => {
       title: t("strategy.strategic_plans"),
       description: t("strategy.strategic_plans_desc"),
       icon: TrendingUp,
-      bgColor: "bg-[#07b6641a]",
-      iconColor: "#07b664",
+      bgColor: "#f5faf5",
+      iconColor: "#388e3c",
       borderColor: "",
       path: "/strategy/strategic-plans",
     },
@@ -30,8 +30,8 @@ export const Strategy = (): JSX.Element => {
       title: t("strategy.plan_tracking"),
       description: t("strategy.plan_tracking_desc"),
       icon: Target,
-      bgColor: "bg-[#97c8091a]",
-      iconColor: "#97c809",
+      bgColor: "#fffef5",
+      iconColor: "#f9a825",
       borderColor: "",
       path: "/strategy/plan-tracking",
     },
@@ -39,8 +39,8 @@ export const Strategy = (): JSX.Element => {
       title: t("strategy.project_management"),
       description: t("strategy.project_management_desc"),
       icon: FolderKanban,
-      bgColor: "bg-[#2f8fb21a]",
-      iconColor: "#2f8fb2",
+      bgColor: "#f0faf9",
+      iconColor: "#00897b",
       borderColor: "",
       path: "/strategy/projects",
     },
@@ -48,16 +48,16 @@ export const Strategy = (): JSX.Element => {
       title: t("strategy.task_management"),
       description: t("strategy.task_management_desc"),
       icon: ListTodo,
-      bgColor: "bg-[#0b72211a]",
-      iconColor: "#0b7221",
+      bgColor: "#f0f7ff",
+      iconColor: "#1976d2",
       path: "/strategy/tasks",
     },
     {
       title: t("strategy.approvals"),
       description: t("strategy.approvals_desc"),
       icon: CheckCircle,
-      bgColor: "bg-[#0b42211a]",
-      iconColor: "#0b4221",
+      bgColor: "#faf6fb",
+      iconColor: "#7b1fa2",
       borderColor: "",
       path: "/strategy/approvals",
     },
@@ -65,8 +65,8 @@ export const Strategy = (): JSX.Element => {
       title: t("strategy.document_records"),
       description: t("strategy.document_records_desc"),
       icon: FileText,
-      bgColor: "bg-[#e2791a1a]",
-      iconColor: "#e2791a",
+      bgColor: "#fff9f0",
+      iconColor: "#f57c00",
       borderColor: "",
       path: "/strategy/documents",
     },
@@ -74,8 +74,8 @@ export const Strategy = (): JSX.Element => {
       title: t("strategy.meeting_records"),
       description: t("strategy.meeting_records_desc"),
       icon: Calendar,
-      bgColor: "bg-[#11383f1a]",
-      iconColor: "#11383f",
+      bgColor: "#fef5f8",
+      iconColor: "#c2185b",
       borderColor: "",
       path: "/strategy/meetings",
     },
@@ -85,7 +85,7 @@ export const Strategy = (): JSX.Element => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {featureCards.map((card, index) => (
-          <FeatureCard
+          <MaykanaCard
             key={index}
             title={card.title}
             description={card.description}

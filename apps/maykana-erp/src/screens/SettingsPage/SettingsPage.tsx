@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SettingsIcon, CogIcon, UsersIcon, ShoppingCartIcon, ShoppingBagIcon, PackageIcon, BarChart3Icon, WorkflowIcon, DollarSignIcon } from 'lucide-react';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { FeatureCard } from '../../components/ui/FeatureCard';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 
 interface SettingCard {
   id: string;
@@ -35,8 +35,8 @@ export const SettingsPage = (): JSX.Element => {
       descriptionKey: 'settings.accounting.chart_of_accounts_desc',
       icon: DollarSignIcon,
       path: '/settings/chart-of-accounts',
-      bgColor: '#6366F11a',
-      iconColor: '#6366F1',
+      bgColor: '#f0f7ff',
+      iconColor: '#1976d2',
       module: 'accounting',
     },
     {
@@ -45,8 +45,8 @@ export const SettingsPage = (): JSX.Element => {
       descriptionKey: 'settings.accounting.cost_centers_desc',
       icon: BarChart3Icon,
       path: '/settings/cost-centers',
-      bgColor: '#EC48991a',
-      iconColor: '#EC4899',
+      bgColor: '#fef5f8',
+      iconColor: '#c2185b',
       module: 'accounting',
     },
     {
@@ -55,8 +55,8 @@ export const SettingsPage = (): JSX.Element => {
       descriptionKey: 'settings.accounting.accounting_periods_desc',
       icon: SettingsIcon,
       path: '/settings/accounting-periods',
-      bgColor: '#8B5CF61a',
-      iconColor: '#8B5CF6',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       module: 'accounting',
     },
     {
@@ -65,8 +65,8 @@ export const SettingsPage = (): JSX.Element => {
       descriptionKey: 'settings.accounting.payment_methods_desc',
       icon: CogIcon,
       path: '/settings/payment-methods',
-      bgColor: '#14B8A61a',
-      iconColor: '#14B8A6',
+      bgColor: '#f0faf9',
+      iconColor: '#00897b',
       module: 'accounting',
     },
     // Purchases Settings
@@ -256,7 +256,7 @@ export const SettingsPage = (): JSX.Element => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {settingCards.map((card) => (
-          <FeatureCard
+          <MaykanaCard
             key={card.id}
             title={t(card.titleKey)}
             description={t(card.descriptionKey)}

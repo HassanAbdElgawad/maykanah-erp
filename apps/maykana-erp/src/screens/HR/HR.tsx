@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
-import { FeatureCard } from '../../components/ui/FeatureCard';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
 import {
   Users,
@@ -194,7 +194,7 @@ export const HR: React.FC = () => {
       <div className="space-y-6">
         <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
           {cards.map((card) => (
-            <FeatureCard
+            <MaykanaCard
               key={card.id}
               title={t(card.titleKey)}
               description={t(card.descriptionKey)}

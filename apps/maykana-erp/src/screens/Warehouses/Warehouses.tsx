@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { FeatureCard } from '../../components/ui/FeatureCard';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import {
   Package,
   Warehouse,
@@ -35,8 +35,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.inventory_materials_desc',
       icon: Package,
       path: '/warehouses/inventory-materials',
-      bgColor: 'bg-[#07b6641a]',
-      iconColor: '#07b664',
+      bgColor: '#f5faf5',
+      iconColor: '#388e3c',
       hasContent: false,
     },
     {
@@ -44,8 +44,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.product_management_desc',
       icon: ShoppingBag,
       path: '/warehouses/product-management',
-      bgColor: 'bg-[#97c8091a]',
-      iconColor: '#97c809',
+      bgColor: '#fffef5',
+      iconColor: '#f9a825',
       hasContent: false,
     },
     {
@@ -53,8 +53,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.closing_service_desc',
       icon: Lock,
       path: '/warehouses/closing-service',
-      bgColor: 'bg-[#7fa1eb1a]',
-      iconColor: '#7fa1eb',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       hasContent: false,
     },
     {
@@ -62,8 +62,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.opening_balances_desc',
       icon: DollarSign,
       path: '/warehouses/opening-balances',
-      bgColor: 'bg-[#10488f1a]',
-      iconColor: '#10488f',
+      bgColor: '#f0f7ff',
+      iconColor: '#1976d2',
       hasContent: false,
     },
     {
@@ -71,8 +71,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.warehouse_management_desc',
       icon: Warehouse,
       path: '/warehouses/warehouse-management',
-      bgColor: 'bg-[#fd7aa61a]',
-      iconColor: '#fd7aa6',
+      bgColor: '#fef5f8',
+      iconColor: '#c2185b',
       hasContent: false,
     },
     {
@@ -80,8 +80,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.material_damage_desc',
       icon: Archive,
       path: '/warehouses/material-damage',
-      bgColor: 'bg-[#2f8fb21a]',
-      iconColor: '#2f8fb2',
+      bgColor: '#f0faf9',
+      iconColor: '#00897b',
       hasContent: false,
     },
     {
@@ -89,8 +89,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.item_groups_desc',
       icon: FolderTree,
       path: '/warehouses/item-groups',
-      bgColor: 'bg-[#7718691a]',
-      iconColor: '#771869',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       hasContent: false,
     },
     {
@@ -98,8 +98,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.inventory_count_desc',
       icon: ClipboardList,
       path: '/warehouses/inventory-count',
-      bgColor: 'bg-[#803d191a]',
-      iconColor: '#803d19',
+      bgColor: '#fff9f0',
+      iconColor: '#f57c00',
       hasContent: true,
     },
     {
@@ -107,8 +107,8 @@ export const Warehouses = (): JSX.Element => {
       descKey: 'warehouses.warehouse_settings_desc',
       icon: Settings,
       path: '/warehouses/warehouse-settings',
-      bgColor: 'bg-[#e2791a1a]',
-      iconColor: '#e2791a',
+      bgColor: '#fffef5',
+      iconColor: '#f9a825',
       hasContent: false,
     },
   ];
@@ -117,7 +117,7 @@ export const Warehouses = (): JSX.Element => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {featureCards.map((card) => (
-          <FeatureCard
+          <MaykanaCard
             key={card.path}
             title={t(card.titleKey)}
             description={t(card.descKey)}

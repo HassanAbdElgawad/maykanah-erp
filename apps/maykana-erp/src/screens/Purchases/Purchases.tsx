@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { FeatureCard } from '../../components/ui/FeatureCard';
+import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import {
   Frame,
   ReceiptText,
@@ -33,8 +33,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.suppliers'),
       description: t('purchases.suppliers_desc'),
       icon: Frame,
-      bgColor: 'bg-[#07b6641a]',
-      iconColor: '#07b664',
+      bgColor: '#f5faf5',
+      iconColor: '#388e3c',
       path: '/purchases/suppliers',
     },
     {
@@ -42,8 +42,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.purchase_requests'),
       description: t('purchases.purchase_requests_desc'),
       icon: ReceiptText,
-      bgColor: 'bg-[#97c8091a]',
-      iconColor: '#97c809',
+      bgColor: '#fffef5',
+      iconColor: '#f9a825',
       path: '/purchases/purchase-requests',
     },
     {
@@ -51,8 +51,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.price_quote_requests'),
       description: t('purchases.price_quote_requests_desc'),
       icon: FileText,
-      bgColor: 'bg-[#7fa1eb1a]',
-      iconColor: '#7fa1eb',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       path: '/purchases/price-quote-requests',
     },
     {
@@ -60,8 +60,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.supplier_price_quotes'),
       description: t('purchases.supplier_price_quotes_desc'),
       icon: DollarSign,
-      bgColor: 'bg-[#10488f1a]',
-      iconColor: '#10488f',
+      bgColor: '#f0f7ff',
+      iconColor: '#1976d2',
       path: '/purchases/supplier-price-quotes',
     },
     {
@@ -69,8 +69,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.purchase_orders'),
       description: t('purchases.purchase_orders_desc'),
       icon: ShoppingCart,
-      bgColor: 'bg-[#fd7aa61a]',
-      iconColor: '#fd7aa6',
+      bgColor: '#fef5f8',
+      iconColor: '#c2185b',
       path: '/purchases/purchase-orders',
     },
     {
@@ -78,8 +78,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.material_receipts'),
       description: t('purchases.material_receipts_desc'),
       icon: Package,
-      bgColor: 'bg-[#2f8fb21a]',
-      iconColor: '#2f8fb2',
+      bgColor: '#f0faf9',
+      iconColor: '#00897b',
       path: '/purchases/material-receipts',
     },
     {
@@ -87,8 +87,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.purchase_invoices'),
       description: t('purchases.purchase_invoices_desc'),
       icon: FileCheck,
-      bgColor: 'bg-[#7718691a]',
-      iconColor: '#771869',
+      bgColor: '#faf6fb',
+      iconColor: '#7b1fa2',
       path: '/purchases/purchase-invoices',
     },
     {
@@ -96,8 +96,8 @@ export const Purchases = (): JSX.Element => {
       title: t('purchases.purchase_returns'),
       description: t('purchases.purchase_returns_desc'),
       icon: RefreshCcw,
-      bgColor: 'bg-[#803d191a]',
-      iconColor: '#803d19',
+      bgColor: '#fff9f0',
+      iconColor: '#f57c00',
       path: '/purchases/purchase-returns',
     },
   ];
@@ -106,7 +106,7 @@ export const Purchases = (): JSX.Element => {
     <Layout>
       <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
         {cards.map((card) => (
-          <FeatureCard
+          <MaykanaCard
             key={card.id}
             title={card.title}
             description={card.description}
