@@ -19,6 +19,9 @@ export function Breadcrumbs() {
   // Check if current page is Reports or Settings
   const isReportsPage = location.pathname === '/reports' || location.pathname.startsWith('/reports/');
   const isSettingsPage = location.pathname === '/settings' || location.pathname.startsWith('/settings/');
+  
+  // Check if we're in a specific accounting report page
+  const isAccountingReportPage = location.pathname.startsWith('/reports/accounting/');
 
   // Get main modules (exclude Home and Inbox)
   const mainModules = sidebarMenuItems.filter(
@@ -70,7 +73,7 @@ export function Breadcrumbs() {
     if (isReportsPage) {
       setSelectedModule(moduleKey);
       const moduleName = modulePath.substring(1);
-      navigate(`/reports?module=${moduleName}`);
+      navigate(`/reports?selected=${moduleName}`);
     } else if (isSettingsPage) {
       setSelectedModule(moduleKey);
       const moduleName = modulePath.substring(1);
@@ -127,7 +130,12 @@ export function Breadcrumbs() {
             </div>
           ) : index !== breadcrumbs.length - 1 ? (
             <Link 
-              to={crumb.href} 
+              to={
+                // إذا كان الـ breadcrumb هو "إدارة الحسابات" ونحن في صفحة تقارير محاسبية، نوجه إلى /reports?selected=accounting
+                crumb.label === 'sidebar.accounting' && location.pathname.startsWith('/reports/accounting') 
+                  ? '/reports?selected=accounting' 
+                  : crumb.href
+              } 
               className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#093738] text-sm hover:underline whitespace-nowrap"
             >
               {t(crumb.label)}
@@ -140,8 +148,8 @@ export function Breadcrumbs() {
         </span>
       ))}
       
-      {/* Module Selector for Reports Page */}
-      {isReportsPage && breadcrumbs.length === 1 && (
+      {/* Module Selector for Reports Page - Only show when on main reports page, not in specific module reports */}
+      {isReportsPage && breadcrumbs.length === 1 && !isAccountingReportPage && (
         <span className="flex items-center gap-2">
           <ArrowIcon className="w-4 h-4 text-gray-500" />
           

@@ -2,78 +2,16 @@ import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buttonClasses } from '../../styles';
 import {
-  PhoneIcon,
-  MailIcon,
-  MessageCircleIcon,
   ClockIcon,
   MapPinIcon,
   HeadphonesIcon,
-  FileTextIcon,
-  BookOpenIcon,
 } from 'lucide-react';
+import { useSupportData } from '../../hooks';
 
 export const SupportPage = (): JSX.Element => {
   const { t, language } = useLanguage();
   const isRTL = language === 'ar';
-
-  const contactMethods = [
-    {
-      icon: PhoneIcon,
-      titleKey: 'support.phone_support',
-      valueKey: 'support.phone_number',
-      bgColor: '#6366F11a',
-      iconColor: '#6366F1',
-    },
-    {
-      icon: MailIcon,
-      titleKey: 'support.email_support',
-      valueKey: 'support.email_address',
-      bgColor: '#EC48991a',
-      iconColor: '#EC4899',
-    },
-    {
-      icon: MessageCircleIcon,
-      titleKey: 'support.whatsapp_support',
-      valueKey: 'support.whatsapp_number',
-      bgColor: '#10B98114',
-      iconColor: '#10B981',
-    },
-  ];
-
-  const workingHours = [
-    {
-      dayKey: 'support.working_days',
-      timeKey: 'support.working_hours_time',
-    },
-    {
-      dayKey: 'support.weekend',
-      timeKey: 'support.weekend_note',
-    },
-  ];
-
-  const quickLinks = [
-    {
-      icon: FileTextIcon,
-      titleKey: 'support.user_guide',
-      descKey: 'support.user_guide_desc',
-      bgColor: '#8B5CF61a',
-      iconColor: '#8B5CF6',
-    },
-    {
-      icon: BookOpenIcon,
-      titleKey: 'support.training_materials',
-      descKey: 'support.training_materials_desc',
-      bgColor: '#F59E0B1a',
-      iconColor: '#F59E0B',
-    },
-    {
-      icon: HeadphonesIcon,
-      titleKey: 'support.technical_consultation',
-      descKey: 'support.technical_consultation_desc',
-      bgColor: '#14B8A61a',
-      iconColor: '#14B8A6',
-    },
-  ];
+  const { contactMethods, workingHours, quickLinks } = useSupportData();
 
   return (
     <Layout>

@@ -17,96 +17,11 @@ import {
   Pencil,
   Trash2,
 } from 'lucide-react';
-
-// Types
-interface AccountingEntry {
-  id: string;
-  entryNumber: string;
-  date: string;
-  type: 'daily' | 'expense' | 'revenue' | 'closing';
-  debit: number;
-  credit: number;
-  status: 'approved' | 'rejected' | 'pending';
-}
-
-// Sample data
-const sampleEntries: AccountingEntry[] = [
-  {
-    id: '1',
-    entryNumber: 'E-001',
-    date: '2023-11-01',
-    type: 'daily',
-    debit: 1500.0,
-    credit: 0.0,
-    status: 'approved',
-  },
-  {
-    id: '2',
-    entryNumber: 'E-002',
-    date: '2023-11-05',
-    type: 'closing',
-    debit: 500.0,
-    credit: 0.0,
-    status: 'approved',
-  },
-  {
-    id: '3',
-    entryNumber: 'E-003',
-    date: '2023-11-10',
-    type: 'expense',
-    debit: 0.0,
-    credit: 2000.0,
-    status: 'rejected',
-  },
-  {
-    id: '4',
-    entryNumber: 'E-004',
-    date: '2023-11-15',
-    type: 'revenue',
-    debit: 2000.0,
-    credit: 0.0,
-    status: 'pending',
-  },
-  {
-    id: '5',
-    entryNumber: 'E-005',
-    date: '2023-11-20',
-    type: 'daily',
-    debit: 3000.0,
-    credit: 0.0,
-    status: 'approved',
-  },
-  {
-    id: '6',
-    entryNumber: 'E-006',
-    date: '2023-11-30',
-    type: 'expense',
-    debit: 0.0,
-    credit: 1000.0,
-    status: 'pending',
-  },
-  {
-    id: '7',
-    entryNumber: 'E-007',
-    date: '2023-11-25',
-    type: 'expense',
-    debit: 250.0,
-    credit: 0.0,
-    status: 'approved',
-  },
-  {
-    id: '8',
-    entryNumber: 'E-008',
-    date: '2023-12-01',
-    type: 'revenue',
-    debit: 1200.0,
-    credit: 0.0,
-    status: 'approved',
-  },
-];
+import { useAccountingEntriesData } from '../../hooks/useAccountingEntriesData';
+import type { AccountingEntryItem } from '../../data/accounting-entries.data';
 
 // Entry Type Badge Component
-const EntryTypeBadge = ({ type }: { type: AccountingEntry['type'] }) => {
+const EntryTypeBadge = ({ type }: { type: AccountingEntryItem['type'] }) => {
   const { t } = useLanguage();
 
   const typeConfig = {
@@ -144,7 +59,7 @@ const EntryTypeBadge = ({ type }: { type: AccountingEntry['type'] }) => {
 };
 
 // Status Badge Component
-const StatusBadge = ({ status }: { status: AccountingEntry['status'] }) => {
+const StatusBadge = ({ status }: { status: AccountingEntryItem['status'] }) => {
   const { t } = useLanguage();
 
   const statusConfig = {
@@ -407,6 +322,7 @@ const DateRangeFilter = ({
 export const AccountingEntries = (): JSX.Element => {
   const { t, dir } = useLanguage();
   const navigate = useNavigate();
+  const { entries } = useAccountingEntriesData();
   const [searchQuery, setSearchQuery] = useState('');
   const [showDateFilter, setShowDateFilter] = useState(false);
   const [showColumnsFilter, setShowColumnsFilter] = useState(false);
@@ -425,8 +341,6 @@ export const AccountingEntries = (): JSX.Element => {
     dateFrom: '',
     dateTo: '',
   });
-
-  const [entries] = useState<AccountingEntry[]>(sampleEntries);
 
   // Close all dropdowns when clicking outside
   useEffect(() => {

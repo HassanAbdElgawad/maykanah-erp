@@ -7,77 +7,15 @@ import { CardContainer } from '../../components/ui/CardContainer';
 import { AdvancedTable } from '../../components/ui/Table';
 import { Filter, Upload, RowsIcon, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '../../styles';
-
-interface Task {
-  id: string;
-  taskNumber: string;
-  taskName: string;
-  taskType: string;
-  priority: string;
-  assignedTo: string;
-  assignedDate: string;
-  dueDate: string;
-  progress: number;
-  status: 'completed' | 'in-progress' | 'pending';
-}
-
-const sampleTasks: Task[] = [
-  {
-    id: '1',
-    taskNumber: 'TSK-001',
-    taskName: 'إعداد تقرير الأداء الشهري',
-    taskType: 'تقارير',
-    priority: 'عالية',
-    assignedTo: 'أحمد محمد',
-    assignedDate: '2024-01-15',
-    dueDate: '2024-01-25',
-    progress: 75,
-    status: 'in-progress',
-  },
-  {
-    id: '2',
-    taskNumber: 'TSK-002',
-    taskName: 'مراجعة الخطة الاستراتيجية',
-    taskType: 'مراجعة',
-    priority: 'متوسطة',
-    assignedTo: 'سارة أحمد',
-    assignedDate: '2024-01-10',
-    dueDate: '2024-01-20',
-    progress: 50,
-    status: 'in-progress',
-  },
-  {
-    id: '3',
-    taskNumber: 'TSK-003',
-    taskName: 'تحديث قاعدة البيانات',
-    taskType: 'تقنية',
-    priority: 'عالية',
-    assignedTo: 'محمد خالد',
-    assignedDate: '2024-01-12',
-    dueDate: '2024-01-18',
-    progress: 100,
-    status: 'completed',
-  },
-  {
-    id: '4',
-    taskNumber: 'TSK-004',
-    taskName: 'إعداد عرض تقديمي للمشروع',
-    taskType: 'عروض',
-    priority: 'متوسطة',
-    assignedTo: 'فاطمة علي',
-    assignedDate: '2024-01-14',
-    dueDate: '2024-01-22',
-    progress: 30,
-    status: 'in-progress',
-  },
-];
+import { useTasksData } from '../../hooks/useTasksData';
+import type { Task } from '../../data/tasks.data';
 
 export const Tasks = (): JSX.Element => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [tasks] = useState<Task[]>(sampleTasks);
+  const { tasks } = useTasksData();
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: Task['status']) => {
     switch (status) {
       case 'completed':
         return 'bg-[#e8ecec87] text-[#0e0d24]';

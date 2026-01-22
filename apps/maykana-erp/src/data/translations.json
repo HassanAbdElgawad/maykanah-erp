@@ -20,7 +20,13 @@
       "no_data": "لا توجد بيانات",
       "save": "حفظ",
       "cancel": "إلغاء",
-      "reset": "إعادة تعيين"
+      "reset": "إعادة تعيين",
+      "date_from": "من تاريخ",
+      "date_to": "إلى تاريخ",
+      "search": "بحث",
+      "show_filters": "إظهار الفلاتر",
+      "hide_filters": "إخفاء الفلاتر",
+      "download": "تحميل"
     },
     "customization": {
       "title": "تخصيص المظهر",
@@ -259,6 +265,30 @@
     "reports": {
       "page_title": "التقارير",
       "page_subtitle": "تفاصيل المركز المالي للحساب، والأرصدة، والوظائف",
+      "general_ledger": {
+        "title": "تقرير الأستاذ العام",
+        "subtitle": "تفاصيل الحركات المالية لكل حساب مع الأرصدة الافتتاحية والختامية"
+      },
+      "trial_balance": {
+        "title": "ميزان المراجعة",
+        "subtitle": "كشف الحسابات"
+      },
+      "financial_position": {
+        "title": "تقرير المركز المالي",
+        "subtitle": "الميزانية العمومية",
+        "period": "الفترة",
+        "quarter": "ربع سنوي",
+        "half_year": "نصف سنوي",
+        "yearly": "سنوي"
+      },
+      "income_statement": {
+        "title": "تقرير قائمة الدخل",
+        "subtitle": "الأرباح والخسائر"
+      },
+      "trial_balance_movement": {
+        "title": "تقرير ميزان المراجعة للحركة",
+        "subtitle": "كشف حركة الحسابات"
+      },
       "accounting": {
         "general_ledger": "تقرير الأستاذ العام",
         "general_ledger_desc": "تفاصيل الحركات المالية لكل حساب مع الأرصدة والوظائف",
@@ -837,7 +867,13 @@
       "no_data": "No data available",
       "save": "Save",
       "cancel": "Cancel",
-      "reset": "Reset"
+      "reset": "Reset",
+      "date_from": "From Date",
+      "date_to": "To Date",
+      "search": "Search",
+      "show_filters": "Show Filters",
+      "hide_filters": "Hide Filters",
+      "download": "Download"
     },
     "customization": {
       "title": "Customize Appearance",
@@ -879,6 +915,30 @@
     "reports": {
       "page_title": "Reports",
       "page_subtitle": "Financial position details, balances, and operations",
+      "general_ledger": {
+        "title": "General Ledger Report",
+        "subtitle": "Detailed financial transactions for each account with opening and closing balances"
+      },
+      "trial_balance": {
+        "title": "Trial Balance",
+        "subtitle": "Account Statement"
+      },
+      "financial_position": {
+        "title": "Financial Position Report",
+        "subtitle": "Balance Sheet",
+        "period": "Period",
+        "quarter": "Quarterly",
+        "half_year": "Half-Yearly",
+        "yearly": "Yearly"
+      },
+      "income_statement": {
+        "title": "Income Statement Report",
+        "subtitle": "Profit and Loss"
+      },
+      "trial_balance_movement": {
+        "title": "Trial Balance Movement Report",
+        "subtitle": "Account Movement Statement"
+      },
       "accounting": {
         "general_ledger": "General Ledger Report",
         "general_ledger_desc": "Detailed financial transactions for each account with balances and operations",

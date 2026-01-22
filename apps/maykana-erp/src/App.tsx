@@ -26,6 +26,11 @@ import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
 import { ForgotPasswordPage } from "./screens/ForgotPasswordPage";
 import { ReportsPage } from "./screens/ReportsPage";
+import { GeneralLedgerReport } from "./screens/ReportsPage/GeneralLedgerReport";
+import { FinancialPositionReport } from "./screens/ReportsPage/FinancialPositionReport";
+import { TrialBalanceReport } from "./screens/ReportsPage/TrialBalanceReport";
+import { IncomeStatementReport } from "./screens/ReportsPage/IncomeStatementReport";
+import { TrialBalanceMovementReport } from "./screens/ReportsPage/TrialBalanceMovementReport";
 import { SettingsPage } from "./screens/SettingsPage";
 import { SupportPage } from "./screens/SupportPage";
 import { ComingSoon } from "./screens/ComingSoon";
@@ -86,6 +91,46 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AccountingEntryForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/accounting/general-ledger",
+    element: (
+      <ProtectedRoute>
+        <GeneralLedgerReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/accounting/financial-position",
+    element: (
+      <ProtectedRoute>
+        <FinancialPositionReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/accounting/trial-balance",
+    element: (
+      <ProtectedRoute>
+        <TrialBalanceReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/accounting/income-statement",
+    element: (
+      <ProtectedRoute>
+        <IncomeStatementReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/accounting/trial-balance-movement",
+    element: (
+      <ProtectedRoute>
+        <TrialBalanceMovementReport />
       </ProtectedRoute>
     ),
   },
@@ -366,6 +411,46 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <ReportsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/general-ledger",
+    element: (
+      <ProtectedRoute>
+        <GeneralLedgerReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/financial-position",
+    element: (
+      <ProtectedRoute>
+        <FinancialPositionReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/trial-balance",
+    element: (
+      <ProtectedRoute>
+        <TrialBalanceReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/income-statement",
+    element: (
+      <ProtectedRoute>
+        <IncomeStatementReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/trial-balance-movement",
+    element: (
+      <ProtectedRoute>
+        <TrialBalanceMovementReport />
       </ProtectedRoute>
     ),
   },

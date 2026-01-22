@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { LanguageSelector } from '../../components/LanguageSelector';
 import { buttonClasses } from '../../styles';
+import { getAuthContentSlides } from '../../data/auth.data';
 
 export const ForgotPasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -13,32 +14,7 @@ export const ForgotPasswordPage = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const contentSlides = [
-    {
-      title: language === 'ar' ? 'أتمتة ذكية لإدارة أسهل' : 'Smart Automation for Easier Management',
-      description:
-        language === 'ar'
-          ? 'مع ميكنة، تدير حساباتك، فواتيرك، وتقاريرك المالية بكل سهولة وفي أي وقت.'
-          : 'Manage your accounts, invoices, and financial reports easily anytime with Maykana.',
-      lines: [30, 30, 100],
-    },
-    {
-      title: language === 'ar' ? 'تحكم شامل في العمليات' : 'Comprehensive Operations Control',
-      description:
-        language === 'ar'
-          ? 'نظام متكامل يساعدك على متابعة الأصول، المخازن، والمبيعات بسلاسة.'
-          : 'An integrated system helps you track assets, inventory, and sales seamlessly.',
-      lines: [35, 35, 100],
-    },
-    {
-      title: language === 'ar' ? 'تقارير دقيقة ومفصلة' : 'Accurate and Detailed Reports',
-      description:
-        language === 'ar'
-          ? 'احصل على بيانات مالية دقيقة وتحليلات شاملة لدعم قراراتك الاستراتيجية.'
-          : 'Get accurate financial data and comprehensive analytics to support your strategic decisions.',
-      lines: [40, 35, 100],
-    },
-  ];
+  const contentSlides = getAuthContentSlides(language);
 
   useEffect(() => {
     const interval = setInterval(() => {

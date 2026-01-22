@@ -14,8 +14,6 @@ import ReactFlow, {
   Edge,
   Connection,
   BackgroundVariant,
-  Handle,
-  Position,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import {
@@ -30,16 +28,7 @@ import {
   Settings,
   Plus,
   CheckSquare,
-  List,
-  Type,
-  Upload,
-  User,
-  Star,
   Grid3x3,
-  FileCheck,
-  GitBranch,
-  ShieldCheck,
-  SquareCode,
   Monitor,
   Tablet,
   Smartphone,
@@ -50,12 +39,27 @@ import {
 } from 'lucide-react';
 import { formBuilderNodeTypes } from './components/FormBuilderNodes';
 import { ColumnModal, ChecklistItemModal } from './components/WorkflowModals';
+import {
+  NavigationSidebar,
+  FieldsSidebar,
+  ActionButtons,
+  AddNodeModal,
+  CustomFlowNode,
+  ViewMode,
+  ScreenSize,
+  FieldType,
+  useSectionHandlers,
+} from './components';
+import { useWorkflowsData } from '../../hooks/useWorkflowsData';
 
 export const AddEditWorkflow = (): JSX.Element => {
   const { dir } = useLanguage();
   const navigate = useNavigate();
   const { customization } = useCustomization();
   const primaryColor = customization.primaryColor || '#0A3B3D';
+
+  // Get all dummy data from custom hook
+  const workflowsData = useWorkflowsData();
 
   const [showColumnModal, setShowColumnModal] = useState(false);
   const [currentTableIndex, setCurrentTableIndex] = useState<number | null>(null);
@@ -69,8 +73,8 @@ export const AddEditWorkflow = (): JSX.Element => {
     sectionIndex: number;
     fieldIndex?: number;
   } | null>(null);
-  const [draggedField, setDraggedField] = useState<any>(null);
-  const [viewMode, setViewMode] = useState<'form' | 'flow' | 'formBuilder'>('form');
+  const [draggedField, setDraggedField] = useState<FieldType | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>('form');
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<Edge | null>(null);
   const [showNodeModal, setShowNodeModal] = useState(false);
@@ -79,186 +83,20 @@ export const AddEditWorkflow = (): JSX.Element => {
   // Form Builder States
   const [formBuilderTitle, setFormBuilderTitle] = useState('منطقة بدون عنوان');
   const [formBuilderDescription, setFormBuilderDescription] = useState('إبدأ بكتابة وصف لهذه المنطقة هنا .......');
-  const [formBuilderFields] = useState<any[]>([
-    { id: '1', type: 'text', label: 'رقم الطلب', placeholder: 'رقم الطلب هنا ...', required: true, width: 'half' },
-    { id: '2', type: 'text', label: 'اسم مقدم الطلب', placeholder: 'اسم مقدم الطلب من هنا ...', required: true, width: 'half' },
-    { id: '3', type: 'text', label: 'القسم', placeholder: '', required: true, width: 'half' },
-    { id: '4', type: 'date', label: 'تاريخ الطلب', required: true, width: 'half' },
-    { id: '5', type: 'select', label: 'قائمة منسدلة بدون عنوان', required: true, width: 'half' },
-  ]);
-  const [formBuilderTableRows, setFormBuilderTableRows] = useState<any[]>([
-    { id: '1', data: { '1': '', '2': '' } },
-    { id: '2', data: { '1': '', '2': '' } },
-  ]);
 
-  const formBuilderInitialNodes: Node[] = useMemo(() => [
-    { id: '1', type: 'processStart', position: { x: 15, y: 0 }, data: { label: 'بداية العملية عند تقديم نموذج الطلب' }, sourcePosition: Position.Right },
-    { id: '2', type: 'processActive', position: { x: 15, y: 85 }, data: { label: 'تعبئة نموذج الطلب' }, sourcePosition: Position.Right, targetPosition: Position.Right },
-    { id: '3', type: 'processBranch', position: { x: -60, y: 170 }, data: { label: 'الفرع الأول : موافقة رئيس القسم' }, sourcePosition: Position.Right, targetPosition: Position.Right },
-    { id: '4', type: 'processBranch', position: { x: -60, y: 255 }, data: { label: 'الفرع الثاني: موافقة قسم المالية' }, sourcePosition: Position.Right, targetPosition: Position.Right },
-    { id: '5', type: 'processBranch', position: { x: -60, y: 340 }, data: { label: 'الفرع الثالث: تنفيذ قسم المشتريات' }, sourcePosition: Position.Right, targetPosition: Position.Right },
-    { id: '6', type: 'processEnd', position: { x: 15, y: 425 }, data: { label: 'إنتهاء عملية طلب مواد' }, targetPosition: Position.Right },
-  ], []);
+  const [formBuilderNodes, , onFormBuilderNodesChange] = useNodesState(workflowsData.formBuilderNodes);
+  const [formBuilderEdges, , onFormBuilderEdgesChange] = useEdgesState(workflowsData.formBuilderEdges);
 
-  const formBuilderInitialEdges: Edge[] = useMemo(() => [
-    { id: 'e1-2', source: '1', target: '2', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
-    { id: 'e2-3', source: '2', target: '3', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
-    { id: 'e2-4', source: '2', target: '4', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
-    { id: 'e2-5', source: '2', target: '5', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
-    { id: 'e3-6', source: '3', target: '6', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
-    { id: 'e4-6', source: '4', target: '6', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
-    { id: 'e5-6', source: '5', target: '6', type: 'smoothstep', sourceHandle: null, targetHandle: null, style: { stroke: '#D9D9D9', strokeWidth: 2 }, markerEnd: undefined },
-  ], []);
+  const [screenSize, setScreenSize] = useState<ScreenSize>('desktop');
 
-  const [formBuilderNodes, , onFormBuilderNodesChange] = useNodesState(formBuilderInitialNodes);
-  const [formBuilderEdges, , onFormBuilderEdgesChange] = useEdgesState(formBuilderInitialEdges);
-
-  const [sections, setSections] = useState<any[]>([
-    {
-      id: 1,
-      type: 'form',
-      title: 'منطقة بدون عنوان',
-      description: 'إبدأ بكتابة وصف لهذه المنطقة هنا .......',
-      fields: [
-        { id: 1, label: 'رقم الطلب', placeholder: 'رقم الطلب هنا ...', required: true },
-        {
-          id: 2,
-          label: 'اسم مقدم الطلب',
-          placeholder: 'اسم مقدم الطلب من هنا ...',
-          required: true,
-        },
-        { id: 3, label: 'القسم', placeholder: '', required: true },
-        {
-          id: 4,
-          label: 'قائمة منسدلة بدون عنوان',
-          placeholder: 'اسحب أو اضغط لإضافة حقل جديد لعمود جديد',
-          required: false,
-        },
-        {
-          id: 5,
-          label: 'تاريخ الطلب',
-          placeholder: 'اسم الوقت هنا ...',
-          required: true,
-        },
-      ],
-    },
-    {
-      id: 2,
-      type: 'table',
-      title: 'جدول بدون عنوان',
-      description: 'إبدأ بكتابة وصف لجدول هنا ......',
-      columns: [
-        { id: 1, name: 'عمود بدون عنوان' },
-        { id: 2, name: 'عمود بدون عنوان' },
-        { id: 3, name: 'عمود بدون عنوان' },
-      ],
-      rows: 3,
-    },
-  ]);
-  const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
-
-  const fieldTypes = [
-    { id: 'input', name: 'حقل إدخال', nameEn: 'Input Field', icon: Type, category: 'basic' },
-    { id: 'dropdown', name: 'قائمة منسدلة', nameEn: 'Dropdown', icon: List, category: 'basic' },
-    {
-      id: 'multi-select',
-      name: 'ق/ متعددة الاختيار',
-      nameEn: 'Multi-Select',
-      icon: CheckSquare,
-      category: 'basic',
-    },
-    {
-      id: 'radio',
-      name: 'زر اختيار فردي',
-      nameEn: 'Radio Button',
-      icon: CheckSquare,
-      category: 'basic',
-    },
-    {
-      id: 'checkbox',
-      name: 'مربع اختيار',
-      nameEn: 'Checkbox',
-      icon: CheckSquare,
-      category: 'basic',
-    },
-    {
-      id: 'toggle',
-      name: 'زر تشغيل / إيقاف',
-      nameEn: 'Toggle',
-      icon: CheckSquare,
-      category: 'basic',
-    },
-    {
-      id: 'user-select',
-      name: 'اختيار المستخدم',
-      nameEn: 'User Select',
-      icon: User,
-      category: 'basic',
-    },
-    { id: 'button', name: 'زر تفاعلي', nameEn: 'Button', icon: CheckSquare, category: 'control' },
-    { id: 'image', name: 'صورة', nameEn: 'Image', icon: CheckSquare, category: 'control' },
-    { id: 'rating', name: 'مراجعة', nameEn: 'Rating', icon: Star, category: 'control' },
-    { id: 'grid', name: 'شبكة', nameEn: 'Grid', icon: Grid3x3, category: 'control' },
-    { id: 'file', name: 'رفع ملف', nameEn: 'File Upload', icon: Upload, category: 'control' },
-    {
-      id: 'checklist',
-      name: 'قائمة تحقق',
-      nameEn: 'Checklist',
-      icon: FileCheck,
-      category: 'table',
-    },
-    { id: 'table', name: 'جدول', nameEn: 'Table', icon: Grid3x3, category: 'table' },
-  ];
-
-  const addSection = (position?: number) => {
-    const newSection = {
-      id: Date.now(),
-      type: 'empty',
-      title: 'منطقة بدون عنوان',
-      description: '',
-    };
-
-    const newSections = [...sections];
-    if (position !== undefined) {
-      newSections.splice(position, 0, newSection);
-    } else {
-      newSections.push(newSection);
-    }
-    setSections(newSections);
-  };
-
-  const moveSection = (index: number, direction: 'up' | 'down') => {
-    const newSections = [...sections];
-    const targetIndex = direction === 'up' ? index - 1 : index + 1;
-
-    if (targetIndex >= 0 && targetIndex < sections.length) {
-      [newSections[index], newSections[targetIndex]] = [
-        newSections[targetIndex],
-        newSections[index],
-      ];
-      setSections(newSections);
-    }
-  };
-
-  const copySection = (index: number) => {
-    const sectionToCopy = sections[index];
-    const newSection = {
-      ...sectionToCopy,
-      id: Date.now(),
-      title: `${sectionToCopy.title} (نسخة)`,
-      columns: sectionToCopy.columns ? [...sectionToCopy.columns] : undefined,
-    };
-    const newSections = [...sections];
-    newSections.splice(index + 1, 0, newSection);
-    setSections(newSections);
-  };
-
-  const deleteSection = (index: number) => {
-    if (sections.length > 1) {
-      const newSections = sections.filter((_, i) => i !== index);
-      setSections(newSections);
-    }
-  };
+  // استخدام helper للوظائف المتعلقة بالأقسام
+  const {
+    addSection,
+    moveSection,
+    copySection,
+    deleteSection,
+    handleDropOnSection: dropOnSection,
+  } = useSectionHandlers(workflowsData.sections, workflowsData.setSections);
 
   const openColumnModal = (sectionIndex: number) => {
     setCurrentTableIndex(sectionIndex);
@@ -268,7 +106,7 @@ export const AddEditWorkflow = (): JSX.Element => {
 
   const addColumn = () => {
     if (currentTableIndex !== null && newColumnName.trim()) {
-      const newSections = [...sections];
+      const newSections = [...workflowsData.sections];
       const newColumn = {
         id: Date.now(),
         name: newColumnName.trim(),
@@ -279,7 +117,7 @@ export const AddEditWorkflow = (): JSX.Element => {
       }
 
       newSections[currentTableIndex].columns.push(newColumn);
-      setSections(newSections);
+      workflowsData.setSections(newSections);
       setShowColumnModal(false);
       setNewColumnName('');
     }
@@ -292,7 +130,7 @@ export const AddEditWorkflow = (): JSX.Element => {
 
   const addChecklistItem = () => {
     if (currentChecklistIndex !== null && newChecklistItemText.trim()) {
-      const newSections = [...sections];
+      const newSections = [...workflowsData.sections];
       const newItem = {
         id: Date.now(),
         text: newChecklistItemText.trim(),
@@ -304,7 +142,7 @@ export const AddEditWorkflow = (): JSX.Element => {
       }
 
       newSections[currentChecklistIndex].items.push(newItem);
-      setSections(newSections);
+      workflowsData.setSections(newSections);
       setShowChecklistItemModal(false);
       setNewChecklistItemText('');
     }
@@ -331,29 +169,36 @@ export const AddEditWorkflow = (): JSX.Element => {
 
   const updateFieldProperty = (property: string, value: any) => {
     if (!selectedElement || selectedElement.type !== 'field') return;
-    const newSections = [...sections];
-    if (selectedElement.fieldIndex !== undefined) {
-      newSections[selectedElement.sectionIndex].fields[selectedElement.fieldIndex][property] =
-        value;
-      setSections(newSections);
+    const newSections = [...workflowsData.sections];
+    if (selectedElement.fieldIndex !== undefined && newSections[selectedElement.sectionIndex]?.fields) {
+      const field: any = newSections[selectedElement.sectionIndex].fields![selectedElement.fieldIndex];
+      if (field) {
+        field[property] = value;
+        workflowsData.setSections(newSections);
+      }
     }
   };
 
   const updateSectionProperty = (property: string, value: any) => {
     if (!selectedElement) return;
-    const newSections = [...sections];
-    newSections[selectedElement.sectionIndex][property] = value;
-    setSections(newSections);
+    const newSections = [...workflowsData.sections];
+    const section: any = newSections[selectedElement.sectionIndex];
+    if (section) {
+      section[property] = value;
+      workflowsData.setSections(newSections);
+    }
   };
 
   const deleteSelectedElement = () => {
     if (!selectedElement) return;
 
-    const newSections = [...sections];
+    const newSections = [...workflowsData.sections];
 
     if (selectedElement.type === 'field' && selectedElement.fieldIndex !== undefined) {
       // حذف حقل
-      newSections[selectedElement.sectionIndex].fields.splice(selectedElement.fieldIndex, 1);
+      if (newSections[selectedElement.sectionIndex]?.fields) {
+        newSections[selectedElement.sectionIndex].fields!.splice(selectedElement.fieldIndex, 1);
+      }
     } else if (
       selectedElement.type === 'section' ||
       selectedElement.type === 'table' ||
@@ -363,11 +208,11 @@ export const AddEditWorkflow = (): JSX.Element => {
       newSections.splice(selectedElement.sectionIndex, 1);
     }
 
-    setSections(newSections);
+    workflowsData.setSections(newSections);
     setSelectedElement(null);
   };
 
-  const handleDragStart = (field: any) => {
+  const handleDragStart = (field: FieldType) => {
     setDraggedField(field);
   };
 
@@ -377,51 +222,7 @@ export const AddEditWorkflow = (): JSX.Element => {
 
   const handleDropOnSection = (sectionIndex: number) => {
     if (!draggedField) return;
-    const newSections = [...sections];
-    const currentSection = newSections[sectionIndex];
-
-    // إذا كان الحقل المسحوب هو جدول
-    if (draggedField.id === 'table') {
-      newSections[sectionIndex] = {
-        ...currentSection,
-        type: 'table',
-        title: currentSection.type === 'empty' ? 'منطقة بدون عنوان' : currentSection.title,
-        columns: [],
-        rows: 3,
-      };
-      delete newSections[sectionIndex].fields;
-    }
-    // إذا كان الحقل المسحوب هو قائمة تحقق
-    else if (draggedField.id === 'checklist') {
-      newSections[sectionIndex] = {
-        ...currentSection,
-        type: 'checklist',
-        title: currentSection.type === 'empty' ? 'منطقة بدون عنوان' : currentSection.title,
-        items: [],
-      };
-      delete newSections[sectionIndex].fields;
-    }
-    // حقل عادي
-    else {
-      if (currentSection.type === 'empty' || currentSection.type === 'form') {
-        const newField = {
-          id: Date.now(),
-          label: draggedField.name,
-          placeholder: '',
-          required: false,
-          type: draggedField.id,
-        };
-
-        newSections[sectionIndex] = {
-          ...currentSection,
-          type: 'form',
-          title: currentSection.type === 'empty' ? 'منطقة بدون عنوان' : currentSection.title,
-          fields: currentSection.fields ? [...currentSection.fields, newField] : [newField],
-        };
-      }
-    }
-
-    setSections(newSections);
+    dropOnSection(sectionIndex, draggedField);
     setDraggedField(null);
   };
 
@@ -431,164 +232,14 @@ export const AddEditWorkflow = (): JSX.Element => {
     return 'grid-cols-3';
   };
 
-  // Flow Nodes and Edges
-  const initialNodes: Node[] = [
-    {
-      id: '1',
-      type: 'custom',
-      data: { 
-        label: 'بداية العملية عند تقديم نموذج الطلب',
-        type: 'start',
-        color: '#41d1fe'
-      },
-      position: { x: 400, y: 50 },
-      style: { width: 388, height: 124 },
-      draggable: true
-    },
-    {
-      id: '2',
-      type: 'custom',
-      data: { 
-        label: 'تعبئة فحص النظافة',
-        subtitle: 'مشرف الفرع',
-        type: 'task',
-        icon: 'form'
-      },
-      position: { x: 400, y: 240 },
-      style: { width: 388, height: 162 },
-      draggable: true
-    },
-    {
-      id: '3',
-      type: 'custom',
-      data: { 
-        label: 'مراجعة وتقييم الفحص',
-        subtitle: 'مدير الفرع',
-        type: 'task',
-        icon: 'review'
-      },
-      position: { x: 400, y: 480 },
-      style: { width: 388, height: 162 },
-      draggable: true
-    },
-    {
-      id: '4',
-      type: 'custom',
-      data: { 
-        label: 'نظافة غير كافية',
-        description: 'النظافة دون المستوى المطلوب، يعاد الفحص بعد تصحيح الملاحظات',
-        type: 'failure',
-        color: '#ff0000',
-        icon: 'alert'
-      },
-      position: { x: 120, y: 720 },
-      style: { width: 388, height: 162 },
-      draggable: true
-    },
-    {
-      id: '5',
-      type: 'custom',
-      data: { 
-        label: 'نظافة مقبولة',
-        description: 'النظافة في مستوى جيد، يرسل التقرير إلى الإدارة لاعتماده النهائي',
-        type: 'success',
-        color: '#2cc28d',
-        icon: 'check'
-      },
-      position: { x: 820, y: 720 },
-      style: { width: 388, height: 162 },
-      draggable: true
-    },
-    {
-      id: '6',
-      type: 'custom',
-      data: { 
-        label: 'إنتهى',
-        type: 'end',
-        color: '#2cc28d'
-      },
-      position: { x: 520, y: 1020 },
-      style: { width: 130, height: 51 },
-      draggable: true
-    }
-  ];
-
-  const initialEdges: Edge[] = [
-    {
-      id: 'e1-2',
-      source: '1',
-      target: '2',
-      label: 'يحدث دائما',
-      type: 'smoothstep',
-      animated: true,
-      style: { stroke: '#999', strokeWidth: 2 },
-      labelStyle: { fill: '#666', fontWeight: 500, fontSize: 14 },
-      labelBgStyle: { fill: 'white', fillOpacity: 0.8 }
-    },
-    {
-      id: 'e2-3',
-      source: '2',
-      target: '3',
-      label: 'يحدث دائما',
-      type: 'smoothstep',
-      animated: true,
-      style: { stroke: '#999', strokeWidth: 2 },
-      labelStyle: { fill: '#666', fontWeight: 500, fontSize: 14 },
-      labelBgStyle: { fill: 'white', fillOpacity: 0.8 }
-    },
-    {
-      id: 'e3-4',
-      source: '3',
-      target: '4',
-      label: 'إذا كانت نسبة الالتزام < 80٪',
-      type: 'smoothstep',
-      animated: true,
-      style: { stroke: '#ff0000', strokeWidth: 2 },
-      labelStyle: { fill: '#ff0000', fontWeight: 600, fontSize: 14 },
-      labelBgStyle: { fill: 'white', fillOpacity: 0.9 }
-    },
-    {
-      id: 'e3-5',
-      source: '3',
-      target: '5',
-      label: 'إذا كانت نسبة الالتزام ≥ 80٪',
-      type: 'smoothstep',
-      animated: true,
-      style: { stroke: '#2cc28d', strokeWidth: 2 },
-      labelStyle: { fill: '#2cc28d', fontWeight: 600, fontSize: 14 },
-      labelBgStyle: { fill: 'white', fillOpacity: 0.9 }
-    },
-    {
-      id: 'e4-6',
-      source: '4',
-      target: '6',
-      label: 'يحدث دائما',
-      type: 'smoothstep',
-      animated: true,
-      style: { stroke: '#999', strokeWidth: 2 },
-      labelStyle: { fill: '#666', fontWeight: 500, fontSize: 14 },
-      labelBgStyle: { fill: 'white', fillOpacity: 0.8 }
-    },
-    {
-      id: 'e5-6',
-      source: '5',
-      target: '6',
-      label: 'يحدث دائما',
-      type: 'smoothstep',
-      animated: true,
-      style: { stroke: '#999', strokeWidth: 2 },
-      labelStyle: { fill: '#666', fontWeight: 500, fontSize: 14 },
-      labelBgStyle: { fill: 'white', fillOpacity: 0.8 }
-    }
-  ];
-
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  // Use nodes and edges from dummy data hook
+  const [nodes, setNodes, onNodesChange] = useNodesState(workflowsData.flowNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(workflowsData.flowEdges);
 
   // Form Builder Helper Functions
   const updateFormBuilderTableCell = (rowId: string, colId: string, value: string) => {
-    setFormBuilderTableRows(
-      formBuilderTableRows.map((row) =>
+    workflowsData.setFormBuilderTableRows(
+      workflowsData.formBuilderTableRows.map((row) =>
         row.id === rowId ? { ...row, data: { ...row.data, [colId]: value } } : row
       )
     );
@@ -754,205 +405,10 @@ export const AddEditWorkflow = (): JSX.Element => {
     setShowNodeModal(true);
   };
 
-  // Custom Node Component
-  const CustomNode = ({ data, isSelected, onAddNode }: any) => {
-    if (data.type === 'start') {
-      return (
-        <div 
-          className={`bg-white rounded-xl border-2 shadow-sm p-6 relative ${isSelected ? 'ring-2 border-[#41d1fe]' : 'border-[#41d1fe]'}`}
-          style={isSelected ? { '--tw-ring-color': primaryColor } as any : undefined}
-        >
-          <Handle type="source" position={Position.Bottom} style={{ background: '#41d1fe' }} />
-          
-          {/* Action Buttons */}
-          {isSelected && (
-            <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAddNode('task');
-                }}
-                className="bg-[#8b5cf6] text-white rounded-lg px-3 py-1.5 text-sm flex items-center gap-1 shadow-lg hover:bg-[#7c3aed] transition-colors whitespace-nowrap"
-              >
-                <Plus className="w-4 h-4" />
-                إضافة مرحلة جديدة
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAddNode('condition');
-                }}
-                className="bg-[#10b981] text-white rounded-lg px-3 py-1.5 text-sm flex items-center gap-1 shadow-lg hover:bg-[#059669] transition-colors whitespace-nowrap"
-              >
-                <Plus className="w-4 h-4" />
-                إضافة شرط جديدة
-              </button>
-            </div>
-          )}
-          
-          <div className="flex justify-center mb-4">
-            <div className="bg-[#41d1fe] rounded-lg px-6 py-2">
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-white text-base [direction:rtl]">
-                بداية العملية
-              </span>
-            </div>
-          </div>
-          <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-black text-lg text-center [direction:rtl]">
-            {data.label}
-          </p>
-        </div>
-      );
-    }
-
-    if (data.type === 'task') {
-      return (
-        <div 
-          className={`bg-white rounded-xl border-2 shadow-sm p-6 relative ${isSelected ? 'ring-2' : 'border-gray-200'}`}
-          style={isSelected ? { '--tw-ring-color': primaryColor } as any : undefined}
-        >
-          <Handle type="target" position={Position.Top} style={{ background: '#0a3738' }} />
-          <Handle type="source" position={Position.Bottom} style={{ background: '#0a3738' }} />
-          
-          {/* Action Buttons */}
-          {isSelected && (
-            <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAddNode('task');
-                }}
-                className="bg-[#8b5cf6] text-white rounded-lg px-3 py-1.5 text-sm flex items-center gap-1 shadow-lg hover:bg-[#7c3aed] transition-colors whitespace-nowrap"
-              >
-                <Plus className="w-4 h-4" />
-                إضافة مرحلة جديدة
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAddNode('condition');
-                }}
-                className="bg-[#10b981] text-white rounded-lg px-3 py-1.5 text-sm flex items-center gap-1 shadow-lg hover:bg-[#059669] transition-colors whitespace-nowrap"
-              >
-                <Plus className="w-4 h-4" />
-                إضافة شرط جديدة
-              </button>
-            </div>
-          )}
-          
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex-1">
-              <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-black text-lg [direction:rtl]">
-                {data.label}
-              </h3>
-            </div>
-            <div className="w-10 h-10 bg-[#0a37381a] rounded-lg flex items-center justify-center">
-              <User className="w-6 h-6 text-[#0a3738]" />
-            </div>
-          </div>
-          <div className="border-t border-gray-200 pt-3">
-            <div className="flex items-center gap-2">
-              <CheckSquare className="w-5 h-5 text-gray-400" />
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-black text-base [direction:rtl]">
-                {data.subtitle}
-              </span>
-            </div>
-          </div>
-          <div className="mt-3 flex items-center gap-2 text-gray-500">
-            <CheckSquare className="w-5 h-5" />
-            <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm [direction:rtl]">
-              يحدث دائما
-            </span>
-          </div>
-        </div>
-      );
-    }
-
-    if (data.type === 'success' || data.type === 'failure') {
-      const bgColor = data.type === 'success' ? '#2cc28d' : '#ff0000';
-      const iconBg = data.type === 'success' ? '#12a773' : '#c40303';
-      
-      return (
-        <div 
-          className={`bg-white rounded-xl border-2 shadow-sm overflow-hidden relative ${isSelected ? 'ring-2' : ''}`} 
-          style={{ 
-            borderColor: bgColor,
-            ...(isSelected ? { '--tw-ring-color': primaryColor } as any : {})
-          }}
-        >
-          <Handle type="target" position={Position.Top} style={{ background: bgColor }} />
-          <Handle type="source" position={Position.Bottom} style={{ background: bgColor }} />
-          
-          {/* Action Buttons */}
-          {isSelected && (
-            <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAddNode('task');
-                }}
-                className="bg-[#8b5cf6] text-white rounded-lg px-3 py-1.5 text-sm flex items-center gap-1 shadow-lg hover:bg-[#7c3aed] transition-colors whitespace-nowrap"
-              >
-                <Plus className="w-4 h-4" />
-                إضافة مرحلة جديدة
-              </button>
-            </div>
-          )}
-          
-          <div className="h-[49px] flex items-center justify-between px-6" style={{ backgroundColor: bgColor }}>
-            <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-white text-lg [direction:rtl]">
-              {data.label}
-            </h3>
-            <div className="w-[37px] h-[37px] rounded-xl flex items-center justify-center" style={{ backgroundColor: iconBg }}>
-              <GitBranch className="w-[22px] h-[22px] text-white" />
-            </div>
-          </div>
-          <div className="p-4">
-            <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-black text-sm mb-3 [direction:rtl]">
-              {data.description}
-            </p>
-            <div className="border-t border-gray-200 pt-3 flex items-center gap-2">
-              {data.type === 'success' ? (
-                <>
-                  <CheckSquare className="w-6 h-6 text-gray-400" />
-                  <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-gray-500 text-base [direction:rtl]">
-                    يحدث دائما
-                  </span>
-                </>
-              ) : (
-                <>
-                  <SquareCode className="w-6 h-6 text-gray-400" />
-                  <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-gray-500 text-base [direction:rtl]">
-                    يحدث على أساس شرطي
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (data.type === 'end') {
-      return (
-        <div className="bg-white rounded-xl border-2 border-[#2cc28d] shadow-sm p-4 flex items-center justify-center relative">
-          <Handle type="target" position={Position.Top} style={{ background: '#2cc28d' }} />
-          <div className="flex items-center gap-2">
-            <CheckSquare className="w-8 h-8 text-[#2cc28d]" />
-            <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-[#2cc28d] text-xl [direction:rtl]">
-              {data.label}
-            </span>
-          </div>
-        </div>
-      );
-    }
-
-    return <div>{data.label}</div>;
-  };
-
   const nodeTypes = useMemo(
     () => ({
       custom: (props: any) => (
-        <CustomNode
+        <CustomFlowNode
           {...props}
           isSelected={selectedNode?.id === props.id}
           onAddNode={openAddNodeModal}
@@ -966,149 +422,20 @@ export const AddEditWorkflow = (): JSX.Element => {
     <Layout>
       <div className="flex h-[calc(100vh-80px)] gap-4" dir={dir}>
         {/* Far Right Sidebar - Navigation Icons (RTL: leftmost) */}
-        <div className="w-14 bg-white rounded-xl border border-gray-200 flex flex-col items-center gap-3 py-4">
-          <button 
-            onClick={() => setViewMode('form')}
-            className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-              viewMode === 'form' 
-                ? 'text-white' 
-                : 'bg-[#0a37381a] hover:bg-[#0a37382a]'
-            }`}
-            style={viewMode === 'form' ? { backgroundColor: primaryColor } : undefined}
-          >
-            <SquareCode className={`w-5 h-5 ${viewMode === 'form' ? 'text-white' : 'text-[#0a3738]'}`} />
-          </button>
-          <button 
-            onClick={() => setViewMode('flow')}
-            className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-              viewMode === 'flow' 
-                ? 'text-white' 
-                : 'bg-[#0a37381a] hover:bg-[#0a37382a]'
-            }`}
-            style={viewMode === 'flow' ? { backgroundColor: primaryColor } : undefined}
-          >
-            <GitBranch className={`w-5 h-5 ${viewMode === 'flow' ? 'text-white' : 'text-[#0a3738]'}`} />
-          </button>
-          <button 
-            onClick={() => setViewMode('formBuilder')}
-            className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-              viewMode === 'formBuilder' 
-                ? 'text-white' 
-                : 'bg-[#0a37381a] hover:bg-[#0a37382a]'
-            }`}
-            style={viewMode === 'formBuilder' ? { backgroundColor: primaryColor } : undefined}
-          >
-            <ShieldCheck className={`w-5 h-5 ${viewMode === 'formBuilder' ? 'text-white' : 'text-[#0a3738]'}`} />
-          </button>
-        </div>
+        <NavigationSidebar
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+          primaryColor={primaryColor}
+        />
 
         {/* Right Sidebar - Fields Panel */}
         {viewMode === 'form' && (
-          <div
-            className="w-[280px] bg-white rounded-xl border border-gray-200 overflow-y-auto scrollbar-thin"
+          <FieldsSidebar
+            fieldTypes={workflowsData.fieldTypes}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
             dir={dir}
-          >
-          <div className="p-4 border-b border-gray-200">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-base">
-                جميع الحقول
-              </h3>
-              <button className="p-2 bg-slate-50 rounded-md hover:bg-slate-100">
-                <Settings className="w-5 h-5 text-gray-600" />
-              </button>
-            </div>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="بحث عن حقل من هنا ..."
-                className="w-full h-10 px-3 pr-8 bg-slate-50 border border-gray-300 rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-              />
-            </div>
-          </div>
-
-          {/* Basic Fields */}
-          <div className="p-4">
-            <div className="mb-3">
-              <h4 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-sm text-gray-700 mb-3">
-                أساسية
-              </h4>
-              <div className="grid grid-cols-2 gap-2">
-                {fieldTypes
-                  .filter((f) => f.category === 'basic')
-                  .map((field) => (
-                    <div
-                      key={field.id}
-                      draggable
-                      onDragStart={() => handleDragStart(field)}
-                      onDragEnd={handleDragEnd}
-                      className="bg-slate-50 border border-gray-200 rounded-lg p-3 cursor-move hover:bg-slate-100 transition-colors"
-                    >
-                      <div className="flex flex-col items-center gap-1">
-                        <field.icon className="w-5 h-5 text-gray-600" />
-                        <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm text-center text-black">
-                          {field.name}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-
-            {/* Control Fields */}
-            <div className="mb-3">
-              <h4 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-sm text-gray-700 mb-3">
-                عناصر التحكم العامة
-              </h4>
-              <div className="grid grid-cols-2 gap-2">
-                {fieldTypes
-                  .filter((f) => f.category === 'control')
-                  .map((field) => (
-                    <div
-                      key={field.id}
-                      draggable
-                      onDragStart={() => handleDragStart(field)}
-                      onDragEnd={handleDragEnd}
-                      className="bg-slate-50 border border-gray-200 rounded-lg p-3 cursor-move hover:bg-slate-100 transition-colors"
-                    >
-                      <div className="flex flex-col items-center gap-1">
-                        <field.icon className="w-5 h-5 text-gray-600" />
-                        <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm text-center text-black">
-                          {field.name}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-
-            {/* Tables & Checklists */}
-            <div>
-              <h4 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-sm text-gray-700 mb-3">
-                قوائم التحقق / جداول
-              </h4>
-              <div className="grid grid-cols-2 gap-2">
-                {fieldTypes
-                  .filter((f) => f.category === 'table')
-                  .map((field) => (
-                    <div
-                      key={field.id}
-                      draggable
-                      onDragStart={() => handleDragStart(field)}
-                      onDragEnd={handleDragEnd}
-                      className="bg-slate-50 border border-gray-200 rounded-lg p-3 cursor-move hover:bg-slate-100 transition-colors"
-                    >
-                      <div className="flex flex-col items-center gap-1">
-                        <field.icon className="w-5 h-5 text-gray-600" />
-                        <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm text-center text-black">
-                          {field.name}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </div>
-        </div>
+          />
         )}
 
         {/* Center - Canvas */}
@@ -1223,7 +550,7 @@ export const AddEditWorkflow = (): JSX.Element => {
 
                     {/* Form Fields */}
                     <div className="flex flex-wrap gap-4 mb-4">
-                      {formBuilderFields.map((field) => renderFormBuilderField(field))}
+                      {workflowsData.formBuilderFields.map((field) => renderFormBuilderField(field))}
                     </div>
                   </div>
 
@@ -1250,7 +577,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                           </tr>
                         </thead>
                         <tbody>
-                          {formBuilderTableRows.map((row, index) => (
+                          {workflowsData.formBuilderTableRows.map((row, index) => (
                             <tr key={row.id} className="hover:bg-gray-50">
                               <td className="px-4 py-3 border-b border-slate-100 text-right text-sm font-semibold text-[#0e0d24]">
                                 {index + 1}
@@ -1545,7 +872,7 @@ export const AddEditWorkflow = (): JSX.Element => {
               </div>
 
               {/* Sections */}
-              {sections.map((section, index) => {
+              {workflowsData.sections.map((section, index) => {
               const isSelected =
                 selectedElement?.sectionIndex === index && selectedElement.fieldIndex === undefined;
               const sectionColor = section.color;
@@ -1593,9 +920,9 @@ export const AddEditWorkflow = (): JSX.Element => {
                           type="text"
                           value={section.title}
                           onChange={(e) => {
-                            const newSections = [...sections];
+                            const newSections = [...workflowsData.sections];
                             newSections[index].title = e.target.value;
-                            setSections(newSections);
+                            workflowsData.setSections(newSections);
                           }}
                           className="text-lg font-bold text-black border-0 focus:outline-none w-full"
                           style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica", direction: 'rtl' }}
@@ -1603,9 +930,9 @@ export const AddEditWorkflow = (): JSX.Element => {
                         <textarea
                           value={section.description}
                           onChange={(e) => {
-                            const newSections = [...sections];
+                            const newSections = [...workflowsData.sections];
                             newSections[index].description = e.target.value;
-                            setSections(newSections);
+                            workflowsData.setSections(newSections);
                           }}
                           placeholder="إبدأ بكتابة وصف لهذه المنطقة هنا ......."
                           className="mt-2 w-full text-sm text-gray-600 border-0 focus:outline-none resize-none"
@@ -1631,7 +958,7 @@ export const AddEditWorkflow = (): JSX.Element => {
 
                         <button
                           onClick={() => moveSection(index, 'down')}
-                          disabled={index === sections.length - 1}
+                          disabled={index === workflowsData.sections.length - 1}
                           className="p-2 bg-slate-100 rounded-lg hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
                           title="تحريك للأسفل"
                         >
@@ -1648,7 +975,7 @@ export const AddEditWorkflow = (): JSX.Element => {
 
                         <button
                           onClick={() => deleteSection(index)}
-                          disabled={sections.length === 1}
+                          disabled={workflowsData.sections.length === 1}
                           className="p-2 bg-slate-100 rounded-lg hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
                           title="حذف المنطقة"
                         >
@@ -1778,7 +1105,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                                   {section.columns?.map((col: any, colIndex: number) => (
                                     <th
                                       key={col.id}
-                                      className={`px-4 py-3 text-center [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-bold text-black border-b ${colIndex < section.columns.length - 1 ? 'border-l' : ''} border-gray-300`}
+                                      className={`px-4 py-3 text-center [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-bold text-black border-b ${colIndex < (section.columns?.length || 0) - 1 ? 'border-l' : ''} border-gray-300`}
                                     >
                                       <div className="flex items-center justify-center gap-2">
                                         {col.icon && <span className="text-base">{col.icon}</span>}
@@ -1805,7 +1132,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                                     {section.columns?.map((col: any, colIndex: number) => (
                                       <td
                                         key={col.id}
-                                        className={`px-4 py-3 text-center [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm text-gray-700 ${colIndex < section.columns.length - 1 ? 'border-l' : ''} border-gray-300`}
+                                        className={`px-4 py-3 text-center [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm text-gray-700 ${colIndex < (section.columns?.length || 0) - 1 ? 'border-l' : ''} border-gray-300`}
                                       ></td>
                                     ))}
                                   </tr>
@@ -1860,7 +1187,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                   </div>
 
                   {/* Add Section Button - After Each Section (but not after last one before table) */}
-                  {index < sections.length - 1 && (
+                  {index < workflowsData.sections.length - 1 && (
                     <div className="flex items-center gap-4 py-6">
                       <div className="flex-1 h-[2px] bg-[#0c4749]"></div>
                       <button
@@ -1881,7 +1208,7 @@ export const AddEditWorkflow = (): JSX.Element => {
               <div className="flex items-center gap-4 py-6">
                 <div className="flex-1 h-[2px] bg-[#0c4749]"></div>
                 <button
-                  onClick={() => addSection(sections.length)}
+                  onClick={() => addSection(workflowsData.sections.length)}
                   className="px-6 py-2 bg-slate-100 text-gray-700 rounded-full hover:bg-slate-200 transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm whitespace-nowrap"
                 >
                   أضف منطقة
@@ -1894,25 +1221,11 @@ export const AddEditWorkflow = (): JSX.Element => {
 
           {/* Bottom Action Buttons - Sticky في المنتصف */}
           {viewMode !== 'formBuilder' && (
-            <div className="sticky bottom-0 left-0 right-0 z-10 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 flex gap-3 justify-end mt-6">
-              <button
-                onClick={handleSave}
-                className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
-              >
-                حفظ وإغلاق
-              </button>
-              <button className="h-10 px-6 bg-[#0c47491a] text-[#0c4749] rounded-lg hover:bg-[#0c47492a] transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium flex items-center gap-2">
-                <Eye className="w-5 h-5" />
-                معاينة
-              </button>
-              <button
-                onClick={handlePublish}
-                className="h-10 px-6 text-white rounded-lg transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
-                style={{ backgroundColor: primaryColor }}
-              >
-                انشر مباشر
-              </button>
-            </div>
+            <ActionButtons
+              onSave={handleSave}
+              onPublish={handlePublish}
+              primaryColor={primaryColor}
+            />
           )}
         </div>
 
@@ -1927,9 +1240,9 @@ export const AddEditWorkflow = (): JSX.Element => {
             <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium text-base [direction:rtl]">
               {selectedElement
                 ? selectedElement.type === 'field' && selectedElement.fieldIndex !== undefined
-                  ? sections[selectedElement.sectionIndex]?.fields[selectedElement.fieldIndex]
+                  ? workflowsData.sections[selectedElement.sectionIndex]?.fields?.[selectedElement.fieldIndex]
                       ?.label || 'حقل بدون عنوان'
-                  : sections[selectedElement.sectionIndex]?.title || 'منطقة بدون عنوان'
+                  : workflowsData.sections[selectedElement.sectionIndex]?.title || 'منطقة بدون عنوان'
                 : 'الإعدادات'}
             </h3>
           </div>
@@ -1967,7 +1280,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                         <input
                           type="text"
                           value={
-                            sections[selectedElement.sectionIndex]?.fields[
+                            workflowsData.sections[selectedElement.sectionIndex]?.fields?.[
                               selectedElement.fieldIndex
                             ]?.label || ''
                           }
@@ -1984,7 +1297,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                         </label>
                         <select
                           value={
-                            sections[selectedElement.sectionIndex]?.fields[
+                            workflowsData.sections[selectedElement.sectionIndex]?.fields?.[
                               selectedElement.fieldIndex
                             ]?.type || 'input'
                           }
@@ -2006,7 +1319,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                           <input
                             type="checkbox"
                             checked={
-                              sections[selectedElement.sectionIndex]?.fields[
+                              workflowsData.sections[selectedElement.sectionIndex]?.fields?.[
                                 selectedElement.fieldIndex
                               ]?.required || false
                             }
@@ -2026,7 +1339,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                         <input
                           type="text"
                           value={
-                            sections[selectedElement.sectionIndex]?.fields[
+                            workflowsData.sections[selectedElement.sectionIndex]?.fields?.[
                               selectedElement.fieldIndex
                             ]?.id || ''
                           }
@@ -2043,7 +1356,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                         <input
                           type="text"
                           value={
-                            sections[selectedElement.sectionIndex]?.fields[
+                            workflowsData.sections[selectedElement.sectionIndex]?.fields?.[
                               selectedElement.fieldIndex
                             ]?.placeholder || ''
                           }
@@ -2060,7 +1373,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                         <input
                           type="text"
                           value={
-                            sections[selectedElement.sectionIndex]?.fields[
+                            workflowsData.sections[selectedElement.sectionIndex]?.fields?.[
                               selectedElement.fieldIndex
                             ]?.defaultValue || ''
                           }
@@ -2097,7 +1410,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                         </label>
                         <input
                           type="text"
-                          value={sections[selectedElement.sectionIndex]?.title || ''}
+                          value={workflowsData.sections[selectedElement.sectionIndex]?.title || ''}
                           onChange={(e) => updateSectionProperty('title', e.target.value)}
                           placeholder="اسم المنطقة هنا ..."
                           className="w-full h-10 px-3 bg-white rounded-lg border border-gray-300 text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl] outline-none focus:border-[#0c4749]"
@@ -2109,7 +1422,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                           <span className="text-black">الوصف</span>
                         </label>
                         <textarea
-                          value={sections[selectedElement.sectionIndex]?.description || ''}
+                          value={workflowsData.sections[selectedElement.sectionIndex]?.description || ''}
                           onChange={(e) => updateSectionProperty('description', e.target.value)}
                           placeholder="إبدأ بكتابة وصف لهذه المنطقة هنا ......."
                           rows={3}
@@ -2124,7 +1437,7 @@ export const AddEditWorkflow = (): JSX.Element => {
                           </label>
                           <input
                             type="number"
-                            value={sections[selectedElement.sectionIndex]?.rows || 3}
+                            value={workflowsData.sections[selectedElement.sectionIndex]?.rows || 3}
                             onChange={(e) =>
                               updateSectionProperty('rows', parseInt(e.target.value) || 3)
                             }
@@ -2311,13 +1624,13 @@ export const AddEditWorkflow = (): JSX.Element => {
                         const isSelected =
                           (selectedElement?.type === 'field' &&
                             selectedElement.fieldIndex !== undefined &&
-                            sections[selectedElement.sectionIndex]?.fields[
+                            workflowsData.sections[selectedElement.sectionIndex]?.fields?.[
                               selectedElement.fieldIndex
                             ]?.color === color) ||
                           ((selectedElement?.type === 'section' ||
                             selectedElement?.type === 'table' ||
                             selectedElement?.type === 'checklist') &&
-                            sections[selectedElement.sectionIndex]?.color === color);
+                            workflowsData.sections[selectedElement.sectionIndex]?.color === color);
 
                         return (
                           <button
@@ -2428,60 +1741,14 @@ export const AddEditWorkflow = (): JSX.Element => {
       />
 
       {/* Add Node Modal */}
-      {showNodeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 w-[450px] shadow-2xl" dir={dir}>
-            <h3 className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-bold text-lg mb-6 [direction:rtl]">
-              {nodeModalType === 'task' ? 'إضافة مرحلة جديدة' : 'إضافة شرط جديد'}
-            </h3>
-            
-            <div className="space-y-4">
-              {nodeModalType === 'task' ? (
-                <button
-                  onClick={() => addNewNode('task')}
-                  className="w-full p-4 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white rounded-lg transition-colors text-right flex items-center gap-3"
-                >
-                  <User className="w-6 h-6" />
-                  <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium [direction:rtl]">
-                    مهمة جديدة
-                  </span>
-                </button>
-              ) : (
-                <>
-                  <button
-                    onClick={() => addNewNode('success')}
-                    className="w-full p-4 bg-[#10b981] hover:bg-[#059669] text-white rounded-lg transition-colors text-right flex items-center gap-3"
-                  >
-                    <CheckSquare className="w-6 h-6" />
-                    <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium [direction:rtl]">
-                      نتيجة إيجابية
-                    </span>
-                  </button>
-                  
-                  <button
-                    onClick={() => addNewNode('failure')}
-                    className="w-full p-4 bg-[#ef4444] hover:bg-[#dc2626] text-white rounded-lg transition-colors text-right flex items-center gap-3"
-                  >
-                    <Trash2 className="w-6 h-6" />
-                    <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium [direction:rtl]">
-                      نتيجة سلبية
-                    </span>
-                  </button>
-                </>
-              )}
-            </div>
-
-            <div className="flex gap-3 justify-end mt-6">
-              <button
-                onClick={() => setShowNodeModal(false)}
-                className="h-10 px-6 bg-slate-100 text-gray-700 rounded-lg hover:bg-slate-200 transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium"
-              >
-                إلغاء
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AddNodeModal
+        show={showNodeModal}
+        onClose={() => setShowNodeModal(false)}
+        modalType={nodeModalType}
+        onAddNode={addNewNode}
+        dir={dir}
+      />
     </Layout>
   );
 };
+

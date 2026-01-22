@@ -7,19 +7,8 @@ import { Label } from '../../components/ui/label';
 import { AdvancedTable } from '../../components/ui/Table';
 import { Search, SlidersHorizontal, ChevronDown, Download, Columns3, X, Eye, Edit2, Trash2 } from 'lucide-react';
 import { buttonClasses } from '../../styles';
-
-interface MaintenanceRecord {
-  id: string;
-  maintenanceNumber: string;
-  assetName: string;
-  maintenanceType: string;
-  maintenanceDate: string;
-  team: string;
-  assignedTechnician: string;
-  duration: string;
-  cost: string;
-  status: 'completed' | 'in_progress';
-}
+import { useMaintenanceData } from '../../hooks/useMaintenanceData';
+import type { MaintenanceRecord } from '../../data/maintenance.data';
 
 export const Maintenance = (): JSX.Element => {
   const { t, dir } = useLanguage();
@@ -29,57 +18,7 @@ export const Maintenance = (): JSX.Element => {
   const [showAddRecordModal, setShowAddRecordModal] = useState(false);
   const [showColumnsModal, setShowColumnsModal] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
-
-  const mockData: MaintenanceRecord[] = [
-    {
-      id: '1',
-      maintenanceNumber: 'MN-12345',
-      assetName: 'جهاز الكمبيوتر المحمول',
-      maintenanceType: 'تصليح الشاشة',
-      maintenanceDate: '2023-10-01',
-      team: 'فريق التقنية المتقدمة',
-      assignedTechnician: 'أحمد السعيدي',
-      duration: '3 أيام',
-      cost: '1500',
-      status: 'completed',
-    },
-    {
-      id: '2',
-      maintenanceNumber: 'MN-67890',
-      assetName: 'اسم الأصل',
-      maintenanceType: 'تحديث البرمجيات',
-      maintenanceDate: '2023-10-05',
-      team: 'فريق الدعم الفني',
-      assignedTechnician: 'ليلى العلي',
-      duration: 'يوم واحد',
-      cost: '500',
-      status: 'completed',
-    },
-    {
-      id: '3',
-      maintenanceNumber: 'MN-54321',
-      assetName: 'الطابعة',
-      maintenanceType: 'استبدال الحبر',
-      maintenanceDate: '2023-10-10',
-      team: 'فريق الصيانة السريعة',
-      assignedTechnician: 'سامي الجابري',
-      duration: 'ساعتان',
-      cost: '200',
-      status: 'in_progress',
-    },
-    {
-      id: '4',
-      maintenanceNumber: 'MN-98765',
-      assetName: 'جهاز التوجيه',
-      maintenanceType: 'إعادة ضبط المصنع',
-      maintenanceDate: '2023-10-15',
-      team: 'فريق الشبكات',
-      assignedTechnician: 'فاطمة الزهراء',
-      duration: '4 ساعات',
-      cost: '300',
-      status: 'in_progress',
-    },
-  ];
+  const { maintenanceData } = useMaintenanceData();
 
   const getStatusBadge = (status: MaintenanceRecord['status']) => {
     if (status === 'completed') {
@@ -276,7 +215,7 @@ export const Maintenance = (): JSX.Element => {
         {/* Table */}
         <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
           <AdvancedTable
-            data={mockData}
+            data={maintenanceData}
             columns={[
               {
                 key: 'maintenanceNumber',

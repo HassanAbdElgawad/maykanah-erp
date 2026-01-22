@@ -113,11 +113,12 @@ export const breadcrumbRoutes = [
   
   // Reports Module
   { path: "/reports", label: "sidebar.reports" },
-  { path: "/reports/general-ledger", label: "reports.general_ledger" },
-  { path: "/reports/trial-balance", label: "reports.trial_balance" },
-  { path: "/reports/financial-position", label: "reports.financial_position" },
-  { path: "/reports/income-statement", label: "reports.income_statement" },
-  { path: "/reports/trial-balance-movement", label: "reports.trial_balance_movement" },
+  { path: "/reports/accounting", label: "sidebar.accounting" },
+  { path: "/reports/accounting/general-ledger", label: "reports.accounting.general_ledger" },
+  { path: "/reports/accounting/trial-balance", label: "reports.accounting.trial_balance" },
+  { path: "/reports/accounting/financial-position", label: "reports.accounting.financial_position" },
+  { path: "/reports/accounting/income-statement", label: "reports.accounting.income_statement" },
+  { path: "/reports/accounting/trial-balance-movement", label: "reports.accounting.trial_balance_movement" },
   
   { path: "/settings", label: "sidebar.settings" },
   { path: "/support", label: "sidebar.support" },

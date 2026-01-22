@@ -5,44 +5,13 @@ import { useLanguage } from '../../../contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, Eye, FileText } from 'lucide-react';
 import { AdvancedTable } from '../../../components/ui/Table';
 import { buttonClasses } from '../../../styles';
-
-interface Request {
-  id: string;
-  requestNumber: string;
-  requestType: string;
-  submissionDate: string;
-  status: 'pending' | 'approved' | 'rejected';
-}
+import { useMyRequestsData } from '../../../hooks';
 
 export const MyRequests: React.FC = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const isRTL = language === 'ar';
-
-  // Sample data - set to empty array [] for empty state
-  const requests: Request[] = [
-    {
-      id: '1',
-      requestNumber: 'REQ-2024-001',
-      requestType: 'طلب مباشرة عمل',
-      submissionDate: '2024-01-15',
-      status: 'pending',
-    },
-    {
-      id: '2',
-      requestNumber: 'REQ-2024-002',
-      requestType: 'طلب إجازة',
-      submissionDate: '2024-01-10',
-      status: 'approved',
-    },
-    {
-      id: '3',
-      requestNumber: 'REQ-2024-003',
-      requestType: 'طلب تجديد عقد',
-      submissionDate: '2024-01-05',
-      status: 'rejected',
-    },
-  ];
+  const { requests } = useMyRequestsData();
 
   const hasRequests = requests.length > 0;
 
