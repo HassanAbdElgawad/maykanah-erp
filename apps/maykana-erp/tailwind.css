@@ -314,6 +314,95 @@ html[dir='rtl'] td {
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
+    font-size: 16px;
+  }
+
+  /* أحجام الخطوط للعناوين */
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  h5 {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  h6 {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* أحجام الخطوط للفقرات والنصوص */
+  p {
+    font-size: 16px;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  /* أحجام الخطوط للأزرار */
+  button {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* أحجام الخطوط للإدخالات */
+  input,
+  textarea,
+  select {
+    font-size: 14px;
+  }
+
+  /* أحجام الخطوط للتسميات */
+  label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* أحجام الخطوط للروابط */
+  a {
+    font-size: 14px;
+  }
+
+  /* أحجام الخطوط للجداول */
+  table {
+    font-size: 14px;
+  }
+
+  th {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  td {
+    font-size: 14px;
+  }
+
+  /* أحجام الخطوط للقوائم */
+  ul,
+  ol {
+    font-size: 16px;
+  }
+
+  li {
+    font-size: 16px;
   }
 }
 

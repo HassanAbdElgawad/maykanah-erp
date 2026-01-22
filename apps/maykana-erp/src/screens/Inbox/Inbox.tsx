@@ -53,7 +53,8 @@ export const Inbox = (): JSX.Element => {
       subject: 'طلب شراء جديد - معدات مكتبية',
       subjectEn: 'New Purchase Request - Office Equipment',
       preview: 'السلام عليكم، أود تقديم طلب شراء جديد للمعدات المكتبية التالية...',
-      previewEn: 'Hello, I would like to submit a new purchase request for the following office equipment...',
+      previewEn:
+        'Hello, I would like to submit a new purchase request for the following office equipment...',
       body: `السلام عليكم ورحمة الله وبركاته،
 
 أود تقديم طلب شراء جديد للمعدات المكتبية التالية:
@@ -353,7 +354,8 @@ Thank you`,
       subject: 'دورة تدريبية جديدة',
       subjectEn: 'New Training Course',
       preview: 'تحية طيبة، يسرنا دعوتكم للتسجيل في الدورة التدريبية الجديدة...',
-      previewEn: 'Greetings, we are pleased to invite you to register for the new training course...',
+      previewEn:
+        'Greetings, we are pleased to invite you to register for the new training course...',
       body: `تحية طيبة،
 
 يسرنا دعوتكم للتسجيل في الدورة التدريبية الجديدة:
@@ -499,19 +501,17 @@ Management`,
     },
   ];
 
-  const filteredMessages = messages.filter(
-    (msg) => {
-      const query = searchQuery.toLowerCase();
-      return (
-        msg.sender.toLowerCase().includes(query) ||
-        msg.subject.toLowerCase().includes(query) ||
-        msg.preview.toLowerCase().includes(query) ||
-        (msg.senderEn && msg.senderEn.toLowerCase().includes(query)) ||
-        (msg.subjectEn && msg.subjectEn.toLowerCase().includes(query)) ||
-        (msg.previewEn && msg.previewEn.toLowerCase().includes(query))
-      );
-    }
-  );
+  const filteredMessages = messages.filter((msg) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      msg.sender.toLowerCase().includes(query) ||
+      msg.subject.toLowerCase().includes(query) ||
+      msg.preview.toLowerCase().includes(query) ||
+      (msg.senderEn && msg.senderEn.toLowerCase().includes(query)) ||
+      (msg.subjectEn && msg.subjectEn.toLowerCase().includes(query)) ||
+      (msg.previewEn && msg.previewEn.toLowerCase().includes(query))
+    );
+  });
 
   const handleReply = () => {
     console.log('Reply:', replyText);
@@ -560,19 +560,22 @@ Management`,
                 <div className="flex items-start gap-3">
                   {/* Avatar */}
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#093738] to-[#0d5556] flex items-center justify-center text-white font-semibold flex-shrink-0 font-['IBM_Plex_Sans_Arabic']">
-                    {(language === 'ar' ? message.sender : (message.senderEn || message.sender)).charAt(0)}
+                    {(language === 'ar'
+                      ? message.sender
+                      : message.senderEn || message.sender
+                    ).charAt(0)}
                   </div>
 
                   {/* Message Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <h3
+                      <h4
                         className={`font-semibold text-gray-900 truncate font-['IBM_Plex_Sans_Arabic'] ${
                           !message.isRead ? 'font-bold' : 'font-medium'
                         }`}
                       >
-                        {language === 'ar' ? message.sender : (message.senderEn || message.sender)}
-                      </h3>
+                        {language === 'ar' ? message.sender : message.senderEn || message.sender}
+                      </h4>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -594,14 +597,16 @@ Management`,
                         !message.isRead ? 'font-semibold text-gray-900' : 'text-gray-700'
                       }`}
                     >
-                      {language === 'ar' ? message.subject : (message.subjectEn || message.subject)}
+                      {language === 'ar' ? message.subject : message.subjectEn || message.subject}
                     </p>
                     <p className="text-xs text-gray-500 truncate font-['IBM_Plex_Sans_Arabic']">
-                      {language === 'ar' ? message.preview : (message.previewEn || message.preview)}
+                      {language === 'ar' ? message.preview : message.previewEn || message.preview}
                     </p>
                     <div className="flex items-center gap-2 mt-2">
                       <span className="text-xs text-gray-400 font-['IBM_Plex_Sans_Arabic']">
-                        {language === 'ar' ? message.timestamp : (message.timestampEn || message.timestamp)}
+                        {language === 'ar'
+                          ? message.timestamp
+                          : message.timestampEn || message.timestamp}
                       </span>
                       {message.hasAttachment && <Paperclip className="w-3 h-3 text-gray-400" />}
                       {!message.isRead && <div className="w-2 h-2 bg-blue-500 rounded-full" />}
@@ -652,15 +657,22 @@ Management`,
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold text-gray-900 mb-2 font-['IBM_Plex_Sans_Arabic']">
-                      {language === 'ar' ? selectedMessage.subject : (selectedMessage.subjectEn || selectedMessage.subject)}
+                      {language === 'ar'
+                        ? selectedMessage.subject
+                        : selectedMessage.subjectEn || selectedMessage.subject}
                     </h2>
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#093738] to-[#0d5556] flex items-center justify-center text-white font-semibold font-['IBM_Plex_Sans_Arabic']">
-                        {(language === 'ar' ? selectedMessage.sender : (selectedMessage.senderEn || selectedMessage.sender)).charAt(0)}
+                        {(language === 'ar'
+                          ? selectedMessage.sender
+                          : selectedMessage.senderEn || selectedMessage.sender
+                        ).charAt(0)}
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-gray-900 font-['IBM_Plex_Sans_Arabic']">
-                          {language === 'ar' ? selectedMessage.sender : (selectedMessage.senderEn || selectedMessage.sender)}
+                          {language === 'ar'
+                            ? selectedMessage.sender
+                            : selectedMessage.senderEn || selectedMessage.sender}
                         </p>
                         <p className="text-xs text-gray-500 font-['IBM_Plex_Sans_Arabic']">
                           {selectedMessage.senderEmail}
@@ -670,7 +682,9 @@ Management`,
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500 font-['IBM_Plex_Sans_Arabic']">
-                      {language === 'ar' ? selectedMessage.timestamp : (selectedMessage.timestampEn || selectedMessage.timestamp)}
+                      {language === 'ar'
+                        ? selectedMessage.timestamp
+                        : selectedMessage.timestampEn || selectedMessage.timestamp}
                     </span>
                     <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                       <Star
@@ -710,7 +724,9 @@ Management`,
               <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                 <div className="prose max-w-none">
                   <p className="text-gray-700 whitespace-pre-wrap font-['IBM_Plex_Sans_Arabic'] leading-relaxed">
-                    {language === 'ar' ? selectedMessage.body : (selectedMessage.bodyEn || selectedMessage.body)}
+                    {language === 'ar'
+                      ? selectedMessage.body
+                      : selectedMessage.bodyEn || selectedMessage.body}
                   </p>
                 </div>
 
@@ -759,10 +775,7 @@ Management`,
                   />
                   <div className="flex items-center justify-between">
                     <div className="flex gap-2">
-                      <button
-                        onClick={handleReply}
-                        className={buttonClasses.primary}
-                      >
+                      <button onClick={handleReply} className={buttonClasses.primary}>
                         <Send className="w-4 h-4 mr-2" />
                         <span>{t('inbox.send')}</span>
                       </button>
