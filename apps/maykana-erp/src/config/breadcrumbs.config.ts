@@ -8,8 +8,11 @@ export const breadcrumbRoutes = [
   { path: "/accounting/entries", label: "accounting.entries.title" },
   { path: "/accounting/entries/create", label: "accounting.entries.create_new" },
   { path: "/accounting/cash-custody", label: "accounting.cash_custody" },
-  { path: "/accounting/receipt-documents", label: "accounting.receipt_documents" },
-  { path: "/accounting/payment-documents", label: "accounting.payment_documents" },
+  { path: "/accounting/cash-custody/create", label: "accounting.cash_custody_create" },
+  { path: "/accounting/receipt-vouchers", label: "accounting.receipt_documents" },
+  { path: "/accounting/receipt-vouchers/create", label: "accounting.receipt_vouchers_create" },
+  { path: "/accounting/payment-vouchers", label: "accounting.payment_documents" },
+  { path: "/accounting/payment-vouchers/create", label: "accounting.payment_vouchers_create" },
   
   // Purchases Module
   { path: "/purchases", label: "sidebar.purchases" },

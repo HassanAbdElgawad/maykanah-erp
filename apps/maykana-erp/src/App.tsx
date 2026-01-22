@@ -2,6 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Accounting } from "./screens/Accounting";
 import { AccountingEntries } from "./screens/AccountingEntries";
 import { AccountingEntryForm } from "./screens/AccountingEntryForm";
+import { ReceiptVouchers, ReceiptVoucherForm } from "./screens/ReceiptVouchers";
+import { PaymentVouchers, PaymentVoucherForm } from "./screens/PaymentVouchers";
+import { CashCustody, CashCustodyForm } from "./screens/CashCustody";
 import { Purchases } from "./screens/Purchases";
 import { Suppliers } from "./screens/Suppliers";
 import { Sales } from "./screens/Sales";
@@ -91,6 +94,54 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AccountingEntryForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/accounting/receipt-vouchers",
+    element: (
+      <ProtectedRoute>
+        <ReceiptVouchers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/accounting/receipt-vouchers/create",
+    element: (
+      <ProtectedRoute>
+        <ReceiptVoucherForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/accounting/payment-vouchers",
+    element: (
+      <ProtectedRoute>
+        <PaymentVouchers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/accounting/payment-vouchers/create",
+    element: (
+      <ProtectedRoute>
+        <PaymentVoucherForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/accounting/cash-custody",
+    element: (
+      <ProtectedRoute>
+        <CashCustody />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/accounting/cash-custody/create",
+    element: (
+      <ProtectedRoute>
+        <CashCustodyForm />
       </ProtectedRoute>
     ),
   },

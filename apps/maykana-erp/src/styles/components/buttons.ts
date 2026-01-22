@@ -113,14 +113,14 @@ export const buttonStyles = {
 // Pre-composed button classes for common patterns
 export const buttonClasses = {
   // Primary buttons
-  primary: `${buttonStyles.base} bg-[#093738] hover:bg-[#0a4849] text-white h-[43px] px-[18px] py-[9px] text-xs shadow-[0px_4px_4px_#0000001a] rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl]`,
+  primary: `${buttonStyles.base} bg-[#093738] hover:bg-[#0a4849] text-white h-[43px] px-[18px] py-[9px] text-sm shadow-[0px_4px_4px_#0000001a] rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl]`,
   
   primarySm: `${buttonStyles.base} bg-[#093738] hover:bg-[#0a4849] text-white h-8 px-3 text-[11px] rounded-lg`,
   
   primaryLg: `${buttonStyles.base} bg-[#093738] hover:bg-[#0a4849] text-white h-10 px-6 text-sm rounded-lg`,
 
   // Secondary buttons
-  secondary: `${buttonStyles.base} bg-[#f8f8f8] hover:bg-gray-100 text-[#093738] border border-[#e2e2e2] h-[43px] px-[18px] py-[9px] text-xs rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl]`,
+  secondary: `${buttonStyles.base} bg-[#f8f8f8] hover:bg-gray-100 text-[#093738] border border-[#e2e2e2] h-[43px] px-[18px] py-[9px] text-sm rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] [direction:rtl]`,
 
   // Icon buttons
   icon: `${buttonStyles.base} h-9 w-9 p-0`,

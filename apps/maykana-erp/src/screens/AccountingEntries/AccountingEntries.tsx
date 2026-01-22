@@ -420,7 +420,7 @@ export const AccountingEntries = (): JSX.Element => {
                 className={`bg-white hover:bg-gray-50 px-[13px] py-[13px] h-[43px] rounded-lg gap-2 border transition-all ${showColumnsFilter ? 'border-[#093738] border-2' : 'border-[#e2e2e2]'} [font-family:'IBM_Plex_Sans_Arabic',Helvetica]`}
               >
                 <RowsIcon className="h-3.5 w-3.5" />
-                <span className="text-base">{t('common.show_hide_columns')}</span>
+                <span className="text-sm">{t('common.show_hide_columns')}</span>
               </Button>
 
               <EntriesFilters
@@ -443,7 +443,7 @@ export const AccountingEntries = (): JSX.Element => {
                 className={`bg-white hover:bg-gray-50 px-2.5 py-[13px] h-[43px] rounded-lg gap-[5px] border transition-all ${showExportOptions ? 'border-[#093738] border-2' : 'border-[#e2e2e2]'} [font-family:'IBM_Plex_Sans_Arabic',Helvetica]`}
               >
                 <Upload className="h-4 w-4" />
-                <span className="text-base">{t('common.export')}</span>
+                <span className="text-sm">{t('common.export')}</span>
               </Button>
 
               <ExportOptions
@@ -464,7 +464,7 @@ export const AccountingEntries = (): JSX.Element => {
                 className={`bg-white hover:bg-gray-50 px-2.5 py-3 h-[43px] rounded-lg gap-1.5 border transition-all ${showDateFilter ? 'border-[#093738] border-2' : 'border-[#e2e2e2]'} [font-family:'IBM_Plex_Sans_Arabic',Helvetica]`}
               >
                 <Filter className="h-[18px] w-[18px]" />
-                <span className="text-base">{t('common.filter')}</span>
+                <span className="text-sm">{t('common.filter')}</span>
               </Button>
 
               <DateRangeFilter

@@ -23,7 +23,7 @@ export const getAccountingCards = (t: (key: string) => string): AccountingCard[]
     icon: 'https://c.animaapp.com/mkd2vucjeF4nNd/img/vuesax-linear-money-recive.svg',
     bgColor: '#fffef5',
     iconColor: '#f9a825',
-    path: '',
+    path: '/accounting/cash-custody',
   },
   {
     title: t('accounting.receipt_documents'),
@@ -31,7 +31,7 @@ export const getAccountingCards = (t: (key: string) => string): AccountingCard[]
     icon: 'https://c.animaapp.com/mkd2vucjeF4nNd/img/vuesax-outline-receipt.svg',
     bgColor: '#f0faf9',
     iconColor: '#00897b',
-    path: '',
+    path: '/accounting/receipt-vouchers',
   },
   {
     title: t('accounting.payment_documents'),
@@ -39,6 +39,6 @@ export const getAccountingCards = (t: (key: string) => string): AccountingCard[]
     icon: 'https://c.animaapp.com/mkd2vucjeF4nNd/img/vuesax-outline-receipt-2.svg',
     bgColor: '#f0f7ff',
     iconColor: '#1976d2',
-    path: '',
+    path: '/accounting/payment-vouchers',
   },
 ];
