@@ -66,7 +66,7 @@ export const getSettingCards = (): SettingCard[] => [
     titleKey: 'settings.accounting.currencies',
     descriptionKey: 'settings.accounting.currencies_desc',
     icon: CoinsIcon,
-    path: '/settings/currencies',
+    path: '/settings/accounting/currencies',
     bgColor: '#D1FAE5',
     iconColor: '#10B981',
     module: 'accounting',
