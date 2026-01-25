@@ -35,7 +35,7 @@ import { TrialBalanceReport } from "./screens/ReportsPage/TrialBalanceReport";
 import { IncomeStatementReport } from "./screens/ReportsPage/IncomeStatementReport";
 import { TrialBalanceMovementReport } from "./screens/ReportsPage/TrialBalanceMovementReport";
 import { SettingsPage } from "./screens/SettingsPage";
-import { CompanySettings, ChartOfAccounts, AccountSettings, Currencies } from './screens/Settings';
+import { CompanySettings, ChartOfAccounts, AccountSettings, Currencies, TaxSettings, FiscalYear, AccountingPeriods, PaymentMethods, TermsConditions, CostCenters } from './screens/Settings';
 import { SupportPage } from "./screens/SupportPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
@@ -543,6 +543,54 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Currencies />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/tax-settings",
+    element: (
+      <ProtectedRoute>
+        <TaxSettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/fiscal-year",
+    element: (
+      <ProtectedRoute>
+        <FiscalYear />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/accounting-periods",
+    element: (
+      <ProtectedRoute>
+        <AccountingPeriods />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/payment-methods",
+    element: (
+      <ProtectedRoute>
+        <PaymentMethods />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/terms-conditions",
+    element: (
+      <ProtectedRoute>
+        <TermsConditions />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/cost-centers",
+    element: (
+      <ProtectedRoute>
+        <CostCenters />
       </ProtectedRoute>
     ),
   },

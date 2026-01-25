@@ -129,5 +129,11 @@ export const breadcrumbRoutes = [
   { path: "/settings/accounting/chart-of-accounts", label: "settings.accounting.chart_of_accounts" },
   { path: "/settings/accounting/account-settings", label: "settings.accounting.account_settings" },
   { path: "/settings/accounting/currencies", label: "settings.accounting.currencies" },
+  { path: "/settings/accounting/tax-settings", label: "settings.accounting.tax_settings" },
+  { path: "/settings/accounting/fiscal-year", label: "settings.accounting.fiscal_year" },
+  { path: "/settings/accounting/accounting-periods", label: "settings.accounting.accounting_periods" },
+  { path: "/settings/accounting/payment-methods", label: "settings.accounting.payment_methods" },
+  { path: "/settings/accounting/terms-conditions", label: "settings.accounting.terms_conditions" },
+  { path: "/settings/accounting/cost-centers", label: "settings.accounting.cost_centers" },
   { path: "/support", label: "sidebar.support" },
 ];

@@ -1,48 +1,43 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import { SideDrawer } from '../../components/ui/SideDrawer';
 import InitialFilters from '../../components/InitialFilters';
-import { Download, Filter, Plus, Search, MoreVertical, Settings, Save } from 'lucide-react';
+import { Download, Filter, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '../../styles';
 
-interface Currency {
+interface TermsCondition {
   id: string;
-  baseCurrency: string;
-  targetCurrency: string;
-  exchangeRate: number;
-  date: string;
+  name: string;
+  type: string;
+  details: string;
   isActive: boolean;
 }
 
-export const Currencies = (): JSX.Element => {
+export const TermsConditions = (): JSX.Element => {
   const { dir } = useLanguage();
 
-  const [currencies, setCurrencies] = useState<Currency[]>([
+  const [terms, setTerms] = useState<TermsCondition[]>([
     {
       id: '1',
-      baseCurrency: 'USD',
-      targetCurrency: 'SAR',
-      exchangeRate: 3.75,
-      date: '2024-07-03',
+      name: 'شرط المبيعات',
+      type: 'مشتريات',
+      details: 'تفاصيل شروط المبيعات هنا',
       isActive: true,
     },
     {
       id: '2',
-      baseCurrency: 'EUR',
-      targetCurrency: 'SAR',
-      exchangeRate: 4.4,
-      date: '2024-07-10',
+      name: 'شرط المشتريات',
+      type: 'مشتريات',
+      details: 'تفاصيل شروط المشتريات هنا',
       isActive: true,
     },
     {
       id: '3',
-      baseCurrency: 'GBP',
-      targetCurrency: 'SAR',
-      exchangeRate: 4.7,
-      date: '2024-07-17',
+      name: 'شرط العقود المشرية',
+      type: 'مشتريات',
+      details: 'تفاصيل شروط العقود المشرية هنا',
       isActive: false,
     },
   ]);
@@ -50,32 +45,31 @@ export const Currencies = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency | null>(null);
+  const [selectedTerm, setSelectedTerm] = useState<TermsCondition | null>(null);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
   const handleToggleActive = (id: string) => {
-    setCurrencies((prev) =>
-      prev.map((currency) =>
-        currency.id === id ? { ...currency, isActive: !currency.isActive } : currency
+    setTerms(prev =>
+      prev.map(term =>
+        term.id === id ? { ...term, isActive: !term.isActive } : term
       )
     );
   };
 
-  const handleEditCurrency = (currency: Currency) => {
-    setSelectedCurrency(currency);
+  const handleEditTerm = (term: TermsCondition) => {
+    setSelectedTerm(term);
     setIsEditModalOpen(true);
     setOpenMenuId(null);
   };
 
-  const toggleMenu = (currencyId: string) => {
-    setOpenMenuId(openMenuId === currencyId ? null : currencyId);
+  const toggleMenu = (termId: string) => {
+    setOpenMenuId(openMenuId === termId ? null : termId);
   };
 
-  const filteredCurrencies = currencies.filter(
-    (currency) =>
-      currency.baseCurrency.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      currency.targetCurrency.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      currency.exchangeRate.toString().includes(searchQuery)
+  const filteredTerms = terms.filter(term =>
+    term.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    term.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    term.details.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Close dropdown when clicking outside
@@ -105,7 +99,7 @@ export const Currencies = (): JSX.Element => {
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="ابحث من هنا (العب، سعر الصرف، ...)"
+                  placeholder="ابحث من هنا (اسم الشرط، نوع الشرط، تفاصيل الشرط...)"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full h-[38px] pr-9 pl-3 bg-white border border-[#e2e2e2] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica] focus:outline-none focus:ring-1 focus:ring-[#0c4749] focus:border-[#0c4749] text-right"
@@ -116,29 +110,19 @@ export const Currencies = (): JSX.Element => {
 
             {/* Action buttons */}
             <div className="flex gap-3">
-              <Button
-                variant="outline"
-                className="bg-white hover:bg-gray-50 px-3 py-2 h-[38px] rounded-lg border border-[#e2e2e2] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
-              >
-                <span>إظهار/إخفاء أعمدة</span>
-                <Settings className="h-3.5 w-3.5" />
-              </Button>
-
-              <Button
-                variant="outline"
-                className="bg-white hover:bg-gray-50 px-3 py-2 h-[38px] rounded-lg gap-2 border border-[#e2e2e2] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
+              <button
+                className="bg-white hover:bg-gray-50 px-3 py-2 h-[38px] rounded-lg border border-[#e2e2e2] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm flex items-center gap-2"
               >
                 <span>تصدير</span>
                 <Download className="h-3.5 w-3.5" />
-              </Button>
+              </button>
 
-              <Button
-                variant="outline"
-                className="bg-white hover:bg-gray-50 px-3 py-2 h-[38px] rounded-lg gap-2 border border-[#e2e2e2] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
+              <button
+                className="bg-white hover:bg-gray-50 px-3 py-2 h-[38px] rounded-lg gap-2 border border-[#e2e2e2] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm flex items-center"
               >
                 <span>فلاتر</span>
                 <Filter className="h-3.5 w-3.5" />
-              </Button>
+              </button>
 
               <button
                 className={buttonClasses.primary}
@@ -146,7 +130,7 @@ export const Currencies = (): JSX.Element => {
                 style={{ height: '38px', fontSize: '14px' }}
               >
                 <Plus className="h-3.5 w-3.5" />
-                إضافة جديد
+                إضافة شروط وأحكام
               </button>
             </div>
           </div>
@@ -154,21 +138,15 @@ export const Currencies = (): JSX.Element => {
 
         {/* Table Card */}
         <Card className="bg-white rounded-xl border border-[#e2e2e2]">
-          <div className="">
+          <div className="overflow-x-auto">
             <table className="w-full" dir={dir}>
               <thead>
                 <tr className="border-b border-[#e2e2e2]" style={{ backgroundColor: '#F1F5F980' }}>
                   <th className="px-6 py-4 text-right text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                    العملة الرئيسية
+                    اسم الشرط
                   </th>
                   <th className="px-6 py-4 text-right text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                    العملة المحول إليها
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                    سعر الصرف
-                  </th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                    التاريخ
+                    تفاصيل الشرط
                   </th>
                   <th className="px-6 py-4 text-center text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] w-[200px]">
                     الحالة
@@ -176,63 +154,55 @@ export const Currencies = (): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                {filteredCurrencies.map((currency) => (
+                {filteredTerms.map((term) => (
                   <tr
-                    key={currency.id}
+                    key={term.id}
                     className="border-b border-[#e2e2e2] hover:bg-gray-50 transition-colors bg-white"
                   >
                     <td className="px-6 py-4 text-sm text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                      {currency.baseCurrency}
+                      {term.name}
                     </td>
                     <td className="px-6 py-4 text-sm text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                      {currency.targetCurrency}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                      {currency.exchangeRate.toFixed(2)}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
-                      {currency.date}
+                      {term.details}
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-center gap-2">
                         {/* Status Toggle */}
                         <div className="inline-flex justify-between items-center gap-2 px-4 py-2 rounded-lg bg-[#F5F5F5] min-w-[140px]">
                           <button
-                            onClick={() => handleToggleActive(currency.id)}
+                            onClick={() => handleToggleActive(term.id)}
                             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                              currency.isActive ? 'bg-green-500' : 'bg-gray-300'
+                              term.isActive ? 'bg-green-500' : 'bg-gray-300'
                             }`}
                           >
                             <span
-                              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                                currency.isActive ? 'translate-x-[-4px]' : 'translate-x-[-22px]'
+                              className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
+                                term.isActive ? 'translate-x-[0]' : 'translate-x-[-22px]'
                               }`}
                             />
                           </button>
 
-                          <span
-                            className={`text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica] ${
-                              currency.isActive ? 'text-green-500' : 'text-red-500'
-                            }`}
-                          >
-                            {currency.isActive ? 'نشط' : 'غير نشط'}
+                          <span className={`text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica] ${
+                            term.isActive ? 'text-green-500' : 'text-red-500'
+                          }`}>
+                            {term.isActive ? 'نشط' : 'غير نشط'}
                           </span>
                         </div>
 
                         {/* More options button with dropdown */}
                         <div className="relative dropdown-menu-container">
                           <button
-                            onClick={() => toggleMenu(currency.id)}
+                            onClick={() => toggleMenu(term.id)}
                             className="p-1 hover:bg-gray-100 rounded transition-colors"
                             title="المزيد"
                           >
                             <MoreVertical className="w-4 h-4 text-[#093738]" />
                           </button>
-
-                          {openMenuId === currency.id && (
+                          
+                          {openMenuId === term.id && (
                             <div className="absolute left-0 top-full mt-1 w-32 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
                               <button
-                                onClick={() => handleEditCurrency(currency)}
+                                onClick={() => handleEditTerm(term)}
                                 className="w-full px-4 py-2 text-right text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                               >
                                 تعديل
@@ -250,11 +220,11 @@ export const Currencies = (): JSX.Element => {
         </Card>
       </div>
 
-      {/* Add Currency SideDrawer */}
+      {/* Add Terms & Conditions SideDrawer */}
       <SideDrawer
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
-        title="إضافة عملة جديدة"
+        title="إضافة الشروط والأحكام"
         footer={
           <div className="flex gap-3 justify-end">
             <button
@@ -275,11 +245,11 @@ export const Currencies = (): JSX.Element => {
         <div className="space-y-4">
           <div>
             <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-              العملة الرئيسية
+              اسم الشرط
             </label>
             <input
               type="text"
-              placeholder="مثال: USD"
+              placeholder="اسم الشرط هنا ..."
               className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
               dir="rtl"
             />
@@ -287,56 +257,47 @@ export const Currencies = (): JSX.Element => {
 
           <div>
             <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-              العملة المحول إليها
+              نوع الشرط
             </label>
-            <input
-              type="text"
-              placeholder="مثال: SAR"
+            <select
               className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
               dir="rtl"
-            />
+            >
+              <option value="">مشتريات</option>
+              <option value="purchases">مشتريات</option>
+              <option value="sales">مبيعات</option>
+            </select>
           </div>
 
           <div>
             <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-              سعر الصرف
+              تفاصيل الشرط
             </label>
-            <input
-              type="text"
-              placeholder="مثال: 3.75"
-              className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-              dir="rtl"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-              التاريخ
-            </label>
-            <input
-              type="date"
-              className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+            <textarea
+              placeholder="توضيح حقوق الملكية الفكرية للمحتوى الموجود على الموقع أو التطبيق"
+              rows={6}
+              className="w-full px-3 py-2 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica] resize-none"
               dir="rtl"
             />
           </div>
         </div>
       </SideDrawer>
 
-      {/* Edit Currency SideDrawer */}
+      {/* Edit Terms & Conditions SideDrawer */}
       <SideDrawer
-        isOpen={isEditModalOpen && selectedCurrency !== null}
+        isOpen={isEditModalOpen && selectedTerm !== null}
         onClose={() => {
           setIsEditModalOpen(false);
-          setSelectedCurrency(null);
+          setSelectedTerm(null);
           setOpenMenuId(null);
         }}
-        title="تعديل العملة"
+        title="تعديل الشروط والأحكام"
         footer={
           <div className="flex gap-3 justify-end">
             <button
               onClick={() => {
                 setIsEditModalOpen(false);
-                setSelectedCurrency(null);
+                setSelectedTerm(null);
                 setOpenMenuId(null);
               }}
               className="flex-1 px-4 py-2 h-[43px] max-w-[8rem] rounded-lg border border-[#e2e2e2] text-[#093738] hover:bg-gray-50 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
@@ -347,7 +308,7 @@ export const Currencies = (): JSX.Element => {
               className="flex-1 px-4 py-2 h-[43px] max-w-[8rem] rounded-lg bg-[#0c4749] hover:bg-[#093738] text-white transition-colors [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
               onClick={() => {
                 setIsEditModalOpen(false);
-                setSelectedCurrency(null);
+                setSelectedTerm(null);
                 setOpenMenuId(null);
               }}
             >
@@ -356,15 +317,15 @@ export const Currencies = (): JSX.Element => {
           </div>
         }
       >
-        {selectedCurrency && (
+        {selectedTerm && (
           <div className="space-y-4">
             <div>
               <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-                العملة الرئيسية
+                اسم الشرط
               </label>
               <input
                 type="text"
-                defaultValue={selectedCurrency.baseCurrency}
+                defaultValue={selectedTerm.name}
                 className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                 dir="rtl"
               />
@@ -372,36 +333,26 @@ export const Currencies = (): JSX.Element => {
 
             <div>
               <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-                العملة المحول إليها
+                نوع الشرط
               </label>
-              <input
-                type="text"
-                defaultValue={selectedCurrency.targetCurrency}
+              <select
+                defaultValue={selectedTerm.type}
                 className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                 dir="rtl"
-              />
+              >
+                <option value="مشتريات">مشتريات</option>
+                <option value="مبيعات">مبيعات</option>
+              </select>
             </div>
 
             <div>
               <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-                سعر الصرف
+                تفاصيل الشرط
               </label>
-              <input
-                type="text"
-                defaultValue={selectedCurrency.exchangeRate}
-                className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                dir="rtl"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm text-[#00000099] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] mb-1.5">
-                التاريخ
-              </label>
-              <input
-                type="date"
-                defaultValue={selectedCurrency.date}
-                className="w-full h-[45px] px-3 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              <textarea
+                defaultValue={selectedTerm.details}
+                rows={6}
+                className="w-full px-3 py-2 bg-white border border-[#cfcfcf] rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica] resize-none"
                 dir="rtl"
               />
             </div>
@@ -412,4 +363,4 @@ export const Currencies = (): JSX.Element => {
   );
 };
 
-export default Currencies;
+export default TermsConditions;
