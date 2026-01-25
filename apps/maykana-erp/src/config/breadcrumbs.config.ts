@@ -127,5 +127,6 @@ export const breadcrumbRoutes = [
   { path: "/settings/accounting", label: "sidebar.accounting" },
   { path: "/settings/accounting/company", label: "settings.accounting.company" },
   { path: "/settings/accounting/chart-of-accounts", label: "settings.accounting.chart_of_accounts" },
+  { path: "/settings/accounting/account-settings", label: "settings.accounting.account_settings" },
   { path: "/support", label: "sidebar.support" },
 ];

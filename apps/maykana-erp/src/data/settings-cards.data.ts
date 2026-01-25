@@ -56,7 +56,7 @@ export const getSettingCards = (): SettingCard[] => [
     titleKey: 'settings.accounting.account_settings',
     descriptionKey: 'settings.accounting.account_settings_desc',
     icon: SettingsIcon,
-    path: '/settings/account-settings',
+    path: '/settings/accounting/account-settings',
     bgColor: '#FEF3C7',
     iconColor: '#D97706',
     module: 'accounting',
