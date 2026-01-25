@@ -33,7 +33,6 @@ export const CostCenters = (): JSX.Element => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedCostCenter, setSelectedCostCenter] = useState<CostCenter | null>(null);
-  const [parentCenterForAdd, setParentCenterForAdd] = useState<string | null>(null);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 

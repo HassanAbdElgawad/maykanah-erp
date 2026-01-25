@@ -4,7 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import InitialFilters from '../../components/InitialFilters';
-import { Download, Filter, Save, Search, ChevronDown } from 'lucide-react';
+import { Download, Filter, Search, ChevronDown } from 'lucide-react';
 import { buttonClasses } from '../../styles';
 
 interface AccountSetting {
@@ -138,7 +138,7 @@ export const AccountSettings = (): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                {filteredSettings.map((setting, index) => (
+                {filteredSettings.map((setting) => (
                   <tr
                     key={setting.id}
                     className="border-b border-[#e2e2e2] hover:bg-gray-50 transition-colors bg-white"

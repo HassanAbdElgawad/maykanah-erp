@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
 import { SideDrawer } from '../../components/ui/SideDrawer';
 import InitialFilters from '../../components/InitialFilters';
-import { Download, Filter, Plus, Search, MoreVertical, Settings, Save } from 'lucide-react';
+import { Download, Filter, Plus, Search, MoreVertical, Settings } from 'lucide-react';
 import { buttonClasses } from '../../styles';
 
 interface Currency {

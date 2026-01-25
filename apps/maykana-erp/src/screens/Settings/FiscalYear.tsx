@@ -4,7 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Card } from '../../components/ui/card';
 import { SideDrawer } from '../../components/ui/SideDrawer';
 import InitialFilters from '../../components/InitialFilters';
-import { Download, Filter, Plus, Search, MoreVertical, Settings } from 'lucide-react';
+import { Download, Filter, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '../../styles';
 
 interface FiscalYear {
@@ -17,7 +17,7 @@ interface FiscalYear {
 export const FiscalYear = (): JSX.Element => {
   const { dir } = useLanguage();
 
-  const [fiscalYears, setFiscalYears] = useState<FiscalYear[]>([
+  const [fiscalYears] = useState<FiscalYear[]>([
     {
       id: '1',
       name: '2025',

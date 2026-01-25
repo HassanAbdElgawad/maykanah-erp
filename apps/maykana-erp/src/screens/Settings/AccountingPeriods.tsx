@@ -4,7 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Card } from '../../components/ui/card';
 import { SideDrawer } from '../../components/ui/SideDrawer';
 import InitialFilters from '../../components/InitialFilters';
-import { Download, Filter, Plus, Search, MoreVertical, Lock, LockOpen } from 'lucide-react';
+import { Download, Filter, Plus, Search, MoreVertical, LockOpen } from 'lucide-react';
 import { buttonClasses } from '../../styles';
 
 interface AccountingPeriod {
