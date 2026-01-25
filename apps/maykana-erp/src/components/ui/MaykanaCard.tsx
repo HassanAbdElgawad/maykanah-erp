@@ -53,14 +53,14 @@ export const MaykanaCard = React.forwardRef<HTMLDivElement, MaykanaCardProps>(
           <CardContent className="flex flex-col p-6 h-[92px]">
             <div className={`flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse justify-end' : 'justify-start'}`}>
               <div className="flex flex-col gap-1 flex-1 min-w-0">
-                <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#092e32] text-[0.8rem] truncate">
+                <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#092e32] text-[0.9rem] truncate">
                   {title}
                 </p>
                 <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-[#5f6c72] text-xs line-clamp-2">
                   {description}
                 </p>
               </div>
-              <div className={`flex items-center justify-center w-[53px] h-[53px] rounded-2xl flex-shrink-0`} style={{ backgroundColor: bgColor }}>
+              <div className={`flex items-center justify-center w-[50px] h-[50px] rounded-xl flex-shrink-0`} style={{ backgroundColor: bgColor }}>
                 {Icon && <Icon className="w-6 h-6 flex-shrink-0" style={{ color: iconColor }} />}
               </div>
             </div>

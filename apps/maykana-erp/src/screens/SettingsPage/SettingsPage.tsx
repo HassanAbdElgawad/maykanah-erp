@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
@@ -8,9 +8,13 @@ import { getSettingCards } from '../../data';
 export const SettingsPage = (): JSX.Element => {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const moduleParam = searchParams.get('module') || 'accounting';
   const [selectedModule, setSelectedModule] = useState(moduleParam);
+
+  // Completed cards list - cards that are finished
+  const completedCards = ['company'];
 
   useEffect(() => {
     setSelectedModule(moduleParam);
@@ -35,7 +39,7 @@ export const SettingsPage = (): JSX.Element => {
             bgColor={card.bgColor}
             iconColor={card.iconColor}
             onClick={() => handleCardClick(card.path)}
-            isActive={false}
+            isActive={location.pathname === card.path || completedCards.includes(card.id)}
             isClickable={true}
           />
         ))}

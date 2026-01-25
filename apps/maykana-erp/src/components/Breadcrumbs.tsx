@@ -22,6 +22,9 @@ export function Breadcrumbs() {
   
   // Check if we're in a specific accounting report page
   const isAccountingReportPage = location.pathname.startsWith('/reports/accounting/');
+  
+  // Check if we're in a specific accounting settings page
+  const isAccountingSettingsPage = location.pathname.startsWith('/settings/accounting/');
 
   // Get main modules (exclude Home and Inbox)
   const mainModules = sidebarMenuItems.filter(
@@ -133,7 +136,10 @@ export function Breadcrumbs() {
               to={
                 // إذا كان الـ breadcrumb هو "إدارة الحسابات" ونحن في صفحة تقارير محاسبية، نوجه إلى /reports?selected=accounting
                 crumb.label === 'sidebar.accounting' && location.pathname.startsWith('/reports/accounting') 
-                  ? '/reports?selected=accounting' 
+                  ? '/reports?selected=accounting'
+                // إذا كان الـ breadcrumb هو "إدارة الحسابات" ونحن في صفحة إعدادات محاسبية، نوجه إلى /settings?module=accounting
+                : crumb.label === 'sidebar.accounting' && location.pathname.startsWith('/settings/accounting')
+                  ? '/settings?module=accounting'
                   : crumb.href
               } 
               className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#093738] text-sm hover:underline whitespace-nowrap"
@@ -189,8 +195,8 @@ export function Breadcrumbs() {
         </span>
       )}
 
-      {/* Module Selector for Settings Page */}
-      {isSettingsPage && breadcrumbs.length === 1 && (
+      {/* Module Selector for Settings Page - Only show when on main settings page, not in specific module settings */}
+      {isSettingsPage && breadcrumbs.length === 1 && !isAccountingSettingsPage && (
         <span className="flex items-center gap-2">
           <ArrowIcon className="w-4 h-4 text-gray-500" />
           

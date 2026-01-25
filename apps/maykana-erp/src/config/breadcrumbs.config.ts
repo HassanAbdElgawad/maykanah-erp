@@ -124,5 +124,8 @@ export const breadcrumbRoutes = [
   { path: "/reports/accounting/trial-balance-movement", label: "reports.accounting.trial_balance_movement" },
   
   { path: "/settings", label: "sidebar.settings" },
+  { path: "/settings/accounting", label: "sidebar.accounting" },
+  { path: "/settings/accounting/company", label: "settings.accounting.company" },
+  { path: "/settings/accounting/chart-of-accounts", label: "settings.accounting.chart_of_accounts" },
   { path: "/support", label: "sidebar.support" },
 ];

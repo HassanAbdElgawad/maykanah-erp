@@ -35,6 +35,7 @@ import { TrialBalanceReport } from "./screens/ReportsPage/TrialBalanceReport";
 import { IncomeStatementReport } from "./screens/ReportsPage/IncomeStatementReport";
 import { TrialBalanceMovementReport } from "./screens/ReportsPage/TrialBalanceMovementReport";
 import { SettingsPage } from "./screens/SettingsPage";
+import { CompanySettings, ChartOfAccounts } from './screens/Settings';
 import { SupportPage } from "./screens/SupportPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
@@ -510,6 +511,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <SettingsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/company",
+    element: (
+      <ProtectedRoute>
+        <CompanySettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/chart-of-accounts",
+    element: (
+      <ProtectedRoute>
+        <ChartOfAccounts />
       </ProtectedRoute>
     ),
   },
