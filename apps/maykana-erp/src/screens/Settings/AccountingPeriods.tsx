@@ -155,7 +155,7 @@ export const AccountingPeriods = (): JSX.Element => {
 
         {/* Table Card */}
         <Card className="bg-white rounded-xl border border-[#e2e2e2]">
-          <div className="overflow-x-auto">
+          <div>
             <table className="w-full" dir={dir}>
               <thead>
                 <tr className="border-b border-[#e2e2e2]" style={{ backgroundColor: '#F1F5F980' }}>
@@ -168,9 +168,11 @@ export const AccountingPeriods = (): JSX.Element => {
                   <th className="px-6 py-4 text-right text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
                     نهاية الفترة المحاسبية
                   </th>
-                  <th className="px-6 py-4 text-start text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
                     إغلاق / فتح الفترة
                   </th>
+
+                  <th className="px-6 py-4 text-start text-sm font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"></th>
                 </tr>
               </thead>
               <tbody>
@@ -213,7 +215,12 @@ export const AccountingPeriods = (): JSX.Element => {
                             />
                           </button>
                         </div>
+                      </div>
+                    </td>
 
+                    <td className="px-6 py-4 text-sm text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] border-l border-[#F1F5F9]">
+                      {/* More options button with dropdown */}
+                      <div className="relative dropdown-menu-container flex justify-end gap-4">
                         {/* Lock Icon if has linked data */}
                         {period.hasLinkedData && (
                           <div
@@ -223,28 +230,24 @@ export const AccountingPeriods = (): JSX.Element => {
                             <LockOpen className="w-5 h-5" />
                           </div>
                         )}
+                        <button
+                          onClick={() => toggleMenu(period.id)}
+                          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                          title="المزيد"
+                        >
+                          <MoreVertical className="w-4 h-4 text-[#093738]" />
+                        </button>
 
-                        {/* More options button with dropdown */}
-                        <div className="relative dropdown-menu-container">
-                          <button
-                            onClick={() => toggleMenu(period.id)}
-                            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
-                            title="المزيد"
-                          >
-                            <MoreVertical className="w-4 h-4 text-[#093738]" />
-                          </button>
-
-                          {openMenuId === period.id && (
-                            <div className="absolute left-0 top-full mt-1 w-32 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                              <button
-                                onClick={() => handleEditPeriod(period)}
-                                className="w-full px-4 py-2 text-right text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                              >
-                                تعديل
-                              </button>
-                            </div>
-                          )}
-                        </div>
+                        {openMenuId === period.id && (
+                          <div className="absolute left-0 top-full mt-1 w-32 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                            <button
+                              onClick={() => handleEditPeriod(period)}
+                              className="w-full px-4 py-2 text-right text-sm text-gray-700 hover:bg-gray-100 transition-colors rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                            >
+                              تعديل
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </td>
                   </tr>
