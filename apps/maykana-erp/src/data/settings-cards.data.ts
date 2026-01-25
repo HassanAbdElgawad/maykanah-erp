@@ -86,7 +86,7 @@ export const getSettingCards = (): SettingCard[] => [
     titleKey: 'settings.accounting.budget',
     descriptionKey: 'settings.accounting.budget_desc',
     icon: TrendingUpIcon,
-    path: '/settings/budget',
+    path: '/settings/accounting/budget',
     bgColor: '#E0E7FF',
     iconColor: '#6366F1',
     module: 'accounting',

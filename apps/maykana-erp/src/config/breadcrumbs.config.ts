@@ -135,5 +135,8 @@ export const breadcrumbRoutes = [
   { path: "/settings/accounting/payment-methods", label: "settings.accounting.payment_methods" },
   { path: "/settings/accounting/terms-conditions", label: "settings.accounting.terms_conditions" },
   { path: "/settings/accounting/cost-centers", label: "settings.accounting.cost_centers" },
+  { path: "/settings/accounting/budget", label: "settings.accounting.budget" },
+  { path: "/settings/accounting/budget/create", label: "budget.create_new" },
+  { path: "/settings/accounting/budget/edit/:id", label: "budget.edit" },
   { path: "/support", label: "sidebar.support" },
 ];

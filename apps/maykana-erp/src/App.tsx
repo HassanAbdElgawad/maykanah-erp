@@ -35,7 +35,7 @@ import { TrialBalanceReport } from "./screens/ReportsPage/TrialBalanceReport";
 import { IncomeStatementReport } from "./screens/ReportsPage/IncomeStatementReport";
 import { TrialBalanceMovementReport } from "./screens/ReportsPage/TrialBalanceMovementReport";
 import { SettingsPage } from "./screens/SettingsPage";
-import { CompanySettings, ChartOfAccounts, AccountSettings, Currencies, TaxSettings, FiscalYear, AccountingPeriods, PaymentMethods, TermsConditions, CostCenters } from './screens/Settings';
+import { CompanySettings, ChartOfAccounts, AccountSettings, Currencies, TaxSettings, FiscalYear, AccountingPeriods, PaymentMethods, TermsConditions, CostCenters, Budget, BudgetForm, BudgetEditForm } from './screens/Settings';
 import { SupportPage } from "./screens/SupportPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
@@ -591,6 +591,30 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <CostCenters />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/budget",
+    element: (
+      <ProtectedRoute>
+        <Budget />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/budget/create",
+    element: (
+      <ProtectedRoute>
+        <BudgetForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/accounting/budget/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <BudgetEditForm />
       </ProtectedRoute>
     ),
   },
