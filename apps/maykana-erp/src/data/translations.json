@@ -583,6 +583,10 @@
       "min30": "منذ 30 دقيقة",
       "hour1": "منذ ساعة"
     },
+    "budget": {
+      "create_new": "إنشاء موازنة جديدة",
+      "edit": "تعديل الموازنة"
+    },
     "departments": {
       "purchases": "المشتريات",
       "sales": "المبيعات",
@@ -1469,6 +1473,10 @@
       "min15": "15 minutes ago",
       "min30": "30 minutes ago",
       "hour1": "1 hour ago"
+    },
+    "budget": {
+      "create_new": "Create New Budget",
+      "edit": "Edit Budget"
     },
     "departments": {
       "purchases": "Purchases",
