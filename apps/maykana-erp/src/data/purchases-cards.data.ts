@@ -37,7 +37,7 @@ export const getPurchaseCards = (t: (key: string) => string): PurchaseCard[] => 
     icon: ReceiptText,
     bgColor: '#fffef5',
     iconColor: '#f9a825',
-    path: '/purchases/purchase-requests',
+    path: '/purchases/material-requests',
   },
   {
     id: 'price-quote-requests',
