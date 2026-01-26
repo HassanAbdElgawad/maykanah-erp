@@ -8,7 +8,7 @@ interface InitialFiltersProps {
 const InitialFilters: React.FC<InitialFiltersProps> = ({ children }) => {
   return (
     <Card className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
-      <div className="flex items-center justify-between px-6 py-4">
+      <div className="flex items-center justify-between px-4 py-2.5">
         {children}
       </div>
     </Card>

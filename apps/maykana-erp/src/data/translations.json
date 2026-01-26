@@ -339,14 +339,16 @@
         "supplier_performance_desc": "تقييم أداء الموردين من حيث التسليم والجودة والأسعار"
       },
       "sales": {
-        "sales_analysis": "تحليلات المبيعات",
-        "sales_analysis_desc": "تحليل مفصل لعمليات البيع حسب العميل، والفترة، والمنتج",
-        "customer_accounts": "حسابات العملاء",
-        "customer_accounts_desc": "تفاصيل العملاء وأرصدتهم والمدفوعات المستحقة",
-        "sales_representatives": "أداء مندوبي المبيعات",
-        "sales_representatives_desc": "تقرير أداء مندوبي المبيعات والمبيعات المحققة",
-        "sales_performance": "تقارير المبيعات",
-        "sales_performance_desc": "تقرير عدد وقيمة المبيعات عبر الفترات الزمنية"
+        "representatives_commission": "عمولة المناديب",
+        "representatives_commission_desc": "قيمة العمولات المستحقة لكل مندوب",
+        "inactive_customers": "العملاء الغير نشطين",
+        "inactive_customers_desc": "يعرض العملاء الذين لم تتم معهم عمليات بيع",
+        "customer_acquisition": "ولاء واكتساب العملاء",
+        "customer_acquisition_desc": "احتفاظ الشركة بعملائها الحاليين و الجدد",
+        "customer_aging": "تقارير أعمار الديون للعملاء",
+        "customer_aging_desc": "المبالغ المستحقة لشركة على العملاء مقسّمة",
+        "sales_analysis": "تقارير المبيعات",
+        "sales_analysis_desc": "تطور عدد وقيمة الفواتير عبر الفترات الزمنية"
       },
       "warehouses": {
         "inventory_status": "تقرير إصدية الخزون",
@@ -1007,14 +1009,16 @@
         "supplier_performance_desc": "Evaluate supplier performance in terms of delivery, quality and prices"
       },
       "sales": {
-        "sales_analysis": "Sales Analysis",
-        "sales_analysis_desc": "Detailed analysis of sales operations by customer, period, and product",
-        "customer_accounts": "Customer Accounts",
-        "customer_accounts_desc": "Customer details, balances and due payments",
-        "sales_representatives": "Sales Representatives Performance",
-        "sales_representatives_desc": "Sales representatives performance report and achieved sales",
-        "sales_performance": "Sales Reports",
-        "sales_performance_desc": "Report on number and value of sales over time periods"
+        "representatives_commission": "Sales Representatives Commission",
+        "representatives_commission_desc": "Commission amounts due for each sales representative",
+        "inactive_customers": "Inactive Customers",
+        "inactive_customers_desc": "Shows customers with no recent sales transactions",
+        "customer_acquisition": "Customer Loyalty & Acquisition",
+        "customer_acquisition_desc": "Company retention of existing and new customers",
+        "customer_aging": "Customer Aging Report",
+        "customer_aging_desc": "Amounts due to the company from customers, divided by age",
+        "sales_analysis": "Sales Reports",
+        "sales_analysis_desc": "Development of number and value of invoices over time periods"
       },
       "warehouses": {
         "inventory_status": "Inventory Status Report",

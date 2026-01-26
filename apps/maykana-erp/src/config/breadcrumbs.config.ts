@@ -134,6 +134,13 @@ export const breadcrumbRoutes = [
   { path: "/reports/accounting/income-statement", label: "reports.accounting.income_statement" },
   { path: "/reports/accounting/trial-balance-movement", label: "reports.accounting.trial_balance_movement" },
   
+  { path: "/reports/sales", label: "sidebar.sales" },
+  { path: "/reports/sales/representatives-commission", label: "reports.sales.representatives_commission" },
+  { path: "/reports/sales/inactive-customers", label: "reports.sales.inactive_customers" },
+  { path: "/reports/sales/customer-acquisition", label: "reports.sales.customer_acquisition" },
+  { path: "/reports/sales/customer-aging", label: "reports.sales.customer_aging" },
+  { path: "/reports/sales/sales-analysis", label: "reports.sales.sales_analysis" },
+  
   { path: "/settings", label: "sidebar.settings" },
   { path: "/settings/accounting", label: "sidebar.accounting" },
   { path: "/settings/accounting/company", label: "settings.accounting.company" },

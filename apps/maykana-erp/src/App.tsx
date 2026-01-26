@@ -40,6 +40,7 @@ import { FinancialPositionReport } from "./screens/ReportsPage/FinancialPosition
 import { TrialBalanceReport } from "./screens/ReportsPage/TrialBalanceReport";
 import { IncomeStatementReport } from "./screens/ReportsPage/IncomeStatementReport";
 import { TrialBalanceMovementReport } from "./screens/ReportsPage/TrialBalanceMovementReport";
+import { SalesRepresentativeCommissionReport, InactiveCustomersReport, CustomerAcquisitionReport, SalesReport, CustomerAgingReport } from "./screens/SalesReports";
 import { SettingsPage } from "./screens/SettingsPage";
 import { CompanySettings, ChartOfAccounts, AccountSettings, Currencies, TaxSettings, FiscalYear, AccountingPeriods, PaymentMethods, TermsConditions, CostCenters, Budget, BudgetForm, BudgetEditForm } from './screens/Settings';
 import { SupportPage } from "./screens/SupportPage";
@@ -189,6 +190,46 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <TrialBalanceMovementReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/sales/representatives-commission",
+    element: (
+      <ProtectedRoute>
+        <SalesRepresentativeCommissionReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/sales/inactive-customers",
+    element: (
+      <ProtectedRoute>
+        <InactiveCustomersReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/sales/customer-acquisition",
+    element: (
+      <ProtectedRoute>
+        <CustomerAcquisitionReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/sales/sales-analysis",
+    element: (
+      <ProtectedRoute>
+        <SalesReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/sales/customer-aging",
+    element: (
+      <ProtectedRoute>
+        <CustomerAgingReport />
       </ProtectedRoute>
     ),
   },

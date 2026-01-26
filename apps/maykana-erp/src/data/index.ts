@@ -26,6 +26,7 @@ export * from './sales-invoices.data';
 export * from './delivery-notes.data';
 export * from './price-lists.data';
 export * from './sales-representatives.data';
+export * from './sales-reports.data';
 export * from './settings.data';
 export * from './settings-cards.data';
 export * from './strategy-cards.data';
