@@ -37,6 +37,17 @@ export const breadcrumbRoutes = [
   { path: "/sales/customers", label: "sales.customers" },
   { path: "/sales/customers/add", label: "customers.add_customer" },
   { path: "/sales/customers/edit/:id", label: "customers.edit_customer" },
+  { path: "/sales/price-quotes/add", label: "price_quotes.add_price_quote" },
+  { path: "/sales/price-quotes/edit/:id", label: "price_quotes.edit_price_quote" },
+  { path: "/sales/work-orders/add", label: "work_orders.add_work_order" },
+  { path: "/sales/work-orders/edit/:id", label: "work_orders.edit_work_order" },
+  { path: "/sales/sales-invoices/add", label: "sales_invoices.add_sales_invoice" },
+  { path: "/sales/sales-invoices/edit/:id", label: "sales_invoices.edit_sales_invoice" },
+  { path: "/sales/delivery-notes/add", label: "delivery_notes.add_delivery_note" },
+  { path: "/sales/delivery-notes/edit/:id", label: "delivery_notes.edit_delivery_note" },
+  { path: "/sales/price-lists/add", label: "price_lists.add_price_list" },
+  { path: "/sales/price-lists/edit/:id", label: "price_lists.edit_price_list" },
+  { path: "/sales/sales-representatives", label: "sales.sales_representatives" },
   
   // Competitions Module
   { path: "/competitions", label: "sidebar.competitions" },

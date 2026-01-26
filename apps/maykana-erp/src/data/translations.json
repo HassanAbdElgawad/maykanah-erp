@@ -136,9 +136,9 @@
       "title": "إدارة المبيعات",
       "customers": "العملاء",
       "customers_desc": "بيانات العملاء وتفاصيل التواصل والدفع.",
-      "price_quotes": "عرض السعر",
+      "price_quotes": "عروض الأسعار",
       "price_quotes_desc": "عرض مبدئي يوضح الأسعار قبل تأكيد البيع.",
-      "work_orders": "أمر العمل",
+      "work_orders": "أوامر التوريد",
       "work_orders_desc": "تنفيذ الطلب وتحويله للتسليم أو الفاتورة",
       "sales_invoices": "فاتورة مبيعات",
       "sales_invoices_desc": "المستند المالي لتحصيل المبلغ من العميل",
@@ -150,6 +150,30 @@
       "price_lists_desc": "تحديد أسعار البيع حسب النوع أو العميل.",
       "sales_representatives": "مندوبي المبيعات",
       "sales_representatives_desc": "إدارة بيانات المندوبين وعمولاتهم."
+    },
+    "price_quotes": {
+      "add_price_quote": "عرض سعر جديد",
+      "edit_price_quote": "تعديل عرض سعر"
+    },
+    "work_orders": {
+      "add_work_order": "أمر توريد جديد",
+      "edit_work_order": "تعديل أمر توريد"
+    },
+    "sales_invoices": {
+      "add_sales_invoice": "فاتورة مبيعات جديدة",
+      "edit_sales_invoice": "تعديل فاتورة مبيعات"
+    },
+    "delivery_notes": {
+      "add_delivery_note": "سند تسليم جديد",
+      "edit_delivery_note": "تعديل سند تسليم"
+    },
+    "price_lists": {
+      "add_price_list": "قائمة أسعار جديدة",
+      "edit_price_list": "تعديل قائمة أسعار"
+    },
+    "sales_representatives": {
+      "add_representative": "إضافة مندوب جديد",
+      "edit_representative": "تعديل مندوب"
     },
     "competitions": {
       "title": "إدارة المنافسات",
@@ -1215,6 +1239,30 @@
       "price_lists_desc": "Set sales prices by type or customer.",
       "sales_representatives": "Sales Representatives",
       "sales_representatives_desc": "Manage representatives data and commissions."
+    },
+    "price_quotes": {
+      "add_price_quote": "Add Price Quote",
+      "edit_price_quote": "Edit Price Quote"
+    },
+    "work_orders": {
+      "add_work_order": "Add Work Order",
+      "edit_work_order": "Edit Work Order"
+    },
+    "sales_invoices": {
+      "add_sales_invoice": "Add Sales Invoice",
+      "edit_sales_invoice": "Edit Sales Invoice"
+    },
+    "delivery_notes": {
+      "add_delivery_note": "Add Delivery Note",
+      "edit_delivery_note": "Edit Delivery Note"
+    },
+    "price_lists": {
+      "add_price_list": "Add Price List",
+      "edit_price_list": "Edit Price List"
+    },
+    "sales_representatives": {
+      "add_representative": "Add Sales Representative",
+      "edit_representative": "Edit Sales Representative"
     },
     "competitions": {
       "title": "Competitions Management",

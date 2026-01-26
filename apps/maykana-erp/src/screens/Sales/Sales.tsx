@@ -21,8 +21,8 @@ export const Sales = (): JSX.Element => {
             bgColor={card.bgColor}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'customers'}
-            isClickable={card.id === 'customers'}
+            isActive={card.id === 'customers' || card.id === 'price-quotes' || card.id === 'work-orders' || card.id === 'sales-invoices' || card.id === 'delivery-notes' || card.id === 'price-lists' || card.id === 'sales-representatives'}
+            isClickable={card.id === 'customers' || card.id === 'price-quotes' || card.id === 'work-orders' || card.id === 'sales-invoices' || card.id === 'delivery-notes' || card.id === 'price-lists' || card.id === 'sales-representatives'}
           />
         ))}
       </div>

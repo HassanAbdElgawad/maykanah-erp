@@ -9,6 +9,12 @@ import { Purchases } from "./screens/Purchases";
 import { Suppliers } from "./screens/Suppliers";
 import { Sales } from "./screens/Sales";
 import { Customers, AddEditCustomer } from "./screens/Customers";
+import { PriceQuotes, AddEditPriceQuote } from "./screens/PriceQuotes";
+import { WorkOrders, AddEditWorkOrder } from "./screens/WorkOrders";
+import { SalesInvoices, AddEditSalesInvoice } from "./screens/SalesInvoices";
+import { DeliveryNotes, AddEditDeliveryNote } from "./screens/DeliveryNotes";
+import { PriceLists, AddEditPriceList } from "./screens/PriceLists";
+import { SalesRepresentatives } from "./screens/SalesRepresentatives";
 import { Competitions } from "./screens/Competitions";
 import { VendorQualification, AddEditVendorQualification } from "./screens/VendorQualification";
 import { Assets } from "./screens/Assets";
@@ -231,6 +237,134 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEditCustomer />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/price-quotes",
+    element: (
+      <ProtectedRoute>
+        <PriceQuotes />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/price-quotes/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditPriceQuote />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/price-quotes/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditPriceQuote />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/work-orders",
+    element: (
+      <ProtectedRoute>
+        <WorkOrders />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/work-orders/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditWorkOrder />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/work-orders/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditWorkOrder />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/sales-invoices",
+    element: (
+      <ProtectedRoute>
+        <SalesInvoices />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/sales-invoices/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditSalesInvoice />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/sales-invoices/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditSalesInvoice />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/delivery-notes",
+    element: (
+      <ProtectedRoute>
+        <DeliveryNotes />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/delivery-notes/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditDeliveryNote />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/delivery-notes/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditDeliveryNote />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/price-lists",
+    element: (
+      <ProtectedRoute>
+        <PriceLists />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/price-lists/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditPriceList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/price-lists/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditPriceList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sales/sales-representatives",
+    element: (
+      <ProtectedRoute>
+        <SalesRepresentatives />
       </ProtectedRoute>
     ),
   },
