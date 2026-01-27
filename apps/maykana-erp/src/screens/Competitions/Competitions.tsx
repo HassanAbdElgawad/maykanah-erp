@@ -22,8 +22,8 @@ export const Competitions: React.FC = () => {
             bgColor={card.color}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications'}
-            isClickable={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications'}
+            isActive={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications' || card.id === 'committee-formation' || card.id === 'evaluation-criteria' || card.id === 'competition-launch' || card.id === 'competition-extension' || card.id === 'receive-offers' || card.id === 'open-offers' || card.id === 'offers-inspection' || card.id === 'award' || card.id === 'award-confirmation'}
+            isClickable={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications' || card.id === 'committee-formation' || card.id === 'evaluation-criteria' || card.id === 'competition-launch' || card.id === 'competition-extension' || card.id === 'receive-offers' || card.id === 'open-offers' || card.id === 'offers-inspection' || card.id === 'award' || card.id === 'award-confirmation'}
           />
         ))}
       </div>

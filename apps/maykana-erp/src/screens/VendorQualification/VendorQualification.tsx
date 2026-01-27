@@ -54,7 +54,7 @@ export const VendorQualification = () => {
             <Button
               onClick={() => setShowFilters(!showFilters)}
               variant="outline"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg"
+              className="flex items-center gap-2 px-4 h-[43px] rounded-lg"
             >
               <SlidersHorizontal className="w-4 h-4" />
               {t('customers.filter')}

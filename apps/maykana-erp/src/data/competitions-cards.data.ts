@@ -31,7 +31,7 @@ export interface CompetitionCard {
 export const getCompetitionCards = (): CompetitionCard[] => [
   {
     id: 'vendor-qualification',
-    titleKey: 'competitions.vendor_qualification',
+    titleKey: 'competitions.vendor_qualification.title',
     descKey: 'competitions.vendor_qualification_desc',
     icon: CheckCircle,
     color: '#f5faf5',
@@ -40,7 +40,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'vendor-users',
-    titleKey: 'competitions.vendor_users',
+    titleKey: 'competitions.vendor_users.title',
     descKey: 'competitions.vendor_users_desc',
     icon: Users,
     color: '#f0f7ff',
@@ -49,7 +49,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'vendor-notifications',
-    titleKey: 'competitions.vendor_notifications',
+    titleKey: 'competitions.vendor_notifications.title',
     descKey: 'competitions.vendor_notifications_desc',
     icon: Send,
     color: '#fff9f0',
@@ -58,7 +58,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'committee-formation',
-    titleKey: 'competitions.committee_formation',
+    titleKey: 'competitions.committee_formation.title',
     descKey: 'competitions.committee_formation_desc',
     icon: Users,
     color: '#fef5f8',
@@ -67,7 +67,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'evaluation-criteria',
-    titleKey: 'competitions.evaluation_criteria',
+    titleKey: 'competitions.evaluation_criteria.title',
     descKey: 'competitions.evaluation_criteria_desc',
     icon: FileText,
     color: '#fef5f8',
@@ -76,7 +76,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'competition-launch',
-    titleKey: 'competitions.competition_launch',
+    titleKey: 'competitions.competition_launch.title',
     descKey: 'competitions.competition_launch_desc',
     icon: Send,
     color: '#f0f7ff',
@@ -85,7 +85,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'competition-extension',
-    titleKey: 'competitions.competition_extension',
+    titleKey: 'competitions.competition_extension.title',
     descKey: 'competitions.competition_extension_desc',
     icon: Settings,
     color: '#faf6fb',
@@ -94,7 +94,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'receive-offers',
-    titleKey: 'competitions.receive_offers',
+    titleKey: 'competitions.receive_offers.title',
     descKey: 'competitions.receive_offers_desc',
     icon: Inbox,
     color: '#fffef5',
@@ -103,7 +103,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'open-offers',
-    titleKey: 'competitions.open_offers',
+    titleKey: 'competitions.open_offers.title',
     descKey: 'competitions.open_offers_desc',
     icon: FileCheck,
     color: '#f0faf9',
@@ -112,7 +112,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'offers-inspection',
-    titleKey: 'competitions.offers_inspection',
+    titleKey: 'competitions.offers_inspection.title',
     descKey: 'competitions.offers_inspection_desc',
     icon: Eye,
     color: '#f0faf9',
@@ -121,7 +121,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'award',
-    titleKey: 'competitions.award',
+    titleKey: 'competitions.award.title',
     descKey: 'competitions.award_desc',
     icon: Trophy,
     color: '#fffef5',
@@ -130,7 +130,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'award-confirmation',
-    titleKey: 'competitions.award_confirmation',
+    titleKey: 'competitions.award_confirmation.title',
     descKey: 'competitions.award_confirmation_desc',
     icon: Award,
     color: '#f5faf5',

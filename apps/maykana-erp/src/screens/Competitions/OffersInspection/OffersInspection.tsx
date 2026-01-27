@@ -8,66 +8,66 @@ import { Label } from '../../../components/ui/label';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { buttonClasses } from '../../../styles';
 
-interface VendorNotification {
+interface OffersInspectionData {
   id: string;
-  supplierName: string;
-  notificationTitle: string;
-  notificationNumber: string;
-  notificationDate: string;
-  notificationDetails: string;
-  notificationType: string;
+  competitionTitle: string;
+  supplierNumber: string;
+  supplierType: string;
+  project: string;
+  supplierNumber2: string;
+  competitionNumber: string;
 }
 
-export function VendorNotifications() {
+export function OffersInspection() {
   const navigate = useNavigate();
   const { t, dir } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
 
   const handleCreateNew = () => {
-    navigate('/competitions/vendor-notifications/add');
+    navigate('/competitions/offers-inspection/add');
   };
 
   const handleEdit = (id: string) => {
-    navigate(`/competitions/vendor-notifications/edit/${id}`);
+    navigate(`/competitions/offers-inspection/edit/${id}`);
   };
 
-  const mockData: VendorNotification[] = [
+  const mockData: OffersInspectionData[] = [
     {
       id: '1',
-      supplierName: 'أحمد عبد السلام',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '2522169654126',
-      notificationDate: '2023-12-9',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      competitionTitle: 'أحمد عبد السلام',
+      supplierNumber: '2522169654126',
+      supplierType: 'جهة حكومية',
+      project: 'مشروع معين',
+      supplierNumber2: '2023-12-9',
+      competitionNumber: '252111373734',
     },
     {
       id: '2',
-      supplierName: 'عمر السعيد',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '2511685255556',
-      notificationDate: '2023-2-20',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      competitionTitle: 'عمر السعيد',
+      supplierNumber: '2511685255556',
+      supplierType: 'جهة حكومية',
+      project: 'مشروع معين',
+      supplierNumber2: '2023-2-20',
+      competitionNumber: '25211737311',
     },
     {
       id: '3',
-      supplierName: 'يوسف الحجار',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '251165552256',
-      notificationDate: '2023-2-15',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      competitionTitle: 'يوسف الحجار',
+      supplierNumber: '251165552256',
+      supplierType: 'جهة حكومية',
+      project: 'مشروع معين',
+      supplierNumber2: '2023-2-15',
+      competitionNumber: '25211363463411',
     },
     {
       id: '4',
-      supplierName: 'خالد فؤاد',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '2511636985216',
-      notificationDate: '2020-2-10',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      competitionTitle: 'خالد فؤاد',
+      supplierNumber: '2511636985216',
+      supplierType: 'جهة حكومية',
+      project: 'مشروع معين',
+      supplierNumber2: '2020-2-10',
+      competitionNumber: '25211163463',
     },
   ];
 
@@ -75,7 +75,7 @@ export function VendorNotifications() {
     {
       icon: Pencil,
       label: t('common.edit'),
-      onClick: (row: VendorNotification) => handleEdit(row.id),
+      onClick: (row: OffersInspectionData) => handleEdit(row.id),
       color: 'blue' as const,
     },
   ];
@@ -98,7 +98,7 @@ export function VendorNotifications() {
               </button>
             </div>
             <h1 className="text-xl font-medium text-gray-900">
-              {t('vendor_notifications.title')}
+              {t('competitions.offers_inspection.title')}
             </h1>
           </div>
 
@@ -127,7 +127,7 @@ export function VendorNotifications() {
               onClick={handleCreateNew}
               className={buttonClasses.primary}
             >
-              {t('vendor_notifications.add_new')}
+              {t('competitions.offers_inspection.add_new')}
             </button>
           </div>
         </div>
@@ -138,19 +138,39 @@ export function VendorNotifications() {
             <div className="grid grid-cols-4 gap-4">
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('vendor_notifications.supplier_name')}
+                  {t('competitions.offers_inspection.competition_title')}
+                </Label>
+                <input
+                  type="text"
+                  placeholder={t('competitions.offers_inspection.competition_title')}
+                  className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white"
+                />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <Label className="text-sm font-medium text-gray-700">
+                  {t('competitions.offers_inspection.supplier_type')}
                 </Label>
                 <select className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white">
-                  <option>{t('vendor_notifications.supplier_name')}</option>
+                  <option>{t('competitions.offers_inspection.supplier_type')}</option>
                 </select>
               </div>
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('vendor_notifications.notification_type')}
+                  {t('competitions.offers_inspection.project')}
                 </Label>
                 <select className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white">
-                  <option>{t('vendor_notifications.notification_type')}</option>
+                  <option>{t('competitions.offers_inspection.project')}</option>
                 </select>
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <Label className="text-sm font-medium text-gray-700">
+                  {t('competitions.offers_inspection.competition_number')}
+                </Label>
+                <input
+                  type="text"
+                  placeholder={t('competitions.offers_inspection.competition_number')}
+                  className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white"
+                />
               </div>
             </div>
           </div>
@@ -162,28 +182,28 @@ export function VendorNotifications() {
             data={mockData}
             columns={[
               {
-                key: 'supplierName',
-                label: t('vendor_notifications.supplier_name'),
+                key: 'competitionTitle',
+                label: t('competitions.offers_inspection.competition_title'),
               },
               {
-                key: 'notificationTitle',
-                label: t('vendor_notifications.notification_title'),
+                key: 'supplierNumber',
+                label: t('competitions.offers_inspection.supplier_number'),
               },
               {
-                key: 'notificationNumber',
-                label: t('vendor_notifications.notification_number'),
+                key: 'supplierType',
+                label: t('competitions.offers_inspection.supplier_type'),
               },
               {
-                key: 'notificationDate',
-                label: t('vendor_notifications.notification_date'),
+                key: 'project',
+                label: t('competitions.offers_inspection.project'),
               },
               {
-                key: 'notificationDetails',
-                label: t('vendor_notifications.notification_details'),
+                key: 'supplierNumber2',
+                label: t('competitions.offers_inspection.supplier_number'),
               },
               {
-                key: 'notificationType',
-                label: t('vendor_notifications.notification_type'),
+                key: 'competitionNumber',
+                label: t('competitions.offers_inspection.competition_number'),
               },
             ]}
             actions={actionButtons}
@@ -193,7 +213,7 @@ export function VendorNotifications() {
         {/* Pagination */}
         <div className="flex items-center justify-between px-8 py-4">
           <Button variant="outline" className="px-6 py-2 border-[#e7e7e7]">
-            {t('vendor_notifications.previous')}
+            {t('competitions.offers_inspection.previous')}
           </Button>
 
           <div className="flex items-center gap-3">
@@ -230,7 +250,7 @@ export function VendorNotifications() {
           </div>
 
           <Button variant="outline" className="px-6 py-2 border-[#e7e7e7]">
-            {t('vendor_notifications.next')}
+            {t('competitions.offers_inspection.next')}
           </Button>
         </div>
       </div>

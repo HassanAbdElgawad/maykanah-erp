@@ -20,6 +20,15 @@ import { Competitions } from "./screens/Competitions";
 import { VendorQualification, AddEditVendorQualification } from "./screens/VendorQualification";
 import { VendorUsers, AddEditVendorUser } from "./screens/Competitions/VendorUsers";
 import { VendorNotifications, AddEditVendorNotification } from "./screens/Competitions/VendorNotifications";
+import { CommitteeFormation, AddEditCommitteeFormation } from "./screens/Competitions/CommitteeFormation";
+import { EvaluationCriteria, AddEditEvaluationCriteria } from "./screens/Competitions/EvaluationCriteria";
+import { CompetitionLaunch, AddEditCompetitionLaunch } from "./screens/Competitions/CompetitionLaunch";
+import { CompetitionExtension, AddEditCompetitionExtension } from "./screens/Competitions/CompetitionExtension";
+import { ReceiveOffers, AddEditReceiveOffers } from "./screens/Competitions/ReceiveOffers";
+import { OpenOffers, AddEditOpenOffers } from "./screens/Competitions/OpenOffers";
+import { OffersInspection, AddEditOffersInspection } from "./screens/Competitions/OffersInspection";
+import { Award, AddEditAward } from "./screens/Competitions/Award";
+import { AwardConfirmation, AddEditAwardConfirmation } from "./screens/Competitions/AwardConfirmation";
 import { Assets } from "./screens/Assets";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
@@ -505,6 +514,222 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEditVendorNotification />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/committee-formation",
+    element: (
+      <ProtectedRoute>
+        <CommitteeFormation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/committee-formation/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditCommitteeFormation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/committee-formation/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditCommitteeFormation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/evaluation-criteria",
+    element: (
+      <ProtectedRoute>
+        <EvaluationCriteria />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/evaluation-criteria/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditEvaluationCriteria />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/evaluation-criteria/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditEvaluationCriteria />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/competition-launch",
+    element: (
+      <ProtectedRoute>
+        <CompetitionLaunch />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/competition-launch/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditCompetitionLaunch />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/competition-launch/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditCompetitionLaunch />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/competition-extension",
+    element: (
+      <ProtectedRoute>
+        <CompetitionExtension />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/competition-extension/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditCompetitionExtension />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/competition-extension/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditCompetitionExtension />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/receive-offers",
+    element: (
+      <ProtectedRoute>
+        <ReceiveOffers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/receive-offers/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditReceiveOffers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/receive-offers/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditReceiveOffers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/open-offers",
+    element: (
+      <ProtectedRoute>
+        <OpenOffers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/open-offers/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditOpenOffers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/open-offers/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditOpenOffers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/offers-inspection",
+    element: (
+      <ProtectedRoute>
+        <OffersInspection />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/offers-inspection/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditOffersInspection />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/offers-inspection/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditOffersInspection />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/award",
+    element: (
+      <ProtectedRoute>
+        <Award />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/award/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditAward />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/award/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditAward />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/award-confirmation",
+    element: (
+      <ProtectedRoute>
+        <AwardConfirmation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/award-confirmation/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditAwardConfirmation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/award-confirmation/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditAwardConfirmation />
       </ProtectedRoute>
     ),
   },

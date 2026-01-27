@@ -8,66 +8,66 @@ import { Label } from '../../../components/ui/label';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { buttonClasses } from '../../../styles';
 
-interface VendorNotification {
+interface CommitteeFormation {
   id: string;
-  supplierName: string;
-  notificationTitle: string;
-  notificationNumber: string;
-  notificationDate: string;
-  notificationDetails: string;
-  notificationType: string;
+  name: string;
+  registrationNumber: string;
+  vendorType: string;
+  nationality: string;
+  commercialRegister: string;
+  accountNumber: string;
 }
 
-export function VendorNotifications() {
+export function CommitteeFormation() {
   const navigate = useNavigate();
   const { t, dir } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
 
   const handleCreateNew = () => {
-    navigate('/competitions/vendor-notifications/add');
+    navigate('/competitions/committee-formation/add');
   };
 
   const handleEdit = (id: string) => {
-    navigate(`/competitions/vendor-notifications/edit/${id}`);
+    navigate(`/competitions/committee-formation/edit/${id}`);
   };
 
-  const mockData: VendorNotification[] = [
+  const mockData: CommitteeFormation[] = [
     {
       id: '1',
-      supplierName: 'أحمد عبد السلام',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '2522169654126',
-      notificationDate: '2023-12-9',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      name: 'أحمد عبد السلام',
+      registrationNumber: '2522169654126',
+      vendorType: 'حرية حكومية',
+      nationality: 'حرية حكومية',
+      commercialRegister: '2023-12-9',
+      accountNumber: '25211137373734',
     },
     {
       id: '2',
-      supplierName: 'عمر السعيد',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '2511685255556',
-      notificationDate: '2023-2-20',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      name: 'عمر السعيد',
+      registrationNumber: '2511685255556',
+      vendorType: 'حرية حكومية',
+      nationality: 'حرية حكومية',
+      commercialRegister: '2023-2-20',
+      accountNumber: '25211737311',
     },
     {
       id: '3',
-      supplierName: 'يوسف الحجار',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '251165552256',
-      notificationDate: '2023-2-15',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      name: 'يوسف الحجار',
+      registrationNumber: '251165552256',
+      vendorType: 'حرية حكومية',
+      nationality: 'حرية حكومية',
+      commercialRegister: '2023-2-15',
+      accountNumber: '25211363463411',
     },
     {
       id: '4',
-      supplierName: 'خالد فؤاد',
-      notificationTitle: 'عنوان الإشعار',
-      notificationNumber: '2511636985216',
-      notificationDate: '2020-2-10',
-      notificationDetails: 'رقم الإشعار',
-      notificationType: 'حرية حكومية',
+      name: 'خالد فؤاد',
+      registrationNumber: '2511636985216',
+      vendorType: 'حرية حكومية',
+      nationality: 'حرية حكومية',
+      commercialRegister: '2020-2-10',
+      accountNumber: '25211163463',
     },
   ];
 
@@ -75,7 +75,7 @@ export function VendorNotifications() {
     {
       icon: Pencil,
       label: t('common.edit'),
-      onClick: (row: VendorNotification) => handleEdit(row.id),
+      onClick: (row: CommitteeFormation) => handleEdit(row.id),
       color: 'blue' as const,
     },
   ];
@@ -98,7 +98,7 @@ export function VendorNotifications() {
               </button>
             </div>
             <h1 className="text-xl font-medium text-gray-900">
-              {t('vendor_notifications.title')}
+              {t('committee_formation.title')}
             </h1>
           </div>
 
@@ -127,7 +127,7 @@ export function VendorNotifications() {
               onClick={handleCreateNew}
               className={buttonClasses.primary}
             >
-              {t('vendor_notifications.add_new')}
+              {t('committee_formation.add_new')}
             </button>
           </div>
         </div>
@@ -138,18 +138,18 @@ export function VendorNotifications() {
             <div className="grid grid-cols-4 gap-4">
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('vendor_notifications.supplier_name')}
+                  {t('committee_formation.name')}
                 </Label>
                 <select className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white">
-                  <option>{t('vendor_notifications.supplier_name')}</option>
+                  <option>{t('committee_formation.name')}</option>
                 </select>
               </div>
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('vendor_notifications.notification_type')}
+                  {t('committee_formation.vendor_type')}
                 </Label>
                 <select className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white">
-                  <option>{t('vendor_notifications.notification_type')}</option>
+                  <option>{t('committee_formation.vendor_type')}</option>
                 </select>
               </div>
             </div>
@@ -162,28 +162,28 @@ export function VendorNotifications() {
             data={mockData}
             columns={[
               {
-                key: 'supplierName',
-                label: t('vendor_notifications.supplier_name'),
+                key: 'name',
+                label: t('committee_formation.name'),
               },
               {
-                key: 'notificationTitle',
-                label: t('vendor_notifications.notification_title'),
+                key: 'registrationNumber',
+                label: t('committee_formation.registration_number'),
               },
               {
-                key: 'notificationNumber',
-                label: t('vendor_notifications.notification_number'),
+                key: 'vendorType',
+                label: t('committee_formation.vendor_type'),
               },
               {
-                key: 'notificationDate',
-                label: t('vendor_notifications.notification_date'),
+                key: 'nationality',
+                label: t('committee_formation.nationality'),
               },
               {
-                key: 'notificationDetails',
-                label: t('vendor_notifications.notification_details'),
+                key: 'commercialRegister',
+                label: t('committee_formation.commercial_register'),
               },
               {
-                key: 'notificationType',
-                label: t('vendor_notifications.notification_type'),
+                key: 'accountNumber',
+                label: t('committee_formation.account_number'),
               },
             ]}
             actions={actionButtons}
@@ -193,7 +193,7 @@ export function VendorNotifications() {
         {/* Pagination */}
         <div className="flex items-center justify-between px-8 py-4">
           <Button variant="outline" className="px-6 py-2 border-[#e7e7e7]">
-            {t('vendor_notifications.previous')}
+            {t('committee_formation.previous')}
           </Button>
 
           <div className="flex items-center gap-3">
@@ -230,7 +230,7 @@ export function VendorNotifications() {
           </div>
 
           <Button variant="outline" className="px-6 py-2 border-[#e7e7e7]">
-            {t('vendor_notifications.next')}
+            {t('committee_formation.next')}
           </Button>
         </div>
       </div>
