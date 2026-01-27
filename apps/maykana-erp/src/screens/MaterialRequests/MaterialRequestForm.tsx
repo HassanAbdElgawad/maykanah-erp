@@ -379,20 +379,20 @@ export const MaterialRequestForm = (): JSX.Element => {
         </div>
 
         {/* Footer Actions */}
-        <div className="flex items-center justify-start gap-3">
-          <Button
-            onClick={handleCancel}
-            className="h-10 px-5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
-          >
-            إلغاء
-          </Button>
-          <Button
-            onClick={handleSave}
-            className="h-10 px-5 bg-[#093738] hover:bg-[#093738]/90 text-white rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
-          >
-            حفظ الطلب
-          </Button>
-        </div>
+        {/* <div className="flex items-center justify-start gap-3"> */}
+        {/*   <Button */}
+        {/*     onClick={handleCancel} */}
+        {/*     className="h-10 px-5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm" */}
+        {/*   > */}
+        {/*     إلغاء */}
+        {/*   </Button> */}
+        {/*   <Button */}
+        {/*     onClick={handleSave} */}
+        {/*     className="h-10 px-5 bg-[#093738] hover:bg-[#093738]/90 text-white rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm" */}
+        {/*   > */}
+        {/*     حفظ الطلب */}
+        {/*   </Button> */}
+        {/* </div> */}
 
         {/* Material Search Modal */}
         {showMaterialSearch && (

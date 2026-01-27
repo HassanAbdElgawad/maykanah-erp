@@ -458,24 +458,9 @@ export const MaterialRequests = (): JSX.Element => {
                       className="border-gray-300"
                     />
                   </th>
-                  {visibleColumns.includes('costCenter') && (
+                  {visibleColumns.includes('requestNumber') && (
                     <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      مركز تكلفة
-                    </th>
-                  )}
-                  {visibleColumns.includes('department') && (
-                    <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      القسم/المشروع
-                    </th>
-                  )}
-                  {visibleColumns.includes('requestType') && (
-                    <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      غرض الطلب
-                    </th>
-                  )}
-                  {visibleColumns.includes('requiredByDate') && (
-                    <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      مطلوب بتاريخ
+                      رقم
                     </th>
                   )}
                   {visibleColumns.includes('requestDate') && (
@@ -483,9 +468,24 @@ export const MaterialRequests = (): JSX.Element => {
                       تاريخ الطلب
                     </th>
                   )}
-                  {visibleColumns.includes('requestNumber') && (
+                  {visibleColumns.includes('requiredByDate') && (
                     <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                      رقم
+                      مطلوب بتاريخ
+                    </th>
+                  )}
+                  {visibleColumns.includes('requestType') && (
+                    <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                      غرض الطلب
+                    </th>
+                  )}
+                  {visibleColumns.includes('department') && (
+                    <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                      القسم/المشروع
+                    </th>
+                  )}
+                  {visibleColumns.includes('costCenter') && (
+                    <th className="px-4 py-3 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                      مركز تكلفة
                     </th>
                   )}
                   <th className="px-4 py-3 text-center text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] w-16">
@@ -506,24 +506,9 @@ export const MaterialRequests = (): JSX.Element => {
                         className="border-gray-300"
                       />
                     </td>
-                    {visibleColumns.includes('costCenter') && (
-                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {request.costCenter}
-                      </td>
-                    )}
-                    {visibleColumns.includes('department') && (
-                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {request.department}
-                      </td>
-                    )}
-                    {visibleColumns.includes('requestType') && (
-                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {request.requestType}
-                      </td>
-                    )}
-                    {visibleColumns.includes('requiredByDate') && (
-                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {request.requiredByDate}
+                    {visibleColumns.includes('requestNumber') && (
+                      <td className="px-4 py-3 text-right text-sm text-[#093738] font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                        {request.requestNumber}
                       </td>
                     )}
                     {visibleColumns.includes('requestDate') && (
@@ -531,9 +516,24 @@ export const MaterialRequests = (): JSX.Element => {
                         {request.requestDate}
                       </td>
                     )}
-                    {visibleColumns.includes('requestNumber') && (
-                      <td className="px-4 py-3 text-right text-sm text-[#093738] font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                        {request.requestNumber}
+                    {visibleColumns.includes('requiredByDate') && (
+                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                        {request.requiredByDate}
+                      </td>
+                    )}
+                    {visibleColumns.includes('requestType') && (
+                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                        {request.requestType}
+                      </td>
+                    )}
+                    {visibleColumns.includes('department') && (
+                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                        {request.department}
+                      </td>
+                    )}
+                    {visibleColumns.includes('costCenter') && (
+                      <td className="px-4 py-3 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                        {request.costCenter}
                       </td>
                     )}
                     {/* Actions Column */}
