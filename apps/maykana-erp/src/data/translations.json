@@ -398,12 +398,10 @@
         "approval_workflow_desc": "القواعد الثابتة للسياسات والإجراءات المطبقة."
       },
       "sales": {
-        "customer_categories": "إعدادات المواقع",
-        "customer_categories_desc": "الإعدادات التي تحكم في أنشطة أوامر البيع.",
-        "sales_settings": "قالب الضرائب على المشتريات",
-        "sales_settings_desc": "نموذج محتوى يحتوي على سعر الضريبة.",
-        "pricing_rules": "إعدادات الموارد",
-        "pricing_rules_desc": "إعدادات الضريبة على المشتريات، والمبيعات."
+        "sales_settings": "إعدادات المبيعات",
+        "sales_settings_desc": "الإعدادات التي تتحكم في إنشاء أوامر المبيعات",
+        "terms_template": "قالب الشروط والأحكام",
+        "terms_template_desc": "النصوص القانونية والإدارية"
       },
       "assets": {
         "asset_categories": "فئات الأصول",
@@ -1068,12 +1066,10 @@
         "approval_workflow_desc": "Fixed rules for applied policies and procedures."
       },
       "sales": {
-        "customer_categories": "Location Settings",
-        "customer_categories_desc": "Settings governing sales order activities.",
-        "sales_settings": "Tax Template on Purchases",
-        "sales_settings_desc": "Content template containing tax rate.",
-        "pricing_rules": "Resource Settings",
-        "pricing_rules_desc": "Tax settings on purchases and sales."
+        "sales_settings": "Sales Settings",
+        "sales_settings_desc": "Settings that control the creation of sales orders",
+        "terms_template": "Terms and Conditions Template",
+        "terms_template_desc": "Legal and administrative texts"
       },
       "assets": {
         "asset_categories": "Asset Categories",

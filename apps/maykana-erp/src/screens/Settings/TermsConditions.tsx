@@ -3,6 +3,7 @@ import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Card } from '../../components/ui/card';
 import { SideDrawer } from '../../components/ui/SideDrawer';
+import { TogglerWithLabel } from '../../components/ui/TogglerWithLabel';
 import InitialFilters from '../../components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '../../styles';
@@ -168,26 +169,10 @@ export const TermsConditions = (): JSX.Element => {
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-center gap-2">
                         {/* Status Toggle */}
-                        <div className="inline-flex justify-between items-center gap-2 px-4 py-2 rounded-lg bg-[#F5F5F5] min-w-[140px]">
-                          <button
-                            onClick={() => handleToggleActive(term.id)}
-                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                              term.isActive ? 'bg-green-500' : 'bg-gray-300'
-                            }`}
-                          >
-                            <span
-                              className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
-                                term.isActive ? 'translate-x-[0]' : 'translate-x-[-22px]'
-                              }`}
-                            />
-                          </button>
-
-                          <span className={`text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica] ${
-                            term.isActive ? 'text-green-500' : 'text-red-500'
-                          }`}>
-                            {term.isActive ? 'نشط' : 'غير نشط'}
-                          </span>
-                        </div>
+                        <TogglerWithLabel
+                          isActive={term.isActive}
+                          onToggle={() => handleToggleActive(term.id)}
+                        />
 
                         {/* More options button with dropdown */}
                         <div className="relative dropdown-menu-container">

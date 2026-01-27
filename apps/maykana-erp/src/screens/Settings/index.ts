@@ -11,3 +11,5 @@ export { CostCenters } from './CostCenters';
 export { Budget } from './Budget';
 export { BudgetForm } from './BudgetForm';
 export { BudgetEditForm } from './BudgetEditForm';
+export { SalesSettings } from './SalesSettings';
+export { TermsTemplate } from './TermsTemplate';

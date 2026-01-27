@@ -16,12 +16,20 @@ export function Breadcrumbs() {
   // Get selected module from URL or default to accounting
   const getSelectedModuleFromUrl = () => {
     const params = new URLSearchParams(location.search);
-    const selected = params.get('selected');
+    // For Settings page, use 'module' parameter, for Reports use 'selected'
+    const moduleParam = params.get('module');
+    const selectedParam = params.get('selected');
+    const paramValue = moduleParam || selectedParam;
     
-    if (selected === 'accounting') return 'sidebar.accounting';
-    if (selected === 'sales') return 'sidebar.sales';
-    if (selected === 'purchases') return 'sidebar.purchases';
-    if (selected === 'warehouses') return 'sidebar.warehouses';
+    if (paramValue === 'accounting') return 'sidebar.accounting';
+    if (paramValue === 'sales') return 'sidebar.sales';
+    if (paramValue === 'purchases') return 'sidebar.purchases';
+    if (paramValue === 'warehouses') return 'sidebar.warehouses';
+    if (paramValue === 'workflow-engine' || paramValue === 'workflow') return 'sidebar.workflow';
+    if (paramValue === 'assets') return 'sidebar.assets';
+    if (paramValue === 'hr') return 'sidebar.hr';
+    if (paramValue === 'strategy') return 'sidebar.strategy';
+    if (paramValue === 'competitions') return 'sidebar.competitions';
     
     return 'sidebar.accounting'; // default
   };
@@ -40,8 +48,9 @@ export function Breadcrumbs() {
   const isSettingsPage = location.pathname === '/settings' || location.pathname.startsWith('/settings/');
   
   // Check if we're in a specific module reports/settings page (not the main page)
-  const isInSpecificReportModule = location.pathname.split('/').length > 3 && location.pathname.startsWith('/reports/');
-  const isInSpecificSettingsModule = location.pathname.split('/').length > 3 && location.pathname.startsWith('/settings/');
+  // For settings: /settings/accounting/company has length 4, so > 3 means we're in a sub-page
+  const isInSpecificReportModule = location.pathname.split('/').filter(Boolean).length > 2 && location.pathname.startsWith('/reports/');
+  const isInSpecificSettingsModule = location.pathname.split('/').filter(Boolean).length > 2 && location.pathname.startsWith('/settings/');
 
   // Get main modules (exclude Home and Inbox)
   const mainModules = sidebarMenuItems.filter(
@@ -160,6 +169,9 @@ export function Breadcrumbs() {
                 // إذا كان الـ breadcrumb هو وحدة ونحن في صفحة إعدادات، نوجه إلى /settings?module=module
                 : (crumb.label === 'sidebar.accounting' || crumb.label === 'sidebar.sales' || crumb.label === 'sidebar.purchases' || crumb.label === 'sidebar.warehouses') && location.pathname.startsWith('/settings/')
                   ? `/settings?module=${crumb.href.split('/').pop()}`
+                // إذا كان "الإعدادات" ونحن في صفحة إعدادات فرعية، نرجع للصفحة الرئيسية مع الوحدة الحالية
+                : crumb.label === 'sidebar.settings' && isInSpecificSettingsModule
+                  ? `/settings?module=${location.pathname.split('/')[2]}`
                   : crumb.href
               } 
               className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#093738] text-sm hover:underline whitespace-nowrap"

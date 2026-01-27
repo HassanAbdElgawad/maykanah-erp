@@ -42,7 +42,7 @@ import { IncomeStatementReport } from "./screens/ReportsPage/IncomeStatementRepo
 import { TrialBalanceMovementReport } from "./screens/ReportsPage/TrialBalanceMovementReport";
 import { SalesRepresentativeCommissionReport, InactiveCustomersReport, CustomerAcquisitionReport, SalesReport, CustomerAgingReport } from "./screens/SalesReports";
 import { SettingsPage } from "./screens/SettingsPage";
-import { CompanySettings, ChartOfAccounts, AccountSettings, Currencies, TaxSettings, FiscalYear, AccountingPeriods, PaymentMethods, TermsConditions, CostCenters, Budget, BudgetForm, BudgetEditForm } from './screens/Settings';
+import { CompanySettings, ChartOfAccounts, AccountSettings, Currencies, TaxSettings, FiscalYear, AccountingPeriods, PaymentMethods, TermsConditions, CostCenters, Budget, BudgetForm, BudgetEditForm, SalesSettings, TermsTemplate } from './screens/Settings';
 import { SupportPage } from "./screens/SupportPage";
 import { ComingSoon } from "./screens/ComingSoon";
 import { ErrorPage } from "./screens/ErrorPage";
@@ -790,6 +790,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <BudgetEditForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/sales/sales-settings",
+    element: (
+      <ProtectedRoute>
+        <SalesSettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/settings/sales/terms-template",
+    element: (
+      <ProtectedRoute>
+        <TermsTemplate />
       </ProtectedRoute>
     ),
   },
