@@ -21,8 +21,8 @@ export const Purchases = (): JSX.Element => {
             bgColor={card.bgColor}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'suppliers'}
-            isClickable={card.id === 'suppliers'}
+            isActive={card.id === 'suppliers' || card.id === 'purchase-requests'}
+            isClickable={card.id === 'suppliers' || card.id === 'purchase-requests'}
           />
         ))}
       </div>

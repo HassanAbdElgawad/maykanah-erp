@@ -7,6 +7,7 @@ import { PaymentVouchers, PaymentVoucherForm } from "./screens/PaymentVouchers";
 import { CashCustody, CashCustodyForm } from "./screens/CashCustody";
 import { Purchases } from "./screens/Purchases";
 import { Suppliers } from "./screens/Suppliers";
+import { MaterialRequests, MaterialRequestForm } from "./screens/MaterialRequests";
 import { Sales } from "./screens/Sales";
 import { Customers, AddEditCustomer } from "./screens/Customers";
 import { PriceQuotes, AddEditPriceQuote } from "./screens/PriceQuotes";
@@ -246,6 +247,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Suppliers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/purchases/material-requests",
+    element: (
+      <ProtectedRoute>
+        <MaterialRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/purchases/material-requests/create",
+    element: (
+      <ProtectedRoute>
+        <MaterialRequestForm />
       </ProtectedRoute>
     ),
   },

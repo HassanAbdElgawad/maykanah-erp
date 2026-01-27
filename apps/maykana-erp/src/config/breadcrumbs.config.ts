@@ -17,6 +17,8 @@ export const breadcrumbRoutes = [
   // Purchases Module
   { path: "/purchases", label: "sidebar.purchases" },
   { path: "/purchases/suppliers", label: "purchases.suppliers" },
+  { path: "/purchases/material-requests", label: "purchases.purchase_requests" },
+  { path: "/purchases/material-requests/create", label: "purchases.create_material_request" },
   { path: "/purchases/purchase-requests", label: "purchases.purchase_requests" },
   { path: "/purchases/price-quote-requests", label: "purchases.price_quote_requests" },
   { path: "/purchases/supplier-price-quotes", label: "purchases.supplier_price_quotes" },
