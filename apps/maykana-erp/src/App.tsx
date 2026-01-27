@@ -18,6 +18,8 @@ import { PriceLists, AddEditPriceList } from "./screens/PriceLists";
 import { SalesRepresentatives } from "./screens/SalesRepresentatives";
 import { Competitions } from "./screens/Competitions";
 import { VendorQualification, AddEditVendorQualification } from "./screens/VendorQualification";
+import { VendorUsers, AddEditVendorUser } from "./screens/Competitions/VendorUsers";
+import { VendorNotifications, AddEditVendorNotification } from "./screens/Competitions/VendorNotifications";
 import { Assets } from "./screens/Assets";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
@@ -455,6 +457,54 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEditVendorQualification />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-users",
+    element: (
+      <ProtectedRoute>
+        <VendorUsers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-users/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditVendorUser />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-users/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditVendorUser />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-notifications",
+    element: (
+      <ProtectedRoute>
+        <VendorNotifications />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-notifications/add",
+    element: (
+      <ProtectedRoute>
+        <AddEditVendorNotification />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/vendor-notifications/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AddEditVendorNotification />
       </ProtectedRoute>
     ),
   },

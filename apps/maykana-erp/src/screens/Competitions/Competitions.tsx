@@ -22,8 +22,8 @@ export const Competitions: React.FC = () => {
             bgColor={card.color}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'vendor-qualification'}
-            isClickable={card.id === 'vendor-qualification'}
+            isActive={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications'}
+            isClickable={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications'}
           />
         ))}
       </div>
