@@ -38,6 +38,7 @@ import { BankGuarantees, BankGuaranteesForm } from "./screens/Competitions/BankG
 import { Assets } from "./screens/Assets";
 import { AssetMovements, AssetMovementsForm } from "./screens/Assets/AssetMovements";
 import { AssetDetail } from "./screens/Assets/AssetManagement";
+import { AssetValueAdjustment } from "./screens/Assets/AssetValueAdjustment";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
@@ -930,6 +931,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Maintenance />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/asset-value-adjustment",
+    element: (
+      <ProtectedRoute>
+        <AssetValueAdjustment />
       </ProtectedRoute>
     ),
   },

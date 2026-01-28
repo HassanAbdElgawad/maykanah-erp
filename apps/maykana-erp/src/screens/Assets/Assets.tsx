@@ -85,8 +85,8 @@ export const Assets: React.FC = () => {
             bgColor={card.color}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'maintenance' || card.id === 'asset-movements'}
-            isClickable={card.id === 'maintenance' || card.id === 'asset-movements'}
+            isActive={card.id === 'maintenance' || card.id === 'asset-movements' || card.id === 'asset-value-adjustment'}
+            isClickable={card.id === 'maintenance' || card.id === 'asset-movements' || card.id === 'asset-value-adjustment'}
           />
         ))}
       </div>
