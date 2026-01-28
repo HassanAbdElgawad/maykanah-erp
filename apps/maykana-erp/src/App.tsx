@@ -36,6 +36,8 @@ import { FinancialClaim, FinancialClaimForm } from "./screens/Competitions/Finan
 import { CompletionCertificate, CompletionCertificateForm } from "./screens/Competitions/CompletionCertificate";
 import { BankGuarantees, BankGuaranteesForm } from "./screens/Competitions/BankGuarantees";
 import { Assets } from "./screens/Assets";
+import { AssetMovements, AssetMovementsForm } from "./screens/Assets/AssetMovements";
+import { AssetDetail } from "./screens/Assets/AssetManagement";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
@@ -888,6 +890,38 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Assets />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/asset-movements",
+    element: (
+      <ProtectedRoute>
+        <AssetMovements />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/asset-movements/add",
+    element: (
+      <ProtectedRoute>
+        <AssetMovementsForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/asset-movements/add/asset-detail/:id",
+    element: (
+      <ProtectedRoute>
+        <AssetDetail />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/asset-movements/:id",
+    element: (
+      <ProtectedRoute>
+        <AssetMovementsForm />
       </ProtectedRoute>
     ),
   },

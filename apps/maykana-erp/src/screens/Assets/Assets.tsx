@@ -37,7 +37,7 @@ export const Assets: React.FC = () => {
     },
     {
       id: 'asset-movements',
-      titleKey: 'assets.asset_movements',
+      titleKey: 'assets.asset_movements.title',
       descKey: 'assets.asset_movements_desc',
       icon: ArrowRightLeft,
       color: '#f0f7ff',
@@ -85,8 +85,8 @@ export const Assets: React.FC = () => {
             bgColor={card.color}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'maintenance'}
-            isClickable={card.id === 'maintenance'}
+            isActive={card.id === 'maintenance' || card.id === 'asset-movements'}
+            isClickable={card.id === 'maintenance' || card.id === 'asset-movements'}
           />
         ))}
       </div>
