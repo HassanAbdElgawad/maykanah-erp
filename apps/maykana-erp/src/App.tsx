@@ -29,6 +29,12 @@ import { OpenOffers, AddEditOpenOffers } from "./screens/Competitions/OpenOffers
 import { OffersInspection, AddEditOffersInspection } from "./screens/Competitions/OffersInspection";
 import { Award, AddEditAward } from "./screens/Competitions/Award";
 import { AwardConfirmation, AddEditAwardConfirmation } from "./screens/Competitions/AwardConfirmation";
+import { Agreements, AgreementsForm } from "./screens/Competitions/Agreements";
+import { WorkOrder, WorkOrderForm } from "./screens/Competitions/WorkOrder";
+import { Contract, ContractForm } from "./screens/Competitions/Contract";
+import { FinancialClaim, FinancialClaimForm } from "./screens/Competitions/FinancialClaim";
+import { CompletionCertificate, CompletionCertificateForm } from "./screens/Competitions/CompletionCertificate";
+import { BankGuarantees, BankGuaranteesForm } from "./screens/Competitions/BankGuarantees";
 import { Assets } from "./screens/Assets";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
@@ -730,6 +736,150 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEditAwardConfirmation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/agreements",
+    element: (
+      <ProtectedRoute>
+        <Agreements />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/agreements/add",
+    element: (
+      <ProtectedRoute>
+        <AgreementsForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/agreements/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <AgreementsForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/work-order",
+    element: (
+      <ProtectedRoute>
+        <WorkOrder />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/work-order/add",
+    element: (
+      <ProtectedRoute>
+        <WorkOrderForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/work-order/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <WorkOrderForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/contract",
+    element: (
+      <ProtectedRoute>
+        <Contract />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/contract/add",
+    element: (
+      <ProtectedRoute>
+        <ContractForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/contract/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <ContractForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/financial-claim",
+    element: (
+      <ProtectedRoute>
+        <FinancialClaim />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/financial-claim/add",
+    element: (
+      <ProtectedRoute>
+        <FinancialClaimForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/financial-claim/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <FinancialClaimForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/completion-certificate",
+    element: (
+      <ProtectedRoute>
+        <CompletionCertificate />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/completion-certificate/add",
+    element: (
+      <ProtectedRoute>
+        <CompletionCertificateForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/completion-certificate/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <CompletionCertificateForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/bank-guarantees",
+    element: (
+      <ProtectedRoute>
+        <BankGuarantees />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/bank-guarantees/add",
+    element: (
+      <ProtectedRoute>
+        <BankGuaranteesForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/competitions/bank-guarantees/edit/:id",
+    element: (
+      <ProtectedRoute>
+        <BankGuaranteesForm />
       </ProtectedRoute>
     ),
   },

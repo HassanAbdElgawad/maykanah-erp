@@ -9,56 +9,56 @@ import { Input } from '../../../components/ui/input';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { buttonClasses } from '../../../styles';
 
-export function AwardConfirmation() {
+export function BankGuarantees() {
   const navigate = useNavigate();
   const { t, dir } = useLanguage();
   const [showFilters, setShowFilters] = useState(false);
 
   // Filter states
   const [filters, setFilters] = useState({
-    supplierName: '',
+    supplier: '',
+    guaranteeNumber: '',
     supplierType: '',
     project: '',
-    confirmationNumber: '',
   });
 
   // Mock data
   const mockData = [
     {
       id: 1,
-      supplierName: 'أحمد عبد السلام',
-      description: 'اسم وصف العقار هنا',
+      supplier: 'أحمد عبد السلام',
+      guaranteeNumber: '15123222121',
       supplierType: 'جهة حكومية',
       project: 'مشروع معين',
-      confirmationDate: '2023-12-09',
-      confirmationNumber: '252111373734',
+      confirmationDate: '2023-12-9',
+      competitionNumber: '252111373734',
     },
     {
       id: 2,
-      supplierName: 'عمر السعيد',
-      description: 'اسم وصف العقار هنا',
+      supplier: 'عمر السعيد',
+      guaranteeNumber: '15123222121',
       supplierType: 'جهة حكومية',
       project: 'مشروع معين',
-      confirmationDate: '2023-02-20',
-      confirmationNumber: '25211737311',
+      confirmationDate: '2023-2-20',
+      competitionNumber: '25211737311',
     },
     {
       id: 3,
-      supplierName: 'يوسف التجار',
-      description: 'اسم وصف العقار هنا',
+      supplier: 'يوسف الحجار',
+      guaranteeNumber: '15123222121',
       supplierType: 'جهة حكومية',
       project: 'مشروع معين',
-      confirmationDate: '2023-02-15',
-      confirmationNumber: '252113634611',
+      confirmationDate: '2023-2-15',
+      competitionNumber: '252113634611',
     },
     {
       id: 4,
-      supplierName: 'خالد فؤاد',
-      description: 'اسم وصف العقار هنا',
+      supplier: 'خالد فؤاد',
+      guaranteeNumber: '15123222121',
       supplierType: 'جهة حكومية',
       project: 'مشروع معين',
-      confirmationDate: '2020-02-10',
-      confirmationNumber: '25211163463',
+      confirmationDate: '2020-2-10',
+      competitionNumber: '25211163463',
     },
   ];
 
@@ -76,7 +76,7 @@ export function AwardConfirmation() {
   };
 
   const handleEdit = (id: number) => {
-    navigate(`/competitions/award-confirmation/edit/${id}`);
+    navigate(`/competitions/bank-guarantees/edit/${id}`);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -100,7 +100,7 @@ export function AwardConfirmation() {
               </button>
             </div>
             <h1 className="text-xl font-medium text-gray-900">
-              {t('competitions.award_confirmation.title')}
+              {t('competitions.bank_guarantees.title')}
             </h1>
           </div>
 
@@ -126,10 +126,10 @@ export function AwardConfirmation() {
               {t('common.download')}
             </Button>
             <button
-              onClick={() => navigate('/competitions/award-confirmation/add')}
+              onClick={() => navigate('/competitions/bank-guarantees/add')}
               className={buttonClasses.primary}
             >
-              {t('competitions.award_confirmation.add_new')}
+              {t('competitions.bank_guarantees.add_new')}
             </button>
           </div>
         </div>
@@ -140,23 +140,35 @@ export function AwardConfirmation() {
             <div className="grid grid-cols-4 gap-4">
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('competitions.award_confirmation.supplier_name')}
+                  {t('competitions.bank_guarantees.supplier')}
                 </Label>
                 <Input
                   type="text"
-                  placeholder={t('competitions.award_confirmation.supplier_name')}
-                  value={filters.supplierName}
-                  onChange={(e) => handleFilterChange('supplierName', e.target.value)}
+                  placeholder={t('competitions.bank_guarantees.supplier')}
+                  value={filters.supplier}
+                  onChange={(e) => handleFilterChange('supplier', e.target.value)}
                   className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('competitions.award_confirmation.supplier_type')}
+                  {t('competitions.bank_guarantees.guarantee_number')}
                 </Label>
                 <Input
                   type="text"
-                  placeholder={t('competitions.award_confirmation.supplier_type')}
+                  placeholder={t('competitions.bank_guarantees.guarantee_number')}
+                  value={filters.guaranteeNumber}
+                  onChange={(e) => handleFilterChange('guaranteeNumber', e.target.value)}
+                  className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white"
+                />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <Label className="text-sm font-medium text-gray-700">
+                  {t('competitions.bank_guarantees.supplier_type')}
+                </Label>
+                <Input
+                  type="text"
+                  placeholder={t('competitions.bank_guarantees.supplier_type')}
                   value={filters.supplierType}
                   onChange={(e) => handleFilterChange('supplierType', e.target.value)}
                   className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white"
@@ -164,25 +176,13 @@ export function AwardConfirmation() {
               </div>
               <div className="flex flex-col gap-1.5">
                 <Label className="text-sm font-medium text-gray-700">
-                  {t('competitions.award_confirmation.project')}
+                  {t('competitions.bank_guarantees.project')}
                 </Label>
                 <Input
                   type="text"
-                  placeholder={t('competitions.award_confirmation.project')}
+                  placeholder={t('competitions.bank_guarantees.project')}
                   value={filters.project}
                   onChange={(e) => handleFilterChange('project', e.target.value)}
-                  className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white"
-                />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium text-gray-700">
-                  {t('competitions.award_confirmation.confirmation_number')}
-                </Label>
-                <Input
-                  type="text"
-                  placeholder={t('competitions.award_confirmation.confirmation_number')}
-                  value={filters.confirmationNumber}
-                  onChange={(e) => handleFilterChange('confirmationNumber', e.target.value)}
                   className="w-full h-[42px] px-3 border border-[#e2e2e2] rounded-lg bg-white"
                 />
               </div>
@@ -197,28 +197,28 @@ export function AwardConfirmation() {
             data={mockData}
             columns={[
               {
-                key: 'supplierName',
-                label: t('competitions.award_confirmation.supplier_name'),
+                key: 'supplier',
+                label: t('competitions.bank_guarantees.supplier'),
               },
               {
-                key: 'description',
-                label: t('competitions.award_confirmation.description'),
+                key: 'guaranteeNumber',
+                label: t('competitions.bank_guarantees.guarantee_number'),
               },
               {
                 key: 'supplierType',
-                label: t('competitions.award_confirmation.supplier_type'),
+                label: t('competitions.bank_guarantees.supplier_type'),
               },
               {
                 key: 'project',
-                label: t('competitions.award_confirmation.project'),
+                label: t('competitions.bank_guarantees.project'),
               },
               {
                 key: 'confirmationDate',
-                label: t('competitions.award_confirmation.confirmation_date'),
+                label: t('competitions.bank_guarantees.confirmation_date'),
               },
               {
-                key: 'confirmationNumber',
-                label: t('competitions.award_confirmation.confirmation_number'),
+                key: 'competitionNumber',
+                label: t('competitions.bank_guarantees.competition_number'),
               },
             ]}
             actions={actionButtons}
@@ -233,7 +233,7 @@ export function AwardConfirmation() {
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
           >
-            {t('competitions.award_confirmation.previous')}
+            {t('common.previous')}
           </Button>
           
           <div className="flex items-center gap-2">
@@ -258,7 +258,7 @@ export function AwardConfirmation() {
             onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
             disabled={currentPage === totalPages}
           >
-            {t('competitions.award_confirmation.next')}
+            {t('common.next')}
           </Button>
         </div>
       </div>

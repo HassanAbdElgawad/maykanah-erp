@@ -139,7 +139,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'agreements',
-    titleKey: 'competitions.agreements',
+    titleKey: 'competitions.agreements.title',
     descKey: 'competitions.agreements_desc',
     icon: Handshake,
     color: '#f5faf5',
@@ -148,7 +148,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'work-order',
-    titleKey: 'competitions.work_order',
+    titleKey: 'competitions.work_order.title',
     descKey: 'competitions.work_order_desc',
     icon: Briefcase,
     color: '#fff9f0',
@@ -157,7 +157,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'contract',
-    titleKey: 'competitions.contract',
+    titleKey: 'competitions.contract.title',
     descKey: 'competitions.contract_desc',
     icon: FileSignature,
     color: '#f0f7ff',
@@ -166,7 +166,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'financial-claim',
-    titleKey: 'competitions.financial_claim',
+    titleKey: 'competitions.financial_claim.title',
     descKey: 'competitions.financial_claim_desc',
     icon: DollarSign,
     color: '#fef5f8',
@@ -175,7 +175,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'completion-certificate',
-    titleKey: 'competitions.completion_certificate',
+    titleKey: 'competitions.completion_certificate.title',
     descKey: 'competitions.completion_certificate_desc',
     icon: Medal,
     color: '#faf6fb',
@@ -184,7 +184,7 @@ export const getCompetitionCards = (): CompetitionCard[] => [
   },
   {
     id: 'bank-guarantees',
-    titleKey: 'competitions.bank_guarantees',
+    titleKey: 'competitions.bank_guarantees.title',
     descKey: 'competitions.bank_guarantees_desc',
     icon: Shield,
     color: '#faf6fb',
