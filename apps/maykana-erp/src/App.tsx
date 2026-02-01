@@ -37,8 +37,10 @@ import { CompletionCertificate, CompletionCertificateForm } from "./screens/Comp
 import { BankGuarantees, BankGuaranteesForm } from "./screens/Competitions/BankGuarantees";
 import { Assets } from "./screens/Assets";
 import { AssetMovements, AssetMovementsForm } from "./screens/Assets/AssetMovements";
-import { AssetDetail } from "./screens/Assets/AssetManagement";
+import { AssetDetail, AssetManagement } from "./screens/Assets/AssetManagement";
+import { AddAssetForm } from "./screens/Assets/AssetManagement/AddAssetForm";
 import { AssetValueAdjustment } from "./screens/Assets/AssetValueAdjustment";
+import { SaleDisposal } from "./screens/Assets/SaleDisposal";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
@@ -895,6 +897,22 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/assets/asset-management",
+    element: (
+      <ProtectedRoute>
+        <AssetManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/asset-management/add",
+    element: (
+      <ProtectedRoute>
+        <AddAssetForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "/assets/asset-movements",
     element: (
       <ProtectedRoute>
@@ -939,6 +957,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AssetValueAdjustment />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/assets/sale-disposal",
+    element: (
+      <ProtectedRoute>
+        <SaleDisposal />
       </ProtectedRoute>
     ),
   },

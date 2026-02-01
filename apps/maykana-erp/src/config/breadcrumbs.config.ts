@@ -113,6 +113,8 @@ export const breadcrumbRoutes = [
   
   // Assets Module
   { path: "/assets", label: "sidebar.assets" },
+  { path: "/assets/asset-management", label: "assets.asset_management" },
+  { path: "/assets/asset-management/add", label: "assets.add_asset_form.title" },
   { path: "/assets/asset-movements", label: "assets.asset_movements.title" },
   { path: "/assets/asset-movements/add", label: "assets.asset_movements.add_new" },
   { path: "/assets/asset-movements/add/asset-detail/:id", label: "assets.asset_detail" },
