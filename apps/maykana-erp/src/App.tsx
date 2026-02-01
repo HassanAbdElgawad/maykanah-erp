@@ -8,7 +8,11 @@ import { CashCustody, CashCustodyForm } from './screens/CashCustody';
 import { Purchases } from './screens/Purchases';
 import { Suppliers } from './screens/Suppliers';
 import { MaterialRequests, MaterialRequestForm } from './screens/MaterialRequests';
-import { PriceQuoteRequests, PriceQuoteRequestFormPage, PriceQuoteDetailPage } from './screens/PriceQuoteRequests';
+import {
+  PriceQuoteRequests,
+  PriceQuoteRequestFormPage,
+  PriceQuoteDetailPage,
+} from './screens/PriceQuoteRequests';
 import { SupplierPriceQuotes } from './screens/SupplierPriceQuotes';
 import { Sales } from './screens/Sales';
 import { Customers, AddEditCustomer } from './screens/Customers';

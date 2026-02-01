@@ -84,9 +84,7 @@ export const PriceQuoteDetailPage = ({
     unitPrice: 0,
   });
 
-  const [termsAndConditions, setTermsAndConditions] = useState(
-    data?.termsAndConditions || ''
-  );
+  const [termsAndConditions, setTermsAndConditions] = useState(data?.termsAndConditions || '');
   const [seal, setSeal] = useState(data?.seal || '');
 
   // Toggle section visibility
@@ -149,12 +147,14 @@ export const PriceQuoteDetailPage = ({
   };
 
   return (
-    <Layout breadcrumbs={[
-      { label: 'home', href: '/' },
-      { label: 'purchases', href: '/purchases' },
-      { label: 'price_quote_requests', href: '/purchases/price-quote-requests' },
-      { label: 'price_quote_requests.view_request', href: '#' }
-    ]}>
+    <Layout
+      breadcrumbs={[
+        { label: 'home', href: '/' },
+        { label: 'purchases', href: '/purchases' },
+        { label: 'price_quote_requests', href: '/purchases/price-quote-requests' },
+        { label: 'price_quote_requests.view_request', href: '#' },
+      ]}
+    >
       <div className="space-y-4 pb-8" dir={dir}>
         {/* Header with Title and Actions */}
         <div className="bg-white rounded-lg border border-gray-200 p-4 flex items-center justify-between">
@@ -220,9 +220,7 @@ export const PriceQuoteDetailPage = ({
                   ) : (
                     <Input
                       value={formData.receiptNumber}
-                      onChange={(e) =>
-                        setFormData({ ...formData, receiptNumber: e.target.value })
-                      }
+                      onChange={(e) => setFormData({ ...formData, receiptNumber: e.target.value })}
                       className="h-[43px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                       dir={dir}
                     />
@@ -240,9 +238,7 @@ export const PriceQuoteDetailPage = ({
                   ) : (
                     <Input
                       value={formData.receiptName}
-                      onChange={(e) =>
-                        setFormData({ ...formData, receiptName: e.target.value })
-                      }
+                      onChange={(e) => setFormData({ ...formData, receiptName: e.target.value })}
                       className="h-[43px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                       dir={dir}
                     />
@@ -264,9 +260,7 @@ export const PriceQuoteDetailPage = ({
                     <Input
                       type="datetime-local"
                       value={formData.requestDate}
-                      onChange={(e) =>
-                        setFormData({ ...formData, requestDate: e.target.value })
-                      }
+                      onChange={(e) => setFormData({ ...formData, requestDate: e.target.value })}
                       className="h-[43px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                     />
                   )}
@@ -284,9 +278,7 @@ export const PriceQuoteDetailPage = ({
                     <Input
                       type="date"
                       value={formData.matchDate}
-                      onChange={(e) =>
-                        setFormData({ ...formData, matchDate: e.target.value })
-                      }
+                      onChange={(e) => setFormData({ ...formData, matchDate: e.target.value })}
                       className="h-[43px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                     />
                   )}
@@ -379,7 +371,10 @@ export const PriceQuoteDetailPage = ({
                       className="h-[43px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] col-span-2"
                       dir={dir}
                     />
-                    <Select value={newItem.unit || 'كم'} onValueChange={(v) => setNewItem({ ...newItem, unit: v })}>
+                    <Select
+                      value={newItem.unit || 'كم'}
+                      onValueChange={(v) => setNewItem({ ...newItem, unit: v })}
+                    >
                       <SelectTrigger className="h-[43px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
                         <SelectValue />
                       </SelectTrigger>
@@ -476,9 +471,7 @@ export const PriceQuoteDetailPage = ({
                             ) : (
                               <Select
                                 value={item.unit}
-                                onValueChange={(value) =>
-                                  handleItemChange(item.id, 'unit', value)
-                                }
+                                onValueChange={(value) => handleItemChange(item.id, 'unit', value)}
                               >
                                 <SelectTrigger className="h-[36px] text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
                                   <SelectValue />
