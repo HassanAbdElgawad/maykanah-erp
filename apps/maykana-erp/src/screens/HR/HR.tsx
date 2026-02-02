@@ -35,21 +35,6 @@ export const HR: React.FC = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('admin');
   const [lastVisitedCard, setLastVisitedCard] = useState<string | null>(null);
 
-  // Track the last visited card based on current path
-  useEffect(() => {
-    if (location.pathname !== '/hr') {
-      const currentCard = adminCards.find(card => 
-        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
-      ) || employeeCards.find(card => 
-        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
-      );
-      
-      if (currentCard) {
-        setLastVisitedCard(currentCard.id);
-      }
-    }
-  }, [location.pathname]);
-
   const adminCards: HRCard[] = [
     {
       id: 'employee-center',
@@ -184,6 +169,21 @@ export const HR: React.FC = () => {
 
   const cards = viewMode === 'admin' ? adminCards : employeeCards;
 
+  // Track the last visited card based on current path
+  useEffect(() => {
+    if (location.pathname !== '/hr') {
+      const currentCard = adminCards.find(card => 
+        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
+      ) || employeeCards.find(card => 
+        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
+      );
+      
+      if (currentCard) {
+        setLastVisitedCard(currentCard.id);
+      }
+    }
+  }, [location.pathname, adminCards, employeeCards]);
+
   const isCardActive = (card: HRCard) => {
     // If on /hr main page, show the last visited card or default based on mode
     if (location.pathname === '/hr') {
@@ -192,7 +192,7 @@ export const HR: React.FC = () => {
       }
       // Default active cards if no previous visit
       if (viewMode === 'admin') {
-        return card.id === 'employee-center' || card.id === 'leaves-attendance';
+        return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards';
       } else {
         return card.id === 'my-requests';
       }
@@ -204,7 +204,7 @@ export const HR: React.FC = () => {
 
   const isCardClickable = (card: HRCard) => {
     if (viewMode === 'admin') {
-      return card.id === 'employee-center' || card.id === 'leaves-attendance';
+      return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards';
     } else {
       return card.id === 'my-requests';
     }

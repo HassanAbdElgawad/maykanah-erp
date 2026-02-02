@@ -134,6 +134,8 @@ export const breadcrumbRoutes = [
   { path: "/hr/employee-center/add", label: "hr.add_employee" },
   { path: "/hr/leaves-attendance", label: "hr.leaves_attendance" },
   { path: "/hr/leaves-attendance/new", label: "hr.leave_request" },
+  { path: "/hr/remote-work", label: "hr.remote_work" },
+  { path: "/hr/salaries-rewards", label: "hr.salaries_rewards" },
   { path: "/hr/my-requests", label: "hr.my_requests" },
   { path: "/hr/my-requests/new", label: "hr.work_start_request" },
   { path: "/projects", label: "sidebar.projects" },
