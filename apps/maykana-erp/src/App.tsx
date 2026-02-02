@@ -53,6 +53,7 @@ import { InventoryCount, AddEditInventoryCount } from "./screens/InventoryCount"
 import { HR } from "./screens/HR";
 import { EmployeeCenter, AddEmployee } from "./screens/HR/EmployeeCenter";
 import { MyRequests, NewRequest } from "./screens/HR/MyRequests";
+import { LeavesAttendance, LeaveRequestForm } from "./screens/HR/LeavesAttendance";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -1013,6 +1014,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <NewRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/leaves-attendance",
+    element: (
+      <ProtectedRoute>
+        <LeavesAttendance />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/leaves-attendance/new",
+    element: (
+      <ProtectedRoute>
+        <LeaveRequestForm />
       </ProtectedRoute>
     ),
   },
