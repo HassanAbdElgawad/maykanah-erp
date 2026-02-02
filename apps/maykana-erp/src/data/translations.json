@@ -1080,6 +1080,7 @@
       "asset_movements": {
         "title": "حركات الأصول",
         "add_new": "إنشاء حركة جديدة",
+        "edit_movement": "تعديل حركة الأصول",
         "create_new": "إنشاء حركة أصول جديدة",
         "movement_number": "رقم الحركة",
         "asset_name": "اسم الأصل",
@@ -2809,6 +2810,7 @@
       "asset_movements": {
         "title": "Asset Movements",
         "add_new": "Create New Movement",
+        "edit_movement": "Edit Asset Movement",
         "create_new": "Create New Asset Movement",
         "movement_number": "Movement Number",
         "asset_name": "Asset Name",

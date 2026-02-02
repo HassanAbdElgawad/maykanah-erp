@@ -913,6 +913,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/assets/asset-management/:id",
+    element: (
+      <ProtectedRoute>
+        <AssetDetail />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "/assets/asset-movements",
     element: (
       <ProtectedRoute>

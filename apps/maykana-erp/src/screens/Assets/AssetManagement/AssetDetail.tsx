@@ -1,33 +1,68 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
-import { assetsData } from '../../../data/assets.data';
+import { Button } from '../../../components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../../../components/ui/dropdown-menu';
+import {
+  AssetInfoCard,
+  AssetTabs,
+  MetadataTab,
+  DepreciationTab,
+  MovementsTab,
+  MaintenanceTab,
+  ImprovementsTab,
+  DisposalTab,
+  AttachmentsTab,
+  AssetModals,
+  formatCurrency,
+} from './components';
+
+// Mock data - replace with actual data fetching
+const mockAssetData = {
+  id: '1',
+  code: 'AS-IT-2023-0054',
+  name: 'Laptop Dell Latitude 5420',
+  category: 'الأجهزة الإلكترونية',
+  group: 'حواسيب محمولة',
+  department: 'IT Department',
+  costCenter: 'CC-IT-001',
+  supplier: 'SaudiTech Distribution',
+  purchaseDate: '2023-04-10',
+  usageDate: '2023-04-15',
+  warranty: 'فعال حتى 10-04-2025',
+  depreciationType: 'جاري',
+  originalValue: 9800,
+  currentValue: 6790,
+  depreciationRate: 31,
+  custodyHolder: 'IT Support - يوسف الحمراني',
+  isActive: true,
+  image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&h=800&fit=crop',
+};
 
 export function AssetDetail() {
   const navigate = useNavigate();
   const { dir } = useLanguage();
-  const { id } = useParams();
+  const [activeTab, setActiveTab] = useState('metadata');
+  const [isActive, setIsActive] = useState(mockAssetData.isActive);
+  const [isResetDepreciationModalOpen, setIsResetDepreciationModalOpen] = useState(false);
+  const [isChangeMethodModalOpen, setIsChangeMethodModalOpen] = useState(false);
+  const [isChangePaymentsModalOpen, setIsChangePaymentsModalOpen] = useState(false);
+  const [depreciationMethod, setDepreciationMethod] = useState('مستقيمة');
+  const [paymentMonths, setPaymentMonths] = useState(48);
+  const [isCreateMaintenanceModalOpen, setIsCreateMaintenanceModalOpen] = useState(false);
+  const [isAddMaintenanceRecordModalOpen, setIsAddMaintenanceRecordModalOpen] = useState(false);
+  const [isEditAssetValueModalOpen, setIsEditAssetValueModalOpen] = useState(false);
+  const [isDisposalModalOpen, setIsDisposalModalOpen] = useState(false);
 
-  // Get asset data based on ID
-  const assetData = assetsData.find((asset) => asset.id === id);
-
-  // If asset not found, show error message
-  if (!assetData) {
-    return (
-      <Layout>
-        <div className="flex flex-col items-center justify-center h-96">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">الأصل غير موجود</h2>
-          <button
-            onClick={() => navigate(-1)}
-            className="px-4 py-2 bg-[#11383f] text-white rounded-lg hover:bg-[#0f2f35]"
-          >
-            العودة إلى الصفحة السابقة
-          </button>
-        </div>
-      </Layout>
-    );
-  }
+  // Mock data - replace with actual data fetching based on id
+  const assetData = mockAssetData;
 
   return (
     <Layout>
@@ -46,83 +81,94 @@ export function AssetDetail() {
                 <ArrowRight className="w-6 h-6 text-gray-600" />
               </button>
             </div>
-            <h1 className="text-xl font-medium text-gray-900">
-              تفاصيل الأصل - {assetData.name}
-            </h1>
+            <h1 className="text-xl font-medium text-gray-900">تفاصيل أصل - {assetData.name}</h1>
           </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="bg-[#11383f] hover:bg-[#0f2f35] text-white">
+                عمليات
+                <ChevronDown className="w-4 h-4 mr-2" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem>نقل الأصل</DropdownMenuItem>
+              <DropdownMenuItem>طلب صيانة</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setIsEditAssetValueModalOpen(true)}>
+                تعديل قيمة الأصل
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setIsDisposalModalOpen(true)}>
+                استبعاد / بيع
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-red-600">مسح الأصل</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
-        {/* Asset Details */}
-        <div className="grid grid-cols-3 gap-4">
-          {/* Asset Image */}
-          <div className="col-span-1 bg-white rounded-xl border border-[#e2e2e2] p-6">
-            <img
-              src={assetData.image}
-              alt={assetData.name}
-              className="w-full h-64 object-cover rounded-lg mb-4"
-            />
-            <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{assetData.name}</h3>
-              <p className="text-sm text-gray-600">{assetData.code}</p>
-            </div>
-          </div>
+        {/* Asset Info Card */}
+        <AssetInfoCard
+          assetData={assetData}
+          isActive={isActive}
+          onActiveChange={setIsActive}
+          formatCurrency={formatCurrency}
+        />
 
-          {/* Asset Information */}
-          <div className="col-span-2 bg-white rounded-xl border border-[#e2e2e2] p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">معلومات الأصل</h2>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">التصنيف</label>
-                <p className="text-base text-gray-900">{assetData.category}</p>
-              </div>
+        {/* Tabs Navigation */}
+        <AssetTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">الحالة</label>
-                <p className="text-base text-gray-900">{assetData.status}</p>
-              </div>
+        {/* Tab Content */}
+        {activeTab === 'metadata' && <MetadataTab assetData={assetData} />}
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">الموقع</label>
-                <p className="text-base text-gray-900">{assetData.location}</p>
-              </div>
+        {activeTab === 'depreciation' && (
+          <DepreciationTab
+            formatCurrency={formatCurrency}
+            onOpenResetModal={() => setIsResetDepreciationModalOpen(true)}
+            onOpenChangePaymentsModal={() => setIsChangePaymentsModalOpen(true)}
+          />
+        )}
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">الموظف المسؤول</label>
-                <p className="text-base text-gray-900">{assetData.employee}</p>
-              </div>
+        {activeTab === 'movements' && <MovementsTab />}
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">تاريخ الشراء</label>
-                <p className="text-base text-gray-900">{assetData.purchaseDate}</p>
-              </div>
+        {activeTab === 'maintenance' && (
+          <MaintenanceTab
+            formatCurrency={formatCurrency}
+            onOpenCreateMaintenanceModal={() => setIsCreateMaintenanceModalOpen(true)}
+            onOpenAddMaintenanceRecordModal={() => setIsAddMaintenanceRecordModalOpen(true)}
+          />
+        )}
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">سعر الشراء</label>
-                <p className="text-base text-gray-900">{assetData.purchasePrice} ريال</p>
-              </div>
+        {activeTab === 'improvements' && (
+          <ImprovementsTab
+            formatCurrency={formatCurrency}
+            onOpenEditAssetValueModal={() => setIsEditAssetValueModalOpen(true)}
+          />
+        )}
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">القيمة الحالية</label>
-                <p className="text-base text-gray-900">{assetData.currentValue} ريال</p>
-              </div>
+        {activeTab === 'disposal' && <DisposalTab formatCurrency={formatCurrency} />}
 
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-500">كود الأصل</label>
-                <p className="text-base text-gray-900">{assetData.code}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {activeTab === 'attachments' && <AttachmentsTab />}
 
-        {/* Additional Info */}
-        <div className="bg-white rounded-xl border border-[#e2e2e2] p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">معلومات إضافية</h2>
-          <p className="text-gray-600">
-            هذا الأصل تحت مسؤولية {assetData.employee} ويقع في {assetData.location}.
-            تم شراؤه بتاريخ {assetData.purchaseDate} بقيمة {assetData.purchasePrice} ريال سعودي.
-          </p>
-        </div>
+        {/* All Modals */}
+        <AssetModals
+          isResetDepreciationModalOpen={isResetDepreciationModalOpen}
+          onCloseResetDepreciation={() => setIsResetDepreciationModalOpen(false)}
+          isChangeMethodModalOpen={isChangeMethodModalOpen}
+          onCloseChangeMethod={() => setIsChangeMethodModalOpen(false)}
+          depreciationMethod={depreciationMethod}
+          setDepreciationMethod={setDepreciationMethod}
+          isChangePaymentsModalOpen={isChangePaymentsModalOpen}
+          onCloseChangePayments={() => setIsChangePaymentsModalOpen(false)}
+          paymentMonths={paymentMonths}
+          setPaymentMonths={setPaymentMonths}
+          isCreateMaintenanceModalOpen={isCreateMaintenanceModalOpen}
+          onCloseCreateMaintenance={() => setIsCreateMaintenanceModalOpen(false)}
+          isAddMaintenanceRecordModalOpen={isAddMaintenanceRecordModalOpen}
+          onCloseAddMaintenanceRecord={() => setIsAddMaintenanceRecordModalOpen(false)}
+          isEditAssetValueModalOpen={isEditAssetValueModalOpen}
+          onCloseEditAssetValue={() => setIsEditAssetValueModalOpen(false)}
+          isDisposalModalOpen={isDisposalModalOpen}
+          onCloseDisposal={() => setIsDisposalModalOpen(false)}
+          formatCurrency={formatCurrency}
+        />
       </div>
     </Layout>
   );

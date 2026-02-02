@@ -3,7 +3,13 @@ import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
-import { Search, Filter, Download, Settings } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../../../components/ui/dropdown-menu';
+import { Search, Filter, Download, Settings, ChevronDown } from 'lucide-react';
 import { AssetValueAdjustmentModal } from './AssetValueAdjustmentModal';
 
 interface AssetAdjustment {
@@ -154,18 +160,28 @@ export function AssetValueAdjustment() {
 
           {/* Buttons */}
           <div className="flex items-center gap-2">
-            <Button variant="outline" className="px-4 py-2 border border-gray-300 rounded-lg">
-              <Filter className="w-4 h-4 ml-2" />
-              فلتر
-            </Button>
-            <Button variant="outline" className="px-4 py-2 border border-gray-300 rounded-lg">
-              <Download className="w-4 h-4 ml-2" />
-              تحميل
-            </Button>
-            <Button variant="outline" className="px-4 py-2 border border-gray-300 rounded-lg">
-              <Settings className="w-4 h-4 ml-2" />
-              إظهار/إخفاء الأعمدة
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="px-4 py-2 border border-gray-300 rounded-lg">
+                  خيارات
+                  <ChevronDown className="w-4 h-4 mr-2" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem>
+                  <Filter className="w-4 h-4 ml-2" />
+                  فلتر
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Download className="w-4 h-4 ml-2" />
+                  تحميل
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings className="w-4 h-4 ml-2" />
+                  إظهار/إخفاء الأعمدة
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button
               onClick={handleAddNew}
               className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg"

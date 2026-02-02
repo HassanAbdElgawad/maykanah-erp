@@ -249,7 +249,8 @@ export function AssetManagement() {
                 {assets.map((asset, index) => (
                   <tr
                     key={asset.id}
-                    className="hover:bg-gray-50 transition-colors"
+                    className="hover:bg-gray-50 transition-colors cursor-pointer"
+                    onClick={() => handleViewDetails(asset, index)}
                   >
                     <td className="px-6 py-4 text-sm text-gray-900">{asset.code}</td>
                     <td className="px-6 py-4 text-sm text-gray-900">{asset.name}</td>
@@ -264,42 +265,61 @@ export function AssetManagement() {
                     <td className="px-6 py-4">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <button className="text-gray-400 hover:text-gray-600">
+                          <button 
+                            className="text-gray-400 hover:text-gray-600"
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <MoreVertical className="w-5 h-5" />
                           </button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48">
                           <DropdownMenuItem
-                            onClick={() => handleViewDetails(asset, index)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/assets/asset-management/${asset.id}`);
+                            }}
                           >
                             <Eye className="w-4 h-4 ml-2" />
-                            <span>عرض التفاصيل</span>
+                            <span>تفاصيل الأصل</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem
-                            onClick={() => navigate(`/assets/asset-movements/add?assetId=${asset.id}`)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/assets/asset-movements/add?assetId=${asset.id}`);
+                            }}
                           >
                             <ArrowRightLeft className="w-4 h-4 ml-2" />
                             <span>نقل الأصل</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem
-                            onClick={() => navigate(`/assets/maintenance/add?assetId=${asset.id}`)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/assets/maintenance/add?assetId=${asset.id}`);
+                            }}
                           >
                             <Wrench className="w-4 h-4 ml-2" />
                             <span>طلب صيانة</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem
-                            onClick={() => navigate(`/assets/asset-value-adjustment?assetId=${asset.id}`)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/assets/asset-value-adjustment?assetId=${asset.id}`);
+                            }}
                           >
                             <TrendingUp className="w-4 h-4 ml-2" />
                             <span>تعديل قيمة الأصل</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem
-                            onClick={() => navigate(`/assets/sale-disposal?assetId=${asset.id}`)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/assets/sale-disposal?assetId=${asset.id}`);
+                            }}
                           >
                             <DollarSign className="w-4 h-4 ml-2" />
                             <span>استبعاد / بيع</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem
+                            onClick={(e) => e.stopPropagation()}
                             className="text-red-600 focus:text-red-600"
                           >
                             <Trash2 className="w-4 h-4 ml-2" />
