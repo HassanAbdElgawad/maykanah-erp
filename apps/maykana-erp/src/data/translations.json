@@ -1660,7 +1660,19 @@
       "period": "الفترة",
       "evaluation_model": "نموذج التقييم",
       "result": "النتيجة",
-      "name": "الاسم"
+      "name": "الاسم",
+      "new_announcement": "إعلان جديد",
+      "add_new_policy": "إضافة سياسة جديدة",
+      "title": "العنوان",
+      "policy_title": "عنوان السياسة",
+      "description": "الوصف",
+      "effective_date": "تاريخ السريان",
+      "expiry_date": "تاريخ الانتهاء",
+      "target_audience": "الجمهور المستهدف",
+      "attachments": "المرفقات",
+      "file": "الملف",
+      "save": "حفظ",
+      "cancel": "إلغاء"
     },
     "warehouses": {
       "inventory_materials": "إدارة مواد مخزون",
@@ -3481,7 +3493,19 @@
       "period": "Period",
       "evaluation_model": "Evaluation Model",
       "result": "Result",
-      "name": "Name"
+      "name": "Name",
+      "new_announcement": "New Announcement",
+      "add_new_policy": "Add New Policy",
+      "title": "Title",
+      "policy_title": "Policy Title",
+      "description": "Description",
+      "effective_date": "Effective Date",
+      "expiry_date": "Expiry Date",
+      "target_audience": "Target Audience",
+      "attachments": "Attachments",
+      "file": "File",
+      "save": "Save",
+      "cancel": "Cancel"
     },
     "warehouses": {
       "inventory_materials": "Inventory Materials Management",

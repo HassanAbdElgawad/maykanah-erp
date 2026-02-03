@@ -142,6 +142,8 @@ export const breadcrumbRoutes = [
   { path: "/hr/salaries-rewards/promotion/new", label: "hr.new_promotion_request" },
   { path: "/hr/performance-development", label: "hr.performance_development" },
   { path: "/hr/performance-development/add-evaluation", label: "hr.add_evaluation" },
+  { path: "/hr/communication-library", label: "hr.communication_library" },
+  { path: "/hr/communication-library/new-announcement", label: "hr.new_announcement" },
   { path: "/hr/my-requests", label: "hr.my_requests" },
   { path: "/hr/my-requests/new", label: "hr.work_start_request" },
   { path: "/projects", label: "sidebar.projects" },
