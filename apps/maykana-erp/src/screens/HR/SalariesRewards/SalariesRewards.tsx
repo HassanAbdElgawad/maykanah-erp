@@ -24,6 +24,16 @@ interface AdvanceRequest {
   status: 'مقبول' | 'مرفوض' | 'معلق';
 }
 
+interface PromotionRequest {
+  id: string;
+  job: string;
+  employeeId: string;
+  birthDate: string;
+  modificationType: string;
+  promoteTo: string;
+  status: 'مقبول' | 'مرفوض' | 'معلق';
+}
+
 export function SalariesRewards() {
   const { dir, t } = useLanguage();
   const navigate = useNavigate();
@@ -101,6 +111,45 @@ export function SalariesRewards() {
     },
   ];
 
+  const promotionRequests: PromotionRequest[] = [
+    {
+      id: '1',
+      job: 'أحمد عبد السلام',
+      employeeId: '2522169654126',
+      birthDate: '9 - 12 - 2023',
+      modificationType: 'نوع التعديل المطلوب',
+      promoteTo: 'ترقية إلى',
+      status: 'مقبول',
+    },
+    {
+      id: '2',
+      job: 'عمر السعيد',
+      employeeId: '2511685255556',
+      birthDate: '20 - 2 - 2023',
+      modificationType: 'نوع التعديل المطلوب',
+      promoteTo: 'ترقية إلى',
+      status: 'مقبول',
+    },
+    {
+      id: '3',
+      job: 'يوسف النجار',
+      employeeId: '251165552256',
+      birthDate: '15 - 2 - 2023',
+      modificationType: 'نوع التعديل المطلوب',
+      promoteTo: 'ترقية إلى',
+      status: 'مرفوض',
+    },
+    {
+      id: '4',
+      job: 'خالد فؤاد',
+      employeeId: '251163698216',
+      birthDate: '10 - 2 - 2020',
+      modificationType: 'نوع التعديل المطلوب',
+      promoteTo: 'ترقية إلى',
+      status: 'مقبول',
+    },
+  ];
+
   const tabs = [
     { id: 'salaries', label: 'الرواتب' },
     { id: 'advance-requests', label: 'طلبات السلف' },
@@ -162,6 +211,8 @@ export function SalariesRewards() {
                   navigate('/hr/salaries-rewards/new');
                 } else if (activeTab === 'advance-requests') {
                   navigate('/hr/salaries-rewards/advance/new');
+                } else if (activeTab === 'promotion-requests') {
+                  navigate('/hr/salaries-rewards/promotion/new');
                 }
               }}
               className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg"
@@ -361,8 +412,91 @@ export function SalariesRewards() {
           )}
 
           {activeTab === 'promotion-requests' && (
-            <div className="p-8 text-center text-gray-500">
-              <p>لا توجد بيانات لطلبات الترقية</p>
+            <div className="overflow-x-auto overflow-visible">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.job')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.employee_id')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.birth_date')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.modification_type')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.promote_to')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.request_status')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {promotionRequests.map((request) => (
+                    <tr key={request.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.job}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.employeeId}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.birthDate}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.modificationType}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.promoteTo}</td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
+                            request.status
+                          )}`}
+                        >
+                          {request.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 relative">
+                        <button
+                          onClick={() => setShowMenu(showMenu === request.id ? null : request.id)}
+                          className="text-gray-400 hover:text-gray-600"
+                        >
+                          <MoreVertical className="w-5 h-5" />
+                        </button>
+                        {showMenu === request.id && (
+                          <div className="fixed mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                            <button
+                              onClick={() => {
+                                navigate(`/hr/salaries-rewards/promotion/${request.id}`);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-lg"
+                            >
+                              {t('hr.view_details')}
+                            </button>
+                            <button
+                              onClick={() => {
+                                console.log('Edit', request.id);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
+                              {t('hr.edit')}
+                            </button>
+                            <button
+                              onClick={() => {
+                                console.log('Delete', request.id);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-red-600 hover:bg-gray-50 rounded-b-lg"
+                            >
+                              {t('hr.delete')}
+                            </button>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>

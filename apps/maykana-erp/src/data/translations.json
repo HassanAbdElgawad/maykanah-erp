@@ -1645,7 +1645,12 @@
       "submit": "إرسال",
       "request_status": "حالة الطلب",
       "employee": "الموظف",
-      "reason": "السبب"
+      "reason": "السبب",
+      "promotion_requests": "طلبات الترقية",
+      "new_promotion_request": "طلب ترقية جديد",
+      "modification_type": "نوع التعديل المطلوب",
+      "birth_date": "تاريخ الميلاد",
+      "promote_to": "ترقية إلى"
     },
     "warehouses": {
       "inventory_materials": "إدارة مواد مخزون",
@@ -3451,7 +3456,12 @@
       "submit": "Submit",
       "request_status": "Request Status",
       "employee": "Employee",
-      "reason": "Reason"
+      "reason": "Reason",
+      "promotion_requests": "Promotion Requests",
+      "new_promotion_request": "New Promotion Request",
+      "modification_type": "Modification Type",
+      "birth_date": "Birth Date",
+      "promote_to": "Promote To"
     },
     "warehouses": {
       "inventory_materials": "Inventory Materials Management",
