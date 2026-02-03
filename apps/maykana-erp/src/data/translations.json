@@ -1650,7 +1650,17 @@
       "new_promotion_request": "طلب ترقية جديد",
       "modification_type": "نوع التعديل المطلوب",
       "birth_date": "تاريخ الميلاد",
-      "promote_to": "ترقية إلى"
+      "promote_to": "ترقية إلى",
+      "performance_development": "الأداء والتطوير",
+      "add_evaluation": "إضافة تقييم",
+      "send_request": "إرسال الطلب",
+      "add_attachments": "أضف مرفقات",
+      "evaluation_course_name": "اسم دورة التقييم",
+      "departments": "الأقسام",
+      "period": "الفترة",
+      "evaluation_model": "نموذج التقييم",
+      "result": "النتيجة",
+      "name": "الاسم"
     },
     "warehouses": {
       "inventory_materials": "إدارة مواد مخزون",
@@ -3461,7 +3471,17 @@
       "new_promotion_request": "New Promotion Request",
       "modification_type": "Modification Type",
       "birth_date": "Birth Date",
-      "promote_to": "Promote To"
+      "promote_to": "Promote To",
+      "performance_development": "Performance and Development",
+      "add_evaluation": "Add Evaluation",
+      "send_request": "Send Request",
+      "add_attachments": "Add Attachments",
+      "evaluation_course_name": "Evaluation Course Name",
+      "departments": "Departments",
+      "period": "Period",
+      "evaluation_model": "Evaluation Model",
+      "result": "Result",
+      "name": "Name"
     },
     "warehouses": {
       "inventory_materials": "Inventory Materials Management",

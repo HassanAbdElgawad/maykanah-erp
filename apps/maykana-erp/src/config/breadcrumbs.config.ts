@@ -140,6 +140,8 @@ export const breadcrumbRoutes = [
   { path: "/hr/salaries-rewards/:id", label: "hr.salary_payroll_details" },
   { path: "/hr/salaries-rewards/advance/new", label: "hr.new_advance_request" },
   { path: "/hr/salaries-rewards/promotion/new", label: "hr.new_promotion_request" },
+  { path: "/hr/performance-development", label: "hr.performance_development" },
+  { path: "/hr/performance-development/add-evaluation", label: "hr.add_evaluation" },
   { path: "/hr/my-requests", label: "hr.my_requests" },
   { path: "/hr/my-requests/new", label: "hr.work_start_request" },
   { path: "/projects", label: "sidebar.projects" },

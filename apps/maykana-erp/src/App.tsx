@@ -56,6 +56,7 @@ import { MyRequests, NewRequest } from "./screens/HR/MyRequests";
 import { LeavesAttendance, LeaveRequestForm } from "./screens/HR/LeavesAttendance";
 import { RemoteWork } from "./screens/HR/RemoteWork";
 import { SalariesRewards, NewSalaryPayroll, SalaryPayrollDetails, NewAdvanceRequest, NewPromotionRequest } from "./screens/HR/SalariesRewards";
+import { PerformanceDevelopment, AddEvaluation } from "./screens/HR/PerformanceDevelopment";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -1080,6 +1081,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <NewPromotionRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/performance-development",
+    element: (
+      <ProtectedRoute>
+        <PerformanceDevelopment />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/performance-development/add-evaluation",
+    element: (
+      <ProtectedRoute>
+        <AddEvaluation />
       </ProtectedRoute>
     ),
   },
