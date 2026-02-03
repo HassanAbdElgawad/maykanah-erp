@@ -1672,7 +1672,20 @@
       "attachments": "المرفقات",
       "file": "الملف",
       "save": "حفظ",
-      "cancel": "إلغاء"
+      "cancel": "إلغاء",
+      "recruitment_requests": "طلبات التوظيف",
+      "new_recruitment_request": "طلب توظيف جديد",
+      "manager": "المدير",
+      "position": "المنصب",
+      "qualifications": "المؤهلات",
+      "job_information": "معلومات الوظيفة",
+      "applicant_name": "إبراهيم التلاتي",
+      "job_title": "المسمى الوظيفي",
+      "department": "القسم",
+      "replacement": "بديل أم",
+      "wage": "الأجر",
+      "start_date": "تاريخ البدء",
+      "qualifications_count": "عدد المؤهلات"
     },
     "warehouses": {
       "inventory_materials": "إدارة مواد مخزون",
@@ -3505,7 +3518,20 @@
       "attachments": "Attachments",
       "file": "File",
       "save": "Save",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "recruitment_requests": "Recruitment Requests",
+      "new_recruitment_request": "New Recruitment Request",
+      "manager": "Manager",
+      "position": "Position",
+      "qualifications": "Qualifications",
+      "job_information": "Job Information",
+      "applicant_name": "Applicant Name",
+      "job_title": "Job Title",
+      "department": "Department",
+      "replacement": "Replacement",
+      "wage": "Wage",
+      "start_date": "Start Date",
+      "qualifications_count": "Qualifications Count"
     },
     "warehouses": {
       "inventory_materials": "Inventory Materials Management",

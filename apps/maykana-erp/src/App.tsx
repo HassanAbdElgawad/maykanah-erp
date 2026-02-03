@@ -58,6 +58,7 @@ import { RemoteWork } from "./screens/HR/RemoteWork";
 import { SalariesRewards, NewSalaryPayroll, SalaryPayrollDetails, NewAdvanceRequest, NewPromotionRequest } from "./screens/HR/SalariesRewards";
 import { PerformanceDevelopment, AddEvaluation } from "./screens/HR/PerformanceDevelopment";
 import { CommunicationLibrary, NewAnnouncement } from "./screens/HR/CommunicationLibrary";
+import { Recruitment, NewRecruitmentRequest } from "./screens/HR/Recruitment";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -1114,6 +1115,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <NewAnnouncement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/recruitment",
+    element: (
+      <ProtectedRoute>
+        <Recruitment />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/recruitment/new",
+    element: (
+      <ProtectedRoute>
+        <NewRecruitmentRequest />
       </ProtectedRoute>
     ),
   },

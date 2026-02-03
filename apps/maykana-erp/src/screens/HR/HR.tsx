@@ -192,7 +192,7 @@ export const HR: React.FC = () => {
       }
       // Default active cards if no previous visit
       if (viewMode === 'admin') {
-        return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library';
+        return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library' || card.id === 'recruitment';
       } else {
         return card.id === 'my-requests';
       }
@@ -204,7 +204,7 @@ export const HR: React.FC = () => {
 
   const isCardClickable = (card: HRCard) => {
     if (viewMode === 'admin') {
-      return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library';
+      return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library' || card.id === 'recruitment';
     } else {
       return card.id === 'my-requests';
     }
