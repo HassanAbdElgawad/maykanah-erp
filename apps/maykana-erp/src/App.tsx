@@ -55,7 +55,7 @@ import { EmployeeCenter, AddEmployee } from "./screens/HR/EmployeeCenter";
 import { MyRequests, NewRequest } from "./screens/HR/MyRequests";
 import { LeavesAttendance, LeaveRequestForm } from "./screens/HR/LeavesAttendance";
 import { RemoteWork } from "./screens/HR/RemoteWork";
-import { SalariesRewards } from "./screens/HR/SalariesRewards";
+import { SalariesRewards, NewSalaryPayroll, SalaryPayrollDetails, NewAdvanceRequest } from "./screens/HR/SalariesRewards";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -1048,6 +1048,30 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <SalariesRewards />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/salaries-rewards/new",
+    element: (
+      <ProtectedRoute>
+        <NewSalaryPayroll />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/salaries-rewards/:id",
+    element: (
+      <ProtectedRoute>
+        <SalaryPayrollDetails />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/salaries-rewards/advance/new",
+    element: (
+      <ProtectedRoute>
+        <NewAdvanceRequest />
       </ProtectedRoute>
     ),
   },

@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
-import { Search, Download } from 'lucide-react';
+import { Search, Download, MoreVertical } from 'lucide-react';
 
 interface SalaryRecord {
   id: string;
@@ -14,10 +15,21 @@ interface SalaryRecord {
   status: 'مسودة' | 'تحت الموافقة' | 'معلقة';
 }
 
+interface AdvanceRequest {
+  id: string;
+  employee: string;
+  employeeId: string;
+  amount: string;
+  reason: string;
+  status: 'مقبول' | 'مرفوض' | 'معلق';
+}
+
 export function SalariesRewards() {
   const { dir, t } = useLanguage();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('salaries');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showMenu, setShowMenu] = useState<string | null>(null);
 
   const salaryRecords: SalaryRecord[] = [
     {
@@ -54,6 +66,41 @@ export function SalariesRewards() {
     },
   ];
 
+  const advanceRequests: AdvanceRequest[] = [
+    {
+      id: '1',
+      employee: 'أحمد عبد السلام',
+      employeeId: '2522169654126',
+      amount: '500',
+      reason: 'السبب التعديل الطاولب',
+      status: 'معلق',
+    },
+    {
+      id: '2',
+      employee: 'عمر السعيد',
+      employeeId: '2511685255556',
+      amount: '400',
+      reason: 'السبب التعديل الطاولب',
+      status: 'معلق',
+    },
+    {
+      id: '3',
+      employee: 'يوسف النجار',
+      employeeId: '251165552256',
+      amount: '400',
+      reason: 'السبب التعديل الطاولب',
+      status: 'مرفوض',
+    },
+    {
+      id: '4',
+      employee: 'خالد فؤاد',
+      employeeId: '251163698216',
+      amount: '600',
+      reason: 'السبب التعديل الطاولب',
+      status: 'معلق',
+    },
+  ];
+
   const tabs = [
     { id: 'salaries', label: 'الرواتب' },
     { id: 'advance-requests', label: 'طلبات السلف' },
@@ -67,7 +114,12 @@ export function SalariesRewards() {
       case 'تحت الموافقة':
         return 'bg-yellow-100 text-yellow-700';
       case 'معلقة':
+      case 'معلق':
         return 'bg-blue-100 text-blue-700';
+      case 'مقبول':
+        return 'bg-green-100 text-green-700';
+      case 'مرفوض':
+        return 'bg-red-100 text-red-700';
       default:
         return 'bg-gray-100 text-gray-700';
     }
@@ -104,14 +156,23 @@ export function SalariesRewards() {
               <Download className="w-4 h-4" />
               {t('hr.download')}
             </Button>
-            <Button className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg">
+            <Button
+              onClick={() => {
+                if (activeTab === 'salaries') {
+                  navigate('/hr/salaries-rewards/new');
+                } else if (activeTab === 'advance-requests') {
+                  navigate('/hr/salaries-rewards/advance/new');
+                }
+              }}
+              className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg"
+            >
               {t('hr.new_request')}
             </Button>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
+        <div className="bg-white rounded-xl border border-[#e2e2e2]">
           <div className="flex border-b border-gray-200">
             {tabs.map((tab) => (
               <button
@@ -130,7 +191,7 @@ export function SalariesRewards() {
 
           {/* Table */}
           {activeTab === 'salaries' && (
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto overflow-visible">
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
@@ -168,8 +229,44 @@ export function SalariesRewards() {
                           {record.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
-                        <button className="text-gray-400 hover:text-gray-600">⋮</button>
+                      <td className="px-6 py-4 relative">
+                        <button
+                          onClick={() => setShowMenu(showMenu === record.id ? null : record.id)}
+                          className="text-gray-400 hover:text-gray-600"
+                        >
+                          <MoreVertical className="w-5 h-5" />
+                        </button>
+                        {showMenu === record.id && (
+                          <div className="fixed mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                            <button
+                              onClick={() => {
+                                navigate(`/hr/salaries-rewards/${record.id}`);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-lg"
+                            >
+                              {t('hr.view_details')}
+                            </button>
+                            <button
+                              onClick={() => {
+                                console.log('Edit', record.id);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
+                              {t('hr.edit')}
+                            </button>
+                            <button
+                              onClick={() => {
+                                console.log('Delete', record.id);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-red-600 hover:bg-gray-50 rounded-b-lg"
+                            >
+                              {t('hr.delete')}
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ))}
@@ -179,8 +276,87 @@ export function SalariesRewards() {
           )}
 
           {activeTab === 'advance-requests' && (
-            <div className="p-8 text-center text-gray-500">
-              <p>لا توجد بيانات لطلبات السلف</p>
+            <div className="overflow-x-auto overflow-visible">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.employee')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.employee_id')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.amount')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.reason')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
+                      {t('hr.request_status')}
+                    </th>
+                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-700"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {advanceRequests.map((request) => (
+                    <tr key={request.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.employee}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.employeeId}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.amount}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900">{request.reason}</td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
+                            request.status
+                          )}`}
+                        >
+                          {request.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 relative">
+                        <button
+                          onClick={() => setShowMenu(showMenu === request.id ? null : request.id)}
+                          className="text-gray-400 hover:text-gray-600"
+                        >
+                          <MoreVertical className="w-5 h-5" />
+                        </button>
+                        {showMenu === request.id && (
+                          <div className="fixed mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                            <button
+                              onClick={() => {
+                                navigate(`/hr/salaries-rewards/advance/${request.id}`);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-lg"
+                            >
+                              {t('hr.view_details')}
+                            </button>
+                            <button
+                              onClick={() => {
+                                console.log('Edit', request.id);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                            >
+                              {t('hr.edit')}
+                            </button>
+                            <button
+                              onClick={() => {
+                                console.log('Delete', request.id);
+                                setShowMenu(null);
+                              }}
+                              className="block w-full text-right px-4 py-2 text-sm text-red-600 hover:bg-gray-50 rounded-b-lg"
+                            >
+                              {t('hr.delete')}
+                            </button>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
 
