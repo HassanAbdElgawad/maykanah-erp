@@ -14,7 +14,7 @@ export function NewAnnouncement() {
   const [effectiveDate, setEffectiveDate] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [targetAudience, setTargetAudience] = useState('');
-  const [attachmentsCount, setAttachmentsCount] = useState(0);
+  const [attachmentsCount] = useState(0);
 
   const handleSubmit = () => {
     console.log('Submit announcement:', {

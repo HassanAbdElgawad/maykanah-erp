@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { DepartmentsModal } from './DepartmentsModal';
 
 export function NewSalaryPayroll() {
-  const { dir, t } = useLanguage();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [showDepartmentsModal, setShowDepartmentsModal] = useState(false);
   const [disbursementMonth, setDisbursementMonth] = useState('');

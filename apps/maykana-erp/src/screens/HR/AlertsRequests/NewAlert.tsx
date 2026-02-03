@@ -5,23 +5,23 @@ import { useLanguage } from '../../../contexts/LanguageContext';
 import { Button } from '../../../components/ui/button';
 import { ChevronRight, Paperclip } from 'lucide-react';
 
-export function AddEvaluation() {
+export function NewAlert() {
   const { dir, t } = useLanguage();
   const navigate = useNavigate();
-  const [job, setJob] = useState('');
-  const [evaluationCourseName, setEvaluationCourseName] = useState('');
-  const [departments, setDepartments] = useState('');
-  const [period, setPeriod] = useState('');
-  const [evaluationModel, setEvaluationModel] = useState('');
+  const [employee, setEmployee] = useState('');
+  const [title, setTitle] = useState('');
+  const [message, setMessage] = useState('');
+  const [recipientEntity, setRecipientEntity] = useState('');
+  const [deliveryMethod, setDeliveryMethod] = useState('');
   const [attachmentsCount] = useState(0);
 
   const handleSubmit = () => {
-    console.log('Submit evaluation:', {
-      job,
-      evaluationCourseName,
-      departments,
-      period,
-      evaluationModel,
+    console.log('Submit alert request:', {
+      employee,
+      title,
+      message,
+      recipientEntity,
+      deliveryMethod,
     });
   };
 
@@ -42,17 +42,11 @@ export function AddEvaluation() {
               >
                 <ChevronRight className="w-5 h-5 text-gray-600" />
               </button>
-              <h1 className="text-xl font-semibold text-[#11383f]">{t('hr.add_evaluation')}</h1>
+              <h1 className="text-xl font-semibold text-[#11383f]">{t('hr.add_alerts')}</h1>
             </div>
 
             {/* Left Side: Buttons */}
             <div className="flex gap-2">
-              <Button
-                onClick={handleSubmit}
-                className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg"
-              >
-                {t('hr.send_request')}
-              </Button>
               <Button
                 variant="outline"
                 className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
@@ -62,6 +56,12 @@ export function AddEvaluation() {
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-xs">
                   {attachmentsCount}
                 </span>
+              </Button>
+              <Button
+                onClick={handleSubmit}
+                className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg"
+              >
+                {t('hr.submit_request')}
               </Button>
             </div>
           </div>
@@ -75,14 +75,14 @@ export function AddEvaluation() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {/* Job */}
+              {/* Employee */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">{t('hr.job')}</label>
+                <label className="text-sm font-medium text-gray-700">{t('hr.employee')}</label>
                 <input
                   type="text"
-                  value={job}
-                  onChange={(e) => setJob(e.target.value)}
-                  placeholder={t('hr.job')}
+                  value={employee}
+                  onChange={(e) => setEmployee(e.target.value)}
+                  placeholder={t('hr.employee')}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#11383f] focus:border-transparent"
                 />
               </div>
@@ -98,64 +98,54 @@ export function AddEvaluation() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {/* Evaluation Course Name */}
+              {/* Title */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  {t('hr.evaluation_course_name')}
-                </label>
+                <label className="text-sm font-medium text-gray-700">{t('hr.title')}</label>
                 <input
                   type="text"
-                  value={evaluationCourseName}
-                  onChange={(e) => setEvaluationCourseName(e.target.value)}
-                  placeholder={t('hr.evaluation_course_name')}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder={t('hr.title')}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#11383f] focus:border-transparent"
                 />
               </div>
 
-              {/* Departments */}
+              {/* Message */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  {t('hr.departments')}
-                </label>
-                <select
-                  value={departments}
-                  onChange={(e) => setDepartments(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#11383f] focus:border-transparent"
-                >
-                  <option value="">{t('hr.departments')}</option>
-                  <option value="قسم 1">قسم 1</option>
-                  <option value="قسم 2">قسم 2</option>
-                  <option value="قسم 3">قسم 3</option>
-                </select>
-              </div>
-
-              {/* Period */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  {t('hr.period')}
-                </label>
+                <label className="text-sm font-medium text-gray-700">{t('hr.message')}</label>
                 <input
-                  type="date"
-                  value={period}
-                  onChange={(e) => setPeriod(e.target.value)}
+                  type="text"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder={t('hr.message')}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#11383f] focus:border-transparent"
                 />
               </div>
 
-              {/* Evaluation Model */}
+              {/* Recipient Entity */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  {t('hr.evaluation_model')}
-                </label>
-                <select
-                  value={evaluationModel}
-                  onChange={(e) => setEvaluationModel(e.target.value)}
+                <label className="text-sm font-medium text-gray-700">{t('hr.recipient_entity')}</label>
+                <input
+                  type="text"
+                  value={recipientEntity}
+                  onChange={(e) => setRecipientEntity(e.target.value)}
+                  placeholder={t('hr.recipient_entity')}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#11383f] focus:border-transparent"
+                />
+              </div>
+
+              {/* Delivery Method */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">{t('hr.delivery_method')}</label>
+                <select
+                  value={deliveryMethod}
+                  onChange={(e) => setDeliveryMethod(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#11383f] focus:border-transparent bg-white"
                 >
-                  <option value="">{t('hr.evaluation_model')}</option>
-                  <option value="نموذج 1">نموذج 1</option>
-                  <option value="نموذج 2">نموذج 2</option>
-                  <option value="نموذج 3">نموذج 3</option>
+                  <option value="">{t('hr.delivery_method')}</option>
+                  <option value="email">البريد الإلكتروني</option>
+                  <option value="sms">رسالة نصية</option>
+                  <option value="notification">إشعار داخلي</option>
                 </select>
               </div>
             </div>
@@ -165,3 +155,5 @@ export function AddEvaluation() {
     </Layout>
   );
 }
+
+export default NewAlert;

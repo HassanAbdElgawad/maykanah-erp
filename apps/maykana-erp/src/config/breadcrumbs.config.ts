@@ -146,6 +146,8 @@ export const breadcrumbRoutes = [
   { path: "/hr/communication-library/new-announcement", label: "hr.new_announcement" },
   { path: "/hr/recruitment", label: "hr.recruitment" },
   { path: "/hr/recruitment/new", label: "hr.new_recruitment_request" },
+  { path: "/hr/alerts-requests", label: "hr.alerts_requests_center" },
+  { path: "/hr/alerts-requests/new", label: "hr.add_alerts" },
   { path: "/hr/my-requests", label: "hr.my_requests" },
   { path: "/hr/my-requests/new", label: "hr.work_start_request" },
   { path: "/projects", label: "sidebar.projects" },

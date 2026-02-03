@@ -59,6 +59,7 @@ import { SalariesRewards, NewSalaryPayroll, SalaryPayrollDetails, NewAdvanceRequ
 import { PerformanceDevelopment, AddEvaluation } from "./screens/HR/PerformanceDevelopment";
 import { CommunicationLibrary, NewAnnouncement } from "./screens/HR/CommunicationLibrary";
 import { Recruitment, NewRecruitmentRequest } from "./screens/HR/Recruitment";
+import { AlertsRequests, NewAlert } from "./screens/HR/AlertsRequests";
 import { Dashboard } from "./screens/Dashboard";
 import { Inbox } from "./screens/Inbox";
 import { LoginPage } from "./screens/LoginPage";
@@ -1131,6 +1132,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <NewRecruitmentRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/alerts-requests",
+    element: (
+      <ProtectedRoute>
+        <AlertsRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/hr/alerts-requests/new",
+    element: (
+      <ProtectedRoute>
+        <NewAlert />
       </ProtectedRoute>
     ),
   },

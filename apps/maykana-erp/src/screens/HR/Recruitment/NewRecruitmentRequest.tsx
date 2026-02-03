@@ -17,7 +17,7 @@ export function NewRecruitmentRequest() {
   const [startDate, setStartDate] = useState('');
   const [salary, setSalary] = useState('');
   const [qualificationsCount, setQualificationsCount] = useState('');
-  const [attachmentsCount, setAttachmentsCount] = useState(0);
+  const [attachmentsCount] = useState(0);
 
   const handleSubmit = () => {
     console.log('Submit recruitment request:', {

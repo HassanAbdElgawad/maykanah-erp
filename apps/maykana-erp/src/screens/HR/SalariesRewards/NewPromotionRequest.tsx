@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
-import { Button } from '../../../components/ui/button';
 import { ChevronRight } from 'lucide-react';
 
 export function NewPromotionRequest() {
@@ -13,15 +12,6 @@ export function NewPromotionRequest() {
   const [reason, setReason] = useState('');
   const [modificationType, setModificationType] = useState('');
   const [birthDate, setBirthDate] = useState('');
-
-  const handleSubmit = () => {
-    console.log('Submit promotion request:', {
-      job,
-      reason,
-      modificationType,
-      birthDate,
-    });
-  };
 
   return (
     <Layout>

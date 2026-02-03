@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
-import { Button } from '../../../components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 export function NewAdvanceRequest() {
-  const { dir, t } = useLanguage();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('accept');
 
@@ -16,11 +15,6 @@ export function NewAdvanceRequest() {
   const [reason, setReason] = useState('');
   const [paymentPlan, setPaymentPlan] = useState('');
   const [installments, setInstallments] = useState('');
-
-  const handleSubmit = () => {
-    console.log('Submit advance request');
-    navigate('/hr/salaries-rewards');
-  };
 
   const tabs = [
     { id: 'reject', label: 'رفض' },

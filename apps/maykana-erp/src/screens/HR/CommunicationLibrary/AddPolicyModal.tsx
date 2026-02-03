@@ -16,7 +16,6 @@ export function AddPolicyModal({ isOpen, onClose }: AddPolicyModalProps) {
   const [effectiveDate, setEffectiveDate] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [targetAudience, setTargetAudience] = useState('');
-  const [attachmentsCount, setAttachmentsCount] = useState(0);
 
   const handleSave = () => {
     console.log('Save policy:', {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { Button } from '../../../components/ui/button';
@@ -18,8 +18,7 @@ interface Employee {
 }
 
 export function SalaryPayrollDetails() {
-  const { id } = useParams();
-  const { dir, t } = useLanguage();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
