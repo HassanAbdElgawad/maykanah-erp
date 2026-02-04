@@ -26,44 +26,69 @@ import {
 import { SupplierPriceQuotes } from './screens/SupplierPriceQuotes';
 import { Sales } from './screens/Sales';
 import { Customers, AddEditCustomer } from './screens/Customers';
-import { PriceQuotes, AddEditPriceQuote } from "./screens/PriceQuotes";
-import { WorkOrders, AddEditWorkOrder } from "./screens/WorkOrders";
-import { SalesInvoices, AddEditSalesInvoice } from "./screens/SalesInvoices";
-import { DeliveryNotes, AddEditDeliveryNote } from "./screens/DeliveryNotes";
-import { PriceLists, AddEditPriceList } from "./screens/PriceLists";
-import { SalesRepresentatives } from "./screens/SalesRepresentatives";
+import { PriceQuotes, AddEditPriceQuote } from './screens/PriceQuotes';
+import { WorkOrders, AddEditWorkOrder } from './screens/WorkOrders';
+import { SalesInvoices, AddEditSalesInvoice } from './screens/SalesInvoices';
+import { DeliveryNotes, AddEditDeliveryNote } from './screens/DeliveryNotes';
+import { PriceLists, AddEditPriceList } from './screens/PriceLists';
+import { SalesRepresentatives } from './screens/SalesRepresentatives';
 import { Competitions } from './screens/Competitions';
 import { VendorQualification, AddEditVendorQualification } from './screens/VendorQualification';
-import { VendorUsers, AddEditVendorUser } from "./screens/Competitions/VendorUsers";
-import { VendorNotifications, AddEditVendorNotification } from "./screens/Competitions/VendorNotifications";
-import { CommitteeFormation, AddEditCommitteeFormation } from "./screens/Competitions/CommitteeFormation";
-import { EvaluationCriteria, AddEditEvaluationCriteria } from "./screens/Competitions/EvaluationCriteria";
-import { CompetitionLaunch, AddEditCompetitionLaunch } from "./screens/Competitions/CompetitionLaunch";
-import { CompetitionExtension, AddEditCompetitionExtension } from "./screens/Competitions/CompetitionExtension";
-import { ReceiveOffers, AddEditReceiveOffers } from "./screens/Competitions/ReceiveOffers";
-import { OpenOffers, AddEditOpenOffers } from "./screens/Competitions/OpenOffers";
-import { OffersInspection, AddEditOffersInspection } from "./screens/Competitions/OffersInspection";
-import { Award, AddEditAward } from "./screens/Competitions/Award";
-import { AwardConfirmation, AddEditAwardConfirmation } from "./screens/Competitions/AwardConfirmation";
-import { Agreements, AgreementsForm } from "./screens/Competitions/Agreements";
-import { WorkOrder, WorkOrderForm } from "./screens/Competitions/WorkOrder";
-import { Contract, ContractForm } from "./screens/Competitions/Contract";
-import { FinancialClaim, FinancialClaimForm } from "./screens/Competitions/FinancialClaim";
-import { CompletionCertificate, CompletionCertificateForm } from "./screens/Competitions/CompletionCertificate";
-import { BankGuarantees, BankGuaranteesForm } from "./screens/Competitions/BankGuarantees";
+import { VendorUsers, AddEditVendorUser } from './screens/Competitions/VendorUsers';
+import {
+  VendorNotifications,
+  AddEditVendorNotification,
+} from './screens/Competitions/VendorNotifications';
+import {
+  CommitteeFormation,
+  AddEditCommitteeFormation,
+} from './screens/Competitions/CommitteeFormation';
+import {
+  EvaluationCriteria,
+  AddEditEvaluationCriteria,
+} from './screens/Competitions/EvaluationCriteria';
+import {
+  CompetitionLaunch,
+  AddEditCompetitionLaunch,
+} from './screens/Competitions/CompetitionLaunch';
+import {
+  CompetitionExtension,
+  AddEditCompetitionExtension,
+} from './screens/Competitions/CompetitionExtension';
+import { ReceiveOffers, AddEditReceiveOffers } from './screens/Competitions/ReceiveOffers';
+import { OpenOffers, AddEditOpenOffers } from './screens/Competitions/OpenOffers';
+import { OffersInspection, AddEditOffersInspection } from './screens/Competitions/OffersInspection';
+import { Award, AddEditAward } from './screens/Competitions/Award';
+import {
+  AwardConfirmation,
+  AddEditAwardConfirmation,
+} from './screens/Competitions/AwardConfirmation';
+import { Agreements, AgreementsForm } from './screens/Competitions/Agreements';
+import { WorkOrder, WorkOrderForm } from './screens/Competitions/WorkOrder';
+import { Contract, ContractForm } from './screens/Competitions/Contract';
+import { FinancialClaim, FinancialClaimForm } from './screens/Competitions/FinancialClaim';
+import {
+  CompletionCertificate,
+  CompletionCertificateForm,
+} from './screens/Competitions/CompletionCertificate';
+import { BankGuarantees, BankGuaranteesForm } from './screens/Competitions/BankGuarantees';
 import { Assets } from './screens/Assets';
-import { AssetMovements, AssetMovementsForm } from "./screens/Assets/AssetMovements";
-import { AssetDetail, AssetManagement } from "./screens/Assets/AssetManagement";
-import { AddAssetForm } from "./screens/Assets/AssetManagement/AddAssetForm";
-import { AssetValueAdjustment } from "./screens/Assets/AssetValueAdjustment";
-import { SaleDisposal } from "./screens/Assets/SaleDisposal";
+import { AssetMovements, AssetMovementsForm } from './screens/Assets/AssetMovements';
+import { AssetDetail, AssetManagement } from './screens/Assets/AssetManagement';
+import { AddAssetForm } from './screens/Assets/AssetManagement/AddAssetForm';
+import { AssetValueAdjustment } from './screens/Assets/AssetValueAdjustment';
+import { SaleDisposal } from './screens/Assets/SaleDisposal';
 import { Maintenance } from './screens/Maintenance';
 import { Strategy } from './screens/Strategy';
 import { Tasks, AddTask } from './screens/Tasks';
-import { Meetings, NewMeeting } from "./screens/Strategy/Meetings";
-import { Documents, NewDocument } from "./screens/Strategy/Documents";
-import { PlanTracking, NewPlanLink, PlanLinkDetails } from "./screens/Strategy/PlanTracking";
-import { StrategicPlans, NewStrategicPlan, StrategicPlanDetails } from "./screens/Strategy/StrategicPlans";
+import { Meetings, NewMeeting } from './screens/Strategy/Meetings';
+import { Documents, NewDocument } from './screens/Strategy/Documents';
+import { PlanTracking, NewPlanLink, PlanLinkDetails } from './screens/Strategy/PlanTracking';
+import {
+  StrategicPlans,
+  NewStrategicPlan,
+  StrategicPlanDetails,
+} from './screens/Strategy/StrategicPlans';
 import { WorkflowEngine } from './screens/WorkflowEngine';
 import { Workflows, AddEditWorkflow } from './screens/Workflows';
 import {
@@ -76,13 +101,19 @@ import { InventoryCount, AddEditInventoryCount } from './screens/InventoryCount'
 import { HR } from './screens/HR';
 import { EmployeeCenter, AddEmployee } from './screens/HR/EmployeeCenter';
 import { MyRequests, NewRequest } from './screens/HR/MyRequests';
-import { LeavesAttendance, LeaveRequestForm } from "./screens/HR/LeavesAttendance";
-import { RemoteWork } from "./screens/HR/RemoteWork";
-import { SalariesRewards, NewSalaryPayroll, SalaryPayrollDetails, NewAdvanceRequest, NewPromotionRequest } from "./screens/HR/SalariesRewards";
-import { PerformanceDevelopment, AddEvaluation } from "./screens/HR/PerformanceDevelopment";
-import { CommunicationLibrary, NewAnnouncement } from "./screens/HR/CommunicationLibrary";
-import { Recruitment, NewRecruitmentRequest } from "./screens/HR/Recruitment";
-import { AlertsRequests, NewAlert } from "./screens/HR/AlertsRequests";
+import { LeavesAttendance, LeaveRequestForm } from './screens/HR/LeavesAttendance';
+import { RemoteWork } from './screens/HR/RemoteWork';
+import {
+  SalariesRewards,
+  NewSalaryPayroll,
+  SalaryPayrollDetails,
+  NewAdvanceRequest,
+  NewPromotionRequest,
+} from './screens/HR/SalariesRewards';
+import { PerformanceDevelopment, AddEvaluation } from './screens/HR/PerformanceDevelopment';
+import { CommunicationLibrary, NewAnnouncement } from './screens/HR/CommunicationLibrary';
+import { Recruitment, NewRecruitmentRequest } from './screens/HR/Recruitment';
+import { AlertsRequests, NewAlert } from './screens/HR/AlertsRequests';
 import { Dashboard } from './screens/Dashboard';
 import { Inbox } from './screens/Inbox';
 import { LoginPage } from './screens/LoginPage';
@@ -93,7 +124,13 @@ import { FinancialPositionReport } from './screens/ReportsPage/FinancialPosition
 import { TrialBalanceReport } from './screens/ReportsPage/TrialBalanceReport';
 import { IncomeStatementReport } from './screens/ReportsPage/IncomeStatementReport';
 import { TrialBalanceMovementReport } from './screens/ReportsPage/TrialBalanceMovementReport';
-import { SalesRepresentativeCommissionReport, InactiveCustomersReport, CustomerAcquisitionReport, SalesReport, CustomerAgingReport } from "./screens/SalesReports";
+import {
+  SalesRepresentativeCommissionReport,
+  InactiveCustomersReport,
+  CustomerAcquisitionReport,
+  SalesReport,
+  CustomerAgingReport,
+} from './screens/SalesReports';
 import { SettingsPage } from './screens/SettingsPage';
 import {
   CompanySettings,
@@ -108,7 +145,9 @@ import {
   CostCenters,
   Budget,
   BudgetForm,
-  BudgetEditForm, SalesSettings, TermsTemplate,
+  BudgetEditForm,
+  SalesSettings,
+  TermsTemplate,
 } from './screens/Settings';
 import { SupportPage } from './screens/SupportPage';
 import { ComingSoon } from './screens/ComingSoon';
@@ -261,7 +300,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/representatives-commission",
+    path: '/reports/sales/representatives-commission',
     element: (
       <ProtectedRoute>
         <SalesRepresentativeCommissionReport />
@@ -269,7 +308,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/inactive-customers",
+    path: '/reports/sales/inactive-customers',
     element: (
       <ProtectedRoute>
         <InactiveCustomersReport />
@@ -277,7 +316,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/customer-acquisition",
+    path: '/reports/sales/customer-acquisition',
     element: (
       <ProtectedRoute>
         <CustomerAcquisitionReport />
@@ -285,7 +324,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/sales-analysis",
+    path: '/reports/sales/sales-analysis',
     element: (
       <ProtectedRoute>
         <SalesReport />
@@ -293,7 +332,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/customer-aging",
+    path: '/reports/sales/customer-aging',
     element: (
       <ProtectedRoute>
         <CustomerAgingReport />
@@ -301,7 +340,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/representatives-commission",
+    path: '/reports/sales/representatives-commission',
     element: (
       <ProtectedRoute>
         <SalesRepresentativeCommissionReport />
@@ -309,7 +348,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/inactive-customers",
+    path: '/reports/sales/inactive-customers',
     element: (
       <ProtectedRoute>
         <InactiveCustomersReport />
@@ -317,7 +356,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/customer-acquisition",
+    path: '/reports/sales/customer-acquisition',
     element: (
       <ProtectedRoute>
         <CustomerAcquisitionReport />
@@ -325,7 +364,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/sales-analysis",
+    path: '/reports/sales/sales-analysis',
     element: (
       <ProtectedRoute>
         <SalesReport />
@@ -333,7 +372,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/reports/sales/customer-aging",
+    path: '/reports/sales/customer-aging',
     element: (
       <ProtectedRoute>
         <CustomerAgingReport />
@@ -533,7 +572,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-quotes",
+    path: '/sales/price-quotes',
     element: (
       <ProtectedRoute>
         <PriceQuotes />
@@ -541,7 +580,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-quotes/add",
+    path: '/sales/price-quotes/add',
     element: (
       <ProtectedRoute>
         <AddEditPriceQuote />
@@ -549,7 +588,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-quotes/edit/:id",
+    path: '/sales/price-quotes/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditPriceQuote />
@@ -557,7 +596,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/work-orders",
+    path: '/sales/work-orders',
     element: (
       <ProtectedRoute>
         <WorkOrders />
@@ -565,7 +604,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/work-orders/add",
+    path: '/sales/work-orders/add',
     element: (
       <ProtectedRoute>
         <AddEditWorkOrder />
@@ -573,7 +612,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/work-orders/edit/:id",
+    path: '/sales/work-orders/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditWorkOrder />
@@ -581,7 +620,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-invoices",
+    path: '/sales/sales-invoices',
     element: (
       <ProtectedRoute>
         <SalesInvoices />
@@ -589,7 +628,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-invoices/add",
+    path: '/sales/sales-invoices/add',
     element: (
       <ProtectedRoute>
         <AddEditSalesInvoice />
@@ -597,7 +636,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-invoices/edit/:id",
+    path: '/sales/sales-invoices/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditSalesInvoice />
@@ -605,7 +644,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/delivery-notes",
+    path: '/sales/delivery-notes',
     element: (
       <ProtectedRoute>
         <DeliveryNotes />
@@ -613,7 +652,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/delivery-notes/add",
+    path: '/sales/delivery-notes/add',
     element: (
       <ProtectedRoute>
         <AddEditDeliveryNote />
@@ -621,7 +660,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/delivery-notes/edit/:id",
+    path: '/sales/delivery-notes/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditDeliveryNote />
@@ -629,7 +668,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-lists",
+    path: '/sales/price-lists',
     element: (
       <ProtectedRoute>
         <PriceLists />
@@ -637,7 +676,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-lists/add",
+    path: '/sales/price-lists/add',
     element: (
       <ProtectedRoute>
         <AddEditPriceList />
@@ -645,7 +684,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-lists/edit/:id",
+    path: '/sales/price-lists/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditPriceList />
@@ -653,7 +692,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-representatives",
+    path: '/sales/sales-representatives',
     element: (
       <ProtectedRoute>
         <SalesRepresentatives />
@@ -661,7 +700,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-quotes",
+    path: '/sales/price-quotes',
     element: (
       <ProtectedRoute>
         <PriceQuotes />
@@ -669,7 +708,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-quotes/add",
+    path: '/sales/price-quotes/add',
     element: (
       <ProtectedRoute>
         <AddEditPriceQuote />
@@ -677,7 +716,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-quotes/edit/:id",
+    path: '/sales/price-quotes/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditPriceQuote />
@@ -685,7 +724,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/work-orders",
+    path: '/sales/work-orders',
     element: (
       <ProtectedRoute>
         <WorkOrders />
@@ -693,7 +732,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/work-orders/add",
+    path: '/sales/work-orders/add',
     element: (
       <ProtectedRoute>
         <AddEditWorkOrder />
@@ -701,7 +740,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/work-orders/edit/:id",
+    path: '/sales/work-orders/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditWorkOrder />
@@ -709,7 +748,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-invoices",
+    path: '/sales/sales-invoices',
     element: (
       <ProtectedRoute>
         <SalesInvoices />
@@ -717,7 +756,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-invoices/add",
+    path: '/sales/sales-invoices/add',
     element: (
       <ProtectedRoute>
         <AddEditSalesInvoice />
@@ -725,7 +764,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-invoices/edit/:id",
+    path: '/sales/sales-invoices/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditSalesInvoice />
@@ -733,7 +772,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/delivery-notes",
+    path: '/sales/delivery-notes',
     element: (
       <ProtectedRoute>
         <DeliveryNotes />
@@ -741,7 +780,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/delivery-notes/add",
+    path: '/sales/delivery-notes/add',
     element: (
       <ProtectedRoute>
         <AddEditDeliveryNote />
@@ -749,7 +788,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/delivery-notes/edit/:id",
+    path: '/sales/delivery-notes/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditDeliveryNote />
@@ -757,7 +796,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-lists",
+    path: '/sales/price-lists',
     element: (
       <ProtectedRoute>
         <PriceLists />
@@ -765,7 +804,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-lists/add",
+    path: '/sales/price-lists/add',
     element: (
       <ProtectedRoute>
         <AddEditPriceList />
@@ -773,7 +812,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/price-lists/edit/:id",
+    path: '/sales/price-lists/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditPriceList />
@@ -781,7 +820,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/sales/sales-representatives",
+    path: '/sales/sales-representatives',
     element: (
       <ProtectedRoute>
         <SalesRepresentatives />
@@ -821,7 +860,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-users",
+    path: '/competitions/vendor-users',
     element: (
       <ProtectedRoute>
         <VendorUsers />
@@ -829,7 +868,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-users/add",
+    path: '/competitions/vendor-users/add',
     element: (
       <ProtectedRoute>
         <AddEditVendorUser />
@@ -837,7 +876,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-users/edit/:id",
+    path: '/competitions/vendor-users/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditVendorUser />
@@ -845,7 +884,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-notifications",
+    path: '/competitions/vendor-notifications',
     element: (
       <ProtectedRoute>
         <VendorNotifications />
@@ -853,7 +892,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-notifications/add",
+    path: '/competitions/vendor-notifications/add',
     element: (
       <ProtectedRoute>
         <AddEditVendorNotification />
@@ -861,7 +900,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-notifications/edit/:id",
+    path: '/competitions/vendor-notifications/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditVendorNotification />
@@ -869,7 +908,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/committee-formation",
+    path: '/competitions/committee-formation',
     element: (
       <ProtectedRoute>
         <CommitteeFormation />
@@ -877,7 +916,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/committee-formation/add",
+    path: '/competitions/committee-formation/add',
     element: (
       <ProtectedRoute>
         <AddEditCommitteeFormation />
@@ -885,7 +924,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/committee-formation/edit/:id",
+    path: '/competitions/committee-formation/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditCommitteeFormation />
@@ -893,7 +932,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/evaluation-criteria",
+    path: '/competitions/evaluation-criteria',
     element: (
       <ProtectedRoute>
         <EvaluationCriteria />
@@ -901,7 +940,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/evaluation-criteria/add",
+    path: '/competitions/evaluation-criteria/add',
     element: (
       <ProtectedRoute>
         <AddEditEvaluationCriteria />
@@ -909,7 +948,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/evaluation-criteria/edit/:id",
+    path: '/competitions/evaluation-criteria/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditEvaluationCriteria />
@@ -917,7 +956,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-launch",
+    path: '/competitions/competition-launch',
     element: (
       <ProtectedRoute>
         <CompetitionLaunch />
@@ -925,7 +964,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-launch/add",
+    path: '/competitions/competition-launch/add',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionLaunch />
@@ -933,7 +972,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-launch/edit/:id",
+    path: '/competitions/competition-launch/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionLaunch />
@@ -941,7 +980,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-extension",
+    path: '/competitions/competition-extension',
     element: (
       <ProtectedRoute>
         <CompetitionExtension />
@@ -949,7 +988,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-extension/add",
+    path: '/competitions/competition-extension/add',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionExtension />
@@ -957,7 +996,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-extension/edit/:id",
+    path: '/competitions/competition-extension/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionExtension />
@@ -965,7 +1004,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/receive-offers",
+    path: '/competitions/receive-offers',
     element: (
       <ProtectedRoute>
         <ReceiveOffers />
@@ -973,7 +1012,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/receive-offers/add",
+    path: '/competitions/receive-offers/add',
     element: (
       <ProtectedRoute>
         <AddEditReceiveOffers />
@@ -981,7 +1020,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/receive-offers/edit/:id",
+    path: '/competitions/receive-offers/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditReceiveOffers />
@@ -989,7 +1028,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/open-offers",
+    path: '/competitions/open-offers',
     element: (
       <ProtectedRoute>
         <OpenOffers />
@@ -997,7 +1036,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/open-offers/add",
+    path: '/competitions/open-offers/add',
     element: (
       <ProtectedRoute>
         <AddEditOpenOffers />
@@ -1005,7 +1044,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/open-offers/edit/:id",
+    path: '/competitions/open-offers/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditOpenOffers />
@@ -1013,7 +1052,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/offers-inspection",
+    path: '/competitions/offers-inspection',
     element: (
       <ProtectedRoute>
         <OffersInspection />
@@ -1021,7 +1060,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/offers-inspection/add",
+    path: '/competitions/offers-inspection/add',
     element: (
       <ProtectedRoute>
         <AddEditOffersInspection />
@@ -1029,7 +1068,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/offers-inspection/edit/:id",
+    path: '/competitions/offers-inspection/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditOffersInspection />
@@ -1037,7 +1076,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award",
+    path: '/competitions/award',
     element: (
       <ProtectedRoute>
         <Award />
@@ -1045,7 +1084,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award/add",
+    path: '/competitions/award/add',
     element: (
       <ProtectedRoute>
         <AddEditAward />
@@ -1053,7 +1092,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award/edit/:id",
+    path: '/competitions/award/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditAward />
@@ -1061,7 +1100,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award-confirmation",
+    path: '/competitions/award-confirmation',
     element: (
       <ProtectedRoute>
         <AwardConfirmation />
@@ -1069,7 +1108,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award-confirmation/add",
+    path: '/competitions/award-confirmation/add',
     element: (
       <ProtectedRoute>
         <AddEditAwardConfirmation />
@@ -1077,7 +1116,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award-confirmation/edit/:id",
+    path: '/competitions/award-confirmation/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditAwardConfirmation />
@@ -1085,7 +1124,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/agreements",
+    path: '/competitions/agreements',
     element: (
       <ProtectedRoute>
         <Agreements />
@@ -1093,7 +1132,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/agreements/add",
+    path: '/competitions/agreements/add',
     element: (
       <ProtectedRoute>
         <AgreementsForm />
@@ -1101,7 +1140,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/agreements/edit/:id",
+    path: '/competitions/agreements/edit/:id',
     element: (
       <ProtectedRoute>
         <AgreementsForm />
@@ -1109,7 +1148,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/work-order",
+    path: '/competitions/work-order',
     element: (
       <ProtectedRoute>
         <WorkOrder />
@@ -1117,7 +1156,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/work-order/add",
+    path: '/competitions/work-order/add',
     element: (
       <ProtectedRoute>
         <WorkOrderForm />
@@ -1125,7 +1164,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/work-order/edit/:id",
+    path: '/competitions/work-order/edit/:id',
     element: (
       <ProtectedRoute>
         <WorkOrderForm />
@@ -1133,7 +1172,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/contract",
+    path: '/competitions/contract',
     element: (
       <ProtectedRoute>
         <Contract />
@@ -1141,7 +1180,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/contract/add",
+    path: '/competitions/contract/add',
     element: (
       <ProtectedRoute>
         <ContractForm />
@@ -1149,7 +1188,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/contract/edit/:id",
+    path: '/competitions/contract/edit/:id',
     element: (
       <ProtectedRoute>
         <ContractForm />
@@ -1157,7 +1196,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/financial-claim",
+    path: '/competitions/financial-claim',
     element: (
       <ProtectedRoute>
         <FinancialClaim />
@@ -1165,7 +1204,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/financial-claim/add",
+    path: '/competitions/financial-claim/add',
     element: (
       <ProtectedRoute>
         <FinancialClaimForm />
@@ -1173,7 +1212,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/financial-claim/edit/:id",
+    path: '/competitions/financial-claim/edit/:id',
     element: (
       <ProtectedRoute>
         <FinancialClaimForm />
@@ -1181,7 +1220,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/completion-certificate",
+    path: '/competitions/completion-certificate',
     element: (
       <ProtectedRoute>
         <CompletionCertificate />
@@ -1189,7 +1228,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/completion-certificate/add",
+    path: '/competitions/completion-certificate/add',
     element: (
       <ProtectedRoute>
         <CompletionCertificateForm />
@@ -1197,7 +1236,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/completion-certificate/edit/:id",
+    path: '/competitions/completion-certificate/edit/:id',
     element: (
       <ProtectedRoute>
         <CompletionCertificateForm />
@@ -1205,7 +1244,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/bank-guarantees",
+    path: '/competitions/bank-guarantees',
     element: (
       <ProtectedRoute>
         <BankGuarantees />
@@ -1213,7 +1252,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/bank-guarantees/add",
+    path: '/competitions/bank-guarantees/add',
     element: (
       <ProtectedRoute>
         <BankGuaranteesForm />
@@ -1221,7 +1260,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/bank-guarantees/edit/:id",
+    path: '/competitions/bank-guarantees/edit/:id',
     element: (
       <ProtectedRoute>
         <BankGuaranteesForm />
@@ -1229,7 +1268,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-users",
+    path: '/competitions/vendor-users',
     element: (
       <ProtectedRoute>
         <VendorUsers />
@@ -1237,7 +1276,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-users/add",
+    path: '/competitions/vendor-users/add',
     element: (
       <ProtectedRoute>
         <AddEditVendorUser />
@@ -1245,7 +1284,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-users/edit/:id",
+    path: '/competitions/vendor-users/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditVendorUser />
@@ -1253,7 +1292,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-notifications",
+    path: '/competitions/vendor-notifications',
     element: (
       <ProtectedRoute>
         <VendorNotifications />
@@ -1261,7 +1300,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-notifications/add",
+    path: '/competitions/vendor-notifications/add',
     element: (
       <ProtectedRoute>
         <AddEditVendorNotification />
@@ -1269,7 +1308,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/vendor-notifications/edit/:id",
+    path: '/competitions/vendor-notifications/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditVendorNotification />
@@ -1277,7 +1316,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/committee-formation",
+    path: '/competitions/committee-formation',
     element: (
       <ProtectedRoute>
         <CommitteeFormation />
@@ -1285,7 +1324,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/committee-formation/add",
+    path: '/competitions/committee-formation/add',
     element: (
       <ProtectedRoute>
         <AddEditCommitteeFormation />
@@ -1293,7 +1332,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/committee-formation/edit/:id",
+    path: '/competitions/committee-formation/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditCommitteeFormation />
@@ -1301,7 +1340,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/evaluation-criteria",
+    path: '/competitions/evaluation-criteria',
     element: (
       <ProtectedRoute>
         <EvaluationCriteria />
@@ -1309,7 +1348,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/evaluation-criteria/add",
+    path: '/competitions/evaluation-criteria/add',
     element: (
       <ProtectedRoute>
         <AddEditEvaluationCriteria />
@@ -1317,7 +1356,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/evaluation-criteria/edit/:id",
+    path: '/competitions/evaluation-criteria/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditEvaluationCriteria />
@@ -1325,7 +1364,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-launch",
+    path: '/competitions/competition-launch',
     element: (
       <ProtectedRoute>
         <CompetitionLaunch />
@@ -1333,7 +1372,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-launch/add",
+    path: '/competitions/competition-launch/add',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionLaunch />
@@ -1341,7 +1380,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-launch/edit/:id",
+    path: '/competitions/competition-launch/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionLaunch />
@@ -1349,7 +1388,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-extension",
+    path: '/competitions/competition-extension',
     element: (
       <ProtectedRoute>
         <CompetitionExtension />
@@ -1357,7 +1396,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-extension/add",
+    path: '/competitions/competition-extension/add',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionExtension />
@@ -1365,7 +1404,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/competition-extension/edit/:id",
+    path: '/competitions/competition-extension/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditCompetitionExtension />
@@ -1373,7 +1412,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/receive-offers",
+    path: '/competitions/receive-offers',
     element: (
       <ProtectedRoute>
         <ReceiveOffers />
@@ -1381,7 +1420,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/receive-offers/add",
+    path: '/competitions/receive-offers/add',
     element: (
       <ProtectedRoute>
         <AddEditReceiveOffers />
@@ -1389,7 +1428,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/receive-offers/edit/:id",
+    path: '/competitions/receive-offers/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditReceiveOffers />
@@ -1397,7 +1436,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/open-offers",
+    path: '/competitions/open-offers',
     element: (
       <ProtectedRoute>
         <OpenOffers />
@@ -1405,7 +1444,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/open-offers/add",
+    path: '/competitions/open-offers/add',
     element: (
       <ProtectedRoute>
         <AddEditOpenOffers />
@@ -1413,7 +1452,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/open-offers/edit/:id",
+    path: '/competitions/open-offers/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditOpenOffers />
@@ -1421,7 +1460,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/offers-inspection",
+    path: '/competitions/offers-inspection',
     element: (
       <ProtectedRoute>
         <OffersInspection />
@@ -1429,7 +1468,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/offers-inspection/add",
+    path: '/competitions/offers-inspection/add',
     element: (
       <ProtectedRoute>
         <AddEditOffersInspection />
@@ -1437,7 +1476,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/offers-inspection/edit/:id",
+    path: '/competitions/offers-inspection/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditOffersInspection />
@@ -1445,7 +1484,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award",
+    path: '/competitions/award',
     element: (
       <ProtectedRoute>
         <Award />
@@ -1453,7 +1492,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award/add",
+    path: '/competitions/award/add',
     element: (
       <ProtectedRoute>
         <AddEditAward />
@@ -1461,7 +1500,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award/edit/:id",
+    path: '/competitions/award/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditAward />
@@ -1469,7 +1508,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award-confirmation",
+    path: '/competitions/award-confirmation',
     element: (
       <ProtectedRoute>
         <AwardConfirmation />
@@ -1477,7 +1516,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award-confirmation/add",
+    path: '/competitions/award-confirmation/add',
     element: (
       <ProtectedRoute>
         <AddEditAwardConfirmation />
@@ -1485,7 +1524,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/award-confirmation/edit/:id",
+    path: '/competitions/award-confirmation/edit/:id',
     element: (
       <ProtectedRoute>
         <AddEditAwardConfirmation />
@@ -1493,7 +1532,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/agreements",
+    path: '/competitions/agreements',
     element: (
       <ProtectedRoute>
         <Agreements />
@@ -1501,7 +1540,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/agreements/add",
+    path: '/competitions/agreements/add',
     element: (
       <ProtectedRoute>
         <AgreementsForm />
@@ -1509,7 +1548,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/agreements/edit/:id",
+    path: '/competitions/agreements/edit/:id',
     element: (
       <ProtectedRoute>
         <AgreementsForm />
@@ -1517,7 +1556,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/work-order",
+    path: '/competitions/work-order',
     element: (
       <ProtectedRoute>
         <WorkOrder />
@@ -1525,7 +1564,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/work-order/add",
+    path: '/competitions/work-order/add',
     element: (
       <ProtectedRoute>
         <WorkOrderForm />
@@ -1533,7 +1572,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/work-order/edit/:id",
+    path: '/competitions/work-order/edit/:id',
     element: (
       <ProtectedRoute>
         <WorkOrderForm />
@@ -1541,7 +1580,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/contract",
+    path: '/competitions/contract',
     element: (
       <ProtectedRoute>
         <Contract />
@@ -1549,7 +1588,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/contract/add",
+    path: '/competitions/contract/add',
     element: (
       <ProtectedRoute>
         <ContractForm />
@@ -1557,7 +1596,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/contract/edit/:id",
+    path: '/competitions/contract/edit/:id',
     element: (
       <ProtectedRoute>
         <ContractForm />
@@ -1565,7 +1604,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/financial-claim",
+    path: '/competitions/financial-claim',
     element: (
       <ProtectedRoute>
         <FinancialClaim />
@@ -1573,7 +1612,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/financial-claim/add",
+    path: '/competitions/financial-claim/add',
     element: (
       <ProtectedRoute>
         <FinancialClaimForm />
@@ -1581,7 +1620,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/financial-claim/edit/:id",
+    path: '/competitions/financial-claim/edit/:id',
     element: (
       <ProtectedRoute>
         <FinancialClaimForm />
@@ -1589,7 +1628,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/completion-certificate",
+    path: '/competitions/completion-certificate',
     element: (
       <ProtectedRoute>
         <CompletionCertificate />
@@ -1597,7 +1636,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/completion-certificate/add",
+    path: '/competitions/completion-certificate/add',
     element: (
       <ProtectedRoute>
         <CompletionCertificateForm />
@@ -1605,7 +1644,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/completion-certificate/edit/:id",
+    path: '/competitions/completion-certificate/edit/:id',
     element: (
       <ProtectedRoute>
         <CompletionCertificateForm />
@@ -1613,7 +1652,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/bank-guarantees",
+    path: '/competitions/bank-guarantees',
     element: (
       <ProtectedRoute>
         <BankGuarantees />
@@ -1621,7 +1660,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/bank-guarantees/add",
+    path: '/competitions/bank-guarantees/add',
     element: (
       <ProtectedRoute>
         <BankGuaranteesForm />
@@ -1629,7 +1668,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/competitions/bank-guarantees/edit/:id",
+    path: '/competitions/bank-guarantees/edit/:id',
     element: (
       <ProtectedRoute>
         <BankGuaranteesForm />
@@ -1645,7 +1684,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-management",
+    path: '/assets/asset-management',
     element: (
       <ProtectedRoute>
         <AssetManagement />
@@ -1653,7 +1692,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-management/add",
+    path: '/assets/asset-management/add',
     element: (
       <ProtectedRoute>
         <AddAssetForm />
@@ -1661,7 +1700,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-management/:id",
+    path: '/assets/asset-management/:id',
     element: (
       <ProtectedRoute>
         <AssetDetail />
@@ -1669,7 +1708,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements",
+    path: '/assets/asset-movements',
     element: (
       <ProtectedRoute>
         <AssetMovements />
@@ -1677,7 +1716,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements/add",
+    path: '/assets/asset-movements/add',
     element: (
       <ProtectedRoute>
         <AssetMovementsForm />
@@ -1685,7 +1724,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements/add/asset-detail/:id",
+    path: '/assets/asset-movements/add/asset-detail/:id',
     element: (
       <ProtectedRoute>
         <AssetDetail />
@@ -1693,7 +1732,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements/:id",
+    path: '/assets/asset-movements/:id',
     element: (
       <ProtectedRoute>
         <AssetMovementsForm />
@@ -1701,7 +1740,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-management",
+    path: '/assets/asset-management',
     element: (
       <ProtectedRoute>
         <AssetManagement />
@@ -1709,7 +1748,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-management/add",
+    path: '/assets/asset-management/add',
     element: (
       <ProtectedRoute>
         <AddAssetForm />
@@ -1717,7 +1756,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-management/:id",
+    path: '/assets/asset-management/:id',
     element: (
       <ProtectedRoute>
         <AssetDetail />
@@ -1725,7 +1764,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements",
+    path: '/assets/asset-movements',
     element: (
       <ProtectedRoute>
         <AssetMovements />
@@ -1733,7 +1772,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements/add",
+    path: '/assets/asset-movements/add',
     element: (
       <ProtectedRoute>
         <AssetMovementsForm />
@@ -1741,7 +1780,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements/add/asset-detail/:id",
+    path: '/assets/asset-movements/add/asset-detail/:id',
     element: (
       <ProtectedRoute>
         <AssetDetail />
@@ -1749,7 +1788,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-movements/:id",
+    path: '/assets/asset-movements/:id',
     element: (
       <ProtectedRoute>
         <AssetMovementsForm />
@@ -1765,7 +1804,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-value-adjustment",
+    path: '/assets/asset-value-adjustment',
     element: (
       <ProtectedRoute>
         <AssetValueAdjustment />
@@ -1773,7 +1812,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/sale-disposal",
+    path: '/assets/sale-disposal',
     element: (
       <ProtectedRoute>
         <SaleDisposal />
@@ -1781,7 +1820,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/asset-value-adjustment",
+    path: '/assets/asset-value-adjustment',
     element: (
       <ProtectedRoute>
         <AssetValueAdjustment />
@@ -1789,7 +1828,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/assets/sale-disposal",
+    path: '/assets/sale-disposal',
     element: (
       <ProtectedRoute>
         <SaleDisposal />
@@ -1837,7 +1876,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/leaves-attendance",
+    path: '/hr/leaves-attendance',
     element: (
       <ProtectedRoute>
         <LeavesAttendance />
@@ -1845,7 +1884,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/leaves-attendance/new",
+    path: '/hr/leaves-attendance/new',
     element: (
       <ProtectedRoute>
         <LeaveRequestForm />
@@ -1853,7 +1892,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/remote-work",
+    path: '/hr/remote-work',
     element: (
       <ProtectedRoute>
         <RemoteWork />
@@ -1861,7 +1900,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards",
+    path: '/hr/salaries-rewards',
     element: (
       <ProtectedRoute>
         <SalariesRewards />
@@ -1869,7 +1908,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/new",
+    path: '/hr/salaries-rewards/new',
     element: (
       <ProtectedRoute>
         <NewSalaryPayroll />
@@ -1877,7 +1916,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/:id",
+    path: '/hr/salaries-rewards/:id',
     element: (
       <ProtectedRoute>
         <SalaryPayrollDetails />
@@ -1885,7 +1924,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/advance/new",
+    path: '/hr/salaries-rewards/advance/new',
     element: (
       <ProtectedRoute>
         <NewAdvanceRequest />
@@ -1893,7 +1932,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/promotion/new",
+    path: '/hr/salaries-rewards/promotion/new',
     element: (
       <ProtectedRoute>
         <NewPromotionRequest />
@@ -1901,7 +1940,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/performance-development",
+    path: '/hr/performance-development',
     element: (
       <ProtectedRoute>
         <PerformanceDevelopment />
@@ -1909,7 +1948,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/performance-development/add-evaluation",
+    path: '/hr/performance-development/add-evaluation',
     element: (
       <ProtectedRoute>
         <AddEvaluation />
@@ -1917,7 +1956,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/communication-library",
+    path: '/hr/communication-library',
     element: (
       <ProtectedRoute>
         <CommunicationLibrary />
@@ -1925,7 +1964,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/communication-library/new-announcement",
+    path: '/hr/communication-library/new-announcement',
     element: (
       <ProtectedRoute>
         <NewAnnouncement />
@@ -1933,7 +1972,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/recruitment",
+    path: '/hr/recruitment',
     element: (
       <ProtectedRoute>
         <Recruitment />
@@ -1941,7 +1980,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/recruitment/new",
+    path: '/hr/recruitment/new',
     element: (
       <ProtectedRoute>
         <NewRecruitmentRequest />
@@ -1949,7 +1988,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/alerts-requests",
+    path: '/hr/alerts-requests',
     element: (
       <ProtectedRoute>
         <AlertsRequests />
@@ -1957,7 +1996,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/alerts-requests/new",
+    path: '/hr/alerts-requests/new',
     element: (
       <ProtectedRoute>
         <NewAlert />
@@ -1965,7 +2004,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/leaves-attendance",
+    path: '/hr/leaves-attendance',
     element: (
       <ProtectedRoute>
         <LeavesAttendance />
@@ -1973,7 +2012,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/leaves-attendance/new",
+    path: '/hr/leaves-attendance/new',
     element: (
       <ProtectedRoute>
         <LeaveRequestForm />
@@ -1981,7 +2020,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/remote-work",
+    path: '/hr/remote-work',
     element: (
       <ProtectedRoute>
         <RemoteWork />
@@ -1989,7 +2028,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards",
+    path: '/hr/salaries-rewards',
     element: (
       <ProtectedRoute>
         <SalariesRewards />
@@ -1997,7 +2036,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/new",
+    path: '/hr/salaries-rewards/new',
     element: (
       <ProtectedRoute>
         <NewSalaryPayroll />
@@ -2005,7 +2044,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/:id",
+    path: '/hr/salaries-rewards/:id',
     element: (
       <ProtectedRoute>
         <SalaryPayrollDetails />
@@ -2013,7 +2052,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/advance/new",
+    path: '/hr/salaries-rewards/advance/new',
     element: (
       <ProtectedRoute>
         <NewAdvanceRequest />
@@ -2021,7 +2060,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/salaries-rewards/promotion/new",
+    path: '/hr/salaries-rewards/promotion/new',
     element: (
       <ProtectedRoute>
         <NewPromotionRequest />
@@ -2029,7 +2068,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/performance-development",
+    path: '/hr/performance-development',
     element: (
       <ProtectedRoute>
         <PerformanceDevelopment />
@@ -2037,7 +2076,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/performance-development/add-evaluation",
+    path: '/hr/performance-development/add-evaluation',
     element: (
       <ProtectedRoute>
         <AddEvaluation />
@@ -2045,7 +2084,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/communication-library",
+    path: '/hr/communication-library',
     element: (
       <ProtectedRoute>
         <CommunicationLibrary />
@@ -2053,7 +2092,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/communication-library/new-announcement",
+    path: '/hr/communication-library/new-announcement',
     element: (
       <ProtectedRoute>
         <NewAnnouncement />
@@ -2061,7 +2100,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/recruitment",
+    path: '/hr/recruitment',
     element: (
       <ProtectedRoute>
         <Recruitment />
@@ -2069,7 +2108,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/recruitment/new",
+    path: '/hr/recruitment/new',
     element: (
       <ProtectedRoute>
         <NewRecruitmentRequest />
@@ -2077,7 +2116,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/alerts-requests",
+    path: '/hr/alerts-requests',
     element: (
       <ProtectedRoute>
         <AlertsRequests />
@@ -2085,7 +2124,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/hr/alerts-requests/new",
+    path: '/hr/alerts-requests/new',
     element: (
       <ProtectedRoute>
         <NewAlert />
@@ -2125,7 +2164,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/meetings",
+    path: '/strategy/meetings',
     element: (
       <ProtectedRoute>
         <Meetings />
@@ -2133,7 +2172,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/meetings/new",
+    path: '/strategy/meetings/new',
     element: (
       <ProtectedRoute>
         <NewMeeting />
@@ -2141,7 +2180,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/documents",
+    path: '/strategy/documents',
     element: (
       <ProtectedRoute>
         <Documents />
@@ -2149,7 +2188,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/documents/new",
+    path: '/strategy/documents/new',
     element: (
       <ProtectedRoute>
         <NewDocument />
@@ -2157,7 +2196,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/plan-tracking",
+    path: '/strategy/plan-tracking',
     element: (
       <ProtectedRoute>
         <PlanTracking />
@@ -2165,7 +2204,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/plan-tracking/new",
+    path: '/strategy/plan-tracking/new',
     element: (
       <ProtectedRoute>
         <NewPlanLink />
@@ -2173,7 +2212,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/plan-tracking/:id",
+    path: '/strategy/plan-tracking/:id',
     element: (
       <ProtectedRoute>
         <PlanLinkDetails />
@@ -2181,7 +2220,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/strategic-plans",
+    path: '/strategy/strategic-plans',
     element: (
       <ProtectedRoute>
         <StrategicPlans />
@@ -2189,7 +2228,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/strategic-plans/new",
+    path: '/strategy/strategic-plans/new',
     element: (
       <ProtectedRoute>
         <NewStrategicPlan />
@@ -2197,7 +2236,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/strategic-plans/:id",
+    path: '/strategy/strategic-plans/:id',
     element: (
       <ProtectedRoute>
         <StrategicPlanDetails />
@@ -2205,7 +2244,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/meetings",
+    path: '/strategy/meetings',
     element: (
       <ProtectedRoute>
         <Meetings />
@@ -2213,7 +2252,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/meetings/new",
+    path: '/strategy/meetings/new',
     element: (
       <ProtectedRoute>
         <NewMeeting />
@@ -2221,7 +2260,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/documents",
+    path: '/strategy/documents',
     element: (
       <ProtectedRoute>
         <Documents />
@@ -2229,7 +2268,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/documents/new",
+    path: '/strategy/documents/new',
     element: (
       <ProtectedRoute>
         <NewDocument />
@@ -2237,7 +2276,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/plan-tracking",
+    path: '/strategy/plan-tracking',
     element: (
       <ProtectedRoute>
         <PlanTracking />
@@ -2245,7 +2284,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/plan-tracking/new",
+    path: '/strategy/plan-tracking/new',
     element: (
       <ProtectedRoute>
         <NewPlanLink />
@@ -2253,7 +2292,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/plan-tracking/:id",
+    path: '/strategy/plan-tracking/:id',
     element: (
       <ProtectedRoute>
         <PlanLinkDetails />
@@ -2261,7 +2300,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/strategic-plans",
+    path: '/strategy/strategic-plans',
     element: (
       <ProtectedRoute>
         <StrategicPlans />
@@ -2269,7 +2308,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/strategic-plans/new",
+    path: '/strategy/strategic-plans/new',
     element: (
       <ProtectedRoute>
         <NewStrategicPlan />
@@ -2277,7 +2316,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/strategy/strategic-plans/:id",
+    path: '/strategy/strategic-plans/:id',
     element: (
       <ProtectedRoute>
         <StrategicPlanDetails />
@@ -2549,7 +2588,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/settings/sales/sales-settings",
+    path: '/settings/sales/sales-settings',
     element: (
       <ProtectedRoute>
         <SalesSettings />
@@ -2557,7 +2596,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/settings/sales/terms-template",
+    path: '/settings/sales/terms-template',
     element: (
       <ProtectedRoute>
         <TermsTemplate />
@@ -2565,7 +2604,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/settings/sales/sales-settings",
+    path: '/settings/sales/sales-settings',
     element: (
       <ProtectedRoute>
         <SalesSettings />
@@ -2573,7 +2612,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/settings/sales/terms-template",
+    path: '/settings/sales/terms-template',
     element: (
       <ProtectedRoute>
         <TermsTemplate />
