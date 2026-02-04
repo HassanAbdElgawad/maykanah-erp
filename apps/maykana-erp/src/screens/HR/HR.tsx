@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
@@ -33,6 +33,7 @@ export const HR: React.FC = () => {
   const location = useLocation();
   const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<ViewMode>('admin');
+  const [lastVisitedCard, setLastVisitedCard] = useState<string | null>(null);
 
   const adminCards: HRCard[] = [
     {
@@ -168,22 +169,42 @@ export const HR: React.FC = () => {
 
   const cards = viewMode === 'admin' ? adminCards : employeeCards;
 
+  // Track the last visited card based on current path
+  useEffect(() => {
+    if (location.pathname !== '/hr') {
+      const currentCard = adminCards.find(card => 
+        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
+      ) || employeeCards.find(card => 
+        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
+      );
+      
+      if (currentCard) {
+        setLastVisitedCard(currentCard.id);
+      }
+    }
+  }, [location.pathname, adminCards, employeeCards]);
+
   const isCardActive = (card: HRCard) => {
-    // If on /hr main page, show default active card based on mode
+    // If on /hr main page, show the last visited card or default based on mode
     if (location.pathname === '/hr') {
+      if (lastVisitedCard) {
+        return card.id === lastVisitedCard;
+      }
+      // Default active cards if no previous visit
       if (viewMode === 'admin') {
-        return card.id === 'employee-center';
+        return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library' || card.id === 'recruitment' || card.id === 'alerts-requests';
       } else {
         return card.id === 'my-requests';
       }
     }
     // If on a sub-page, show that card as active
-    return location.pathname.startsWith(card.path);
+    // Check both exact match and path starts with (for sub-routes like /hr/leaves-attendance/new)
+    return location.pathname === card.path || location.pathname.startsWith(card.path + '/');
   };
 
   const isCardClickable = (card: HRCard) => {
     if (viewMode === 'admin') {
-      return card.id === 'employee-center';
+      return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library' || card.id === 'recruitment' || card.id === 'alerts-requests';
     } else {
       return card.id === 'my-requests';
     }

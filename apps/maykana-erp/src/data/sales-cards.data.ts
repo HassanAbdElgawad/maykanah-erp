@@ -32,7 +32,7 @@ export const getSalesCards = (t: (key: string) => string): SalesCard[] => [
   },
   {
     id: 'price-quotes',
-    title: t('sales.price_quotes') || 'عرض السعر',
+    title: t('sales.price_quotes') || 'عروض الأسعار',
     description: t('sales.price_quotes_desc') || 'عرض مبدئي يوضح الأسعار قبل تأكيد البيع.',
     icon: Receipt,
     bgColor: '#faf6fb',
@@ -41,7 +41,7 @@ export const getSalesCards = (t: (key: string) => string): SalesCard[] => [
   },
   {
     id: 'work-orders',
-    title: t('sales.work_orders') || 'أمر العمل',
+    title: t('sales.work_orders') || 'أوامر التوريد',
     description: t('sales.work_orders_desc') || 'تنفيذ الطلب وتحويله للتسليم أو الفاتورة',
     icon: ClipboardList,
     bgColor: '#fffef5',

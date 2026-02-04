@@ -11,8 +11,35 @@ export function Breadcrumbs() {
   const location = useLocation();
   const breadcrumbs = useBreadcrumbs();
   const [isModuleDropdownOpen, setIsModuleDropdownOpen] = useState(false);
-  const [selectedModule, setSelectedModule] = useState('sidebar.accounting');
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Get selected module from URL or default to accounting
+  const getSelectedModuleFromUrl = () => {
+    const params = new URLSearchParams(location.search);
+    // For Settings page, use 'module' parameter, for Reports use 'selected'
+    const moduleParam = params.get('module');
+    const selectedParam = params.get('selected');
+    const paramValue = moduleParam || selectedParam;
+    
+    if (paramValue === 'accounting') return 'sidebar.accounting';
+    if (paramValue === 'sales') return 'sidebar.sales';
+    if (paramValue === 'purchases') return 'sidebar.purchases';
+    if (paramValue === 'warehouses') return 'sidebar.warehouses';
+    if (paramValue === 'workflow-engine' || paramValue === 'workflow') return 'sidebar.workflow';
+    if (paramValue === 'assets') return 'sidebar.assets';
+    if (paramValue === 'hr') return 'sidebar.hr';
+    if (paramValue === 'strategy') return 'sidebar.strategy';
+    if (paramValue === 'competitions') return 'sidebar.competitions';
+    
+    return 'sidebar.accounting'; // default
+  };
+
+  const [selectedModule, setSelectedModule] = useState(getSelectedModuleFromUrl());
+
+  // Update selectedModule when URL changes
+  useEffect(() => {
+    setSelectedModule(getSelectedModuleFromUrl());
+  }, [location.search]);
 
   const ArrowIcon = dir === 'rtl' ? ChevronLeftIcon : ChevronRightIcon;
 
@@ -20,11 +47,10 @@ export function Breadcrumbs() {
   const isReportsPage = location.pathname === '/reports' || location.pathname.startsWith('/reports/');
   const isSettingsPage = location.pathname === '/settings' || location.pathname.startsWith('/settings/');
   
-  // Check if we're in a specific accounting report page
-  const isAccountingReportPage = location.pathname.startsWith('/reports/accounting/');
-  
-  // Check if we're in a specific accounting settings page
-  const isAccountingSettingsPage = location.pathname.startsWith('/settings/accounting/');
+  // Check if we're in a specific module reports/settings page (not the main page)
+  // For settings: /settings/accounting/company has length 4, so > 3 means we're in a sub-page
+  const isInSpecificReportModule = location.pathname.split('/').filter(Boolean).length > 2 && location.pathname.startsWith('/reports/');
+  const isInSpecificSettingsModule = location.pathname.split('/').filter(Boolean).length > 2 && location.pathname.startsWith('/settings/');
 
   // Get main modules (exclude Home and Inbox)
   const mainModules = sidebarMenuItems.filter(
@@ -134,12 +160,18 @@ export function Breadcrumbs() {
           ) : index !== breadcrumbs.length - 1 ? (
             <Link 
               to={
-                // إذا كان الـ breadcrumb هو "إدارة الحسابات" ونحن في صفحة تقارير محاسبية، نوجه إلى /reports?selected=accounting
-                crumb.label === 'sidebar.accounting' && location.pathname.startsWith('/reports/accounting') 
-                  ? '/reports?selected=accounting'
-                // إذا كان الـ breadcrumb هو "إدارة الحسابات" ونحن في صفحة إعدادات محاسبية، نوجه إلى /settings?module=accounting
-                : crumb.label === 'sidebar.accounting' && location.pathname.startsWith('/settings/accounting')
-                  ? '/settings?module=accounting'
+                // إذا كان الـ breadcrumb هو وحدة ونحن في صفحة تقارير، نوجه إلى /reports?selected=module
+                (crumb.label === 'sidebar.accounting' || crumb.label === 'sidebar.sales' || crumb.label === 'sidebar.purchases' || crumb.label === 'sidebar.warehouses') && location.pathname.startsWith('/reports/')
+                  ? `/reports?selected=${crumb.href.split('/').pop()}`
+                // إلى /reports?selected=reports عندما يضغط على "التقارير"
+                : crumb.label === 'sidebar.reports' && location.pathname.startsWith('/reports/')
+                  ? '/reports?selected=reports'
+                // إذا كان الـ breadcrumb هو وحدة ونحن في صفحة إعدادات، نوجه إلى /settings?module=module
+                : (crumb.label === 'sidebar.accounting' || crumb.label === 'sidebar.sales' || crumb.label === 'sidebar.purchases' || crumb.label === 'sidebar.warehouses') && location.pathname.startsWith('/settings/')
+                  ? `/settings?module=${crumb.href.split('/').pop()}`
+                // إذا كان "الإعدادات" ونحن في صفحة إعدادات فرعية، نرجع للصفحة الرئيسية مع الوحدة الحالية
+                : crumb.label === 'sidebar.settings' && isInSpecificSettingsModule
+                  ? `/settings?module=${location.pathname.split('/')[2]}`
                   : crumb.href
               } 
               className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#093738] text-sm hover:underline whitespace-nowrap"
@@ -154,8 +186,8 @@ export function Breadcrumbs() {
         </span>
       ))}
       
-      {/* Module Selector for Reports Page - Only show when on main reports page, not in specific module reports */}
-      {isReportsPage && breadcrumbs.length === 1 && !isAccountingReportPage && (
+      {/* Module Selector for Reports Page - Only show when on main reports page, not in specific reports */}
+      {isReportsPage && breadcrumbs.length === 1 && !isInSpecificReportModule && (
         <span className="flex items-center gap-2">
           <ArrowIcon className="w-4 h-4 text-gray-500" />
           
@@ -195,8 +227,8 @@ export function Breadcrumbs() {
         </span>
       )}
 
-      {/* Module Selector for Settings Page - Only show when on main settings page, not in specific module settings */}
-      {isSettingsPage && breadcrumbs.length === 1 && !isAccountingSettingsPage && (
+      {/* Module Selector for Settings Page - Only show when on main settings page, not in specific settings */}
+      {isSettingsPage && breadcrumbs.length === 1 && !isInSpecificSettingsModule && (
         <span className="flex items-center gap-2">
           <ArrowIcon className="w-4 h-4 text-gray-500" />
           

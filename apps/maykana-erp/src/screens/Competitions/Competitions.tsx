@@ -22,8 +22,8 @@ export const Competitions: React.FC = () => {
             bgColor={card.color}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'vendor-qualification'}
-            isClickable={card.id === 'vendor-qualification'}
+            isActive={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications' || card.id === 'committee-formation' || card.id === 'evaluation-criteria' || card.id === 'competition-launch' || card.id === 'competition-extension' || card.id === 'receive-offers' || card.id === 'open-offers' || card.id === 'offers-inspection' || card.id === 'award' || card.id === 'award-confirmation' || card.id === 'agreements' || card.id === 'work-order' || card.id === 'contract' || card.id === 'financial-claim' || card.id === 'completion-certificate' || card.id === 'bank-guarantees'}
+            isClickable={card.id === 'vendor-qualification' || card.id === 'vendor-users' || card.id === 'vendor-notifications' || card.id === 'committee-formation' || card.id === 'evaluation-criteria' || card.id === 'competition-launch' || card.id === 'competition-extension' || card.id === 'receive-offers' || card.id === 'open-offers' || card.id === 'offers-inspection' || card.id === 'award' || card.id === 'award-confirmation' || card.id === 'agreements' || card.id === 'work-order' || card.id === 'contract' || card.id === 'financial-claim' || card.id === 'completion-certificate' || card.id === 'bank-guarantees'}
           />
         ))}
       </div>
