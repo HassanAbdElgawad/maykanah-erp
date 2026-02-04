@@ -89,6 +89,7 @@ import {
   NewStrategicPlan,
   StrategicPlanDetails,
 } from './screens/Strategy/StrategicPlans';
+import { Projects, NewProject, ProjectDetails } from './screens/Strategy/Projects';
 import { WorkflowEngine } from './screens/WorkflowEngine';
 import { Workflows, AddEditWorkflow } from './screens/Workflows';
 import {
@@ -2240,6 +2241,38 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <StrategicPlanDetails />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/strategy/projects',
+    element: (
+      <ProtectedRoute>
+        <Projects />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/strategy/projects/new',
+    element: (
+      <ProtectedRoute>
+        <NewProject />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/strategy/projects/:id',
+    element: (
+      <ProtectedRoute>
+        <ProjectDetails />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/strategy/projects/:id/edit',
+    element: (
+      <ProtectedRoute>
+        <NewProject />
       </ProtectedRoute>
     ),
   },
