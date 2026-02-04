@@ -21,8 +21,28 @@ export const Purchases = (): JSX.Element => {
             bgColor={card.bgColor}
             iconColor={card.iconColor}
             onClick={() => navigate(card.path)}
-            isActive={card.id === 'suppliers' || card.id === 'purchase-requests'}
-            isClickable={card.id === 'suppliers' || card.id === 'purchase-requests'}
+            isActive={
+              card.id === 'suppliers' ||
+              card.id === 'purchase-requests' ||
+              card.id === 'material-requests-list' ||
+              card.id === 'price-quote-requests' ||
+              card.id === 'supplier-price-quotes' ||
+              card.id === 'material-requests-review' ||
+              card.id === 'material-receipts' ||
+              card.id === 'purchase-invoices' ||
+              card.id === 'purchase-settings'
+            }
+            isClickable={
+              card.id === 'suppliers' ||
+              card.id === 'purchase-requests' ||
+              card.id === 'material-requests-list' ||
+              card.id === 'price-quote-requests' ||
+              card.id === 'supplier-price-quotes' ||
+              card.id === 'material-requests-review' ||
+              card.id === 'material-receipts' ||
+              card.id === 'purchase-invoices' ||
+              card.id === 'purchase-settings'
+            }
           />
         ))}
       </div>
