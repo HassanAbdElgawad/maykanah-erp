@@ -1,0 +1,1 @@
+export { PurchaseSettings } from './PurchaseSettings';
