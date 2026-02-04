@@ -4,13 +4,7 @@ import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../../components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '../../components/ui/select';
 import { Search, Filter, MoreVertical, Edit2, Trash2, Eye, Download } from 'lucide-react';
 
 interface MaterialReceipt {

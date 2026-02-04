@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import {
@@ -11,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../components/ui/select';
-import { Search, Filter, Download, MoreVertical, Eye, Edit2, Trash2 } from 'lucide-react';
+import { Search, MoreVertical, Eye, Edit2, Trash2 } from 'lucide-react';
 
 interface MaterialRequest {
   id: string;
@@ -21,7 +20,6 @@ interface MaterialRequest {
 }
 
 export function MaterialRequestsList() {
-  const { language, dir } = useLanguage();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -96,14 +94,8 @@ export function MaterialRequestsList() {
     setOpenActionMenuId(null);
   };
 
-  const breadcrumbs = [
-    { label: 'الرئيسية', path: '/' },
-    { label: 'إدارة المشتريات', path: '/purchases' },
-    { label: 'طلبات المواد', path: '/purchases/material-requests-list' },
-  ];
-
   return (
-    <Layout breadcrumbs={breadcrumbs}>
+    <Layout>
       <div className="min-h-screen bg-[#f8faf9] font-['IBM_Plex_Sans_Arabic']">
         <div className="p-6">
           {/* Header Section */}

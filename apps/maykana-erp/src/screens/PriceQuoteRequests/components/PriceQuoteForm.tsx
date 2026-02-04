@@ -41,7 +41,7 @@ interface PriceQuoteFormProps {
 }
 
 export const PriceQuoteForm = ({
-  mode,
+  mode: _mode,
   initialData,
   onSubmit,
   onCancel,

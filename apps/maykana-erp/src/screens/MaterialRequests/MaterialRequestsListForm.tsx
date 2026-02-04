@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -32,12 +31,10 @@ interface RequestItem {
 }
 
 export function MaterialRequestsListForm({ mode: propMode }: MaterialRequestsListFormProps) {
-  const { id } = useParams();
   const [searchParams] = useSearchParams();
   const queryMode = searchParams.get('mode');
   const mode = (queryMode || propMode || 'create') as 'view' | 'edit' | 'create';
   const navigate = useNavigate();
-  const { language, dir } = useLanguage();
 
   // Form state
   const [supplierName, setSupplierName] = useState('اسم الورد');
@@ -131,20 +128,10 @@ export function MaterialRequestsListForm({ mode: propMode }: MaterialRequestsLis
     navigate('/purchases/material-requests-list');
   };
 
-  const breadcrumbs = [
-    { label: 'الرئيسية', path: '/' },
-    { label: 'إدارة المشتريات', path: '/purchases' },
-    { label: 'طلبات المواد', path: '/purchases/material-requests-list' },
-    {
-      label: mode === 'create' ? 'إنشاء طلب جديد' : mode === 'edit' ? 'تعديل الطلب' : 'عرض الطلب',
-      path: '#',
-    },
-  ];
-
   const isReadOnly = mode === 'view';
 
   return (
-    <Layout breadcrumbs={breadcrumbs}>
+    <Layout>
       <div className="min-h-screen bg-[#f8faf9] font-['IBM_Plex_Sans_Arabic']">
         <div className="p-6">
           {/* Header */}
@@ -500,7 +487,9 @@ export function MaterialRequestsListForm({ mode: propMode }: MaterialRequestsLis
                   ) : (
                     <Textarea
                       value={deliveryTerms}
-                      onChange={(e) => setDeliveryTerms(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                        setDeliveryTerms(e.target.value)
+                      }
                       className="text-right"
                       rows={3}
                     />
@@ -514,7 +503,9 @@ export function MaterialRequestsListForm({ mode: propMode }: MaterialRequestsLis
                   ) : (
                     <Textarea
                       value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                        setNotes(e.target.value)
+                      }
                       className="text-right"
                       rows={3}
                     />
@@ -530,7 +521,9 @@ export function MaterialRequestsListForm({ mode: propMode }: MaterialRequestsLis
                   ) : (
                     <Textarea
                       value={comments}
-                      onChange={(e) => setComments(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                        setComments(e.target.value)
+                      }
                       className="text-right"
                       rows={3}
                     />
@@ -562,7 +555,9 @@ export function MaterialRequestsListForm({ mode: propMode }: MaterialRequestsLis
                 ) : (
                   <Textarea
                     value={seal}
-                    onChange={(e) => setSeal(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      setSeal(e.target.value)
+                    }
                     className="text-right"
                     rows={4}
                   />

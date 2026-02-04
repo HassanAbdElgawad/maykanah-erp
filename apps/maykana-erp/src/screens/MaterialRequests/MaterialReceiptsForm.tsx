@@ -33,7 +33,7 @@ export const MaterialReceiptsForm = ({
   mode: propMode = 'create',
   data: propData,
 }: MaterialReceiptsFormProps): JSX.Element => {
-  const { t, dir } = useLanguage();
+  const { dir } = useLanguage();
   const { id } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -139,17 +139,7 @@ export const MaterialReceiptsForm = ({
   };
 
   return (
-    <Layout
-      breadcrumbs={[
-        { label: 'الرئيسية', href: '/' },
-        { label: 'إدارة المشتريات', href: '/purchases' },
-        { label: 'استلام المواد', href: '/purchases/material-receipts' },
-        {
-          label: mode === 'create' ? 'جديد' : mode === 'edit' ? 'تعديل' : 'عرض',
-          href: '#',
-        },
-      ]}
-    >
+    <Layout>
       <div className="space-y-4 pb-8" dir={dir}>
         {/* Header with Title and Actions */}
         <div className="bg-white rounded-lg border border-gray-200 p-4 flex items-center justify-between">

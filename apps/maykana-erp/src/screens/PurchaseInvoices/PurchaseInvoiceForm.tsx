@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -32,12 +31,10 @@ interface InvoiceItem {
 }
 
 export function PurchaseInvoiceForm({ mode: propMode }: PurchaseInvoiceFormProps) {
-  const { id } = useParams();
   const [searchParams] = useSearchParams();
   const queryMode = searchParams.get('mode');
   const mode = (queryMode || propMode || 'create') as 'view' | 'edit' | 'create';
   const navigate = useNavigate();
-  const { language, dir } = useLanguage();
 
   // Form state
   const [supplierName, setSupplierName] = useState('اسم الورد');
@@ -131,25 +128,10 @@ export function PurchaseInvoiceForm({ mode: propMode }: PurchaseInvoiceFormProps
     navigate('/purchases/purchase-invoices');
   };
 
-  const breadcrumbs = [
-    { label: 'الرئيسية', path: '/' },
-    { label: 'إدارة المشتريات', path: '/purchases' },
-    { label: 'فواتير المشتريات', path: '/purchases/purchase-invoices' },
-    {
-      label:
-        mode === 'create'
-          ? 'إنشاء فاتورة جديدة'
-          : mode === 'edit'
-            ? 'تعديل الفاتورة'
-            : 'عرض الفاتورة',
-      path: '#',
-    },
-  ];
-
   const isReadOnly = mode === 'view';
 
   return (
-    <Layout breadcrumbs={breadcrumbs}>
+    <Layout>
       <div className="min-h-screen bg-[#f8faf9] font-['IBM_Plex_Sans_Arabic']">
         <div className="p-6">
           {/* Header */}
