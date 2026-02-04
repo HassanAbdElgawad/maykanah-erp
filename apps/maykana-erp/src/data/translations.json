@@ -201,6 +201,17 @@
       "search_placeholder": "ابحث من هنا (طلبات عروض الأسعار...)",
       "print_send_add": "طباعة/إرسال/إضافة"
     },
+    "material_requests": {
+      "title": "طلبات المواد",
+      "create_material_request": "إنشاء أمر مراجعة",
+      "add_new": "إنشاء أمر مراجعة",
+      "request_number": "رقم",
+      "request_date": "تاريخ الطلب",
+      "approval_date": "مطابقة بتاريخ",
+      "delivery_location": "موقع التسليم",
+      "completion_percentage": "نسبة الإنجاز",
+      "search_placeholder": "ابحث من هنا (رقم الطلب، موقع التسليم...)"
+    },
     "sales": {
       "title": "إدارة المبيعات",
       "customers": "العملاء",
@@ -1334,6 +1345,17 @@
       "display_number": "Quote Number",
       "search_placeholder": "Search here (price quote requests...)",
       "print_send_add": "Print/Send/Add"
+    },
+    "material_requests": {
+      "title": "Material Requests",
+      "create_material_request": "Create Review Order",
+      "add_new": "Create Review Order",
+      "request_number": "Number",
+      "request_date": "Request Date",
+      "approval_date": "Approval Date",
+      "delivery_location": "Delivery Location",
+      "completion_percentage": "Completion Percentage",
+      "search_placeholder": "Search here (request number, delivery location...)"
     },
     "sales": {
       "title": "Sales Management",

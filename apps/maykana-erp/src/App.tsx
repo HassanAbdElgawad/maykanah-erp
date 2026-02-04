@@ -7,7 +7,17 @@ import { PaymentVouchers, PaymentVoucherForm } from './screens/PaymentVouchers';
 import { CashCustody, CashCustodyForm } from './screens/CashCustody';
 import { Purchases } from './screens/Purchases';
 import { Suppliers } from './screens/Suppliers';
-import { MaterialRequests, MaterialRequestForm } from './screens/MaterialRequests';
+import { PurchaseInvoices, PurchaseInvoiceForm } from './screens/PurchaseInvoices';
+import { PurchaseSettings } from './screens/PurchaseSettings';
+import {
+  MaterialRequests,
+  MaterialRequestForm,
+  MaterialRequestsReview,
+  MaterialReceipts,
+  MaterialReceiptsForm,
+  MaterialRequestsList,
+  MaterialRequestsListForm,
+} from './screens/MaterialRequests';
 import {
   PriceQuoteRequests,
   PriceQuoteRequestFormPage,
@@ -219,6 +229,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/purchases/settings',
+    element: (
+      <ProtectedRoute>
+        <PurchaseSettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: '/purchases/suppliers',
     element: (
       <ProtectedRoute>
@@ -239,6 +257,94 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <MaterialRequestForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-requests/:id',
+    element: (
+      <ProtectedRoute>
+        <MaterialRequestForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-requests-list',
+    element: (
+      <ProtectedRoute>
+        <MaterialRequestsList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-requests-list/create',
+    element: (
+      <ProtectedRoute>
+        <MaterialRequestsListForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-requests-list/:id',
+    element: (
+      <ProtectedRoute>
+        <MaterialRequestsListForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-requests-review',
+    element: (
+      <ProtectedRoute>
+        <MaterialRequestsReview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-receipts',
+    element: (
+      <ProtectedRoute>
+        <MaterialReceipts />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-receipts/create',
+    element: (
+      <ProtectedRoute>
+        <MaterialReceiptsForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/material-receipts/:id',
+    element: (
+      <ProtectedRoute>
+        <MaterialReceiptsForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/purchase-invoices',
+    element: (
+      <ProtectedRoute>
+        <PurchaseInvoices />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/purchase-invoices/create',
+    element: (
+      <ProtectedRoute>
+        <PurchaseInvoiceForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/purchases/purchase-invoices/:id',
+    element: (
+      <ProtectedRoute>
+        <PurchaseInvoiceForm />
       </ProtectedRoute>
     ),
   },

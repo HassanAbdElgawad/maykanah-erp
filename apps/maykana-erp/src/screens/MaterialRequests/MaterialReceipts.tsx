@@ -1,0 +1,354 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Layout } from '../../components/Layout';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../components/ui/select';
+import { Search, Filter, MoreVertical, Edit2, Trash2, Eye, Download } from 'lucide-react';
+
+interface MaterialReceipt {
+  id: number;
+  number: string;
+  requestDate: string;
+  requiredDate: string;
+  deliveryLocation: string;
+  status: 'complete' | 'partial';
+}
+
+const MATERIAL_RECEIPTS_DATA: MaterialReceipt[] = [
+  {
+    id: 1,
+    number: 'MR-001',
+    requestDate: '13/11/2025',
+    requiredDate: '10/11/2025',
+    deliveryLocation: 'مستودع مشروع A',
+    status: 'complete',
+  },
+  {
+    id: 2,
+    number: 'MR-002',
+    requestDate: '01/11/2025',
+    requiredDate: '10/12/2025',
+    deliveryLocation: 'مستودع مشروع Aa',
+    status: 'complete',
+  },
+  {
+    id: 3,
+    number: 'MR-003',
+    requestDate: '10/04/2025',
+    requiredDate: '30/12/2025',
+    deliveryLocation: 'مستودع مشروع 5',
+    status: 'partial',
+  },
+  {
+    id: 4,
+    number: 'MR-004',
+    requestDate: '10/05/2025',
+    requiredDate: '10/06/2025',
+    deliveryLocation: 'مستودع مشروع Add',
+    status: 'complete',
+  },
+  {
+    id: 5,
+    number: 'MR-005',
+    requestDate: '11/03/2025',
+    requiredDate: '10/10/2025',
+    deliveryLocation: 'مستودع مشروع A4',
+    status: 'complete',
+  },
+  {
+    id: 6,
+    number: 'MR-006',
+    requestDate: '10/01/2025',
+    requiredDate: '10/12/2025',
+    deliveryLocation: 'مستودع مشروع Av',
+    status: 'complete',
+  },
+  {
+    id: 7,
+    number: 'MR-007',
+    requestDate: '10/03/2025',
+    requiredDate: '10/11/2025',
+    deliveryLocation: 'مستودع مشروع Z',
+    status: 'complete',
+  },
+  {
+    id: 8,
+    number: 'MR-008',
+    requestDate: '10/05/2025',
+    requiredDate: '10/11/2025',
+    deliveryLocation: 'مستودع مشروع And',
+    status: 'complete',
+  },
+];
+
+export const MaterialReceipts = (): JSX.Element => {
+  const { t, dir } = useLanguage();
+  const navigate = useNavigate();
+  const [receipts] = useState<MaterialReceipt[]>(MATERIAL_RECEIPTS_DATA);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [openActionMenuId, setOpenActionMenuId] = useState<number | null>(null);
+  const [filterStatus, setFilterStatus] = useState('all');
+  const [exportFormat, setExportFormat] = useState('');
+  const [columnVisibility, setColumnVisibility] = useState('all');
+
+  // Pagination
+  const itemsPerPage = 8;
+  const totalPages = 3; // Fixed to 3 pages as shown in design
+
+  const filteredReceipts = receipts.filter((receipt) => {
+    const matchesSearch =
+      searchQuery === '' ||
+      receipt.number.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      receipt.deliveryLocation.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesSearch;
+  });
+
+  const paginatedReceipts = filteredReceipts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleViewReceipt = (receipt: MaterialReceipt) => {
+    navigate(`/purchases/material-receipts/${receipt.id}`);
+    setOpenActionMenuId(null);
+  };
+
+  const handleEditReceipt = (receipt: MaterialReceipt) => {
+    navigate(`/purchases/material-receipts/${receipt.id}?mode=edit`);
+    setOpenActionMenuId(null);
+  };
+
+  const handleDeleteReceipt = (receipt: MaterialReceipt) => {
+    console.log('Delete receipt:', receipt);
+    setOpenActionMenuId(null);
+  };
+
+  const getStatusColor = (status: string): string => {
+    if (status === 'complete') return 'text-teal-600';
+    return 'text-yellow-600';
+  };
+
+  const getStatusText = (status: string): string => {
+    if (status === 'complete') return 'استلام كامل';
+    return 'استلام جزئي';
+  };
+
+  return (
+    <Layout>
+      <div className="relative" dir={dir}>
+        {/* Header with Action Bar */}
+        <div className="mb-6 flex items-center justify-between">
+          {/* Search Bar */}
+          <div className="relative w-[400px]">
+            <Input
+              type="text"
+              placeholder="ابحث من هنا (طلب مواد ، غرض الطلب، المادة أو التصنيف ...)"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={`h-[40px] ${dir === 'rtl' ? 'pr-10' : 'pl-10'} bg-white border-[#e2e2e2] rounded-lg text-sm`}
+            />
+            <Search
+              className={`absolute top-1/2 -translate-y-1/2 ${dir === 'rtl' ? 'right-3' : 'left-3'} w-4 h-4 text-[#99a09e]`}
+            />
+          </div>
+
+          <div className="flex items-center gap-3">
+            {/* Show/Hide Columns Dropdown */}
+            <Select value={columnVisibility} onValueChange={setColumnVisibility}>
+              <SelectTrigger className="h-[40px] px-3 bg-white hover:bg-slate-50 text-[#374151] gap-2 rounded-lg border border-[#e2e2e2] w-[180px]">
+                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">
+                  إظهار/إخفاء أعمدة
+                </span>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">كل الأعمدة</SelectItem>
+                <SelectItem value="basic">أعمدة أساسية</SelectItem>
+                <SelectItem value="custom">تخصيص</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {/* Export Dropdown */}
+            <Select value={exportFormat} onValueChange={setExportFormat}>
+              <SelectTrigger className="h-[40px] px-3 bg-white hover:bg-slate-50 text-[#374151] gap-2 rounded-lg border border-[#e2e2e2] w-[120px]">
+                <Download className="w-4 h-4" />
+                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">
+                  تصدير
+                </span>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="excel">Excel</SelectItem>
+                <SelectItem value="pdf">PDF</SelectItem>
+                <SelectItem value="csv">CSV</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {/* Filter Dropdown */}
+            <Select value={filterStatus} onValueChange={setFilterStatus}>
+              <SelectTrigger className="h-[40px] px-3 bg-white hover:bg-slate-50 text-[#374151] gap-2 rounded-lg border border-[#e2e2e2] w-[120px]">
+                <Filter className="w-4 h-4" />
+                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">فلتر</span>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">الكل</SelectItem>
+                <SelectItem value="complete">استلام كامل</SelectItem>
+                <SelectItem value="partial">استلام جزئي</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {/* Add New Button */}
+            <Button
+              onClick={() => navigate('/purchases/material-receipts/create')}
+              className="h-[40px] px-4 bg-[#093738] hover:bg-[#093738]/90 text-white gap-2 rounded-lg"
+            >
+              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-medium">
+                استلام مواد
+              </span>
+            </Button>
+          </div>
+        </div>
+
+        {/* Table */}
+        <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full" dir={dir}>
+              <thead className="bg-[#f8f9fa] border-b border-[#e2e2e2]">
+                <tr>
+                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] w-20">
+                    رقم
+                  </th>
+                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    تاريخ الطلب
+                  </th>
+                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    مطلوبة بتاريخ
+                  </th>
+                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] min-w-[200px]">
+                    موقع التسليم
+                  </th>
+                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] min-w-[120px]">
+                    الحالة
+                  </th>
+                  <th className="px-4 py-4 text-center text-sm font-semibold text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] w-12"></th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#f0f0f0]">
+                {paginatedReceipts.map((receipt) => (
+                  <tr key={receipt.id} className="hover:bg-gray-50/50 transition-colors">
+                    <td className="px-4 py-4 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                      {receipt.number}
+                    </td>
+                    <td className="px-4 py-4 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                      {receipt.requestDate}
+                    </td>
+                    <td className="px-4 py-4 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                      {receipt.requiredDate}
+                    </td>
+                    <td className="px-4 py-4 text-right text-sm text-[#374151] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                      {receipt.deliveryLocation}
+                    </td>
+                    <td className="px-4 py-4 text-right">
+                      <span
+                        className={`text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica] ${getStatusColor(receipt.status)}`}
+                      >
+                        {getStatusText(receipt.status)}
+                      </span>
+                    </td>
+                    {/* Actions Column */}
+                    <td className="px-4 py-4 text-center">
+                      <div className="relative inline-block">
+                        <button
+                          onClick={() =>
+                            setOpenActionMenuId(openActionMenuId === receipt.id ? null : receipt.id)
+                          }
+                          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                        >
+                          <MoreVertical className="w-4 h-4 text-gray-600" />
+                        </button>
+                        {openActionMenuId === receipt.id && (
+                          <div
+                            dir={dir}
+                            className="absolute top-full left-0 mt-1 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-30"
+                          >
+                            <button
+                              onClick={() => handleViewReceipt(receipt)}
+                              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                            >
+                              <Eye className="w-4 h-4" />
+                              <span>{t('common.view')}</span>
+                            </button>
+                            <button
+                              onClick={() => handleEditReceipt(receipt)}
+                              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                            >
+                              <Edit2 className="w-4 h-4" />
+                              <span>{t('common.edit')}</span>
+                            </button>
+                            <button
+                              onClick={() => handleDeleteReceipt(receipt)}
+                              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              <span>{t('common.delete')}</span>
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Pagination */}
+        <div className="flex items-center justify-between mt-6">
+          {/* Next Button (Left side in RTL) */}
+          <Button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="h-[40px] px-6 bg-[#093738] hover:bg-[#093738]/90 text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            التالي
+          </Button>
+
+          {/* Page Numbers (Center) */}
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`w-10 h-10 rounded-lg [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm transition-colors ${
+                  currentPage === page
+                    ? 'bg-[#093738] text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+
+          {/* Previous Button (Right side in RTL) */}
+          <Button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="h-[40px] px-6 bg-white hover:bg-gray-100 text-[#374151] border border-gray-200 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            السابق
+          </Button>
+        </div>
+      </div>
+    </Layout>
+  );
+};

@@ -8,6 +8,7 @@ import {
   Package,
   FileCheck,
   RefreshCcw,
+  Settings,
 } from 'lucide-react';
 
 export interface PurchaseCard {
@@ -40,6 +41,15 @@ export const getPurchaseCards = (t: (key: string) => string): PurchaseCard[] => 
     path: '/purchases/material-requests',
   },
   {
+    id: 'material-requests-list',
+    title: 'طلبات المواد',
+    description: 'إدارة وعرض طلبات المواد',
+    icon: FileText,
+    bgColor: '#f0f9ff',
+    iconColor: '#0284c7',
+    path: '/purchases/material-requests-list',
+  },
+  {
     id: 'price-quote-requests',
     title: t('purchases.price_quote_requests'),
     description: t('purchases.price_quote_requests_desc'),
@@ -58,13 +68,13 @@ export const getPurchaseCards = (t: (key: string) => string): PurchaseCard[] => 
     path: '/purchases/supplier-price-quotes',
   },
   {
-    id: 'purchase-orders',
+    id: 'material-requests-review',
     title: t('purchases.purchase_orders'),
     description: t('purchases.purchase_orders_desc'),
     icon: ShoppingCart,
     bgColor: '#fef5f8',
     iconColor: '#c2185b',
-    path: '/purchases/purchase-orders',
+    path: '/purchases/material-requests-review',
   },
   {
     id: 'material-receipts',
@@ -92,5 +102,14 @@ export const getPurchaseCards = (t: (key: string) => string): PurchaseCard[] => 
     bgColor: '#fff9f0',
     iconColor: '#f57c00',
     path: '/purchases/purchase-returns',
+  },
+  {
+    id: 'purchase-settings',
+    title: 'اعدادات الشراء',
+    description: 'إدارة إعدادات وتفضيلات المشتريات',
+    icon: Settings,
+    bgColor: '#f5f5f5',
+    iconColor: '#616161',
+    path: '/purchases/settings',
   },
 ];
