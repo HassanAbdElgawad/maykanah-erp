@@ -44,6 +44,10 @@ import { SaleDisposal } from "./screens/Assets/SaleDisposal";
 import { Maintenance } from "./screens/Maintenance";
 import { Strategy } from "./screens/Strategy";
 import { Tasks, AddTask } from "./screens/Tasks";
+import { Meetings, NewMeeting } from "./screens/Strategy/Meetings";
+import { Documents, NewDocument } from "./screens/Strategy/Documents";
+import { PlanTracking, NewPlanLink, PlanLinkDetails } from "./screens/Strategy/PlanTracking";
+import { StrategicPlans, NewStrategicPlan, StrategicPlanDetails } from "./screens/Strategy/StrategicPlans";
 import { WorkflowEngine } from "./screens/WorkflowEngine";
 import { Workflows, AddEditWorkflow } from "./screens/Workflows";
 import { VerificationTemplates, AddEditVerificationTemplate } from "./screens/VerificationTemplates";
@@ -1180,6 +1184,86 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddTask />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/meetings",
+    element: (
+      <ProtectedRoute>
+        <Meetings />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/meetings/new",
+    element: (
+      <ProtectedRoute>
+        <NewMeeting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/documents",
+    element: (
+      <ProtectedRoute>
+        <Documents />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/documents/new",
+    element: (
+      <ProtectedRoute>
+        <NewDocument />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/plan-tracking",
+    element: (
+      <ProtectedRoute>
+        <PlanTracking />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/plan-tracking/new",
+    element: (
+      <ProtectedRoute>
+        <NewPlanLink />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/plan-tracking/:id",
+    element: (
+      <ProtectedRoute>
+        <PlanLinkDetails />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/strategic-plans",
+    element: (
+      <ProtectedRoute>
+        <StrategicPlans />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/strategic-plans/new",
+    element: (
+      <ProtectedRoute>
+        <NewStrategicPlan />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/strategy/strategic-plans/:id",
+    element: (
+      <ProtectedRoute>
+        <StrategicPlanDetails />
       </ProtectedRoute>
     ),
   },
