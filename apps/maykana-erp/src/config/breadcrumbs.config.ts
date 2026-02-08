@@ -163,6 +163,8 @@ export const breadcrumbRoutes = [
   { path: "/strategy/strategic-plans/new", label: "strategy.new_strategic_plan" },
   { path: "/strategy/strategic-plans/:id", label: "strategy.strategic_plan_details" },
   { path: "/strategy/projects", label: "strategy.project_management" },
+  { path: "/strategy/projects/new", label: "strategy.new_project" },
+  { path: "/strategy/projects/:id", label: "strategy.project_details" },
   { path: "/strategy/approvals", label: "strategy.approvals" },
   
   // Warehouses Module

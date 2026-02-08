@@ -595,10 +595,12 @@ export function StrategicPlanDetails() {
                     ))}
                   </tbody>
                 </table>
-                <div className="flex items-center justify-start gap-4 mt-4">
-                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    أسطر في الجدول
-                  </span>
+                <div className="flex items-center gap-2 justify-start">
+                  <Button 
+                    onClick={addGoalRows}
+                    className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أضف
+                  </Button>
                   <input
                     type="number"
                     value={goalsRowCount}
@@ -606,12 +608,9 @@ export function StrategicPlanDetails() {
                     className="w-16 px-2 py-1 text-sm font-medium text-[#0e0d24] text-center border border-[#e2e2e2] rounded focus:outline-none focus:border-[#11383f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                     min="1"
                   />
-                  <Button 
-                    onClick={addGoalRows}
-                    className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                  >
-                    أضف
-                  </Button>
+                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أسطر في الجدول
+                  </span>
                 </div>
               </div>
             )}
@@ -696,10 +695,12 @@ export function StrategicPlanDetails() {
                   </tbody>
                   </table>
                 </div>
-                <div className="flex items-center justify-start gap-4 mt-4">
-                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    أسطر في الجدول
-                  </span>
+                <div className="flex items-center gap-2 justify-start">
+                  <Button 
+                    onClick={addInitiativeRows}
+                    className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أضف
+                  </Button>
                   <input
                     type="number"
                     value={initiativesRowCount}
@@ -707,12 +708,9 @@ export function StrategicPlanDetails() {
                     className="w-16 px-2 py-1 text-sm font-medium text-[#0e0d24] text-center border border-[#e2e2e2] rounded focus:outline-none focus:border-[#11383f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                     min="1"
                   />
-                  <Button 
-                    onClick={addInitiativeRows}
-                    className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                  >
-                    أضف
-                  </Button>
+                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أسطر في الجدول
+                  </span>
                 </div>
               </div>
             )}
@@ -777,10 +775,12 @@ export function StrategicPlanDetails() {
                     ))}
                   </tbody>
                 </table>
-                <div className="flex items-center justify-start gap-4 mt-4">
-                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    أسطر في الجدول
-                  </span>
+                <div className="flex items-center gap-2 justify-start">
+                  <Button 
+                    onClick={addKpiRows}
+                    className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أضف
+                  </Button>
                   <input
                     type="number"
                     value={kpisRowCount}
@@ -788,12 +788,9 @@ export function StrategicPlanDetails() {
                     className="w-16 px-2 py-1 text-sm font-medium text-[#0e0d24] text-center border border-[#e2e2e2] rounded focus:outline-none focus:border-[#11383f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                     min="1"
                   />
-                  <Button 
-                    onClick={addKpiRows}
-                    className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                  >
-                    أضف
-                  </Button>
+                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أسطر في الجدول
+                  </span>
                 </div>
               </div>
             )}
@@ -852,10 +849,12 @@ export function StrategicPlanDetails() {
                     ))}
                   </tbody>
                 </table>
-                <div className="flex items-center justify-start gap-4 mt-4">
-                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                    أسطر في الجدول
-                  </span>
+                <div className="flex items-center gap-2 justify-start">
+                  <Button 
+                    onClick={addApprovalRows}
+                    className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أضف
+                  </Button>
                   <input
                     type="number"
                     value={approvalRowCount}
@@ -863,6 +862,9 @@ export function StrategicPlanDetails() {
                     className="w-16 px-2 py-1 text-sm font-medium text-[#0e0d24] text-center border border-[#e2e2e2] rounded focus:outline-none focus:border-[#11383f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
                     min="1"
                   />
+                  <span className="text-sm text-gray-600 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                    أسطر في الجدول
+                  </span>
                   <Button 
                     onClick={addApprovalRows}
                     className="gap-2 bg-[#11383f] hover:bg-[#0d2b30] text-white [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"

@@ -283,13 +283,13 @@ Thank you for your cooperation`,
       sender: 'يوسف عمر الشهري',
       senderEn: 'Yousef Omar Al-Shehri',
       senderEmail: 'yousef.alshehri@company.com',
-      subject: 'موافقة على طلب الإجازة',
+      subject: 'موافقة على طلب الأجازة',
       subjectEn: 'Leave Request Approved',
-      preview: 'مرحباً، تمت الموافقة على طلب الإجازة الخاص بك...',
+      preview: 'مرحباً، تمت الموافقة على طلب الأجازة الخاص بك...',
       previewEn: 'Hello, your leave request has been approved...',
       body: `مرحباً،
 
-تمت الموافقة على طلب الإجازة الخاص بك:
+تمت الموافقة على طلب الأجازة الخاص بك:
 
 من: 1 فبراير 2026
 إلى: 7 فبراير 2026

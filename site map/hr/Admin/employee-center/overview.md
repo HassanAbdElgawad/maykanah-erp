@@ -109,7 +109,7 @@
         "contract": "عقد العمل",
         "certificates": "الشهادات",
         "my_attendance": "حضوري",
-        "my_leaves": "إجازاتي",
+        "my_leaves": "أجازاتي",
         "leave_balance": "رصيد الإجازات"
       }
     }

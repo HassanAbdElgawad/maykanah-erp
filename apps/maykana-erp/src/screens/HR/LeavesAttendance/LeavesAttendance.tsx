@@ -29,7 +29,7 @@ export function LeavesAttendance() {
       employee: 'أحمد عبد السلام',
       employeeId: '2522169654126',
       department: 'الالكتروني',
-      leaveType: 'نوع الإجازة',
+      leaveType: 'نوع الأجازة',
       date: '2023-12-9',
       status: 'مقبول',
     },
@@ -38,7 +38,7 @@ export function LeavesAttendance() {
       employee: 'عمر السعيد',
       employeeId: '2511685255556',
       department: 'التقني',
-      leaveType: 'نوع الإجازة',
+      leaveType: 'نوع الأجازة',
       date: '2023-2-20',
       status: 'مقبول',
     },
@@ -47,7 +47,7 @@ export function LeavesAttendance() {
       employee: 'يوسف الحجار',
       employeeId: '251165552256',
       department: 'التقني',
-      leaveType: 'نوع الإجازة',
+      leaveType: 'نوع الأجازة',
       date: '2023-2-15',
       status: 'مرفوض',
     },
@@ -56,14 +56,14 @@ export function LeavesAttendance() {
       employee: 'خالد فؤاد',
       employeeId: '2511636985216',
       department: 'التقني',
-      leaveType: 'نوع الإجازة',
+      leaveType: 'نوع الأجازة',
       date: '2020-2-10',
       status: 'مقبول',
     },
   ];
 
   const tabs = [
-    { id: 'leave-requests', label: 'طلبات الإجازة' },
+    { id: 'leave-requests', label: 'طلبات الأجازة' },
     { id: 'compensatory-leaves', label: 'إجازات التعويضية' },
     { id: 'attendance-permission', label: 'الحضور والاستئذان' },
   ];
@@ -141,7 +141,7 @@ export function LeavesAttendance() {
                       القسم
                     </th>
                     <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
-                      نوع الإجازة
+                      نوع الأجازة
                     </th>
                     <th className="px-6 py-3 text-right text-sm font-medium text-gray-700">
                       التاريخ

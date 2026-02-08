@@ -109,7 +109,7 @@ export function LeaveRequestModal({ isOpen, onClose }: LeaveRequestModalProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  نوع الإجازة
+                  نوع الأجازة
                 </label>
                 <select
                   value={formData.leaveType}
@@ -118,7 +118,7 @@ export function LeaveRequestModal({ isOpen, onClose }: LeaveRequestModalProps) {
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#11383f]"
                 >
-                  <option value="">اختر نوع الإجازة</option>
+                  <option value="">اختر نوع الأجازة</option>
                   <option value="سنوية">سنوية</option>
                   <option value="مرضية">مرضية</option>
                   <option value="طارئة">طارئة</option>

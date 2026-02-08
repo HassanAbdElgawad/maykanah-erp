@@ -21,8 +21,8 @@ export const Strategy = (): JSX.Element => {
             bgColor={card.bgColor}
             iconColor={card.iconColor}
             onClick={() => card.path && navigate(card.path)}
-            isActive={card.path === '/strategy/tasks' || card.path === '/strategy/meetings' || card.path === '/strategy/documents' || card.path === '/strategy/plan-tracking' || card.path === '/strategy/strategic-plans'}
-            isClickable={card.path === '/strategy/tasks' || card.path === '/strategy/meetings' || card.path === '/strategy/documents' || card.path === '/strategy/plan-tracking' || card.path === '/strategy/strategic-plans'}
+            isActive={card.path === '/strategy/tasks' || card.path === '/strategy/meetings' || card.path === '/strategy/documents' || card.path === '/strategy/plan-tracking' || card.path === '/strategy/strategic-plans' || card.path === '/strategy/projects'}
+            isClickable={card.path === '/strategy/tasks' || card.path === '/strategy/meetings' || card.path === '/strategy/documents' || card.path === '/strategy/plan-tracking' || card.path === '/strategy/strategic-plans' || card.path === '/strategy/projects'}
           />
         ))}
       </div>
