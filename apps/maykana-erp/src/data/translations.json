@@ -1021,6 +1021,10 @@
         "supplier_categories_desc": "ضبط المعايير الخاصة بالحسابات المالية.",
         "purchase_settings": "إعدادات المشتريات",
         "purchase_settings_desc": "الهيكل التنظيمي فيما يتعلق بهد عمليات الشراء.",
+        "purchase_tax_template": "قالب ضريبة الشراء",
+        "purchase_tax_template_desc": "إدارة قوالب الضرائب المطبقة على المشتريات",
+        "terms_conditions_template": "قالب الشروط والأحكام",
+        "terms_conditions_template_desc": "النصوص القانونية والإدارية للمشتريات",
         "approval_workflow": "الشروط والأحكام",
         "approval_workflow_desc": "القواعد الثابتة للسياسات والإجراءات المطبقة."
       },
@@ -2098,6 +2102,10 @@
         "supplier_categories_desc": "Configure settings related to financial accounts.",
         "purchase_settings": "Purchase Settings",
         "purchase_settings_desc": "Organizational structure related to purchasing operations.",
+        "purchase_tax_template": "Purchase Tax Template",
+        "purchase_tax_template_desc": "Manage tax templates applied to purchases",
+        "terms_conditions_template": "Terms and Conditions Template",
+        "terms_conditions_template_desc": "Legal and administrative texts for purchases",
         "approval_workflow": "Terms and Conditions",
         "approval_workflow_desc": "Fixed rules for applied policies and procedures."
       },

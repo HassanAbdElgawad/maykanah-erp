@@ -150,6 +150,7 @@ import {
   SalesSettings,
   TermsTemplate,
 } from './screens/Settings';
+<<<<<<< HEAD
 import { AssetCategories } from './screens/Settings/AssetCategories';
 import { AssetCategoryForm } from './screens/Settings/AssetCategoryForm';
 import { AssetCategoryEdit } from './screens/Settings/AssetCategoryEdit';
@@ -161,6 +162,10 @@ import { MaintenanceTeam } from './screens/Settings/MaintenanceTeam';
 import { MaintenanceTeamForm } from './screens/Settings/MaintenanceTeamForm';
 import { MaintenanceTeamEdit } from './screens/Settings/MaintenanceTeamEdit';
 import { MaintenanceTeamView } from './screens/Settings/MaintenanceTeamView';
+=======
+import { TaxTemplates } from './screens/TaxTemplates';
+import { TermsConditionsTemplates } from './screens/TermsConditionsTemplates';
+>>>>>>> 3619a3fe00dceefef2dc7712fa5a2db6c079ed70
 import { SupportPage } from './screens/SupportPage';
 import { ComingSoon } from './screens/ComingSoon';
 import { ErrorPage } from './screens/ErrorPage';
@@ -2720,6 +2725,22 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/settings/purchase-tax-template',
+    element: (
+      <ProtectedRoute>
+        <TaxTemplates />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/terms-conditions-template',
+    element: (
+      <ProtectedRoute>
+        <TermsConditionsTemplates />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: '/settings/sales/sales-settings',
     element: (
       <ProtectedRoute>
@@ -2740,6 +2761,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <SalesSettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/purchase-settings/purchase-settings',
+    element: (
+      <ProtectedRoute>
+        <PurchaseSettings />
       </ProtectedRoute>
     ),
   },
