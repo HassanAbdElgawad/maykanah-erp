@@ -158,7 +158,7 @@ export const getSettingCards = (): SettingCard[] => [
     path: '/purchases/settings',
     bgColor: '#10B9811a',
     iconColor: '#10B981',
-    module: 'accounting',
+    module: 'purchases',
   },
   {
     id: 'purchase-tax-template',
@@ -168,7 +168,7 @@ export const getSettingCards = (): SettingCard[] => [
     path: '/settings/purchase-tax-template',
     bgColor: '#FEF9C3',
     iconColor: '#EAB308',
-    module: 'accounting',
+    module: 'purchases',
   },
   {
     id: 'terms-conditions-template',
@@ -178,7 +178,7 @@ export const getSettingCards = (): SettingCard[] => [
     path: '/settings/terms-conditions-template',
     bgColor: '#DBEAFE',
     iconColor: '#3B82F6',
-    module: 'accounting',
+    module: 'purchases',
   },
   {
     id: 'approval-workflow',
