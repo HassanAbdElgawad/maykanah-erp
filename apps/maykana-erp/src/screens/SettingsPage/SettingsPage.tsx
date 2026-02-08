@@ -14,14 +14,29 @@ export const SettingsPage = (): JSX.Element => {
   const [selectedModule, setSelectedModule] = useState(moduleParam);
 
   // Completed cards list - cards that are finished
-  const completedCards = ['company', 'chart-of-accounts', 'account-settings', 'currencies', 'tax-settings', 'fiscal-year', 'accounting-periods', 'payment-methods', 'terms-conditions', 'cost-centers', 'budget', 'sales-settings', 'terms-template'];
+  const completedCards = [
+    'company',
+    'chart-of-accounts',
+    'account-settings',
+    'currencies',
+    'tax-settings',
+    'fiscal-year',
+    'accounting-periods',
+    'payment-methods',
+    'terms-conditions',
+    'cost-centers',
+    'budget',
+    'sales-settings',
+    'terms-template',
+    'purchase-settings',
+  ];
 
   useEffect(() => {
     setSelectedModule(moduleParam);
   }, [moduleParam]);
 
   const allSettingCards = getSettingCards();
-  const settingCards = allSettingCards.filter(card => card.module === selectedModule);
+  const settingCards = allSettingCards
 
   const handleCardClick = (path: string) => {
     navigate(path);

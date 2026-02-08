@@ -2612,6 +2612,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/settings/purchase-settings/purchase-settings',
+    element: (
+      <ProtectedRoute>
+        <PurchaseSettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: '/settings/sales/terms-template',
     element: (
       <ProtectedRoute>

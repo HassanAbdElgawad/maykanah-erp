@@ -1,11 +1,11 @@
-import { 
-  SettingsIcon, 
-  CogIcon, 
-  UsersIcon, 
-  ShoppingCartIcon, 
-  PackageIcon, 
-  BarChart3Icon, 
-  WorkflowIcon, 
+import {
+  SettingsIcon,
+  CogIcon,
+  UsersIcon,
+  ShoppingCartIcon,
+  PackageIcon,
+  BarChart3Icon,
+  WorkflowIcon,
   Building2Icon,
   NetworkIcon,
   CalendarIcon,
@@ -14,7 +14,7 @@ import {
   PercentIcon,
   FileTextIcon,
   CreditCardIcon,
-  CalendarRangeIcon
+  CalendarRangeIcon,
 } from 'lucide-react';
 
 export interface SettingCard {
@@ -155,10 +155,30 @@ export const getSettingCards = (): SettingCard[] => [
     id: 'purchase-settings',
     titleKey: 'settings.purchases.purchase_settings',
     descriptionKey: 'settings.purchases.purchase_settings_desc',
-    icon: ShoppingCartIcon,
-    path: '/settings/purchase-settings',
-    bgColor: '#EC48991a',
-    iconColor: '#EC4899',
+    icon: SettingsIcon,
+    path: '/purchases/settings',
+    bgColor: '#10B9811a',
+    iconColor: '#10B981',
+    module: 'purchases',
+  },
+  {
+    id: 'purchase-tax-template',
+    titleKey: 'settings.purchases.purchase_tax_template',
+    descriptionKey: 'settings.purchases.purchase_tax_template_desc',
+    icon: PercentIcon,
+    path: '/settings/purchase-tax-template',
+    bgColor: '#FEF9C3',
+    iconColor: '#EAB308',
+    module: 'purchases',
+  },
+  {
+    id: 'terms-conditions-template',
+    titleKey: 'settings.purchases.terms_conditions_template',
+    descriptionKey: 'settings.purchases.terms_conditions_template_desc',
+    icon: FileTextIcon,
+    path: '/settings/terms-conditions-template',
+    bgColor: '#DBEAFE',
+    iconColor: '#3B82F6',
     module: 'purchases',
   },
   {
