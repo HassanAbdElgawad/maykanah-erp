@@ -2,7 +2,6 @@ import {
   SettingsIcon,
   CogIcon,
   UsersIcon,
-  ShoppingCartIcon,
   PackageIcon,
   BarChart3Icon,
   WorkflowIcon,
