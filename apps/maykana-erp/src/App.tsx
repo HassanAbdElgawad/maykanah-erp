@@ -150,6 +150,8 @@ import {
   SalesSettings,
   TermsTemplate,
 } from './screens/Settings';
+import { TaxTemplates } from './screens/TaxTemplates';
+import { TermsConditionsTemplates } from './screens/TermsConditionsTemplates';
 import { SupportPage } from './screens/SupportPage';
 import { ComingSoon } from './screens/ComingSoon';
 import { ErrorPage } from './screens/ErrorPage';
@@ -2621,6 +2623,22 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/settings/purchase-tax-template',
+    element: (
+      <ProtectedRoute>
+        <TaxTemplates />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/terms-conditions-template',
+    element: (
+      <ProtectedRoute>
+        <TermsConditionsTemplates />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: '/settings/sales/sales-settings',
     element: (
       <ProtectedRoute>
@@ -2641,6 +2659,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <SalesSettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/purchase-settings/purchase-settings',
+    element: (
+      <ProtectedRoute>
+        <PurchaseSettings />
       </ProtectedRoute>
     ),
   },

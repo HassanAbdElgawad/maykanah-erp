@@ -33,6 +33,8 @@ export * from './strategy-cards.data';
 export * from './suppliers.data';
 export * from './support.data';
 export * from './tasks.data';
+export * from './tax-templates.data';
+export * from './terms-conditions-templates.data';
 export * from './trial-balance.data';
 export * from './trial-balance-movement.data';
 export * from './ui.data';
@@ -42,4 +44,3 @@ export * from './warehouses-cards.data';
 export * from './workflow-cards.data';
 export * from './workflows.data';
 export * from './work-orders.data';
-
