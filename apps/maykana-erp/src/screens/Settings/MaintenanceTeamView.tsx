@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
-import { ArrowRight, ChevronUp, ChevronDown, ChevronLeft, Copy, Edit, Trash2 } from 'lucide-react';
+import { ArrowRight, ChevronUp, ChevronDown, ChevronLeft } from 'lucide-react';
 import { buttonClasses } from '../../styles/components/buttons';
 
 interface TeamMember {
@@ -114,14 +114,6 @@ export const MaintenanceTeamView = (): JSX.Element => {
       ...prev,
       [section]: !prev[section],
     }));
-  };
-
-  const handleCopy = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
   };
 
   const handleEdit = () => {
