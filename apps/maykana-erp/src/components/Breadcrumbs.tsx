@@ -161,13 +161,13 @@ export function Breadcrumbs() {
             <Link 
               to={
                 // إذا كان الـ breadcrumb هو وحدة ونحن في صفحة تقارير، نوجه إلى /reports?selected=module
-                (crumb.label === 'sidebar.accounting' || crumb.label === 'sidebar.sales' || crumb.label === 'sidebar.purchases' || crumb.label === 'sidebar.warehouses') && location.pathname.startsWith('/reports/')
+                (crumb.label === 'sidebar.accounting' || crumb.label === 'sidebar.sales' || crumb.label === 'sidebar.purchases' || crumb.label === 'sidebar.warehouses' || crumb.label === 'sidebar.assets') && location.pathname.startsWith('/reports/')
                   ? `/reports?selected=${crumb.href.split('/').pop()}`
                 // إلى /reports?selected=reports عندما يضغط على "التقارير"
                 : crumb.label === 'sidebar.reports' && location.pathname.startsWith('/reports/')
                   ? '/reports?selected=reports'
                 // إذا كان الـ breadcrumb هو وحدة ونحن في صفحة إعدادات، نوجه إلى /settings?module=module
-                : (crumb.label === 'sidebar.accounting' || crumb.label === 'sidebar.sales' || crumb.label === 'sidebar.purchases' || crumb.label === 'sidebar.warehouses') && location.pathname.startsWith('/settings/')
+                : (crumb.label === 'sidebar.accounting' || crumb.label === 'sidebar.sales' || crumb.label === 'sidebar.purchases' || crumb.label === 'sidebar.warehouses' || crumb.label === 'sidebar.assets' || crumb.label === 'sidebar.workflow') && location.pathname.startsWith('/settings/')
                   ? `/settings?module=${crumb.href.split('/').pop()}`
                 // إذا كان "الإعدادات" ونحن في صفحة إعدادات فرعية، نرجع للصفحة الرئيسية مع الوحدة الحالية
                 : crumb.label === 'sidebar.settings' && isInSpecificSettingsModule

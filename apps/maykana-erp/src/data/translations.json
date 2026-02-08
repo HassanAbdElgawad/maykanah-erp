@@ -1033,10 +1033,10 @@
       "assets": {
         "asset_categories": "فئات الأصول",
         "asset_categories_desc": "تصنيف معملي للأصول الثابتة.",
-        "depreciation_methods": "معددات المثلة",
-        "depreciation_methods_desc": "تحديد طرق استهلاك الأصول.",
         "asset_locations": "موقع الأصول",
-        "asset_locations_desc": "تحديد مكان توافد الأصول."
+        "asset_locations_desc": "تحديد مكان توافد الأصول.",
+        "maintenance_team": "فريق الصيانة",
+        "maintenance_team_desc": "الفرق المسؤولة عن صيانة الأصول."
       },
       "warehouses": {
         "warehouse_management": "إدارة المستودعات",

@@ -150,6 +150,17 @@ import {
   SalesSettings,
   TermsTemplate,
 } from './screens/Settings';
+import { AssetCategories } from './screens/Settings/AssetCategories';
+import { AssetCategoryForm } from './screens/Settings/AssetCategoryForm';
+import { AssetCategoryEdit } from './screens/Settings/AssetCategoryEdit';
+import { AssetCategoryDetails } from './screens/Settings/AssetCategoryDetails';
+import { AssetLocations } from './screens/Settings/AssetLocations';
+import { AssetLocationForm } from './screens/Settings/AssetLocationForm';
+import { AssetLocationEdit } from './screens/Settings/AssetLocationEdit';
+import { MaintenanceTeam } from './screens/Settings/MaintenanceTeam';
+import { MaintenanceTeamForm } from './screens/Settings/MaintenanceTeamForm';
+import { MaintenanceTeamEdit } from './screens/Settings/MaintenanceTeamEdit';
+import { MaintenanceTeamView } from './screens/Settings/MaintenanceTeamView';
 import { SupportPage } from './screens/SupportPage';
 import { ComingSoon } from './screens/ComingSoon';
 import { ErrorPage } from './screens/ErrorPage';
@@ -2593,6 +2604,94 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <CostCenters />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/asset-categories',
+    element: (
+      <ProtectedRoute>
+        <AssetCategories />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/asset-categories/create',
+    element: (
+      <ProtectedRoute>
+        <AssetCategoryForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/asset-categories/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <AssetCategoryEdit />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/asset-categories/:id',
+    element: (
+      <ProtectedRoute>
+        <AssetCategoryDetails />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/asset-locations',
+    element: (
+      <ProtectedRoute>
+        <AssetLocations />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/asset-locations/create',
+    element: (
+      <ProtectedRoute>
+        <AssetLocationForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/asset-locations/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <AssetLocationEdit />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/maintenance-team',
+    element: (
+      <ProtectedRoute>
+        <MaintenanceTeam />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/maintenance-team/create',
+    element: (
+      <ProtectedRoute>
+        <MaintenanceTeamForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/maintenance-team/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <MaintenanceTeamEdit />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/assets/maintenance-team/view/:id',
+    element: (
+      <ProtectedRoute>
+        <MaintenanceTeamView />
       </ProtectedRoute>
     ),
   },
