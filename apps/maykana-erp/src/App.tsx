@@ -150,6 +150,8 @@ import {
   SalesSettings,
   TermsTemplate,
 } from './screens/Settings';
+import { TaxTemplates } from './screens/TaxTemplates';
+import { TermsConditionsTemplates } from './screens/TermsConditionsTemplates';
 import { SupportPage } from './screens/SupportPage';
 import { ComingSoon } from './screens/ComingSoon';
 import { ErrorPage } from './screens/ErrorPage';
@@ -2617,6 +2619,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <BudgetEditForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/purchase-tax-template',
+    element: (
+      <ProtectedRoute>
+        <TaxTemplates />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/terms-conditions-template',
+    element: (
+      <ProtectedRoute>
+        <TermsConditionsTemplates />
       </ProtectedRoute>
     ),
   },

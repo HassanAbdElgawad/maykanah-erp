@@ -36,7 +36,7 @@ export const SettingsPage = (): JSX.Element => {
   }, [moduleParam]);
 
   const allSettingCards = getSettingCards();
-  const settingCards = allSettingCards
+  const settingCards = allSettingCards.filter((card) => card.module === selectedModule);
 
   const handleCardClick = (path: string) => {
     navigate(path);

@@ -20,68 +20,75 @@ export function PurchaseSettings() {
             {/* Setting 1 */}
             <div className="bg-white rounded-lg shadow-sm p-6 flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-gray-900 text-base">
+                <label
+                  htmlFor="allowQuantityVariation"
+                  className="text-gray-900 text-base cursor-pointer"
+                >
                   السماح في طلب استلام المواد باستلام كميات سواء بالزيادة او بالنقصان
-                </p>
+                </label>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-sm text-gray-600">نعم</span>
-                <button
-                  onClick={() => setAllowQuantityVariation(!allowQuantityVariation)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    allowQuantityVariation ? 'bg-green-500' : 'bg-gray-300'
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      allowQuantityVariation ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    id="allowQuantityVariation"
+                    type="checkbox"
+                    checked={allowQuantityVariation}
+                    onChange={(e) => setAllowQuantityVariation(e.target.checked)}
+                    className="sr-only peer"
                   />
-                </button>
+                  <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                </label>
               </div>
             </div>
 
             {/* Setting 2 */}
             <div className="bg-white rounded-lg shadow-sm p-6 flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-gray-900 text-base">هل امر الشراء مطلوب لإنشاء فاتورة</p>
+                <label
+                  htmlFor="requirePurchaseOrder"
+                  className="text-gray-900 text-base cursor-pointer"
+                >
+                  هل امر الشراء مطلوب لإنشاء فاتورة
+                </label>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-sm text-gray-600">نعم</span>
-                <button
-                  onClick={() => setRequirePurchaseOrder(!requirePurchaseOrder)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    requirePurchaseOrder ? 'bg-green-500' : 'bg-gray-300'
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      requirePurchaseOrder ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    id="requirePurchaseOrder"
+                    type="checkbox"
+                    checked={requirePurchaseOrder}
+                    onChange={(e) => setRequirePurchaseOrder(e.target.checked)}
+                    className="sr-only peer"
                   />
-                </button>
+                  <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                </label>
               </div>
             </div>
 
             {/* Setting 3 */}
             <div className="bg-white rounded-lg shadow-sm p-6 flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-gray-900 text-base">حافظ على نفس السعر طوال دورة المشتريات</p>
+                <label
+                  htmlFor="maintainSamePrice"
+                  className="text-gray-900 text-base cursor-pointer"
+                >
+                  حافظ على نفس السعر طوال دورة المشتريات
+                </label>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-sm text-gray-600">نعم</span>
-                <button
-                  onClick={() => setMaintainSamePrice(!maintainSamePrice)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    maintainSamePrice ? 'bg-green-500' : 'bg-gray-300'
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      maintainSamePrice ? 'translate-x-6' : 'translate-x-1'
-                    }`}
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    id="maintainSamePrice"
+                    type="checkbox"
+                    checked={maintainSamePrice}
+                    onChange={(e) => setMaintainSamePrice(e.target.checked)}
+                    className="sr-only peer"
                   />
-                </button>
+                  <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                </label>
               </div>
             </div>
           </div>

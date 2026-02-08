@@ -1,0 +1,1 @@
+export { TermsConditionsTemplates } from './TermsConditionsTemplates';
