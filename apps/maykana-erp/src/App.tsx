@@ -152,6 +152,12 @@ import {
 } from './screens/Settings';
 import { TaxTemplates } from './screens/TaxTemplates';
 import { TermsConditionsTemplates } from './screens/TermsConditionsTemplates';
+import { SupplierQuotesComparison } from './screens/SupplierQuotesComparison';
+import { PurchaseOrdersAnalysis } from './screens/PurchaseOrdersAnalysis';
+import { PurchasePricesByCategory } from './screens/PurchasePricesByCategory';
+import { ItemsRequiredOrderReceipt } from './screens/ItemsRequiredOrderReceipt';
+import { PurchasesAnalysis } from './screens/PurchasesAnalysis';
+import { PurchasesPricesByItem } from './screens/PurchasesPricesByItem';
 import { SupportPage } from './screens/SupportPage';
 import { ComingSoon } from './screens/ComingSoon';
 import { ErrorPage } from './screens/ErrorPage';
@@ -299,6 +305,54 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <TrialBalanceMovementReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/purchases/supplier-quotes-comparison',
+    element: (
+      <ProtectedRoute>
+        <SupplierQuotesComparison />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/purchases/purchase-orders-analysis',
+    element: (
+      <ProtectedRoute>
+        <PurchaseOrdersAnalysis />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/purchases/prices-by-category',
+    element: (
+      <ProtectedRoute>
+        <PurchasePricesByCategory />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/purchases/items-required-order-receipt',
+    element: (
+      <ProtectedRoute>
+        <ItemsRequiredOrderReceipt />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/purchases/purchases-analysis',
+    element: (
+      <ProtectedRoute>
+        <PurchasesAnalysis />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/purchases/purchases-prices-by-item',
+    element: (
+      <ProtectedRoute>
+        <PurchasesPricesByItem />
       </ProtectedRoute>
     ),
   },
