@@ -467,7 +467,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/purchases/settings',
+    path: '/settings/purchases/purchase-settings',
     element: (
       <ProtectedRoute>
         <PurchaseSettings />
@@ -2875,7 +2875,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/settings/purchase-tax-template',
+    path: '/settings/purchases/purchase-tax-template',
     element: (
       <ProtectedRoute>
         <TaxTemplates />
@@ -2883,7 +2883,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/settings/terms-conditions-template',
+    path: '/settings/purchases/terms-conditions-template',
     element: (
       <ProtectedRoute>
         <TermsConditionsTemplates />

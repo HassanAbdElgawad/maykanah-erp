@@ -122,6 +122,8 @@
       "suppliers_desc": "بيانات الموردين الذين تتعامل معهم الشركة",
       "purchase_requests": "طلبات المواد",
       "purchase_requests_desc": "طلب شراء مواد أو خدمات من قِبل الأقسام",
+      "material_requests_list": "قائمة طلبات المواد",
+      "material_requests_review": "مراجعة طلبات المواد",
       "price_quote_requests": "طلبات عروض الأسعار",
       "price_quote_requests_desc": "يُرسل للموردين للحصول على عروض أسعار",
       "supplier_price_quotes": "عروض أسعار الموردين",
@@ -134,6 +136,7 @@
       "purchase_invoices_desc": "تُسجَّل فيها فواتير الموردين مقابل المستلمة",
       "purchase_returns": "مرتجع المشتريات",
       "purchase_returns_desc": "لتوثيق عملية إرجاع مواد غير مطابقة",
+      "purchase_settings": "إعدادات المشتريات",
       "create_material_request": "طلب مواد جديد"
     },
     "price_quote_requests": {

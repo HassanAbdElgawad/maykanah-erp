@@ -147,20 +147,27 @@ export const SupplierPriceQuotes = (): JSX.Element => {
 
   return (
     <Layout>
-      <div className="relative">
+      <div className="relative" dir={dir}>
         {/* Action Bar */}
-        <div className="flex items-center gap-2 mb-4 justify-between">
+        <div className="flex items-center justify-between gap-2 mb-4" dir={dir}>
+          {/* Search Bar */}
+          <div className="relative flex-1 max-w-[450px]">
+            <Input
+              type="text"
+              placeholder={t('supplier_price_quotes.search_placeholder')}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={`h-[43px] ${dir === 'rtl' ? 'pr-10' : 'pl-10'} bg-white border-[#e2e2e2] rounded-lg text-sm`}
+            />
+            <Search
+              className={`absolute top-1/2 -translate-y-1/2 ${dir === 'rtl' ? 'right-3' : 'left-3'} w-4 h-4 text-[#99a09e]`}
+            />
+          </div>
+
           {/* Right side buttons */}
           <div className="flex items-center gap-2">
             {/* Add New Button */}
-            <Button
-              onClick={() => navigate('/purchases/price-quote-requests/create')}
-              className="h-[43px] px-4 bg-[#093738] hover:bg-[#093738]/90 text-white gap-2 rounded-lg"
-            >
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-medium">
-                {t('supplier_price_quotes.add_new')}
-              </span>
-            </Button>
+            
 
             {/* Filter Button */}
             <Button
@@ -211,20 +218,14 @@ export const SupplierPriceQuotes = (): JSX.Element => {
                 </SelectItem>
               </SelectContent>
             </Select>
-          </div>
-
-          {/* Search Bar */}
-          <div className="relative flex-1 max-w-[450px]">
-            <Input
-              type="text"
-              placeholder={t('supplier_price_quotes.search_placeholder')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`h-[43px] ${dir === 'rtl' ? 'pr-10' : 'pl-10'} bg-white border-[#e2e2e2] rounded-lg text-sm`}
-            />
-            <Search
-              className={`absolute top-1/2 -translate-y-1/2 ${dir === 'rtl' ? 'right-3' : 'left-3'} w-4 h-4 text-[#99a09e]`}
-            />
+            <Button
+              onClick={() => navigate('/purchases/price-quote-requests/create')}
+              className="h-[43px] px-4 bg-[#093738] hover:bg-[#093738]/90 text-white gap-2 rounded-lg"
+            >
+              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-medium">
+                {t('supplier_price_quotes.add_new')}
+              </span>
+            </Button>
           </div>
         </div>
 

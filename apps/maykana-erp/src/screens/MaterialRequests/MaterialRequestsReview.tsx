@@ -130,21 +130,26 @@ export const MaterialRequestsReview = (): JSX.Element => {
   };
 
   return (
-    <Layout
-    >
+    <Layout>
       <div className="relative" dir={dir}>
         {/* Header with Action Bar */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex items-center justify-between gap-3" dir={dir}>
+          {/* Search Bar */}
+          <div className="relative flex-1 max-w-[450px]">
+            <Input
+              type="text"
+              placeholder="ابحث من هنا (طلب مواد ، غرض الطلب، المادة أو التصنيف ...)"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={`h-[40px] ${dir === 'rtl' ? 'pr-10' : 'pl-10'} bg-white border-[#e2e2e2] rounded-lg text-sm`}
+            />
+            <Search
+              className={`absolute top-1/2 -translate-y-1/2 ${dir === 'rtl' ? 'right-3' : 'left-3'} w-4 h-4 text-[#99a09e]`}
+            />
+          </div>
+
           <div className="flex items-center gap-3">
             {/* Add New Button */}
-            <Button
-              onClick={() => navigate('/purchases/material-requests/create')}
-              className="h-[40px] px-4 bg-[#093738] hover:bg-[#093738]/90 text-white gap-2 rounded-lg"
-            >
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-medium">
-                إنشاء أمر شراء
-              </span>
-            </Button>
 
             {/* Filter Button */}
             <Button className="h-[40px] px-3 bg-white hover:bg-slate-50 text-[#374151] gap-2 rounded-lg border border-[#e2e2e2]">
@@ -158,32 +163,24 @@ export const MaterialRequestsReview = (): JSX.Element => {
               <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">تصدير</span>
             </Button>
 
-            {/* Show/Hide Columns Checkbox */}
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={showColumns}
-                onChange={(e) => setShowColumns(e.target.checked)}
-                className="w-4 h-4 rounded border-gray-300 text-[#093738] focus:ring-[#093738]"
-              />
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm text-[#374151]">
+            {/* Show/Hide Columns Button */}
+            <Button
+              onClick={() => setShowColumns(!showColumns)}
+              className="h-[40px] px-3 bg-white hover:bg-slate-50 text-[#374151] gap-2 rounded-lg border border-[#e2e2e2]"
+            >
+              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">
                 إظهار/إخفاء أعمدة
               </span>
-            </label>
-          </div>
+            </Button>
 
-          {/* Search Bar */}
-          <div className="relative w-[400px]">
-            <Input
-              type="text"
-              placeholder="ابحث من هنا (طلب مواد ، غرض الطلب، المادة أو التصنيف ...)"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`h-[40px] ${dir === 'rtl' ? 'pr-10' : 'pl-10'} bg-white border-[#e2e2e2] rounded-lg text-sm`}
-            />
-            <Search
-              className={`absolute top-1/2 -translate-y-1/2 ${dir === 'rtl' ? 'right-3' : 'left-3'} w-4 h-4 text-[#99a09e]`}
-            />
+            <Button
+              onClick={() => navigate('/purchases/material-requests/create')}
+              className="h-[40px] px-4 bg-[#093738] hover:bg-[#093738]/90 text-white gap-2 rounded-lg"
+            >
+              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-medium">
+                إنشاء أمر شراء
+              </span>
+            </Button>
           </div>
         </div>
 

@@ -6,6 +6,8 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Checkbox } from '../../components/ui/checkbox';
+import { buttonClasses } from '../../styles';
+import InitialFilters from '../../components/InitialFilters';
 import {
   Select,
   SelectContent,
@@ -17,7 +19,8 @@ import {
   Search,
   Filter,
   Columns3,
-  RotateCcw,
+  Download,
+  ArrowRight,
   X,
   MoreVertical,
   Plus,
@@ -133,6 +136,7 @@ export const MaterialRequests = (): JSX.Element => {
   // Filter states
   const [showColumnsFilter, setShowColumnsFilter] = useState(false);
   const [showFilterOptions, setShowFilterOptions] = useState(false);
+  const [showExportOptions, setShowExportOptions] = useState(false);
   const [visibleColumns, setVisibleColumns] = useState<string[]>(ALL_COLUMNS.map((c) => c.key));
 
   // Filter criteria
@@ -158,6 +162,7 @@ export const MaterialRequests = (): JSX.Element => {
   // Refs for click outside detection
   const columnsRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
   const actionMenuRef = useRef<HTMLDivElement>(null);
 
   // Handle click outside to close dropdowns
@@ -168,6 +173,9 @@ export const MaterialRequests = (): JSX.Element => {
       }
       if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
         setShowFilterOptions(false);
+      }
+      if (exportRef.current && !exportRef.current.contains(event.target as Node)) {
+        setShowExportOptions(false);
       }
       if (actionMenuRef.current && !actionMenuRef.current.contains(event.target as Node)) {
         setOpenActionMenuId(null);
@@ -212,14 +220,6 @@ export const MaterialRequests = (): JSX.Element => {
     } else {
       setSelectedRows(filteredRequests.map((r) => r.id));
     }
-  };
-
-  const handleReset = () => {
-    setSearchQuery('');
-    setFilterRequestType('all');
-    setFilterDepartment('all');
-    setSelectedRows([]);
-    setVisibleColumns(ALL_COLUMNS.map((c) => c.key));
   };
 
   const handleCreateNew = () => {
@@ -275,41 +275,31 @@ export const MaterialRequests = (): JSX.Element => {
   return (
     <Layout>
       <div className="relative">
-        {/* Action Bar */}
-        <div className="flex items-center gap-2 mb-4 justify-between">
-          {/* Right side buttons */}
-          <div className="flex items-center gap-2">
-            {/* Save Button */}
+        {/* Initial Filters Header */}
+        <InitialFilters>
+          <div className="flex items-center gap-3">
             <Button
-              onClick={() => {
-                // Save selected rows logic
-                navigate('/purchases/material-requests/create');
-                // if (selectedRows.length > 0) {
-                //   alert(`تم حفظ ${selectedRows.length} طلب(ات)`);
-                // }
-              }}
-              className="h-[43px] px-4 bg-[#093738] hover:bg-[#093738]/90 text-white gap-2 rounded-lg"
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/purchases')}
+              className="h-8 w-8 rounded-lg hover:bg-gray-100"
             >
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm font-medium">
-                طلب مواد
-              </span>
+              <ArrowRight className="h-5 w-5 text-gray-600" />
             </Button>
+            <h1 className="text-lg font-semibold text-[#092e32] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+              قائمة طلبات المواد
+            </h1>
+          </div>
 
+          <div className="flex items-center gap-2">
             {/* Filter Button */}
             <div className="relative" ref={filterRef}>
               <Button
                 onClick={() => setShowFilterOptions(!showFilterOptions)}
-                className={`h-[43px] px-3 bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-2 rounded-lg border ${
-                  filterRequestType !== 'all' || filterDepartment !== 'all'
-                    ? 'border-[#093738] bg-[#093738]/5'
-                    : 'border-[#e2e2e2]'
-                }`}
+                className="h-[43px] px-[10px] bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-1.5 rounded-lg border border-[#e2e2e2]"
               >
-                <Filter className="w-4 h-4" />
-                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">فلتر</span>
-                {(filterRequestType !== 'all' || filterDepartment !== 'all') && (
-                  <span className="w-2 h-2 bg-[#093738] rounded-full"></span>
-                )}
+                <Filter className="w-[18px] h-[18px]" />
+                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base">فلتر</span>
               </Button>
               {showFilterOptions && (
                 <div
@@ -379,23 +369,32 @@ export const MaterialRequests = (): JSX.Element => {
               )}
             </div>
 
-            {/* Reset Button */}
-            <Button
-              onClick={handleReset}
-              className="h-[43px] px-3 bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-2 rounded-lg border border-[#e2e2e2]"
-            >
-              <RotateCcw className="w-4 h-4" />
-              <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">تصفير</span>
-            </Button>
+            {/* Export Button */}
+            <div className="relative" ref={exportRef}>
+              <Button
+                onClick={() => setShowExportOptions(!showExportOptions)}
+                className="h-[43px] px-[10px] bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-[5px] rounded-lg border border-[#e2e2e2]"
+              >
+                <Download className="w-4 h-4" />
+                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base">تصدير</span>
+              </Button>
+              {showExportOptions && (
+                <div className={`absolute top-full mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 p-2 z-20 ${dir === 'rtl' ? 'right-0' : 'left-0'}`}>
+                  <button className="w-full text-right px-3 py-2 hover:bg-gray-100 rounded [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">PDF</button>
+                  <button className="w-full text-right px-3 py-2 hover:bg-gray-100 rounded [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">Excel</button>
+                  <button className="w-full text-right px-3 py-2 hover:bg-gray-100 rounded [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">CSV</button>
+                </div>
+              )}
+            </div>
 
             {/* Show/Hide Columns */}
             <div className="relative" ref={columnsRef}>
               <Button
                 onClick={() => setShowColumnsFilter(!showColumnsFilter)}
-                className="h-[43px] px-3 bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-2 rounded-lg border border-[#e2e2e2]"
+                className="h-[43px] px-[13px] bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-2 rounded-lg border border-[#e2e2e2]"
               >
-                <Columns3 className="w-4 h-4" />
-                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm">
+                <Columns3 className="w-3.5 h-3.5" />
+                <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base">
                   إظهار/إخفاء أعمدة
                 </span>
               </Button>
@@ -425,9 +424,19 @@ export const MaterialRequests = (): JSX.Element => {
                 </div>
               )}
             </div>
-          </div>
 
-          {/* Search Bar */}
+            {/* Create New Button */}
+            <button
+              onClick={() => navigate('/purchases/material-requests/create')}
+              className={buttonClasses.primary}
+            >
+              طلبية جديدة
+            </button>
+          </div>
+        </InitialFilters>
+
+        {/* Search Bar - Now below InitialFilters */}
+        <div className="mt-4 mb-4">
           <div className="relative flex-1 max-w-[450px]">
             <Input
               type="text"

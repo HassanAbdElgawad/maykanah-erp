@@ -29,6 +29,8 @@ export const SettingsPage = (): JSX.Element => {
     'sales-settings',
     'terms-template',
     'purchase-settings',
+    'purchase-tax-template',
+    'terms-conditions-template',
     'asset-categories',
     'asset-locations',
     'maintenance-team',

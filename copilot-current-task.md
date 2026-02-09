@@ -2,6 +2,73 @@
 
 ## Recently Completed ✅
 
+### Purchases Module - RTL Layout & UI Standardization
+- **Status**: Fully completed
+- **Components Updated**:
+  - `MaterialRequests.tsx` - طلبات المواد (material-requests-list)
+  - `PurchaseInvoices.tsx` - فواتير المشتريات
+  - `MaterialReceipts.tsx` - استلام المواد
+  - `PriceQuoteRequests.tsx` - طلبات عروض الأسعار
+  - `SupplierPriceQuotes.tsx` - عروض أسعار الموردين
+  - `PriceQuotes.tsx` - عروض الأسعار
+  - `MaterialRequestsReview.tsx` - مراجعة طلبات المواد
+  - `Suppliers.tsx` - الموردين
+
+- **Key Changes Implemented**:
+  1. **RTL Layout Fixes**:
+     - Changed from `justify-between` to `dir={dir}` or `dir="rtl"`
+     - Search bar positioned FIRST (appears on right in RTL)
+     - Action buttons positioned SECOND (appears on left in RTL)
+     - Removed duplicate search bars from multiple pages
+  
+  2. **Unified Action Bar Pattern**:
+     - All pages now use consistent structure:
+       ```tsx
+       <div className="flex items-center justify-between gap-2 mb-4" dir={dir}>
+         <div className="relative flex-1 max-w-[450px]"> {/* Search */}
+         <div className="flex items-center gap-2"> {/* Buttons */}
+       ```
+  
+  3. **Button Standardization**:
+     - Common heights: `h-[43px]` or `h-[45px]`
+     - Secondary buttons: `bg-slate-50 hover:bg-slate-100`
+     - Primary buttons: Using `buttonClasses.primary`
+     - Consistent icon sizes: `w-4 h-4` or `w-3.5 h-3.5`
+  
+  4. **MaterialRequests.tsx Specific Updates**:
+     - **Added InitialFilters component** with:
+       - Back button to `/purchases`
+       - Title: "قائمة طلبات المواد"
+       - Buttons: فلتر, تصدير, إظهار/إخفاء أعمدة, طلبية جديدة
+     - **Search bar moved below InitialFilters**
+     - **Button order changed**: "طلبية جديدة" moved to END (last button)
+     - **Removed**: "زر تصفير" button (no longer needed)
+     - **Added**: Download/Export button with dropdown (PDF, Excel, CSV)
+     - **Breadcrumb added**: `/purchases/material-requests-list` → `purchases.material_requests_list`
+
+- **Files Modified**:
+  - 8 component files in purchases module
+  - `breadcrumbs.config.ts` - added material-requests-list path
+  - Import additions: `ArrowRight` icon, `InitialFilters` component
+
+- **Pattern Established**:
+  - Button order (left to right in RTL):
+    1. Show/Hide Columns (إظهار/إخفاء أعمدة)
+    2. Filter (فلتر)
+    3. Export (تصدير)
+    4. Create New (زر إنشاء - always last)
+
+### Purchase Reports Styling
+- **Status**: Fully completed (from earlier session)
+- **Reports Updated** (6 reports):
+  - SupplierQuotesComparison
+  - PurchaseOrdersAnalysis
+  - PurchasePricesByCategory
+  - ItemsRequiredOrderReceipt
+  - PurchasesAnalysis
+  - PurchasesPricesByItem
+- **Changes**: All use InitialFilters with back button and unified styling
+
 ### Asset Categories (Settings Module)
 - **Status**: Fully implemented and functional
 - **Components**:
@@ -22,8 +89,32 @@
 - **Translations**: Added to translations.json
 - **Card**: Active in SettingsPage
 
-### Asset Locations (Settings Module)
-- **Status**: Fully implemented and functional (just completed)
+### Maintenance Team (Settings Module) - VERIFIED COMPLETED ✅
+- **Status**: Fully implemented and functional (verified Feb 9, 2026)
+- **Components**:
+  - `MaintenanceTeam.tsx` - Main listing with smart dropdown positioning
+  - `MaintenanceTeamForm.tsx` - Create new team with member management
+  - `MaintenanceTeamEdit.tsx` - Edit existing team (only for active)
+  - `MaintenanceTeamView.tsx` - View details modal
+- **Features**:
+  - Table with 7 columns (code, name, leader, member count, type, status)
+  - **Smart dropdown menu** with dynamic positioning (same as AssetLocations)
+  - Active items: view, edit, deactivate
+  - Inactive items: view, activate (no edit)
+  - Empty state with illustration and call-to-action
+  - Confirmation modals for activate/deactivate
+  - Toast notifications on status change
+  - Advanced filter dropdown (status, team type)
+  - Fixed positioning for dropdowns (`z-[100]`)
+- **Key Features**:
+  - Team member management table in form
+  - Leader designation functionality
+  - Member status tracking (active/inactive)
+  - Internal/External team types
+- **Routes**: All configured in App.tsx
+- **Breadcrumbs**: All paths configured
+- **Translations**: Added to translations.json
+- **Card**: Active in SettingsPage (marked as completed)
 - **Components**:
   - `AssetLocations.tsx` - Main listing with smart dropdown positioning
   - `AssetLocationForm.tsx` - Create new location
@@ -63,21 +154,52 @@
 
 ## In Progress 🔄
 
+### Settings Module Analysis (February 9, 2026)
+- **Status**: Maintenance Team module confirmed COMPLETED
+- **Discovery**: Module was already fully implemented with all files
+- **Files**: MaintenanceTeam.tsx, MaintenanceTeamForm.tsx, MaintenanceTeamEdit.tsx, MaintenanceTeamView.tsx
+- **Verification**: No errors, all routes configured, translations added, card active
+
+## Pending/Next ⏳
+
+### Settings Module - Remaining Uncompleted Cards
+
+1. **Supplier Categories** (Purchases Module)
+   - ID: supplier-categories
+   - Path: /settings/supplier-categories
+   - Colors: Blue (#6366F1/#6366F11a)
+   - Status: Not implemented
+
+2. **Purchase Tax Template** (Purchases Module)
+   - ID: purchase-tax-template
+   - Path: /settings/purchase-tax-template
+   - Colors: Yellow (#EAB308/#FEF9C3)
+   - Status: Not implemented
+
+3. **Terms & Conditions Template** (Purchases Module)
+   - ID: terms-conditions-template
+   - Path: /settings/terms-conditions-template
+   - Colors: Blue (#3B82F6/#DBEAFE)
+   - Status: Not implemented
+   - Note: May overlap with terms-template (completed)
+
+4. **Approval Workflow** (Purchases Module)
+   - ID: approval-workflow
+   - Path: /settings/approval-workflow
+   - Colors: Purple (#8B5CF6/#8B5CF61a)
+   - Status: Not implemented
+
+5. **Roles & Permissions** (Workflow Engine Module)
+   - ID: roles-permissions
+   - Path: /settings/workflow-engine/roles-permissions
+   - Colors: Pink (#EC4899/#EC48991a)
+   - Status: Not implemented
+
 ### ProjectDetails Tabs
 - **Status**: 10 tabs structure complete
 - **Location**: `apps/maykana-erp/src/screens/Strategy/Projects/ProjectDetails.tsx`
 - **Current State**: Tab navigation implemented
 - **Remaining**: Tab content population (may be on hold)
-
-## Pending/Next ⏳
-
-### Settings Module - Remaining Cards
-
-1. **Maintenance Team** (Asset Module)
-   - Icon: UsersIcon
-   - Colors: Red (#DC2626/#FEE2E2)
-   - Pattern: Follow AssetLocations structure
-   - Status: Not started
 
 2. **Accounting Module Settings**
    - Budget (completed, mentioned in breadcrumbs)
@@ -215,9 +337,9 @@ onClick={(e) => {
 
 ## Next Immediate Steps
 
-1. **Wait for user direction** on next feature to implement
+1. **Continue with Purchases Module enhancements** if needed
 2. **Maintenance Team** is likely next in Settings/Assets flow
-3. **Consider**: Any refinements needed to Asset Locations before moving on
+3. **Consider**: Any additional RTL or UI refinements across other modules
 
 ## Questions/Decisions Needed
 
@@ -226,3 +348,173 @@ onClick={(e) => {
 - When will backend API be available for integration?
 - Should we implement global state management now or later?
 - Is form validation needed before API integration?
+
+---
+
+## Key Patterns from Latest Work (RTL & InitialFilters)
+
+### RTL Action Bar Pattern (STANDARDIZED)
+**Used in**: All purchases module pages, to be replicated elsewhere
+
+```tsx
+<div className="flex items-center justify-between gap-2 mb-4" dir={dir}>
+  {/* Search Bar - Always FIRST (appears right in RTL) */}
+  <div className="relative flex-1 max-w-[450px]">
+    <Input
+      type="text"
+      placeholder="ابحث..."
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      className={`h-[43px] ${dir === 'rtl' ? 'pr-10' : 'pl-10'} bg-white border-[#e2e2e2] rounded-lg text-sm`}
+    />
+    <Search
+      className={`absolute top-1/2 -translate-y-1/2 ${dir === 'rtl' ? 'right-3' : 'left-3'} w-4 h-4 text-[#99a09e]`}
+    />
+  </div>
+
+  {/* Action Buttons - Always SECOND (appears left in RTL) */}
+  <div className="flex items-center gap-2">
+    {/* Button Order (from right to left in RTL): */}
+    {/* 1. Show/Hide Columns */}
+    <Button className="h-[43px] px-[13px] bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-2">
+      <Columns3 className="w-3.5 h-3.5" />
+      <span>إظهار/إخفاء أعمدة</span>
+    </Button>
+    
+    {/* 2. Filter */}
+    <Button className="h-[43px] px-[10px] bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-1.5">
+      <Filter className="w-[18px] h-[18px]" />
+      <span>فلتر</span>
+    </Button>
+    
+    {/* 3. Export */}
+    <Button className="h-[43px] px-[10px] bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-[5px]">
+      <Download className="w-4 h-4" />
+      <span>تصدير</span>
+    </Button>
+    
+    {/* 4. Create New - ALWAYS LAST */}
+    <button className={buttonClasses.primary}>
+      {createLabel}
+    </button>
+  </div>
+</div>
+```
+
+**Key Rules**:
+- Use `dir={dir}` or `dir="rtl"` on container, NOT `justify-between` alone
+- Search FIRST in code = appears RIGHT in RTL
+- Buttons SECOND in code = appears LEFT in RTL
+- Create button ALWAYS last in button group
+- Heights: typically `h-[43px]` or `h-[45px]`
+- Icon sizes: `w-4 h-4` or `w-3.5 h-3.5` or `w-[18px] h-[18px]`
+
+### InitialFilters Component Usage Pattern
+**Used in**: Reports pages, now MaterialRequests
+
+```tsx
+import InitialFilters from '../../components/InitialFilters';
+import { ArrowRight } from 'lucide-react';
+
+<InitialFilters>
+  {/* Left side: Back button + Title */}
+  <div className="flex items-center gap-3">
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => navigate('/parent-path')}
+      className="h-8 w-8 rounded-lg hover:bg-gray-100"
+    >
+      <ArrowRight className="h-5 w-5 text-gray-600" />
+    </Button>
+    <h1 className="text-lg font-semibold text-[#092e32] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+      عنوان الصفحة
+    </h1>
+  </div>
+
+  {/* Right side: Action buttons */}
+  <div className="flex items-center gap-2">
+    {/* Buttons here - same as RTL pattern above */}
+    {/* BUT without search bar (search goes BELOW InitialFilters) */}
+  </div>
+</InitialFilters>
+
+{/* Search Bar Below InitialFilters */}
+<div className="mt-4 mb-4">
+  <div className="relative flex-1 max-w-[450px]">
+    {/* Search input */}
+  </div>
+</div>
+```
+
+**When to use InitialFilters**:
+- Report pages with back navigation
+- List pages that need header with navigation
+- Pages with page title and action buttons in header
+
+**When NOT to use**:
+- Simple list pages without navigation needs
+- Forms/edit pages (they have their own header patterns)
+
+### Button Class Standards
+
+```typescript
+import { buttonClasses } from '../../styles';
+
+// Primary action button (create, save, etc.)
+<button className={buttonClasses.primary}>نص الزر</button>
+
+// Secondary buttons
+<Button className="h-[43px] px-[10px] bg-slate-50 hover:bg-slate-100 text-[#092e32] gap-2 rounded-lg border border-[#e2e2e2]">
+  <Icon className="w-4 h-4" />
+  <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base">نص</span>
+</Button>
+```
+
+### Dropdown Export Pattern
+```tsx
+const [showExportOptions, setShowExportOptions] = useState(false);
+const exportRef = useRef<HTMLDivElement>(null);
+
+// In useEffect - close on outside click
+useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (exportRef.current && !exportRef.current.contains(event.target as Node)) {
+      setShowExportOptions(false);
+    }
+  };
+  document.addEventListener('mousedown', handleClickOutside);
+  return () => document.removeEventListener('mousedown', handleClickOutside);
+}, []);
+
+// Render
+<div className="relative" ref={exportRef}>
+  <Button onClick={() => setShowExportOptions(!showExportOptions)}>
+    <Download className="w-4 h-4" />
+    <span>تصدير</span>
+  </Button>
+  {showExportOptions && (
+    <div className={`absolute top-full mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 p-2 z-20 ${dir === 'rtl' ? 'right-0' : 'left-0'}`}>
+      <button className="w-full text-right px-3 py-2 hover:bg-gray-100 rounded text-sm">PDF</button>
+      <button className="w-full text-right px-3 py-2 hover:bg-gray-100 rounded text-sm">Excel</button>
+      <button className="w-full text-right px-3 py-2 hover:bg-gray-100 rounded text-sm">CSV</button>
+    </div>
+  )}
+</div>
+```
+
+### Breadcrumb Configuration Pattern
+```typescript
+// In breadcrumbs.config.ts
+{ path: "/parent/child-list", label: "module.child_list" },
+{ path: "/parent/child/create", label: "module.create_child" },
+{ path: "/parent/child/edit/:id", label: "module.edit_child" },
+```
+
+**Rules**:
+- List pages: `/parent/child-list` or `/parent/children`
+- Create: `/parent/child/create`
+- Edit: `/parent/child/edit/:id` with `:id` param
+- Label keys: Use dot notation matching translation structure
+
+---

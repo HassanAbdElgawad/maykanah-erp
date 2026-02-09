@@ -1,18 +1,24 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Layout } from '../../components/Layout';
+import { Button } from '../../components/ui/button';
+import { buttonClasses } from '../../styles';
 import { AdvancedTable } from '../../components/ui/Table';
 import { useSupplierQuotesComparisonData } from '../../hooks';
-import { DownloadIcon, ColumnsIcon } from 'lucide-react';
+import { Download, ChevronDown, ArrowRight } from 'lucide-react';
+import InitialFilters from '../../components/InitialFilters';
 
 export function SupplierQuotesComparison() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const { quotesComparison } = useSupplierQuotesComparisonData();
   const [searchTerm, setSearchTerm] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [selectedSupplier, setSelectedSupplier] = useState('');
   const [selectedRFQ, setSelectedRFQ] = useState('');
+  const [showExportOptions, setShowExportOptions] = useState(false);
 
   const columns = [
     {
@@ -76,99 +82,102 @@ export function SupplierQuotesComparison() {
 
   return (
     <Layout>
-      <div className="p-6" style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}>
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
-          <h1 className="text-2xl font-bold text-[#0c4749]">{t('supplier_quotes.title')}</h1>
-
-          {/* Action Buttons */}
-          <div className="flex gap-3">
+      <div className="[direction:rtl] space-y-4">
+        {/* Header with InitialFilters */}
+        <InitialFilters>
+          <div className="flex items-center gap-3">
             <button
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
+              onClick={() => navigate('/reports?selected=purchases')}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              <ColumnsIcon className="w-4 h-4" />
-              {t('common.show_hide_columns')}
+              <ArrowRight className="h-5 w-5" />
             </button>
-            <button
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            >
-              <DownloadIcon className="w-4 h-4" />
+            <span className="text-lg font-semibold [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+              {t('supplier_quotes.title')}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button className={`${buttonClasses.secondary} gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]`}>
               {t('common.download')}
-            </button>
+              <Download className="w-4 h-4" />
+            </Button>
+            <Button
+              onClick={() => setShowExportOptions(!showExportOptions)}
+              className={`${buttonClasses.secondary} gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]`}
+            >
+              {t('common.show_hide_columns')}
+              <ChevronDown className="w-4 h-4" />
+            </Button>
           </div>
-        </div>
+        </InitialFilters>
 
-        {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('supplier_quotes.date_from')}
-            </label>
-            <input
-              type="date"
-              value={dateFrom}
-              onChange={(e) => setDateFrom(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('supplier_quotes.date_to')}
-            </label>
-            <input
-              type="date"
-              value={dateTo}
-              onChange={(e) => setDateTo(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('supplier_quotes.rfq_number')}
-            </label>
-            <input
-              type="text"
-              value={selectedRFQ}
-              onChange={(e) => setSelectedRFQ(e.target.value)}
-              placeholder={t('supplier_quotes.rfq_placeholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('supplier_quotes.supplier')}
-            </label>
-            <input
-              type="text"
-              value={selectedSupplier}
-              onChange={(e) => setSelectedSupplier(e.target.value)}
-              placeholder={t('supplier_quotes.supplier_placeholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t('supplier_quotes.category')}
-            </label>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder={t('supplier_quotes.category_placeholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
+        {/* Filters Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4" dir="rtl">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('supplier_quotes.date_from')}
+              </label>
+              <input
+                type="date"
+                value={dateFrom}
+                onChange={(e) => setDateFrom(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('supplier_quotes.date_to')}
+              </label>
+              <input
+                type="date"
+                value={dateTo}
+                onChange={(e) => setDateTo(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('supplier_quotes.rfq_number')}
+              </label>
+              <input
+                type="text"
+                value={selectedRFQ}
+                onChange={(e) => setSelectedRFQ(e.target.value)}
+                placeholder={t('supplier_quotes.rfq_placeholder')}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('supplier_quotes.supplier')}
+              </label>
+              <input
+                type="text"
+                value={selectedSupplier}
+                onChange={(e) => setSelectedSupplier(e.target.value)}
+                placeholder={t('supplier_quotes.supplier_placeholder')}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('supplier_quotes.category')}
+              </label>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder={t('supplier_quotes.category_placeholder')}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
           </div>
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg shadow">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <AdvancedTable columns={columns} data={quotesComparison} />
         </div>
       </div>

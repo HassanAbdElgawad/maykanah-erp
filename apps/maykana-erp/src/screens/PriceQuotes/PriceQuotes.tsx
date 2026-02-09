@@ -252,9 +252,9 @@ export const PriceQuotes = (): JSX.Element => {
 
   return (
     <Layout>
-      <div className="relative">
+      <div className="relative" dir={dir}>
         {/* Action Bar */}
-        <div className="flex items-center gap-2 mb-4 justify-between">
+        <div className="flex items-center justify-between gap-2 mb-4" dir={dir}>
           <div className="relative flex-1 max-w-[533px]">
             <Input
               type="text"

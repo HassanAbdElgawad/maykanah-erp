@@ -141,9 +141,9 @@ export const MaterialReceipts = (): JSX.Element => {
     <Layout>
       <div className="relative" dir={dir}>
         {/* Header with Action Bar */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex items-center justify-between gap-3" dir={dir}>
           {/* Search Bar */}
-          <div className="relative w-[400px]">
+          <div className="relative flex-1 max-w-[450px]">
             <Input
               type="text"
               placeholder="ابحث من هنا (طلب مواد ، غرض الطلب، المادة أو التصنيف ...)"

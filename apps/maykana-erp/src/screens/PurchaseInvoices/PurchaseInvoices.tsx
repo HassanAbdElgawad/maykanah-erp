@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
+import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import {
@@ -21,6 +22,7 @@ interface PurchaseInvoice {
 
 export function PurchaseInvoices() {
   const navigate = useNavigate();
+  const { dir } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [openActionMenuId, setOpenActionMenuId] = useState<string | null>(null);
@@ -99,7 +101,22 @@ export function PurchaseInvoices() {
       <div className="min-h-screen bg-[#f8faf9] font-['IBM_Plex_Sans_Arabic']">
         <div className="p-6">
           {/* Header Section */}
-          <div className="mb-6 flex items-center justify-between gap-4">
+          <div className="mb-6 flex items-center justify-between gap-4" dir={dir}>
+            {/* Right side - Search */}
+            <div className="relative flex-1 max-w-[450px]">
+              <Search
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+                size={20}
+              />
+              <Input
+                type="text"
+                placeholder="ابحث عن شيء (طلب مواد ، عرض الطلب ، انتظار الإستلام ، ...)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pr-10 bg-white"
+              />
+            </div>
+
             {/* Left side - Action buttons */}
             <div className="flex items-center gap-2">
               <Button
@@ -143,21 +160,6 @@ export function PurchaseInvoices() {
                   <SelectItem value="month">هذا الشهر</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
-
-            {/* Right side - Search */}
-            <div className="relative w-96">
-              <Search
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
-                size={20}
-              />
-              <Input
-                type="text"
-                placeholder="ابحث عن شيء (طلب مواد ، عرض الطلب ، انتظار الإستلام ، ...)"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pr-10 bg-white"
-              />
             </div>
           </div>
 

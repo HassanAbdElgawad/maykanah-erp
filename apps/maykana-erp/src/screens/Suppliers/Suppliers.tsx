@@ -83,7 +83,7 @@ export const Suppliers = (): JSX.Element => {
     <Layout>
       <div className="relative">
         {/* Action Bar */}
-        <div className="flex items-center gap-2 mb-4 justify-between">
+        <div className="flex items-center justify-between gap-2 mb-4" dir={dir}>
           {/* Search Bar */}
           <div className="relative flex-1 max-w-[533px]">
             <Input

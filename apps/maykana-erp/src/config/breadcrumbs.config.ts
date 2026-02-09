@@ -17,6 +17,7 @@ export const breadcrumbRoutes = [
   // Purchases Module
   { path: "/purchases", label: "sidebar.purchases" },
   { path: "/purchases/suppliers", label: "purchases.suppliers" },
+  { path: "/purchases/material-requests-list", label: "purchases.material_requests_list" },
   { path: "/purchases/material-requests", label: "purchases.purchase_requests" },
   { path: "/purchases/material-requests/create", label: "purchases.create_material_request" },
   { path: "/purchases/purchase-requests", label: "purchases.purchase_requests" },
@@ -26,6 +27,7 @@ export const breadcrumbRoutes = [
   { path: "/purchases/material-receipts", label: "purchases.material_receipts" },
   { path: "/purchases/purchase-invoices", label: "purchases.purchase_invoices" },
   { path: "/purchases/purchase-returns", label: "purchases.purchase_returns" },
+  { path: "/purchases/material-requests-review", label: "purchases.material_requests_review" },
   
   // Sales Module
   { path: "/sales", label: "sidebar.sales" },
@@ -207,6 +209,14 @@ export const breadcrumbRoutes = [
   { path: "/reports/sales/customer-aging", label: "reports.sales.customer_aging" },
   { path: "/reports/sales/sales-analysis", label: "reports.sales.sales_analysis" },
   
+  { path: "/reports/purchases", label: "sidebar.purchases" },
+  { path: "/reports/purchases/supplier-quotes-comparison", label: "reports.purchases.supplier_quotes_comparison" },
+  { path: "/reports/purchases/purchase-orders-analysis", label: "reports.purchases.purchase_orders_analysis" },
+  { path: "/reports/purchases/prices-by-category", label: "reports.purchases.prices_by_category" },
+  { path: "/reports/purchases/items-required-order-receipt", label: "reports.purchases.items_required_order_receipt" },
+  { path: "/reports/purchases/purchases-analysis", label: "reports.purchases.purchases_analysis" },
+  { path: "/reports/purchases/purchases-prices-by-item", label: "reports.purchases.purchases_prices_by_item" },
+  
   { path: "/settings", label: "sidebar.settings" },
   { path: "/settings/accounting", label: "sidebar.accounting" },
   { path: "/settings/accounting/company", label: "settings.accounting.company" },
@@ -222,6 +232,14 @@ export const breadcrumbRoutes = [
   { path: "/settings/accounting/budget", label: "settings.accounting.budget" },
   { path: "/settings/accounting/budget/create", label: "budget.create_new" },
   { path: "/settings/accounting/budget/edit/:id", label: "budget.edit" },
+  
+  // Purchases Settings
+  { path: "/settings/purchases", label: "sidebar.purchases" },
+  { path: "/settings/purchases/supplier-categories", label: "settings.purchases.supplier_categories" },
+  { path: "/settings/purchases/purchase-settings", label: "settings.purchases.purchase_settings" },
+  { path: "/settings/purchases/purchase-tax-template", label: "settings.purchases.purchase_tax_template" },
+  { path: "/settings/purchases/terms-conditions-template", label: "settings.purchases.terms_conditions_template" },
+  { path: "/settings/purchases/approval-workflow", label: "settings.purchases.approval_workflow" },
   
   // Assets Settings
   { path: "/settings/assets", label: "sidebar.assets" },

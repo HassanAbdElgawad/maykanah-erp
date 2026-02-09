@@ -1,18 +1,24 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Layout } from '../../components/Layout';
+import { Button } from '../../components/ui/button';
+import { buttonClasses } from '../../styles';
 import { AdvancedTable } from '../../components/ui/Table';
 import { usePurchaseOrdersAnalysisData } from '../../hooks';
-import { DownloadIcon, ColumnsIcon } from 'lucide-react';
+import { Download, ChevronDown, ArrowRight } from 'lucide-react';
+import InitialFilters from '../../components/InitialFilters';
 
 export function PurchaseOrdersAnalysis() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const { purchaseOrders } = usePurchaseOrdersAnalysisData();
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedPurchaseOrder, setSelectedPurchaseOrder] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [showExportOptions, setShowExportOptions] = useState(false);
 
   const columns = [
     {
@@ -84,125 +90,110 @@ export function PurchaseOrdersAnalysis() {
 
   return (
     <Layout>
-      <div className="p-6" style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}>
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
-          <h1 className="text-2xl font-bold text-[#0c4749]">
-            {t('purchase_orders_analysis.title')}
-          </h1>
-
-          {/* Action Buttons */}
-          <div className="flex gap-3">
+      <div className="[direction:rtl] space-y-4">
+        {/* Header with InitialFilters */}
+        <InitialFilters>
+          <div className="flex items-center gap-3">
             <button
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
+              onClick={() => navigate('/reports?selected=purchases')}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              <ColumnsIcon className="w-4 h-4" />
-              {t('common.show_hide_columns')}
+              <ArrowRight className="h-5 w-5" />
             </button>
-            <button
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            >
-              <DownloadIcon className="w-4 h-4" />
+            <span className="text-lg font-semibold [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+              {t('purchase_orders_analysis.title')}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button className={`${buttonClasses.secondary} gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]`}>
               {t('common.download')}
-            </button>
-          </div>
-        </div>
-
-        {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-          {/* Date From */}
-          <div>
-            <label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
+              <Download className="w-4 h-4" />
+            </Button>
+            <Button
+              onClick={() => setShowExportOptions(!showExportOptions)}
+              className={`${buttonClasses.secondary} gap-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]`}
             >
-              {t('purchase_orders_analysis.date_from')}
-            </label>
-            <input
-              type="date"
-              value={dateFrom}
-              onChange={(e) => setDateFrom(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
+              {t('common.show_hide_columns')}
+              <ChevronDown className="w-4 h-4" />
+            </Button>
           </div>
+        </InitialFilters>
 
-          {/* Date To */}
-          <div>
-            <label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            >
-              {t('purchase_orders_analysis.date_to')}
-            </label>
-            <input
-              type="date"
-              value={dateTo}
-              onChange={(e) => setDateTo(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
-          </div>
+        {/* Filters Section */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4" dir="rtl">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {/* Date From */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('purchase_orders_analysis.date_from')}
+              </label>
+              <input
+                type="date"
+                value={dateFrom}
+                onChange={(e) => setDateFrom(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
 
-          {/* Project */}
-          <div>
-            <label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            >
-              {t('purchase_orders_analysis.project')}
-            </label>
-            <input
-              type="text"
-              value={selectedProject}
-              onChange={(e) => setSelectedProject(e.target.value)}
-              placeholder={t('purchase_orders_analysis.project_placeholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
-          </div>
+            {/* Date To */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('purchase_orders_analysis.date_to')}
+              </label>
+              <input
+                type="date"
+                value={dateTo}
+                onChange={(e) => setDateTo(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
 
-          {/* Purchase Order Number */}
-          <div>
-            <label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            >
-              {t('purchase_orders_analysis.purchase_order_number')}
-            </label>
-            <input
-              type="text"
-              value={selectedPurchaseOrder}
-              onChange={(e) => setSelectedPurchaseOrder(e.target.value)}
-              placeholder={t('purchase_orders_analysis.purchase_order_placeholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
-          </div>
+            {/* Project */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('purchase_orders_analysis.project')}
+              </label>
+              <input
+                type="text"
+                value={selectedProject}
+                onChange={(e) => setSelectedProject(e.target.value)}
+                placeholder={t('purchase_orders_analysis.project_placeholder')}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
 
-          {/* Status */}
-          <div>
-            <label
-              className="block text-sm font-medium text-gray-700 mb-2"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            >
-              {t('purchase_orders_analysis.status_filter')}
-            </label>
-            <input
-              type="text"
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              placeholder={t('purchase_orders_analysis.status_placeholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0c4749] focus:border-transparent"
-              style={{ fontFamily: 'IBM_Plex_Sans_Arabic,Helvetica' }}
-            />
+            {/* Purchase Order Number */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('purchase_orders_analysis.purchase_order_number')}
+              </label>
+              <input
+                type="text"
+                value={selectedPurchaseOrder}
+                onChange={(e) => setSelectedPurchaseOrder(e.target.value)}
+                placeholder={t('purchase_orders_analysis.purchase_order_placeholder')}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              />
+            </div>
+
+            {/* Status */}
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
+                {t('purchase_orders_analysis.status_filter')}
+              </label>
+              <input
+                type="text"
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                placeholder={t('purchase_orders_analysis.status_placeholder')}
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0e4a3f] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
+              /></div>
           </div>
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg shadow">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <AdvancedTable data={purchaseOrders} columns={columns} />
         </div>
       </div>
