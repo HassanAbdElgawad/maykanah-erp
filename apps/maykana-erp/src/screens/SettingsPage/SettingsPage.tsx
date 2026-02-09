@@ -29,6 +29,8 @@ export const SettingsPage = (): JSX.Element => {
     'sales-settings',
     'terms-template',
     'purchase-settings',
+    'asset-categories',
+    'asset-locations',
   ];
 
   useEffect(() => {

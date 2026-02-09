@@ -222,6 +222,21 @@ export const breadcrumbRoutes = [
   { path: "/settings/accounting/budget", label: "settings.accounting.budget" },
   { path: "/settings/accounting/budget/create", label: "budget.create_new" },
   { path: "/settings/accounting/budget/edit/:id", label: "budget.edit" },
+  
+  // Assets Settings
+  { path: "/settings/assets", label: "sidebar.assets" },
+  { path: "/settings/assets/asset-categories", label: "settings.assets.asset_categories" },
+  { path: "/settings/assets/asset-categories/create", label: "فئة جديدة" },
+  { path: "/settings/assets/asset-categories/edit/:id", label: "تعديل الفئة" },
+  { path: "/settings/assets/asset-categories/:id", label: "تفاصيل الفئة" },
+  { path: "/settings/assets/asset-locations", label: "settings.assets.asset_locations" },
+  { path: "/settings/assets/asset-locations/create", label: "موقع جديد" },
+  { path: "/settings/assets/asset-locations/edit/:id", label: "تعديل الموقع" },
+  { path: "/settings/assets/maintenance-team", label: "settings.assets.maintenance_team" },
+  { path: "/settings/assets/maintenance-team/create", label: "إضافة فريق جديد" },
+  { path: "/settings/assets/maintenance-team/edit/:id", label: "تعديل فريق الصيانة" },
+  
+  // Sales Settings
   { path: "/settings/sales", label: "sidebar.sales" },
   { path: "/settings/sales/sales-settings", label: "settings.sales.sales_settings" },
   { path: "/settings/sales/terms-template", label: "settings.sales.terms_template" },
