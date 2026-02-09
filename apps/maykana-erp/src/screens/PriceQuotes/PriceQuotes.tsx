@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
+import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -31,6 +32,7 @@ import type { PriceQuote, PriceQuoteStatus } from '../../data/price-quotes.data'
 
 export const PriceQuotes = (): JSX.Element => {
   const navigate = useNavigate();
+  const { dir } = useLanguage();
   const { priceQuotes, setPriceQuotes } = usePriceQuotesData();
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
