@@ -909,7 +909,7 @@
       "hr": "إدارة الموارد البشرية",
       "projects": "إدارة المشاريع",
       "strategy": "إدارة الإستراتيجية",
-      "warehouses": "إدارة المخازن",
+      "warehouses": "إدارة المستودعات",
       "workflow": "محرك سير الأعمال",
       "reports": "التقارير",
       "settings": "الإعدادات",
@@ -1043,24 +1043,24 @@
         "maintenance_team_desc": "الفرق المسؤولة عن صيانة الأصول."
       },
       "warehouses": {
-        "warehouse_management": "إدارة المستودعات",
-        "warehouse_management_desc": "تعريف المستودعات وموقعها وخصائصها.",
+        "general_settings": "الاعدادات العامة",
+        "general_settings_desc": "الاعدادات العامة للمستودعات",
+        "unit_of_measures": "وحدات القياس",
+        "unit_of_measures_desc": "مطابقة الكمية الفعلية مع الكمية في النظام",
         "item_groups": "مجموعة الأصناف",
         "item_groups_desc": "تصنيف الأصناف ضمن مجموعات.",
-        "unit_of_measures": "وحدات القياس",
-        "unit_of_measures_desc": "مطابقة الكمية الأقيمة مع الكمية في النظام.",
-        "opening_balances": "الأرصدة العامة للمستودعات",
-        "opening_balances_desc": "الأرصدة العامة للمستودعات."
+        "warehouse_management": "إدارة المستودعات",
+        "warehouse_management_desc": "تعريف المستودعات ومواقعها وصلاحياتها"
       },
       "workflow": {
-        "workflow_templates": "إدارة الفروج والموافق",
-        "workflow_templates_desc": "ضبط المعايير الخاصة بالحسابات المالية.",
-        "approval_rules": "إدارة الأدوار والصلاحيات",
-        "approval_rules_desc": "ضبط المعايير الخاصة بالحسابات المالية.",
+        "workflow_templates": "إدارة الأقسام",
+        "workflow_templates_desc": "كيان تُسجَّل به البيانات والمعاملات المالي",
         "notification_settings": "إدارة المستخدمين",
-        "notification_settings_desc": "هيكل تنظيمي فيما يتعلق بهد عمليات المشتريات.",
-        "roles_permissions": "إدارة الصلاحيات",
-        "roles_permissions_desc": "القواعد الثابتة للسياسات والإجراءات المطبقة."
+        "notification_settings_desc": "هيكل الحسابات حسب التصنيف المحاسبي",
+        "approval_rules": "إدارة الأدوار والصلاحيات",
+        "approval_rules_desc": "ضبط الخصائص العامة للحسابات المالية.",
+        "roles_permissions": "إدارة الفروع والمواقع",
+        "roles_permissions_desc": "ضبط الخصائص العامة للحسابات المالية."
       },
       "no_settings": "لا توجد إعدادات متاحة"
     },
@@ -2124,24 +2124,24 @@
         "asset_locations_desc": "Determine asset location availability."
       },
       "warehouses": {
-        "warehouse_management": "Warehouse Management",
-        "warehouse_management_desc": "Define warehouses, their location and characteristics.",
+        "general_settings": "General Settings",
+        "general_settings_desc": "General settings for warehouses",
+        "unit_of_measures": "Units of Measure",
+        "unit_of_measures_desc": "Match actual quantity with system quantity",
         "item_groups": "Item Groups",
         "item_groups_desc": "Classify items within groups.",
-        "unit_of_measures": "Units of Measure",
-        "unit_of_measures_desc": "Match quantity value with system quantity.",
-        "opening_balances": "General Warehouse Balances",
-        "opening_balances_desc": "General balances for warehouses."
+        "warehouse_management": "Warehouse Management",
+        "warehouse_management_desc": "Define warehouses, their locations and permissions"
       },
       "workflow": {
-        "workflow_templates": "Approval and Workflow Management",
-        "workflow_templates_desc": "Configure settings related to financial accounts.",
-        "approval_rules": "Role and Permission Management",
-        "approval_rules_desc": "Configure settings related to financial accounts.",
+        "workflow_templates": "Department Management",
+        "workflow_templates_desc": "Entity where financial data and transactions are recorded",
         "notification_settings": "User Management",
-        "notification_settings_desc": "Organizational structure related to purchasing operations.",
-        "roles_permissions": "Permission Management",
-        "roles_permissions_desc": "Fixed rules for applied policies and procedures."
+        "notification_settings_desc": "Account structure according to accounting classification",
+        "approval_rules": "Roles and Permissions Management",
+        "approval_rules_desc": "Configure general properties for financial accounts.",
+        "roles_permissions": "Branches and Locations Management",
+        "roles_permissions_desc": "Configure general properties for financial accounts."
       },
       "no_settings": "No settings available"
     },

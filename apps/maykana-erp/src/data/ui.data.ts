@@ -95,7 +95,7 @@ export const SEARCHABLE_PAGES: SearchResult[] = [
   { title: 'إدارة المهام', titleEn: 'Task Management', path: '/strategy/tasks', location: 'إدارة الإستراتيجية', locationEn: 'Strategy Management' },
   
   // Warehouses
-  { title: 'جرد المخزون', titleEn: 'Inventory Count', path: '/warehouses/inventory-count', location: 'إدارة المخازن', locationEn: 'Warehouses Management' },
+  { title: 'جرد المخزون', titleEn: 'Inventory Count', path: '/warehouses/inventory-count', location: 'إدارة المستودعات', locationEn: 'Warehouses Management' },
   
   // Workflow
   { title: 'مسارات العمل', titleEn: 'Workflows', path: '/workflow-engine/workflows', location: 'محرك سير الأعمال', locationEn: 'Workflow Engine' },

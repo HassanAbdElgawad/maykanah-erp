@@ -31,6 +31,14 @@ export const SettingsPage = (): JSX.Element => {
     'purchase-settings',
     'asset-categories',
     'asset-locations',
+    'maintenance-team',
+    'general-warehouses-settings',
+    'unit-of-measures',
+    'item-groups',
+    'warehouse-management',
+    'department-management',
+    'user-management',
+    'branches-locations',
   ];
 
   useEffect(() => {

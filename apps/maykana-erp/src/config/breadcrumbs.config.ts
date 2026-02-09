@@ -235,6 +235,24 @@ export const breadcrumbRoutes = [
   { path: "/settings/assets/maintenance-team", label: "settings.assets.maintenance_team" },
   { path: "/settings/assets/maintenance-team/create", label: "إضافة فريق جديد" },
   { path: "/settings/assets/maintenance-team/edit/:id", label: "تعديل فريق الصيانة" },
+  { path: "/settings/assets/maintenance-team/:id", label: "تفاصيل فريق الصيانة" },
+  
+  // Warehouses Settings
+  { path: "/settings/warehouses", label: "sidebar.warehouses" },
+  { path: "/settings/warehouses/general", label: "settings.warehouses.general_settings" },
+  { path: "/settings/warehouses/unit-of-measures", label: "settings.warehouses.unit_of_measures" },
+  { path: "/settings/warehouses/unit-of-measures/create", label: "إضافة وحدة قياس جديدة" },
+  { path: "/settings/warehouses/unit-of-measures/edit/:id", label: "تعديل وحدة القياس" },
+  { path: "/settings/warehouses/item-groups", label: "settings.warehouses.item_groups" },
+  { path: "/settings/warehouses/warehouse-management", label: "settings.warehouses.warehouse_management" },
+  { path: "/settings/warehouses/warehouse-management/create", label: "إنشاء طلب مستودع جديد" },
+  { path: "/settings/warehouses/warehouse-management/edit/:id", label: "تعديل المستودع" },
+  
+  // Workflow Engine Settings
+  { path: "/settings/workflow-engine", label: "sidebar.workflow" },
+  { path: "/settings/workflow-engine/department-management", label: "settings.workflow.workflow_templates" },
+  { path: "/settings/workflow-engine/user-management", label: "settings.workflow.notification_settings" },
+  { path: "/settings/workflow-engine/branches-locations", label: "settings.workflow.roles_permissions" },
   
   // Sales Settings
   { path: "/settings/sales", label: "sidebar.sales" },

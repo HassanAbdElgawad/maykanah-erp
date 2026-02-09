@@ -161,6 +161,17 @@ import { MaintenanceTeam } from './screens/Settings/MaintenanceTeam';
 import { MaintenanceTeamForm } from './screens/Settings/MaintenanceTeamForm';
 import { MaintenanceTeamEdit } from './screens/Settings/MaintenanceTeamEdit';
 import { MaintenanceTeamView } from './screens/Settings/MaintenanceTeamView';
+import { WarehousesGeneralSettings } from './screens/Settings/WarehousesGeneralSettings';
+import { UnitOfMeasures } from './screens/Settings/UnitOfMeasures';
+import { UnitOfMeasureForm } from './screens/Settings/UnitOfMeasureForm';
+import { UnitOfMeasureEdit } from './screens/Settings/UnitOfMeasureEdit';
+import { ItemGroups } from './screens/Settings/ItemGroups';
+import { WarehouseManagement } from './screens/Settings/WarehouseManagement';
+import { WarehouseManagementForm } from './screens/Settings/WarehouseManagementForm';
+import { WarehouseManagementEdit } from './screens/Settings/WarehouseManagementEdit';
+import { DepartmentManagement } from './screens/Settings/DepartmentManagement';
+import { UserManagement } from './screens/Settings/UserManagement';
+import { BranchManagement } from './screens/Settings/BranchManagement';
 import { TaxTemplates } from './screens/TaxTemplates';
 import { TermsConditionsTemplates } from './screens/TermsConditionsTemplates';
 import { SupportPage } from './screens/SupportPage';
@@ -2694,6 +2705,94 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <MaintenanceTeamView />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/general',
+    element: (
+      <ProtectedRoute>
+        <WarehousesGeneralSettings />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/unit-of-measures',
+    element: (
+      <ProtectedRoute>
+        <UnitOfMeasures />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/unit-of-measures/create',
+    element: (
+      <ProtectedRoute>
+        <UnitOfMeasureForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/unit-of-measures/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <UnitOfMeasureEdit />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/item-groups',
+    element: (
+      <ProtectedRoute>
+        <ItemGroups />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/warehouse-management',
+    element: (
+      <ProtectedRoute>
+        <WarehouseManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/warehouse-management/create',
+    element: (
+      <ProtectedRoute>
+        <WarehouseManagementForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/warehouses/warehouse-management/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <WarehouseManagementEdit />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/workflow-engine/department-management',
+    element: (
+      <ProtectedRoute>
+        <DepartmentManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/workflow-engine/user-management',
+    element: (
+      <ProtectedRoute>
+        <UserManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/settings/workflow-engine/branches-locations',
+    element: (
+      <ProtectedRoute>
+        <BranchManagement />
       </ProtectedRoute>
     ),
   },

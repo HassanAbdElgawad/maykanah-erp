@@ -114,7 +114,7 @@ export const sidebarMenuItems = [
   },
   {
     id: 'warehouses-management',
-    title: 'إدارة المخازن',
+    title: 'إدارة المستودعات',
     icon: 'https://c.animaapp.com/mkd2vucjeF4nNd/img/home-2-10.png',
     isActive: false,
     hasDropdown: true,
