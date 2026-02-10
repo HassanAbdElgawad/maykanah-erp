@@ -17,6 +17,7 @@ import {
   MaterialReceiptsForm,
   MaterialRequestsList,
   MaterialRequestsListForm,
+  AddEditMaterialRequest,
 } from './screens/MaterialRequests';
 import {
   PriceQuoteRequests,
@@ -97,8 +98,28 @@ import {
   AddEditVerificationTemplate,
 } from './screens/VerificationTemplates';
 import { Warehouses } from './screens/Warehouses';
+import { ProductsList, AddEditProduct, ViewProduct } from './screens/ProductsList';
+import {
+  InventoryMovementsList,
+  AddEditInventoryMovement,
+  ViewInventoryMovement,
+} from './screens/InventoryMovements';
+import {
+  WarehouseMovementList,
+  SelectMovementType,
+  TransferStock,
+  DamageStock,
+} from './screens/WarehouseMovement';
+import { InventoryClosingList, AddEditInventoryClosing } from './screens/InventoryClosing';
 import { InventoryMaterials } from './screens/InventoryMaterials';
 import { InventoryCount, AddEditInventoryCount } from './screens/InventoryCount';
+import { InventoryCategories, InventoryCategoryForm } from './screens/InventoryCategories';
+import { OpeningBalances, OpeningBalanceForm } from './screens/OpeningBalances';
+import { WarehousePriceLists, WarehousePriceListForm } from './screens/WarehousePriceLists';
+import { WarehouseBatches, WarehouseBatchForm } from './screens/WarehouseBatches';
+import { WarehouseItemPrice, WarehouseItemPriceForm } from './screens/WarehouseItemPrice';
+import { WarehouseSerialNumber, WarehouseSerialNumberForm } from './screens/WarehouseSerialNumber';
+import { WarehouseGoodsArrivalCost, WarehouseGoodsArrivalCostForm } from './screens/WarehouseGoodsArrivalCost';
 import { HR } from './screens/HR';
 import { EmployeeCenter, AddEmployee } from './screens/HR/EmployeeCenter';
 import { MyRequests, NewRequest } from './screens/HR/MyRequests';
@@ -125,6 +146,10 @@ import { FinancialPositionReport } from './screens/ReportsPage/FinancialPosition
 import { TrialBalanceReport } from './screens/ReportsPage/TrialBalanceReport';
 import { IncomeStatementReport } from './screens/ReportsPage/IncomeStatementReport';
 import { TrialBalanceMovementReport } from './screens/ReportsPage/TrialBalanceMovementReport';
+import { InventoryBalanceReport } from './screens/ReportsPage/InventoryBalanceReport';
+import { ItemMovementReport } from './screens/ReportsPage/ItemMovementReport';
+import { InventoryVarianceReport } from './screens/ReportsPage/InventoryVarianceReport';
+import { DamagedReturnedReport } from './screens/ReportsPage/DamagedReturnedReport';
 import {
   SalesRepresentativeCommissionReport,
   InactiveCustomersReport,
@@ -2499,6 +2524,182 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: '/warehouses/products-list',
+    element: (
+      <ProtectedRoute>
+        <ProductsList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/products-list/add',
+    element: (
+      <ProtectedRoute>
+        <AddEditProduct />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/products-list/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <AddEditProduct />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/products-list/:id',
+    element: (
+      <ProtectedRoute>
+        <ViewProduct />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-movements',
+    element: (
+      <ProtectedRoute>
+        <InventoryMovementsList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-movements/add',
+    element: (
+      <ProtectedRoute>
+        <AddEditInventoryMovement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-movements/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <AddEditInventoryMovement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-movements/:id',
+    element: (
+      <ProtectedRoute>
+        <ViewInventoryMovement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/warehouse-movement',
+    element: (
+      <ProtectedRoute>
+        <WarehouseMovementList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/warehouse-movement/select-type',
+    element: (
+      <ProtectedRoute>
+        <SelectMovementType />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/warehouse-movement/transfer/add',
+    element: (
+      <ProtectedRoute>
+        <TransferStock />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/warehouse-movement/transfer/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <TransferStock />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/warehouse-movement/damage/add',
+    element: (
+      <ProtectedRoute>
+        <DamageStock />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/warehouse-movement/damage/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <DamageStock />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-closing',
+    element: (
+      <ProtectedRoute>
+        <InventoryClosingList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-closing/add',
+    element: (
+      <ProtectedRoute>
+        <AddEditInventoryClosing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-closing/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <AddEditInventoryClosing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/material-requests',
+    element: (
+      <ProtectedRoute>
+        <MaterialRequestsList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/material-requests/damage/add',
+    element: (
+      <ProtectedRoute>
+        <AddEditMaterialRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/material-requests/transfer/add',
+    element: (
+      <ProtectedRoute>
+        <AddEditMaterialRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/material-requests/damage/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <AddEditMaterialRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/material-requests/transfer/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <AddEditMaterialRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: '/warehouses/inventory-materials',
     element: (
       <ProtectedRoute>
@@ -2527,6 +2728,174 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEditInventoryCount />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-categories',
+    element: (
+      <ProtectedRoute>
+        <InventoryCategories />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-categories/create',
+    element: (
+      <ProtectedRoute>
+        <InventoryCategoryForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/inventory-categories/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <InventoryCategoryForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/opening-balances',
+    element: (
+      <ProtectedRoute>
+        <OpeningBalances />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/opening-balances/create',
+    element: (
+      <ProtectedRoute>
+        <OpeningBalanceForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/opening-balances/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <OpeningBalanceForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/price-lists',
+    element: (
+      <ProtectedRoute>
+        <WarehousePriceLists />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/price-lists/create',
+    element: (
+      <ProtectedRoute>
+        <WarehousePriceListForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/price-lists/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <WarehousePriceListForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/batches',
+    element: (
+      <ProtectedRoute>
+        <WarehouseBatches />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/batches/create',
+    element: (
+      <ProtectedRoute>
+        <WarehouseBatchForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/batches/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <WarehouseBatchForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/item-price',
+    element: (
+      <ProtectedRoute>
+        <WarehouseItemPrice />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/item-price/create',
+    element: (
+      <ProtectedRoute>
+        <WarehouseItemPriceForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/item-price/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <WarehouseItemPriceForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/serial-number',
+    element: (
+      <ProtectedRoute>
+        <WarehouseSerialNumber />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/serial-number/create',
+    element: (
+      <ProtectedRoute>
+        <WarehouseSerialNumberForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/serial-number/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <WarehouseSerialNumberForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/goods-arrival-cost',
+    element: (
+      <ProtectedRoute>
+        <WarehouseGoodsArrivalCost />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/goods-arrival-cost/create',
+    element: (
+      <ProtectedRoute>
+        <WarehouseGoodsArrivalCostForm />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/warehouses/goods-arrival-cost/edit/:id',
+    element: (
+      <ProtectedRoute>
+        <WarehouseGoodsArrivalCostForm />
       </ProtectedRoute>
     ),
   },
@@ -2583,6 +2952,38 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <TrialBalanceMovementReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/warehouses/inventory-status',
+    element: (
+      <ProtectedRoute>
+        <InventoryBalanceReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/warehouses/stock-movement',
+    element: (
+      <ProtectedRoute>
+        <ItemMovementReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/warehouses/warehouse-balances',
+    element: (
+      <ProtectedRoute>
+        <InventoryVarianceReport />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/reports/warehouses/inventory-valuation',
+    element: (
+      <ProtectedRoute>
+        <DamagedReturnedReport />
       </ProtectedRoute>
     ),
   },

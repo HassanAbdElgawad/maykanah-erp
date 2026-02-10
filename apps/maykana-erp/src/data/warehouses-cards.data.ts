@@ -33,7 +33,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/products-list',
     bgColor: '#f5faf5',
     iconColor: '#388e3c',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.inventory_movements',
@@ -42,7 +42,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/inventory-movements',
     bgColor: '#f0f7ff',
     iconColor: '#1976d2',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.inventory_count',
@@ -60,7 +60,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/warehouse-movement',
     bgColor: '#fef5f8',
     iconColor: '#c2185b',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.inventory_closing',
@@ -69,7 +69,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/inventory-closing',
     bgColor: '#faf6fb',
     iconColor: '#7b1fa2',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.material_requests',
@@ -78,7 +78,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/material-requests',
     bgColor: '#f0faf9',
     iconColor: '#00897b',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.inventory_categories',
@@ -87,7 +87,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/inventory-categories',
     bgColor: '#fffef5',
     iconColor: '#f9a825',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.opening_balances',
@@ -96,7 +96,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/opening-balances',
     bgColor: '#f0f7ff',
     iconColor: '#1976d2',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.price_lists',
@@ -105,7 +105,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/price-lists',
     bgColor: '#f5faf5',
     iconColor: '#388e3c',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.batches',
@@ -114,7 +114,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/batches',
     bgColor: '#fef5f8',
     iconColor: '#c2185b',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.item_price',
@@ -123,7 +123,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/item-price',
     bgColor: '#faf6fb',
     iconColor: '#7b1fa2',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.serial_number',
@@ -132,7 +132,7 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/serial-number',
     bgColor: '#f0faf9',
     iconColor: '#00897b',
-    hasContent: false,
+    hasContent: true,
   },
   {
     titleKey: 'warehouses.goods_arrival_cost',
@@ -141,6 +141,6 @@ export const getWarehouseCards = (): WarehouseCard[] => [
     path: '/warehouses/goods-arrival-cost',
     bgColor: '#fff9f0',
     iconColor: '#f57c00',
-    hasContent: false,
+    hasContent: true,
   },
 ];
