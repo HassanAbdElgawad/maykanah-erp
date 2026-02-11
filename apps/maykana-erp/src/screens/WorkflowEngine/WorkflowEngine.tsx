@@ -5,7 +5,6 @@ import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import {
   Workflow,
   FileCheck2,
-  Settings2,
 } from "lucide-react";
 
 export const WorkflowEngine = (): JSX.Element => {

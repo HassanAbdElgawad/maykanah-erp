@@ -17,10 +17,8 @@ import {
   PlayCircle,
   FileText,
   LogOut,
-  Clock,
   MapPin,
   Award,
-  GraduationCap,
 } from 'lucide-react';
 
 interface HRCard {
@@ -161,7 +159,34 @@ export const HR: React.FC = () => {
       icon: Calendar,
       bgColor: '#f5faf5',
       iconColor: '#388e3c',
-      path: '/hr/employee/leaves-attendance',
+      path: '/hr/employee/leaves-attendance?tab=leaves-attendance',
+    },
+    {
+      id: 'compensatory-leave',
+      titleKey: 'hr.emp.compensatory_leave',
+      descriptionKey: 'hr.emp.compensatory_leave_desc',
+      icon: Calendar,
+      bgColor: '#e8f5e9',
+      iconColor: '#2e7d32',
+      path: '/hr/employee/leaves-attendance?tab=compensatory',
+    },
+    {
+      id: 'permission-requests',
+      titleKey: 'hr.emp.permission_requests',
+      descriptionKey: 'hr.emp.permission_requests_desc',
+      icon: Bell,
+      bgColor: '#fff3e0',
+      iconColor: '#e65100',
+      path: '/hr/employee/leaves-attendance?tab=permission',
+    },
+    {
+      id: 'attendance-correction',
+      titleKey: 'hr.emp.attendance_correction',
+      descriptionKey: 'hr.emp.attendance_correction_desc',
+      icon: Calendar,
+      bgColor: '#e3f2fd',
+      iconColor: '#1565c0',
+      path: '/hr/employee/leaves-attendance?tab=attendance-correction',
     },
     {
       id: 'remote-work-policies',
@@ -182,13 +207,40 @@ export const HR: React.FC = () => {
       path: '/hr/employee/remote-work-assignment',
     },
     {
+      id: 'secondment-requests',
+      titleKey: 'hr.emp.secondment_requests',
+      descriptionKey: 'hr.emp.secondment_requests_desc',
+      icon: Briefcase,
+      bgColor: '#fce4ec',
+      iconColor: '#ad1457',
+      path: '/hr/employee/secondment-requests',
+    },
+    {
       id: 'salaries-compensations',
       titleKey: 'hr.emp.salaries_compensations',
       descriptionKey: 'hr.emp.salaries_compensations_desc',
       icon: DollarSign,
       bgColor: '#e8f5e9',
       iconColor: '#2e7d32',
-      path: '/hr/employee/salaries-compensations',
+      path: '/hr/employee/salaries-compensations?tab=salaries',
+    },
+    {
+      id: 'advance-requests',
+      titleKey: 'hr.emp.advance_requests',
+      descriptionKey: 'hr.emp.advance_requests_desc',
+      icon: DollarSign,
+      bgColor: '#f1f8e9',
+      iconColor: '#558b2f',
+      path: '/hr/employee/salaries-compensations?tab=advances',
+    },
+    {
+      id: 'promotion-requests',
+      titleKey: 'hr.emp.promotion_requests',
+      descriptionKey: 'hr.emp.promotion_requests_desc',
+      icon: TrendingUp,
+      bgColor: '#ede7f6',
+      iconColor: '#512da8',
+      path: '/hr/employee/salaries-compensations?tab=promotions',
     },
     {
       id: 'evaluations',
@@ -197,51 +249,61 @@ export const HR: React.FC = () => {
       icon: Award,
       bgColor: '#faf6fb',
       iconColor: '#7b1fa2',
-      path: '/hr/employee/evaluations',
+      path: '/hr/employee/evaluations-training?tab=evaluations',
+    },
+    {
+      id: 'training',
+      titleKey: 'hr.emp.training',
+      descriptionKey: 'hr.emp.training_desc',
+      icon: BookOpen,
+      bgColor: '#e8eaf6',
+      iconColor: '#3949ab',
+      path: '/hr/employee/evaluations-training?tab=training',
     },
   ];
 
   const cards = viewMode === 'admin' ? adminCards : employeeCards;
 
+  const currentFullPath = location.pathname + (location.search || '');
+
   // Track the last visited card based on current path
   useEffect(() => {
     if (location.pathname !== '/hr') {
-      const currentCard = adminCards.find(card => 
-        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
-      ) || employeeCards.find(card => 
-        location.pathname === card.path || location.pathname.startsWith(card.path + '/')
-      );
-      
+      const currentCard = adminCards.find(card =>
+        location.pathname === card.path || location.pathname.startsWith(card.path.split('?')[0] + '/')
+      ) || employeeCards.find(card => {
+        const cardPathBase = card.path.split('?')[0];
+        const pathMatch = location.pathname === cardPathBase || location.pathname.startsWith(cardPathBase + '/');
+        if (card.path.includes('?')) return pathMatch && currentFullPath === card.path;
+        return pathMatch && !location.search;
+      });
       if (currentCard) {
         setLastVisitedCard(currentCard.id);
       }
     }
-  }, [location.pathname, adminCards, employeeCards]);
+  }, [location.pathname, location.search, currentFullPath, adminCards, employeeCards]);
 
   const isCardActive = (card: HRCard) => {
-    // If on /hr main page, show the last visited card or default based on mode
     if (location.pathname === '/hr') {
-      if (lastVisitedCard) {
-        return card.id === lastVisitedCard;
-      }
-      // Default active cards if no previous visit
+      if (lastVisitedCard) return card.id === lastVisitedCard;
       if (viewMode === 'admin') {
         return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library' || card.id === 'recruitment' || card.id === 'alerts-requests';
-      } else {
-        return card.id === 'my-requests';
       }
+      return card.id === 'my-requests';
     }
-    // If on a sub-page, show that card as active
-    // Check both exact match and path starts with (for sub-routes like /hr/leaves-attendance/new)
-    return location.pathname === card.path || location.pathname.startsWith(card.path + '/');
+    const cardPathBase = card.path.split('?')[0];
+    const pathMatch = location.pathname === cardPathBase || location.pathname.startsWith(cardPathBase + '/');
+    if (card.path.includes('?')) {
+      return pathMatch && currentFullPath === card.path;
+    }
+    return pathMatch && !location.search;
   };
 
   const isCardClickable = (card: HRCard) => {
     if (viewMode === 'admin') {
       return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library' || card.id === 'recruitment' || card.id === 'alerts-requests';
-    } else {
-      return card.id === 'my-requests';
     }
+    return true;
   };
 
   return (

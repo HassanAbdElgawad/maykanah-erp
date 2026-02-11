@@ -123,6 +123,7 @@ import { WarehouseGoodsArrivalCost, WarehouseGoodsArrivalCostForm } from './scre
 import { HR } from './screens/HR';
 import { EmployeeCenter, AddEmployee } from './screens/HR/EmployeeCenter';
 import { MyRequests, NewRequest } from './screens/HR/MyRequests';
+import { EmployeeSectionPage } from './screens/HR/EmployeeSection';
 import { LeavesAttendance, LeaveRequestForm } from './screens/HR/LeavesAttendance';
 import { RemoteWork } from './screens/HR/RemoteWork';
 import {
@@ -1976,6 +1977,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddEmployee />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/my-requests',
+    element: (
+      <ProtectedRoute>
+        <MyRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/:section',
+    element: (
+      <ProtectedRoute>
+        <EmployeeSectionPage />
       </ProtectedRoute>
     ),
   },
