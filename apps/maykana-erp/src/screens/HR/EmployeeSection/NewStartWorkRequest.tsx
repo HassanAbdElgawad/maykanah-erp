@@ -12,10 +12,6 @@ export const NewStartWorkRequest: React.FC = () => {
 
   // Get stored HR view mode for back navigation
   const getBackToList = () => '/hr/employee/start-work';
-  const getBackToHR = () => {
-    const storedMode = localStorage.getItem('hrViewMode') || 'employee';
-    return `/hr?mode=${storedMode}`;
-  };
 
   const [formData, setFormData] = useState({
     employeeName: 'الموظف',

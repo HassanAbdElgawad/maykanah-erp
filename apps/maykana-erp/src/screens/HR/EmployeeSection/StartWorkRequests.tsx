@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
-import { ArrowLeft, ArrowRight, Eye, FileText, Plus } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Eye, Plus } from 'lucide-react';
 import { AdvancedTable } from '../../../components/ui/Table';
 import { buttonClasses } from '../../../styles';
 

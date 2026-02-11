@@ -21,10 +21,6 @@ export const NewResignation: React.FC = () => {
   });
 
   const getBackToList = () => '/hr/employee/resignation';
-  const getBackToHR = () => {
-    const storedMode = localStorage.getItem('hrViewMode') || 'employee';
-    return `/hr?mode=${storedMode}`;
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

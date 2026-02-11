@@ -21,10 +21,6 @@ export const NewContractRenewal: React.FC = () => {
   });
 
   const getBackToList = () => '/hr/employee/contract-renewal';
-  const getBackToHR = () => {
-    const storedMode = localStorage.getItem('hrViewMode') || 'employee';
-    return `/hr?mode=${storedMode}`;
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
