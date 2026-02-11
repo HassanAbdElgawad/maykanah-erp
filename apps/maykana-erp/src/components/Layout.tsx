@@ -1,10 +1,6 @@
 import { ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { 
-  ChevronLeftIcon, 
-  ChevronRightIcon, 
-  SparklesIcon
-} from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
@@ -72,8 +68,8 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
           isSidebarOpen ? 'w-[305px]' : 'w-[70px]'
         } h-[calc(100vh-16px)] bg-[url(https://c.animaapp.com/mkd2vucjeF4nNd/img/rectangle-1.png)] bg-cover bg-center rounded-lg overflow-hidden z-30 transition-all duration-300`}
         style={
-          customization.primaryColor && 
-          customization.primaryColor !== '#0A3B3D' && 
+          customization.primaryColor &&
+          customization.primaryColor !== '#0A3B3D' &&
           customization.primaryColor !== '#093738'
             ? {
                 backgroundColor: customization.primaryColor,
@@ -84,7 +80,9 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
       >
         <div className="flex flex-col h-full">
           {/* Logo & Toggle */}
-          <div className={`flex items-center h-[61px] px-4 ${isSidebarOpen ? 'justify-between' : 'justify-center'}`}>
+          <div
+            className={`flex items-center h-[61px] px-4 ${isSidebarOpen ? 'justify-between' : 'justify-center'}`}
+          >
             {isSidebarOpen ? (
               <>
                 <div className="flex items-center justify-center flex-1">
@@ -194,17 +192,20 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                 variant="ghost"
                 className="w-full h-[51px] justify-center gap-3 rounded-xl shadow-[0px_22px_44px_#40d2fe1a] bg-[linear-gradient(138deg,rgba(65,209,254,1)_0%,rgba(127,161,235,1)_50%,rgba(253,122,166,1)_100%)] hover:opacity-90 text-white"
               >
-                <span style={{ fontFamily: "'Graphik Arabic', Helvetica, sans-serif" }} className="font-medium text-base">
+                <img src="/images/icons/Assistant.svg" alt="Assistant" className="w-5 h-5" />
+                <span
+                  style={{ fontFamily: "'Graphik Arabic', Helvetica, sans-serif !important" }}
+                  className="font-medium text-base"
+                >
                   {t('common.virtual_assistant')}
                 </span>
-                <SparklesIcon className="w-5 h-5" />
               </Button>
             ) : (
               <Button
                 variant="ghost"
                 className="w-full h-10 justify-center rounded-xl shadow-[0px_22px_44px_#40d2fe1a] bg-[linear-gradient(138deg,rgba(65,209,254,1)_0%,rgba(127,161,235,1)_50%,rgba(253,122,166,1)_100%)] hover:opacity-90 text-white"
               >
-                <SparklesIcon className="w-5 h-5" />
+                <img src="/images/icons/Assistant.svg" alt="Assistant" className="w-5 h-5" />
               </Button>
             )}
 
@@ -228,40 +229,42 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                   }`}
                   style={!isActive ? { backgroundColor: secondaryColor } : {}}
                 >
-                {isSidebarOpen ? (
-                  <>
-                    <div className="flex items-center gap-2">
+                  {isSidebarOpen ? (
+                    <>
+                      <div className="flex items-center gap-2">
+                        <item.icon className="w-[18px] h-[18px]" />
+                        <span
+                          className={`[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base ${
+                            isActive ? 'font-semibold' : 'font-normal'
+                          }`}
+                        >
+                          {t(item.titleKey)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {item.status && (
+                          <Badge className="h-[25px] px-2 bg-[#f0f4f757] hover:bg-[#f0f4f757] text-white text-[13px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium gap-1">
+                            <span>{t(item.status)}</span>
+                            <div className="w-2 h-2 bg-[#2cc28d] rounded-full border border-white" />
+                          </Badge>
+                        )}
+                        {dir === 'rtl' ? (
+                          <ChevronLeftIcon className="w-[13px] h-[13px]" />
+                        ) : (
+                          <ChevronRightIcon className="w-[13px] h-[13px]" />
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="relative">
                       <item.icon className="w-[18px] h-[18px]" />
-                      <span className={`[font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-base ${
-                        isActive ? 'font-semibold' : 'font-normal'
-                      }`}>
-                        {t(item.titleKey)}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
                       {item.status && (
-                        <Badge className="h-[25px] px-2 bg-[#f0f4f757] hover:bg-[#f0f4f757] text-white text-[13px] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium gap-1">
-                          <span>{t(item.status)}</span>
-                          <div className="w-2 h-2 bg-[#2cc28d] rounded-full border border-white" />
-                        </Badge>
-                      )}
-                      {dir === 'rtl' ? (
-                        <ChevronLeftIcon className="w-[13px] h-[13px]" />
-                      ) : (
-                        <ChevronRightIcon className="w-[13px] h-[13px]" />
+                        <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#2cc28d] rounded-full border border-white" />
                       )}
                     </div>
-                  </>
-                ) : (
-                  <div className="relative">
-                    <item.icon className="w-[18px] h-[18px]" />
-                    {item.status && (
-                      <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#2cc28d] rounded-full border border-white" />
-                    )}
-                  </div>
-                )}
-              </Button>
-            );
+                  )}
+                </Button>
+              );
             })}
 
             <Separator className="bg-white/20 my-2" />

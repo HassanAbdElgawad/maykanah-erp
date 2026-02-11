@@ -123,7 +123,7 @@ import { WarehouseGoodsArrivalCost, WarehouseGoodsArrivalCostForm } from './scre
 import { HR } from './screens/HR';
 import { EmployeeCenter, AddEmployee } from './screens/HR/EmployeeCenter';
 import { MyRequests, NewRequest } from './screens/HR/MyRequests';
-import { EmployeeSectionPage } from './screens/HR/EmployeeSection';
+import { EmployeeSectionPage, StartWorkRequests, NewStartWorkRequest, ContractRenewalRequests, NewContractRenewal, ResignationRequests, NewResignation, LeavesAttendanceEmp, NewLeaveRequest, NewCompensatoryLeave, NewPermissionRequest, NewAttendanceCorrection, RemoteWorkPolicies, RemoteWorkAssignment, SecondmentRequests, SalariesCompensations, NewAdvanceRequest as EmpNewAdvanceRequest, NewPromotionRequest as EmpNewPromotionRequest, EvaluationsTraining, NewTrainingRequest, NewEvaluationRequest } from './screens/HR/EmployeeSection';
 import { LeavesAttendance, LeaveRequestForm } from './screens/HR/LeavesAttendance';
 import { RemoteWork } from './screens/HR/RemoteWork';
 import {
@@ -1985,6 +1985,166 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <MyRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/start-work',
+    element: (
+      <ProtectedRoute>
+        <StartWorkRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/start-work/new',
+    element: (
+      <ProtectedRoute>
+        <NewStartWorkRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/contract-renewal',
+    element: (
+      <ProtectedRoute>
+        <ContractRenewalRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/contract-renewal/new',
+    element: (
+      <ProtectedRoute>
+        <NewContractRenewal />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/resignation',
+    element: (
+      <ProtectedRoute>
+        <ResignationRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/resignation/new',
+    element: (
+      <ProtectedRoute>
+        <NewResignation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/leaves-attendance',
+    element: (
+      <ProtectedRoute>
+        <LeavesAttendanceEmp />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/leaves-attendance/new',
+    element: (
+      <ProtectedRoute>
+        <NewLeaveRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/leaves-attendance/new-compensatory',
+    element: (
+      <ProtectedRoute>
+        <NewCompensatoryLeave />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/leaves-attendance/new-permission',
+    element: (
+      <ProtectedRoute>
+        <NewPermissionRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/leaves-attendance/new-attendance-correction',
+    element: (
+      <ProtectedRoute>
+        <NewAttendanceCorrection />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/remote-work-policies',
+    element: (
+      <ProtectedRoute>
+        <RemoteWorkPolicies />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/remote-work-assignment',
+    element: (
+      <ProtectedRoute>
+        <RemoteWorkAssignment />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/secondment-requests',
+    element: (
+      <ProtectedRoute>
+        <SecondmentRequests />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/salaries-compensations',
+    element: (
+      <ProtectedRoute>
+        <SalariesCompensations />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/salaries-compensations/new-advance',
+    element: (
+      <ProtectedRoute>
+        <EmpNewAdvanceRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/salaries-compensations/new-promotion',
+    element: (
+      <ProtectedRoute>
+        <EmpNewPromotionRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/evaluations-training',
+    element: (
+      <ProtectedRoute>
+        <EvaluationsTraining />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/evaluations-training/new-training',
+    element: (
+      <ProtectedRoute>
+        <NewTrainingRequest />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/hr/employee/evaluations-training/new-evaluation',
+    element: (
+      <ProtectedRoute>
+        <NewEvaluationRequest />
       </ProtectedRoute>
     ),
   },

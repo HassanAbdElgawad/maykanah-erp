@@ -101,17 +101,8 @@ export function Recruitment() {
           </div>
         </div>
 
-        {/* Tab */}
+        {/* Table */}
         <div className="bg-white rounded-xl border border-[#e2e2e2]">
-          <div className="flex border-b border-gray-200">
-            <button
-              className="px-6 py-3 text-sm font-medium transition-colors border-b-4 border-[#11383f] text-[#11383f]"
-            >
-              {t('hr.recruitment_requests')}
-            </button>
-          </div>
-
-          {/* Table */}
           <div className="overflow-x-auto overflow-visible">
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">

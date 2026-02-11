@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -36,9 +36,27 @@ type ViewMode = 'admin' | 'employee';
 export const HR: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useLanguage();
-  const [viewMode, setViewMode] = useState<ViewMode>('admin');
+  
+  // Read mode from URL query params or localStorage, default to 'admin'
+  const urlMode = searchParams.get('mode') as ViewMode;
+  const storedMode = (localStorage.getItem('hrViewMode') as ViewMode) || 'admin';
+  const viewMode = urlMode || storedMode;
   const [lastVisitedCard, setLastVisitedCard] = useState<string | null>(null);
+
+  // Update URL and localStorage when mode changes
+  const setViewMode = (newMode: ViewMode) => {
+    localStorage.setItem('hrViewMode', newMode);
+    setSearchParams({ mode: newMode }, { replace: true });
+  };
+
+  // Sync URL with mode on mount if URL doesn't have mode
+  useEffect(() => {
+    if (!urlMode && storedMode) {
+      setSearchParams({ mode: storedMode }, { replace: true });
+    }
+  }, []);
 
   const adminCards: HRCard[] = [
     {
@@ -289,7 +307,7 @@ export const HR: React.FC = () => {
       if (viewMode === 'admin') {
         return card.id === 'employee-center' || card.id === 'leaves-attendance' || card.id === 'remote-work' || card.id === 'salaries-rewards' || card.id === 'performance-development' || card.id === 'communication-library' || card.id === 'recruitment' || card.id === 'alerts-requests';
       }
-      return card.id === 'my-requests';
+      return card.id === 'my-requests' || card.id === 'start-work' || card.id === 'contract-renewal' || card.id === 'resignation' || card.id === 'leaves-attendance' || card.id === 'compensatory-leave' || card.id === 'permission-requests' || card.id === 'attendance-correction' || card.id === 'remote-work-policies' || card.id === 'remote-work-assignment' || card.id === 'secondment-requests' || card.id === 'salaries-compensations' || card.id === 'advance-requests' || card.id === 'promotion-requests' || card.id === 'evaluations' || card.id === 'training';
     }
     const cardPathBase = card.path.split('?')[0];
     const pathMatch = location.pathname === cardPathBase || location.pathname.startsWith(cardPathBase + '/');

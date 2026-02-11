@@ -37,11 +37,20 @@ export const NewRequest: React.FC = () => {
               <span className="text-gray-700">{t('hr.add_attachments')}</span>
               <span className="px-2 py-0.5 bg-[#092e321f] text-[#0000005e] rounded text-sm">0</span>
             </button>
+            <button
+              onClick={() => {
+                // TODO: Submit request
+                navigate('/hr/my-requests');
+              }}
+              className={buttonClasses.primary}
+            >
+              {t('hr.submit_request')}
+            </button>
           </div>
         </div>
 
         {/* Form Section */}
-        <div className="bg-white rounded-xl border border-[#e2e2e2]" dir={isRTL ? 'ltr' : 'rtl'}>
+        <div className="bg-white rounded-xl border border-[#e2e2e2]" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <button
               onClick={() => setExpandedSection(!expandedSection)}
@@ -126,19 +135,6 @@ export const NewRequest: React.FC = () => {
                   placeholder={t('hr.enter_notes')}
                   dir="rtl"
                 />
-              </div>
-
-              {/* Submit Button */}
-              <div className="flex items-center justify-start gap-4 pt-4">
-                <button
-                  onClick={() => {
-                    // TODO: Submit request
-                    navigate('/hr/my-requests');
-                  }}
-                  className={buttonClasses.primary + " text-xs"}
-                >
-                  {t('hr.submit_request')}
-                </button>
               </div>
             </div>
           )}
