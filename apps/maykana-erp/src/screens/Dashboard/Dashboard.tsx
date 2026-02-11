@@ -60,7 +60,7 @@ export const Dashboard = (): JSX.Element => {
           {statsCards.map((stat, index) => (
             <Card
               key={index}
-              className="border-gray-200 hover:shadow-lg transition-shadow"
+              className="bg-white border-gray-200 hover:shadow-lg transition-shadow"
             >
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
@@ -100,7 +100,7 @@ export const Dashboard = (): JSX.Element => {
         {/* Charts Row 1 */}
         <div className="flex flex-wrap gap-6">
           {/* Sales Bar Chart */}
-          <Card className="flex-[2] min-w-[350px] border-gray-200">
+          <Card className="bg-white flex-[2] min-w-[350px] border-gray-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 font-['IBM_Plex_Sans_Arabic']">
@@ -132,7 +132,7 @@ export const Dashboard = (): JSX.Element => {
           </Card>
 
           {/* Purchase Status Pie Chart */}
-          <Card className="flex-1 min-w-[300px] border-gray-200">
+          <Card className="bg-white flex-1 min-w-[300px] border-gray-200">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.purchaseStatus')}
@@ -214,7 +214,7 @@ export const Dashboard = (): JSX.Element => {
         {/* Charts Row 2 */}
         <div className="flex flex-wrap gap-6">
           {/* Top Products Table */}
-          <Card className="flex-[2] min-w-[350px] border-gray-200">
+          <Card className="bg-white flex-[2] min-w-[350px] border-gray-200">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.topProducts')}
@@ -240,7 +240,7 @@ export const Dashboard = (): JSX.Element => {
           </Card>
 
           {/* Recent Activities */}
-          <Card className="flex-1 min-w-[300px] border-gray-200">
+          <Card className="bg-white flex-1 min-w-[300px] border-gray-200">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.recentActivities')}
@@ -290,7 +290,7 @@ export const Dashboard = (): JSX.Element => {
         {/* Charts Row 3 */}
         <div className={`flex flex-wrap gap-6 `}>
           {/* Department Expenses */}
-          <Card className="flex-[2] min-w-[350px] border-gray-200">
+          <Card className="bg-white flex-[2] min-w-[350px] border-gray-200">
             <CardContent className="p-6">
               <h3
                 className={`text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic'] `}
@@ -333,7 +333,7 @@ export const Dashboard = (): JSX.Element => {
           </Card>
 
           {/* Quick Stats */}
-          <Card className="flex-1 min-w-[300px] border-gray-200">
+          <Card className="bg-white flex-1 min-w-[300px] border-gray-200">
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.quickStats')}
