@@ -29,14 +29,14 @@ export const WorkflowEngine = (): JSX.Element => {
       iconColor: "#f9a825",
       path: "/workflow-engine/verification-templates",
     },
-    {
-      title: t("workflow_engine.predefined_rules"),
-      description: t("workflow_engine.predefined_rules_desc"),
-      icon: Settings2,
-      bgColor: "#fff9f0",
-      iconColor: "#f57c00",
-      path: "/workflow-engine/predefined-rules",
-    },
+    // {
+    //   title: t("workflow_engine.predefined_rules"),
+    //   description: t("workflow_engine.predefined_rules_desc"),
+    //   icon: Settings2,
+    //   bgColor: "#fff9f0",
+    //   iconColor: "#f57c00",
+    //   path: "/workflow-engine/predefined-rules",
+    // },
   ];
 
   return (

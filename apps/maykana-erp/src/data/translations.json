@@ -1542,7 +1542,9 @@
       "replyPlaceholder": "اكتب ردك هنا...",
       "send": "إرسال",
       "noMessageSelected": "لم يتم تحديد رسالة",
-      "selectMessagePrompt": "اختر رسالة من القائمة لعرض محتواها"
+      "selectMessagePrompt": "اختر رسالة من القائمة لعرض محتواها",
+      "checklist_details": "تفاصيل قائمة التحقق",
+      "new_entry": "قيد جديد"
     },
     "months": {
       "january": "يناير",

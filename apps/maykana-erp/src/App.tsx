@@ -137,7 +137,7 @@ import { CommunicationLibrary, NewAnnouncement } from './screens/HR/Communicatio
 import { Recruitment, NewRecruitmentRequest } from './screens/HR/Recruitment';
 import { AlertsRequests, NewAlert } from './screens/HR/AlertsRequests';
 import { Dashboard } from './screens/Dashboard';
-import { Inbox } from './screens/Inbox';
+import { Inbox, ChecklistDetails, NewEntry } from './screens/Inbox';
 import { LoginPage } from './screens/LoginPage';
 import { ForgotPasswordPage } from './screens/ForgotPasswordPage';
 import { ReportsPage } from './screens/ReportsPage';
@@ -240,6 +240,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Inbox />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/inbox/checklist/:id',
+    element: (
+      <ProtectedRoute>
+        <ChecklistDetails />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/inbox/new',
+    element: (
+      <ProtectedRoute>
+        <NewEntry />
       </ProtectedRoute>
     ),
   },

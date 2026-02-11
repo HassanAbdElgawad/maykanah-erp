@@ -2,6 +2,8 @@ export const breadcrumbRoutes = [
   // Main Routes
   { path: "/home", label: "sidebar.home" },
   { path: "/inbox", label: "sidebar.inbox" },
+  { path: "/inbox/checklist/:id", label: "inbox.checklist_details" },
+  { path: "/inbox/new", label: "inbox.new_entry" },
   
   // Accounting Module
   { path: "/accounting", label: "sidebar.accounting" },
