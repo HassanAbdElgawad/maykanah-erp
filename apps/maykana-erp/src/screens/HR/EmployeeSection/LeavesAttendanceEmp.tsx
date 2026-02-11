@@ -4,7 +4,7 @@ import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { AdvancedTable } from '../../../components/ui/Table';
 import { buttonClasses } from '../../../styles';
-import { Filter, Download, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Filter, Download, ChevronRight } from 'lucide-react';
 
 interface TabButton {
   id: string;
@@ -15,10 +15,8 @@ interface TabButton {
 export const LeavesAttendanceEmp: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'leaves-attendance');
-
-  const isRTL = language === 'ar';
 
   const getBackPath = () => {
     const storedMode = localStorage.getItem('hrViewMode') || 'employee';
@@ -279,11 +277,7 @@ export const LeavesAttendanceEmp: React.FC = () => {
               onClick={() => navigate(getBackPath())}
               className="flex items-center justify-center w-10 h-10 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
             >
-              {isRTL ? (
-                <ArrowRight className="w-5 h-5 text-gray-600" />
-              ) : (
-                <ArrowLeft className="w-5 h-5 text-gray-600" />
-              )}
+              <ChevronRight className="w-5 h-5 text-gray-600" />
             </button>
             <h1 className="text-xl font-medium text-gray-900">{t('hr.emp.leaves_attendance')}</h1>
           </div>
@@ -346,15 +340,15 @@ export const LeavesAttendanceEmp: React.FC = () => {
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
               <button className={buttonClasses.secondary + ' text-xs'}>
-                {t('hr.next')}
+                {t('hr.previous')}
               </button>
               <div className="flex items-center gap-2">
-                <button className={buttonClasses.secondary + ' min-w-[40px] h-10 text-xs'}>3</button>
-                <button className={buttonClasses.secondary + ' min-w-[40px] h-10 text-xs'}>2</button>
                 <button className={buttonClasses.primary + ' min-w-[40px] h-10 text-xs'}>1</button>
+                <button className={buttonClasses.secondary + ' min-w-[40px] h-10 text-xs'}>2</button>
+                <button className={buttonClasses.secondary + ' min-w-[40px] h-10 text-xs'}>3</button>
               </div>
-              <button className={buttonClasses.secondary + ' text-xs'}>
-                {t('hr.previous')}
+              <button className={buttonClasses.primary + ' text-xs'}>
+                {t('hr.next')}
               </button>
             </div>
           </div>

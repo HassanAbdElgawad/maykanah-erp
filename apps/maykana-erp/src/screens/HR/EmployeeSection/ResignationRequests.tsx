@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { AdvancedTable } from '../../../components/ui/Table';
 import { useLanguage } from '../../../contexts/LanguageContext';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { buttonClasses } from '../../../styles';
 
 export const ResignationRequests: React.FC = () => {
   const navigate = useNavigate();
-  const { t, language } = useLanguage();
-  const isRTL = language === 'ar';
+  const { t } = useLanguage();
 
   const getBackPath = () => {
     const storedMode = localStorage.getItem('hrViewMode') || 'employee';
@@ -140,11 +139,7 @@ export const ResignationRequests: React.FC = () => {
               onClick={() => navigate(getBackPath())}
               className="flex items-center justify-center w-10 h-10 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
             >
-              {isRTL ? (
-                <ArrowRight className="w-5 h-5 text-gray-600" />
-              ) : (
-                <ArrowLeft className="w-5 h-5 text-gray-600" />
-              )}
+              <ChevronRight className="w-5 h-5 text-gray-600" />
             </button>
             <h1 className="text-xl font-medium text-gray-900">{t('hr.resignation_requests')}</h1>
           </div>

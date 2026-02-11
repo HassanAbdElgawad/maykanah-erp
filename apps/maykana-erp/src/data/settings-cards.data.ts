@@ -140,16 +140,16 @@ export const getSettingCards = (): SettingCard[] => [
     module: 'accounting',
   },
   // Purchases Settings
-  {
-    id: 'supplier-categories',
-    titleKey: 'settings.purchases.supplier_categories',
-    descriptionKey: 'settings.purchases.supplier_categories_desc',
-    icon: UsersIcon,
-    path: '/settings/purchases/supplier-categories',
-    bgColor: '#6366F11a',
-    iconColor: '#6366F1',
-    module: 'accounting',
-  },
+  // {
+  //   id: 'supplier-categories',
+  //   titleKey: 'settings.purchases.supplier_categories',
+  //   descriptionKey: 'settings.purchases.supplier_categories_desc',
+  //   icon: UsersIcon,
+  //   path: '/settings/purchases/supplier-categories',
+  //   bgColor: '#6366F11a',
+  //   iconColor: '#6366F1',
+  //   module: 'accounting',
+  // },
   {
     id: 'purchase-settings',
     titleKey: 'settings.purchases.purchase_settings',

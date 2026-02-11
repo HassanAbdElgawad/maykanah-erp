@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '../../../components/Layout';
 import { useLanguage } from '../../../contexts/LanguageContext';
-import { ArrowLeft, ArrowRight, Eye, FileText } from 'lucide-react';
+import { ChevronRight, Eye, FileText } from 'lucide-react';
 import { AdvancedTable } from '../../../components/ui/Table';
 import { buttonClasses } from '../../../styles';
 import { useMyRequestsData } from '../../../hooks';
@@ -54,11 +54,7 @@ export const MyRequests: React.FC = () => {
               onClick={() => navigate('/hr')}
               className="flex items-center justify-center w-10 h-10 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
             >
-              {isRTL ? (
-                <ArrowRight className="w-5 h-5 text-gray-600" />
-              ) : (
-                <ArrowLeft className="w-5 h-5 text-gray-600" />
-              )}
+              <ChevronRight className="w-5 h-5 text-gray-600" />
             </button>
             <h1 className="text-xl font-medium text-gray-900 relative">{t('hr.my_requests')}</h1>
           </div>

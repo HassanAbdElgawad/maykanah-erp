@@ -167,7 +167,7 @@ const outgoingRequests: InboxRequest[] = [
 ];
 
 export const Inbox = (): JSX.Element => {
-  useLanguage(); // For potential language context usage
+  const { t, dir } = useLanguage();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<TabType>('incoming');
   const [searchQuery, setSearchQuery] = useState('');
@@ -201,17 +201,17 @@ export const Inbox = (): JSX.Element => {
   const StatusBadge = ({ status }: { status: InboxRequest['status'] }) => {
     const statusConfig = {
       approved: {
-        label: 'معتمد',
+        label: t('inbox.approved'),
         bgColor: 'bg-[#E8F5E9]',
         textColor: 'text-[#2E7D32]',
       },
       rejected: {
-        label: 'مرفوض',
+        label: t('inbox.rejected'),
         bgColor: 'bg-[#FFEBEE]',
         textColor: 'text-[#C62828]',
       },
       under_review: {
-        label: 'قيد المراجعة',
+        label: t('inbox.under_review'),
         bgColor: 'bg-[#FFF3E0]',
         textColor: 'text-[#E65100]',
       },
@@ -230,26 +230,26 @@ export const Inbox = (): JSX.Element => {
 
   // Tab configuration
   const tabs: { id: TabType; label: string; icon: React.ElementType; count?: number }[] = [
-    { id: 'incoming', label: 'الطلبات الواردة', icon: RefreshCw, count: incomingRequests.length },
-    { id: 'delayed', label: 'الطلبات المتأخرة', icon: Clock, count: delayedRequests.length },
-    { id: 'outgoing', label: 'الطلبات الصادرة', icon: Send, count: outgoingRequests.length },
+    { id: 'incoming', label: t('inbox.incoming_requests'), icon: RefreshCw, count: incomingRequests.length },
+    { id: 'delayed', label: t('inbox.delayed_requests'), icon: Clock, count: delayedRequests.length },
+    { id: 'outgoing', label: t('inbox.outgoing_requests'), icon: Send, count: outgoingRequests.length },
   ];
 
   return (
     <Layout>
-      <div className="flex flex-col gap-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]" dir="rtl">
+      <div className="flex flex-col gap-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]" dir={dir}>
         {/* Header with Search and Actions */}
         <div className="flex items-center justify-between gap-4 bg-white p-4 rounded-xl border border-[#e2e2e2]">
           {/* Right Side - Search */}
           <div className="flex-1 max-w-lg">
             <div className="relative">
-              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className={`absolute ${dir === 'rtl' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5`} />
               <Input
                 type="text"
-                placeholder="ابحث من هنا (تاريخ القيد، المبلغ الدائن، المبلغ المدين، ...)"
+                placeholder={t('inbox.search_placeholder_alt')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pr-10 py-2 border border-gray-300 rounded-lg w-full"
+                className={`${dir === 'rtl' ? 'pr-10' : 'pl-10'} py-2 border border-gray-300 rounded-lg w-full`}
               />
             </div>
           </div>
@@ -261,7 +261,7 @@ export const Inbox = (): JSX.Element => {
               className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
             >
               <Columns3 className="w-4 h-4" />
-              <span>إظهار/إخفاء أعمدة</span>
+              <span>{t('inbox.show_hide_columns')}</span>
             </Button>
             {/* Download Button */}
             <Button
@@ -269,7 +269,7 @@ export const Inbox = (): JSX.Element => {
               className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
-              <span>تحميل</span>
+              <span>{t('inbox.download')}</span>
             </Button>
             {/* Filter Button */}
             <Button
@@ -277,7 +277,7 @@ export const Inbox = (): JSX.Element => {
               className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              <span>فلتر</span>
+              <span>{t('inbox.filter')}</span>
             </Button>
             {/* New Entry Button */}
             <Button
@@ -285,7 +285,7 @@ export const Inbox = (): JSX.Element => {
               className="bg-[#093738] hover:bg-[#0b4a4c] text-white px-4 py-2 rounded-lg flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
-              <span>قيد جديد</span>
+              <span>{t('inbox.new_entry')}</span>
             </Button>
           </div>
         </div>
@@ -325,29 +325,29 @@ export const Inbox = (): JSX.Element => {
 
           {/* Table */}
           <div className="overflow-x-auto">
-            <table className="w-full" dir="rtl">
+            <table className="w-full" dir={dir}>
               <thead className="bg-[#F8FAFC] border-b border-gray-200">
                 <tr>
-                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#0e0d24]">
-                    صاحب الطلب
+                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                    {t('inbox.request_owner')}
                   </th>
-                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#0e0d24]">
-                    نوع الطلب
+                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                    {t('inbox.request_type')}
                   </th>
-                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#0e0d24]">
-                    اسم الطلب
+                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                    {t('inbox.request_name')}
                   </th>
-                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#0e0d24]">
-                    تاريخ الطلب
+                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                    {t('inbox.request_date')}
                   </th>
-                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#0e0d24]">
-                    الفرع
+                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                    {t('inbox.branch')}
                   </th>
-                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#0e0d24]">
-                    القسم
+                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                    {t('inbox.department')}
                   </th>
-                  <th className="px-4 py-4 text-right text-sm font-semibold text-[#0e0d24]">
-                    حالة الطلب
+                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                    {t('inbox.request_status')}
                   </th>
                   <th className="px-4 py-4 text-center text-sm font-semibold text-[#0e0d24] w-12"></th>
                 </tr>
@@ -356,7 +356,7 @@ export const Inbox = (): JSX.Element => {
                 {filteredRequests.length === 0 ? (
                   <tr>
                     <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
-                      لا توجد طلبات
+                      {t('inbox.no_requests')}
                     </td>
                   </tr>
                 ) : (
@@ -425,11 +425,11 @@ export const Inbox = (): JSX.Element => {
           {/* Pagination / Footer (optional) */}
           <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
             <div className="text-sm text-gray-500">
-              عرض {filteredRequests.length} من {getRequestsData().length} طلب
+              {t('inbox.showing')} {filteredRequests.length} {t('inbox.of')} {getRequestsData().length} {t('inbox.requests')}
             </div>
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" className="px-3 py-1">
-                السابق
+                {t('inbox.previous')}
               </Button>
               <Button variant="outline" size="sm" className="px-3 py-1 bg-[#093738] text-white">
                 1
@@ -438,7 +438,7 @@ export const Inbox = (): JSX.Element => {
                 2
               </Button>
               <Button variant="outline" size="sm" className="px-3 py-1">
-                التالي
+                {t('inbox.next')}
               </Button>
             </div>
           </div>

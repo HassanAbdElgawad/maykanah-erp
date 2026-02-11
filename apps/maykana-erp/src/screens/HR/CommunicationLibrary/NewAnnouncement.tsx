@@ -49,12 +49,7 @@ export function NewAnnouncement() {
 
             {/* Left Side: Buttons */}
             <div className="flex gap-2">
-              <Button
-                onClick={handleSubmit}
-                className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg"
-              >
-                {t('hr.send_request')}
-              </Button>
+             
               <Button
                 variant="outline"
                 className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
@@ -64,6 +59,12 @@ export function NewAnnouncement() {
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-xs">
                   {attachmentsCount}
                 </span>
+              </Button>
+               <Button
+                onClick={handleSubmit}
+                className="bg-[#11383f] hover:bg-[#0f2f35] text-white px-6 py-2 rounded-lg"
+              >
+                {t('hr.send_request')}
               </Button>
             </div>
           </div>

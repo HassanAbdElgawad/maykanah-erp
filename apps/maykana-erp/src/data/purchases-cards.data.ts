@@ -42,8 +42,8 @@ export const getPurchaseCards = (t: (key: string) => string): PurchaseCard[] => 
   },
   {
     id: 'material-requests-list',
-    title: 'طلبات المواد',
-    description: 'إدارة وعرض طلبات المواد',
+    title: t('purchases.material_requests_list'),
+    description: t('purchases.material_requests_list_desc'),
     icon: FileText,
     bgColor: '#f0f9ff',
     iconColor: '#0284c7',
@@ -105,8 +105,8 @@ export const getPurchaseCards = (t: (key: string) => string): PurchaseCard[] => 
   },
   {
     id: 'purchase-settings',
-    title: 'اعدادات الشراء',
-    description: 'إدارة إعدادات وتفضيلات المشتريات',
+    title: t('purchases.purchase_settings'),
+    description: t('purchases.purchase_settings_desc'),
     icon: Settings,
     bgColor: '#f5f5f5',
     iconColor: '#616161',

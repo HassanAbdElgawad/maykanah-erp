@@ -5,7 +5,7 @@ import { MaykanaCard } from '../../components/ui/MaykanaCard';
 import { getReportCards } from '../../data';
 
 export const ReportsPage = (): JSX.Element => {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
   const navigate = useNavigate();
 
   // Get the selected module from URL params
@@ -24,7 +24,7 @@ export const ReportsPage = (): JSX.Element => {
 
   return (
     <Layout>
-      <div className="[direction:rtl]">
+      <div dir={dir}>
         {/* Report Cards */}
         <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
           {reportCards.map((card) => (
