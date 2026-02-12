@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../../../contexts/LanguageContext';
 import { getTranslation, goalsSlide as goalsContent } from '../../translations';
-import { 
-  Target, 
-  Zap, 
-  TrendingUp, 
-  Database, 
-  CheckCircle, 
+import {
+  Target,
+  Zap,
+  TrendingUp,
+  Database,
+  CheckCircle,
   Rocket,
   RefreshCw,
   Clock,
@@ -14,14 +14,9 @@ import {
   BarChart3,
   FileText,
   Shield,
-  Award
+  Award,
 } from 'lucide-react';
-import { 
-  responsiveText, 
-  responsiveSpacing, 
-  responsiveContainer,
-  cn 
-} from '../../utils/responsive';
+import { responsiveText, responsiveContainer, cn } from '../../utils/responsive';
 
 export const GoalsSlide = () => {
   const { language } = useLanguage();
@@ -38,10 +33,10 @@ export const GoalsSlide = () => {
   return (
     <div 
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="min-h-screen bg-gradient-to-br from-[#093738] via-[#0a4849] to-[#1e7e34] flex items-center justify-center p-8"
+      className="min-h-screen bg-gradient-to-br from-[#093738] via-[#0a4849] to-[#1e7e34] flex items-center justify-center pt-28 pb-12 px-4 md:px-8"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
           backgroundSize: '40px 40px'
@@ -57,10 +52,10 @@ export const GoalsSlide = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
           <h1 className={cn(
-            responsiveText.h1,
+            responsiveText.h2,
             'text-white font-bold mb-4'
           )}>
             {t.title}
@@ -74,7 +69,7 @@ export const GoalsSlide = () => {
         </motion.div>
 
         {/* Two Columns: Goals and Benefits */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Goals Section */}
           <motion.div
             initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
@@ -84,12 +79,12 @@ export const GoalsSlide = () => {
             {/* Goals Header */}
             <div className={cn(
               'bg-gradient-to-r from-[#2cc28d] to-[#1e7e34]',
-              'rounded-2xl p-6 mb-6 text-center shadow-lg'
+              'rounded-xl p-3 mb-4 text-center shadow-lg'
             )}>
               <div className="flex items-center justify-center gap-3">
-                <Target className="w-8 h-8 text-white" />
+                <Target className="w-6 h-6 text-white" />
                 <h2 className={cn(
-                  responsiveText.h3,
+                  responsiveText.h4,
                   'text-white font-bold'
                 )}>
                   {t.content[0]}
@@ -98,7 +93,7 @@ export const GoalsSlide = () => {
             </div>
 
             {/* Goals List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {goals.map((goal, index) => {
                 const Icon = goalsIcons[index];
                 
@@ -115,21 +110,21 @@ export const GoalsSlide = () => {
                     className="group"
                   >
                     <div className={cn(
-                      'bg-white/10 backdrop-blur-sm rounded-xl p-4',
+                      'bg-white/10 backdrop-blur-sm rounded-lg p-2',
                       'border border-white/20 hover:border-[#2cc28d]/50',
-                      'transition-all duration-300 flex items-start gap-3'
+                      'transition-all duration-300 flex items-center gap-3'
                     )}>
                       <motion.div
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
-                        className="bg-[#2cc28d]/20 rounded-lg p-2 flex-shrink-0"
+                        className="bg-[#2cc28d]/20 rounded-lg p-1.5 flex-shrink-0"
                       >
                         <Icon className="w-5 h-5 text-[#2cc28d]" />
                       </motion.div>
                       
                       <p className={cn(
                         responsiveText.body,
-                        'text-white leading-relaxed flex-1'
+                        'text-white leading-tight flex-1'
                       )}>
                         {goal}
                       </p>
@@ -149,12 +144,12 @@ export const GoalsSlide = () => {
             {/* Benefits Header */}
             <div className={cn(
               'bg-gradient-to-r from-[#1e7e34] to-[#2cc28d]',
-              'rounded-2xl p-6 mb-6 text-center shadow-lg'
+              'rounded-xl p-3 mb-4 text-center shadow-lg'
             )}>
               <div className="flex items-center justify-center gap-3">
-                <Award className="w-8 h-8 text-white" />
+                <Award className="w-6 h-6 text-white" />
                 <h2 className={cn(
-                  responsiveText.h3,
+                  responsiveText.h4,
                   'text-white font-bold'
                 )}>
                   {t.content[1]}
@@ -163,7 +158,7 @@ export const GoalsSlide = () => {
             </div>
 
             {/* Benefits List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {benefits.map((benefit, index) => {
                 const Icon = benefitsIcons[index];
                 
@@ -180,21 +175,21 @@ export const GoalsSlide = () => {
                     className="group"
                   >
                     <div className={cn(
-                      'bg-white/10 backdrop-blur-sm rounded-xl p-4',
+                      'bg-white/10 backdrop-blur-sm rounded-lg p-2',
                       'border border-white/20 hover:border-[#2cc28d]/50',
-                      'transition-all duration-300 flex items-start gap-3'
+                      'transition-all duration-300 flex items-center gap-3'
                     )}>
                       <motion.div
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
-                        className="bg-[#2cc28d]/20 rounded-lg p-2 flex-shrink-0"
+                        className="bg-[#2cc28d]/20 rounded-lg p-1.5 flex-shrink-0"
                       >
                         <Icon className="w-5 h-5 text-[#2cc28d]" />
                       </motion.div>
                       
                       <p className={cn(
                         responsiveText.body,
-                        'text-white leading-relaxed flex-1'
+                        'text-white leading-tight flex-1'
                       )}>
                         {benefit}
                       </p>
@@ -215,9 +210,7 @@ export const GoalsSlide = () => {
         >
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
             <span className="text-3xl">🇸🇦</span>
-            <span className="text-white font-semibold">
-              {isRTL ? 'رؤية 2030' : 'Vision 2030'}
-            </span>
+            <span className="text-white font-semibold">{isRTL ? 'رؤية 2030' : 'Vision 2030'}</span>
           </div>
         </motion.div>
       </div>

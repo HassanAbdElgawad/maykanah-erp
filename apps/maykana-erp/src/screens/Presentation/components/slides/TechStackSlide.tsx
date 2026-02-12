@@ -20,7 +20,6 @@ import {
 } from 'lucide-react';
 import { 
   responsiveText, 
-  responsiveSpacing, 
   responsiveContainer,
   responsiveGrid,
   cn 
@@ -67,10 +66,10 @@ export const TechStackSlide = () => {
   return (
     <div 
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="min-h-screen bg-gradient-to-br from-[#093738] via-[#0a4849] to-[#1e7e34] flex items-center justify-center p-8"
+      className="min-h-screen bg-gradient-to-br from-[#093738] via-[#0a4849] to-[#1e7e34] flex items-center justify-center pt-28 pb-12 px-4 md:px-8"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="tech-grid" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -90,12 +89,12 @@ export const TechStackSlide = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <Code2 className="w-12 h-12 text-[#2cc28d]" />
+          <div className="flex items-center justify-center gap-3 md:gap-4 mb-4">
+            <Code2 className="w-10 h-10 text-[#2cc28d]" />
             <h1 className={cn(
-              responsiveText.h1,
+              responsiveText.h2,
               'text-white font-bold'
             )}>
               {t.title}
@@ -113,7 +112,7 @@ export const TechStackSlide = () => {
         <div className={cn(
           'grid',
           responsiveGrid.cols3,
-          responsiveSpacing.gap.md
+          'gap-4 md:gap-6'
         )}>
           {sections.map((section, sectionIndex) => (
             <motion.div
@@ -133,7 +132,7 @@ export const TechStackSlide = () => {
                 className={cn(
                   'bg-gradient-to-r',
                   section.gradient,
-                  'rounded-2xl p-4 mb-4 text-center shadow-lg'
+                  'rounded-xl p-3 mb-4 text-center shadow-lg'
                 )}
               >
                 <h2 className={cn(
@@ -145,7 +144,7 @@ export const TechStackSlide = () => {
               </motion.div>
 
               {/* Section Items */}
-              <div className="space-y-3 flex-1">
+              <div className="space-y-2 flex-1">
                 {section.items.map((item, itemIndex) => {
                   const Icon = section.icons[itemIndex];
                   
@@ -167,11 +166,11 @@ export const TechStackSlide = () => {
                       className="group"
                     >
                       <div className={cn(
-                        'bg-white/10 backdrop-blur-sm rounded-xl p-3',
+                        'bg-white/10 backdrop-blur-sm rounded-lg p-2',
                         'border border-white/20 hover:border-white/40',
                         'transition-all duration-300 h-full'
                       )}>
-                        <div className="flex items-start gap-3">
+                        <div className="flex items-start gap-2">
                           {/* Icon */}
                           <motion.div
                             whileHover={{ rotate: 360 }}
@@ -179,22 +178,22 @@ export const TechStackSlide = () => {
                             className={cn(
                               'bg-gradient-to-br',
                               section.bgGradient,
-                              'rounded-lg p-2 flex-shrink-0'
+                              'rounded-lg p-1.5 flex-shrink-0'
                             )}
                           >
-                            <Icon className="w-5 h-5 text-white" />
+                            <Icon className="w-4 h-4 text-white" />
                           </motion.div>
 
                           {/* Text */}
                           <div className="flex-1 min-w-0">
                             <h3 className={cn(
                               'text-white font-semibold mb-1',
-                              'text-sm md:text-base'
+                              'text-sm'
                             )}>
                               {name}
                             </h3>
                             <p className={cn(
-                              'text-white/70 text-xs md:text-sm',
+                              'text-white/70 text-xs',
                               'leading-tight'
                             )}>
                               {description}
@@ -215,7 +214,7 @@ export const TechStackSlide = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2, duration: 0.8 }}
-          className="mt-12 grid grid-cols-3 gap-4"
+          className="mt-8 grid grid-cols-3 gap-4"
         >
           {[
             { label: isRTL ? 'حديث' : 'Modern', icon: '⚡' },
@@ -229,12 +228,12 @@ export const TechStackSlide = () => {
               transition={{ delay: 2.2 + (index * 0.1), type: 'spring' }}
               whileHover={{ scale: 1.1 }}
               className={cn(
-                'bg-white/10 backdrop-blur-sm rounded-xl p-4',
+                'bg-white/10 backdrop-blur-sm rounded-lg p-3',
                 'border border-white/20 text-center'
               )}
             >
-              <span className="text-3xl block mb-2">{stat.icon}</span>
-              <span className="text-white font-semibold text-sm md:text-base">
+              <span className="text-2xl block mb-1">{stat.icon}</span>
+              <span className="text-white font-semibold text-sm">
                 {stat.label}
               </span>
             </motion.div>

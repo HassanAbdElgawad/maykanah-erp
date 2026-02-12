@@ -170,11 +170,11 @@ export const Header = (): JSX.Element => {
             >
               <img
                 className="w-8 h-6 rounded-sm object-cover"
-                alt={language === 'ar' ? 'Saudi Flag' : 'UK Flag'}
+                alt={language === 'ar' ? 'Saudi Flag' : 'US Flag'}
                 src={
                   language === 'ar'
                     ? 'https://flagcdn.com/w40/sa.png'
-                    : 'https://flagcdn.com/w40/gb.png'
+                    : 'https://flagcdn.com/w40/us.png'
                 }
               />
               <ChevronDownIcon className="w-3 h-3 text-gray-600" />
@@ -207,8 +207,8 @@ export const Header = (): JSX.Element => {
                 >
                   <img
                     className="w-7 h-5 rounded-sm"
-                    alt="UK Flag"
-                    src="https://flagcdn.com/w40/gb.png"
+                    alt="US Flag"
+                    src="https://flagcdn.com/w40/us.png"
                   />
                   <span className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-normal text-[#092e32] text-sm">
                     English

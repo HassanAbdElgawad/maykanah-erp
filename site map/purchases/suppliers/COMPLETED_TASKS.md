@@ -121,7 +121,7 @@ grid-template-columns: 1fr 1fr 1.2fr 0.8fr 1fr 1.5fr 1.5fr 0.8fr 0.5fr
 
 **مثال النتيجة:**
 - قبل: `7654 321 05 669+`
-- بعد: `+966 50 123 4567` ✅
+- بعد: `+966 53 567 3953` ✅
 
 **الملف المعدل:**
 - `apps/maykana-erp/src/screens/Suppliers/Suppliers.tsx`

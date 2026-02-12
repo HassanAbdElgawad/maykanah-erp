@@ -27,7 +27,7 @@ export const coverSlide: SlideContent = {
     subtitle: 'نظام تخطيط موارد المؤسسات',
     content: [
       'حلول ذكية لرؤية 2030',
-      'مواكبة التحول الرقمي في المملكة العربية السعودية',
+      'مواكبة التحول الرقمي العالمي',
     ],
     footer: 'داعم لرؤية المملكة 2030',
   },
@@ -36,7 +36,7 @@ export const coverSlide: SlideContent = {
     subtitle: 'Enterprise Resource Planning System',
     content: [
       'Smart Solutions for Vision 2030',
-      'Embracing Digital Transformation in Saudi Arabia',
+      'Embracing Global Digital Transformation',
     ],
     footer: 'Supporting Saudi Vision 2030',
   },
@@ -97,9 +97,9 @@ export const overviewSlide: SlideContent = {
     subtitle: '',
     content: [],
     bullets: [
-      'نظام ERP سعودي مصمم خصيصاً للمملكة ودول الخليج',
-      'مواكب لرؤية 2030 والتحول الرقمي الوطني',
-      'تطوير مستمر ودائم لمواكبة احتياجات السوق',
+      'نظام ERP متكامل مناسب للمملكة ودول الخليج والأسواق العالمية',
+      'مواكب لرؤية 2030 والتحول الرقمي العالمي',
+      'تطوير مستمر ودائم لمواكبة احتياجات الأسواق المتنوعة',
       'واجهة عربية أصلية مع دعم كامل للغة العربية (RTL)',
       'معمارية Monorepo حديثة باستخدام أحدث التقنيات العالمية',
       'نظام شامل يغطي 10+ وحدات رئيسية متكاملة',
@@ -110,9 +110,9 @@ export const overviewSlide: SlideContent = {
     subtitle: '',
     content: [],
     bullets: [
-      'Saudi ERP system designed for KSA and GCC countries',
-      'Aligned with Vision 2030 and National Digital Transformation',
-      'Continuous development to meet market needs',
+      'Comprehensive ERP system suitable for KSA, GCC, and global markets',
+      'Aligned with Vision 2030 and global digital transformation',
+      'Continuous development to meet diverse market needs',
       'Native Arabic interface with full RTL support',
       'Modern Monorepo architecture using latest technologies',
       'Comprehensive system covering 10+ integrated modules',
@@ -136,7 +136,7 @@ export const goalsSlide: SlideContent = {
       'توحيد البيانات في نظام واحد متكامل',
       'تقليل الأخطاء البشرية والامتثال للمعايير',
       'تسريع عملية اتخاذ القرار الاستراتيجي',
-      'التطوير المستمر لمواكبة احتياجات السوق السعودي',
+      'التطوير المستمر لمواكبة احتياجات الأسواق المتنوعة',
       'توفير الوقت والجهد',
       'تقليل التكاليف التشغيلية',
       'تحسين دقة البيانات',
@@ -159,7 +159,7 @@ export const goalsSlide: SlideContent = {
       'Unify data in one integrated system',
       'Reduce human errors and ensure compliance',
       'Accelerate strategic decision-making',
-      'Continuous development to meet Saudi market needs',
+      'Continuous development to meet diverse market needs',
       'Save time and effort',
       'Reduce operational costs',
       'Improve data accuracy',
@@ -225,6 +225,187 @@ export const techStackSlide: SlideContent = {
     ],
   },
 };
+
+// Slide 5: Strategy & Performance
+export const strategySlide: SlideContent = {
+  ar: {
+    title: 'الاستراتيجية والأداء',
+    bullets: [
+      'التخطيط الاستراتيجي ومواءمة الأهداف',
+      'مؤشرات الأداء الرئيسية (KPIs)',
+      'بطاقة الأداء المتوازن (BSC)',
+      'تقييم الأداء المؤسسي',
+      'إدارة المبادرات والمشاريع',
+      'التحليل والتنبؤ المستقبلي',
+    ],
+    content: [],
+    subtitle: '',
+  },
+  en: {
+    title: 'Strategy & Performance',
+    bullets: [
+      'Strategic Planning & Alignment',
+      'Key Performance Indicators (KPIs)',
+      'Balanced Scorecard (BSC)',
+      'Corporate Performance Evaluation',
+      'Initiatives & Projects Management',
+      'Analysis & Forecasting',
+    ],
+    content: [],
+    subtitle: '',
+  },
+};
+
+// Slide 6: HR Management
+export const hrSlide: SlideContent = {
+  ar: {
+    title: 'الموارد البشرية',
+    bullets: [
+      'إدارة الهيكل التنظيمي والوظيفي',
+      'التوظيف واستقطاب الكفاءات',
+      'نظام الرواتب والمسيرات (WPS)',
+      'إدارة الإجازات والمغادرات',
+      'الخدمة الذاتية للموظفين',
+      'تقييم أداء الموظفين',
+    ],
+    content: [],
+    subtitle: '',
+  },
+  en: {
+    title: 'HR Management',
+    bullets: [
+      'Organizational Structure',
+      'Recruitment & Talent Acquisition',
+      'Payroll Management (WPS)',
+      'Leave & Time Off Management',
+      'Employee Self-Service',
+      'Performance Evaluation',
+    ],
+    content: [],
+    subtitle: '',
+  },
+};
+
+// Slide 7: Financial Management
+export const accountingSlide: SlideContent = {
+  ar: {
+    title: 'الإدارة المالية',
+    bullets: [
+      'دليل الحسابات الموحد',
+      'إدارة القيود واليومية العامة',
+      'الذمم الدائنة والمدينة',
+      'القوائم المالية والتقارير',
+      'إدارة الموازنات التقديرية',
+      'إقرارات الزكاة وضريبة القيمة المضافة',
+    ],
+    content: [],
+    subtitle: '',
+  },
+  en: {
+    title: 'Financial Management',
+    bullets: [
+      'Unified Chart of Accounts',
+      'General Ledger & Journal Entries',
+      'Accounts Payable & Receivable',
+      'Financial Statements & Reports',
+      'Budget Management',
+      'Zakat & VAT Compliance',
+    ],
+    content: [],
+    subtitle: '',
+  },
+};
+
+// Slide 8: Supply Chain
+export const supplyChainSlide: SlideContent = {
+  ar: {
+    title: 'سلاسل الإمداد',
+    bullets: [
+      'إدارة المشتريات والمناقصات',
+      'إداره المخزون والمستودعات',
+      'طلبات الشراء وعروض الأسعار',
+      'أوامر الشراء والاستلام',
+      'حركات المخزون والجرد',
+      'إدارة الموردين والعقود',
+    ],
+    content: [],
+    subtitle: '',
+  },
+  en: {
+    title: 'Supply Chain',
+    bullets: [
+      'Purchasing & Tenders',
+      'Inventory & Warehouse Management',
+      'Purchase Requisitions & Quotes',
+      'Purchase Orders & Receipts',
+      'Stock Movements & Count',
+      'Vendor & Contract Management',
+    ],
+    content: [],
+    subtitle: '',
+  },
+};
+
+// Slide 9: Assets & Projects
+export const assetsSlide: SlideContent = {
+  ar: {
+    title: 'الأصول والمشاريع',
+    bullets: [
+      'سجل الأصول الثابتة',
+      'حساب الإهلاكات آلياً',
+      'تتبع وصيانة الأصول',
+      'إدارة عهد الموظفين',
+      'إدارة المنافسات والمشاريع',
+      'متابعة العقود والمستخلصات',
+    ],
+    content: [],
+    subtitle: '',
+  },
+  en: {
+    title: 'Assets & Projects',
+    bullets: [
+      'Fixed Assets Register',
+      'Automated Depreciation',
+      'Asset Tracking & Maintenance',
+      'Employee Custody Management',
+      'Competitions & Projects',
+      'Contracts & Invoices Tracking',
+    ],
+    content: [],
+    subtitle: '',
+  },
+};
+
+// Slide 10: Workflow Engine
+export const workflowSlide: SlideContent = {
+  ar: {
+    title: 'محرك سير العمل',
+    bullets: [
+      'تصميم مسارات العمل مرنة',
+      'إدارة الصلاحيات والأدوار',
+      'التنبيهات والإشعارات الآلية',
+      'الأرشفة الإلكترونية والمرفقات',
+      'التكامل مع جميع الأنظمة',
+      'لوحات معلومات وتقارير ذكية',
+    ],
+    content: [],
+    subtitle: '',
+  },
+  en: {
+    title: 'Workflow Engine',
+    bullets: [
+      'Flexible Workflow Design',
+      'Roles & Permissions Management',
+      'Automated Alerts & Notifications',
+      'Digital Archiving & Attachments',
+      'Full System Integration',
+      'Smart Dashboards & Reports',
+    ],
+    content: [],
+    subtitle: '',
+  },
+};
+
 
 // Helper function to get translated content
 export const getTranslation = (content: SlideContent, language: 'ar' | 'en') => {

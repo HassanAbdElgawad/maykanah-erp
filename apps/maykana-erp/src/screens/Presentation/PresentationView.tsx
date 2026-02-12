@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Maximize, Minimize, Home, X } from 'lucide-react';
@@ -8,16 +8,39 @@ import { PasswordProtection } from './components/PasswordProtection';
 import { OverviewSlide } from './components/slides/OverviewSlide';
 import { GoalsSlide } from './components/slides/GoalsSlide';
 import { TechStackSlide } from './components/slides/TechStackSlide';
+import {
+  StrategySlide,
+  HRSlide,
+  AccountingSlide,
+  SupplyChainSlide,
+  AssetsSlide,
+  WorkflowSlide,
+} from './components/slides/ModuleSlides';
+import { SalesSlideNew } from './components/slides/SalesSlideNew';
+import { ReportsSlideNew } from './components/slides/ReportsSlideNew';
+import { UIUXSlideNew } from './components/slides/UIUXSlideNew';
+import { RoadmapSlideNew } from './components/slides/RoadmapSlideNew';
+import { WarehousesSlideNew } from './components/slides/WarehousesSlideNew';
+import { CompetitionsSlideNew } from './components/slides/CompetitionsSlideNew';
+import { IntegrationSlideNew } from './components/slides/IntegrationSlideNew';
+import { SecuritySlideNew } from './components/slides/SecuritySlideNew';
+import { AnalyticsSlideNew } from './components/slides/AnalyticsSlideNew';
+import { ClosingSlide } from './components/slides/ClosingSlide';
 
 export const PresentationView = () => {
   const { slideNumber } = useParams();
   const navigate = useNavigate();
-  const { language, toggleLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const totalSlides = 4; // تم الانتهاء من 4 سلايدات حتى الآن
+  const totalSlides = 20; // All slides including closing slide
+
+  // Toggle language function
+  const toggleLanguage = () => {
+    setLanguage(language === 'ar' ? 'en' : 'ar');
+  };
 
   // تحديث السلايد من URL
   useEffect(() => {
@@ -28,6 +51,14 @@ export const PresentationView = () => {
       }
     }
   }, [slideNumber, totalSlides]);
+
+  // Auto scroll to top when slide changes
+  useEffect(() => {
+    const container = document.querySelector('.presentation-scroll');
+    if (container) {
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [currentSlide]);
 
   // التنقل للسلايد التالي
   const nextSlide = () => {
@@ -144,10 +175,14 @@ export const PresentationView = () => {
         currentSlide={currentSlide}
         totalSlides={totalSlides}
         onClose={() => navigate('/')}
+        onSlideChange={(index) => {
+          setCurrentSlide(index);
+          navigate(`/presentation/${index + 1}`);
+        }}
       />
 
       {/* Slides Container */}
-      <div className="h-full w-full">
+      <div className="h-full w-full overflow-y-auto scroll-smooth presentation-scroll">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={currentSlide}
@@ -160,9 +195,9 @@ export const PresentationView = () => {
               x: { type: 'spring', stiffness: 300, damping: 30 },
               opacity: { duration: 0.3 },
             }}
-            className="h-full w-full"
+            className="w-full"
           >
-            {renderSlide(currentSlide)}
+            {renderSlide(currentSlide, language)}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -201,7 +236,7 @@ export const PresentationView = () => {
 };
 
 // Render Slide based on index
-const renderSlide = (index: number) => {
+const renderSlide = (index: number, language: string) => {
   switch (index) {
     case 0:
       return <CoverSlide />;
@@ -211,6 +246,38 @@ const renderSlide = (index: number) => {
       return <GoalsSlide />;
     case 3:
       return <TechStackSlide />;
+    case 4:
+      return <StrategySlide />;
+    case 5:
+      return <HRSlide />;
+    case 6:
+      return <AccountingSlide />;
+    case 7:
+      return <SupplyChainSlide />;
+    case 8:
+      return <AssetsSlide />;
+    case 9:
+      return <WorkflowSlide />;
+    case 10:
+      return <SalesSlideNew />;
+    case 11:
+      return <ReportsSlideNew />;
+    case 12:
+      return <UIUXSlideNew />;
+    case 13:
+      return <RoadmapSlideNew />;
+    case 14:
+      return <WarehousesSlideNew />;
+    case 15:
+      return <CompetitionsSlideNew />;
+    case 16:
+      return <IntegrationSlideNew />;
+    case 17:
+      return <SecuritySlideNew />;
+    case 18:
+      return <AnalyticsSlideNew />;
+    case 19:
+      return <ClosingSlide isRTL={language === 'ar'} />;
     default:
       return <CoverSlide />;
   }
@@ -225,6 +292,7 @@ interface HeaderProps {
   currentSlide: number;
   totalSlides: number;
   onClose: () => void;
+  onSlideChange: (slideIndex: number) => void;
 }
 
 const Header = ({
@@ -235,17 +303,38 @@ const Header = ({
   currentSlide,
   totalSlides,
   onClose,
+  onSlideChange,
 }: HeaderProps) => {
+  const [showSlideMenu, setShowSlideMenu] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowSlideMenu(false);
+      }
+    };
+
+    if (showSlideMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showSlideMenu]);
+
   return (
     <motion.div
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.2 }}
-      className="absolute top-0 left-0 right-0 z-50 p-6 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm"
+      className="absolute top-0 left-0 right-0 z-50 p-6 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm pointer-events-none"
     >
       <div className="flex justify-between items-center max-w-8xl mx-0">
         {/* Left: Logo & Title */}
-        <div className="flex items-center justify-center gap-4 min-w-[10%]">
+        <div className="flex items-center justify-center gap-4 min-w-[15%]">
           <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3">
             <img src="/images/logo/LamdaX-logo.png" alt="LamdaX" className="h-8 w-auto" />
             <div className="flex flex-col">
@@ -256,20 +345,72 @@ const Header = ({
         </div>
 
         {/* Center: Slide Number */}
-        <div className="text-white/80 font-medium text-lg  min-w-[10%] flex justify-center">
-          {currentSlide + 1} / {totalSlides}
+        <div ref={menuRef} className="relative min-w-[15%] flex justify-center">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setShowSlideMenu(!showSlideMenu)}
+            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium transition-all border border-white/20 pointer-events-auto flex items-center gap-2"
+          >
+            <span>{currentSlide + 1} / {totalSlides}</span>
+            <motion.svg
+              animate={{ rotate: showSlideMenu ? 180 : 0 }}
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </motion.svg>
+          </motion.button>
+          
+          {/* Slide Menu Dropdown */}
+          {showSlideMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute top-full mt-2 bg-gray-900/95 backdrop-blur-md rounded-lg border border-white/20 shadow-2xl pointer-events-auto max-h-[60vh] overflow-y-auto custom-scrollbar"
+              style={{ width: '280px' }}
+            >
+              <div className="p-2">
+                {Array.from({ length: totalSlides }, (_, i) => (
+                  <motion.button
+                    key={i}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    onClick={() => {
+                      onSlideChange(i);
+                      setShowSlideMenu(false);
+                    }}
+                    className={`w-full text-left px-4 py-2.5 rounded-lg transition-all mb-1 ${
+                      i === currentSlide
+                        ? 'bg-emerald-500/30 text-emerald-400 border border-emerald-500/50'
+                        : 'text-white/80 hover:bg-white/10 hover:text-white'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm font-bold">{i + 1}</span>
+                      <span className="text-sm flex-1">
+                        {['Cover', 'Overview', 'Goals', 'TechStack', 'Strategy', 'HR', 'Accounting', 'SupplyChain', 'Assets', 'Workflow', 'Sales', 'Reports', 'UI/UX', 'Roadmap', 'Warehouses', 'Competitions', 'Integration', 'Security', 'Analytics', 'Closing'][i]}
+                      </span>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
 
         {/* Right: Controls */}
-        <div className="flex items-center justify-center gap-3 min-w-[10%]">
+        <div className="flex items-center justify-center gap-3 min-w-[15%]">
           {/* Language Toggle */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onLanguageToggle}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium transition-all border border-white/20"
+            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium transition-all border border-white/20 pointer-events-auto"
           >
-            {language === 'ar' ? '🇬🇧 EN' : '🇸🇦 AR'}
+            {language === 'ar' ? '🇺🇸 EN' : '🇸🇦 AR'}
           </motion.button>
 
           {/* Fullscreen Toggle */}
@@ -277,7 +418,7 @@ const Header = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onFullscreenToggle}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20"
+            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20 pointer-events-auto"
           >
             {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
           </motion.button>
@@ -287,7 +428,7 @@ const Header = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onClose}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20"
+            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20 pointer-events-auto"
           >
             <Home className="w-5 h-5" />
           </motion.button>
@@ -297,7 +438,7 @@ const Header = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onClose}
-            className="bg-red-500/20 hover:bg-red-500/30 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-red-500/30"
+            className="bg-red-500/20 hover:bg-red-500/30 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-red-500/30 pointer-events-auto"
           >
             <X className="w-5 h-5" />
           </motion.button>
@@ -333,6 +474,7 @@ const NavigationButton = ({ direction, onClick, disabled, isRTL }: NavigationBut
         backdrop-blur-sm p-4 rounded-full 
         transition-all border border-white/20
         disabled:cursor-not-allowed
+        pointer-events-auto
         group`}
       whileHover={!disabled ? { scale: 1.1 } : {}}
       whileTap={!disabled ? { scale: 0.9 } : {}}
@@ -355,19 +497,21 @@ const ProgressDots = ({ totalSlides, currentSlide, onDotClick }: ProgressDotsPro
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.5 }}
-      className="absolute bottom-20 left-1/2 -translate-x-1/2 z-40 flex gap-3"
+      className="absolute bottom-5  z-40 flex justify-center items-center gap-3 w-full pointer-events-none"
     >
-      {Array.from({ length: totalSlides }).map((_, index) => (
-        <motion.button
-          key={index}
-          onClick={() => onDotClick(index)}
-          className={`h-3 rounded-full transition-all ${
-            index === currentSlide ? 'bg-[#2cc28d] w-12' : 'bg-white/40 hover:bg-white/60 w-3'
-          }`}
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-        />
-      ))}
+      <div className="flex gap-2">
+        {Array.from({ length: totalSlides }).map((_, index) => (
+          <motion.button
+            key={index}
+            onClick={() => onDotClick(index)}
+            className={`h-3 rounded-full transition-all pointer-events-auto ${
+              index === currentSlide ? 'bg-[#2cc28d] w-12' : 'bg-white/40 hover:bg-white/60 w-3'
+            }`}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          />
+        ))}
+      </div>
     </motion.div>
   );
 };
@@ -386,7 +530,7 @@ const ProgressBar = ({ current, total }: ProgressBarProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.7 }}
-      className="absolute bottom-0 left-0 right-0 z-40"
+      className="absolute bottom-0 left-0 right-0 z-40 pointer-events-none"
     >
       <div className="h-1 bg-white/10">
         <motion.div

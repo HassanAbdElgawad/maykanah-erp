@@ -6,10 +6,10 @@ export const CoverSlide = () => {
   const { language } = useLanguage();
   const t = getTranslation(coverSlideContent, language);
   return (
-    <div className="relative h-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#093738] via-[#0a4849] to-[#1e7e34]">
+    <div className="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-gradient-to-br from-[#093738] via-[#0a4849] to-[#1e7e34]">
       {/* Background Animated Gradient */}
       <motion.div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-30 pointer-events-none"
         animate={{
           background: [
             'radial-gradient(circle at 20% 50%, rgba(44, 194, 141, 0.3) 0%, transparent 50%)',
@@ -21,7 +21,7 @@ export const CoverSlide = () => {
       />
 
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">

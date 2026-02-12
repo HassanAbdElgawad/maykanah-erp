@@ -20,7 +20,7 @@ export const MOCK_SUPPLIERS: Supplier[] = [
     country: 'جمهورية مصر العربية',
     currency: 'SAR',
     paymentTerms: 'مجموعه 1',
-    phone: '+966 50 123 4567',
+    phone: '+966 53 567 3953',
     taxNumber: '123456789',
     status: 'active'
   },
@@ -31,7 +31,7 @@ export const MOCK_SUPPLIERS: Supplier[] = [
     country: 'المملكة العربية السعودية',
     currency: 'SAR',
     paymentTerms: 'مجموعه الرياض',
-    phone: '+966 50 234 5678',
+    phone: '+966 53 567 3953',
     taxNumber: '234567890',
     status: 'active'
   },

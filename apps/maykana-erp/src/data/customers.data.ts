@@ -20,7 +20,7 @@ export const MOCK_CUSTOMERS: Customer[] = [
     country: 'المملكة العربية السعودية',
     currency: 'SAR',
     paymentTerms: 'نقدي',
-    phone: '+966 50 123 4567',
+    phone: '+966 53 567 3953',
     taxNumber: '123456789',
     postalCode: '12345',
     status: 'active'
@@ -32,7 +32,7 @@ export const MOCK_CUSTOMERS: Customer[] = [
     country: 'المملكة العربية السعودية',
     currency: 'SAR',
     paymentTerms: 'آجل 30 يوم',
-    phone: '+966 50 234 5678',
+    phone: '+966 53 567 3953',
     taxNumber: '234567890',
     postalCode: '54321',
     status: 'active'

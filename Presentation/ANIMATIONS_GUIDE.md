@@ -562,7 +562,7 @@ export const ThankYouSlide = () => {
         >
           <p className="text-2xl">📧 info@lamdax.sa</p>
           <p className="text-2xl">🌐 www.lamdax.sa</p>
-          <p className="text-2xl">📱 +966 XX XXX XXXX</p>
+          <p className="text-2xl">📱 +966 53 567 3953</p>
         </motion.div>
       </motion.div>
     </motion.div>
