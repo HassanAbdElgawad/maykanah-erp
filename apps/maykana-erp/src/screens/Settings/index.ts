@@ -1,4 +1,4 @@
-export { SettingsPage } from '../SettingsPage';
+export { Settings as SettingsPage } from './Settings';
 export { CompanySettings } from './Accounting/CompanySettings';
 export { ChartOfAccounts } from './Accounting/ChartOfAccounts';
 export { AccountSettings } from './Accounting/AccountSettings';

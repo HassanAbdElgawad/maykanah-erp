@@ -140,16 +140,18 @@ import { Dashboard } from './screens/Common/Dashboard';
 import { Inbox, ChecklistDetails, NewEntry } from './screens/Common/Inbox';
 import { LoginPage } from './screens/Auth/LoginPage';
 import { ForgotPasswordPage } from './screens/Auth/ForgotPasswordPage';
-import { ReportsPage } from './screens/Reports/ReportsPage';
-import { GeneralLedgerReport } from './screens/Reports/ReportsPage';
-import { FinancialPositionReport } from './screens/Reports/ReportsPage';
-import { TrialBalanceReport } from './screens/Reports/ReportsPage';
-import { IncomeStatementReport } from './screens/Reports/ReportsPage';
-import { TrialBalanceMovementReport } from './screens/Reports/ReportsPage';
-import { InventoryBalanceReport } from './screens/Reports/ReportsPage';
-import { ItemMovementReport } from './screens/Reports/ReportsPage';
-import { InventoryVarianceReport } from './screens/Reports/ReportsPage';
-import { DamagedReturnedReport } from './screens/Reports/ReportsPage';
+import {
+  Reports,
+  GeneralLedgerReport,
+  FinancialPositionReport,
+  TrialBalanceReport,
+  IncomeStatementReport,
+  TrialBalanceMovementReport,
+  InventoryBalanceReport,
+  ItemMovementReport,
+  InventoryVarianceReport,
+  DamagedReturnedReport,
+} from './screens/Reports';
 import {
   SalesRepresentativeCommissionReport,
   InactiveCustomersReport,
@@ -3112,7 +3114,7 @@ const router = createBrowserRouter([
     path: '/reports',
     element: (
       <ProtectedRoute>
-        <ReportsPage />
+        <Reports />
       </ProtectedRoute>
     ),
   },
