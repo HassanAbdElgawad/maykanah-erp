@@ -29,6 +29,41 @@
   background: #a8a8a8;
 }
 
+/* Presentation slides custom scrollbar - Dark theme with transparency */
+.presentation-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(44, 194, 141, 0.3) transparent;
+}
+
+.presentation-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.presentation-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.presentation-scroll::-webkit-scrollbar-thumb {
+  background: rgba(44, 194, 141, 0.25);
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.presentation-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(44, 194, 141, 0.65);
+}
+
+.presentation-scroll::-webkit-scrollbar-thumb:active {
+  background: rgba(44, 194, 141, 0.85);
+}
+
+/* Auto-hide scrollbar on inactive */
+@supports (scrollbar-width: thin) {
+  .presentation-scroll {
+    scrollbar-width: thin;
+  }
+}
+
 /* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;

@@ -210,6 +210,7 @@ import { SupportPage } from './screens/SupportPage';
 import { ComingSoon } from './screens/ComingSoon';
 import { ErrorPage } from './screens/ErrorPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { PresentationView } from './screens/Presentation';
 
 const router = createBrowserRouter([
   {
@@ -235,6 +236,14 @@ const router = createBrowserRouter([
         <Dashboard />
       </ProtectedRoute>
     ),
+  },
+  {
+    path: '/presentation',
+    element: <PresentationView />,
+  },
+  {
+    path: '/presentation/:slideNumber',
+    element: <PresentationView />,
   },
   {
     path: '/inbox',
