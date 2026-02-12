@@ -4,7 +4,6 @@ import {
   ClipboardList,
   Receipt,
   Package,
-  RotateCcw,
   ListChecks,
   Users,
   UserCircle,

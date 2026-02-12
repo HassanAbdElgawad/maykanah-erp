@@ -19,21 +19,25 @@ interface MaykanaCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 't
 }
 
 export const MaykanaCard = React.forwardRef<HTMLDivElement, MaykanaCardProps>(
-  ({ 
-    className, 
-    isActive = false, 
-    title, 
-    description, 
-    icon: Icon, 
-    bgColor, 
-    iconColor = '#093738', 
-    isClickable = true, 
-    onClick, 
-    children,
-    ...props 
-  }, ref) => {
+  (
+    {
+      className,
+      isActive = false,
+      title,
+      description,
+      icon: Icon,
+      bgColor,
+      iconColor = '#093738',
+      isClickable = true,
+      onClick,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const { isSidebarOpen } = useSidebar();
     const { language } = useLanguage();
+    const showActiveBorder = import.meta.env.VITE_SHOW_ACTIVE_BORDER === 'true';
 
     // Feature Card mode
     return (
@@ -43,7 +47,7 @@ export const MaykanaCard = React.forwardRef<HTMLDivElement, MaykanaCardProps>(
         className={cn(
           'border-[#e2e2e2] bg-white hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-1',
           isSidebarOpen ? 'w-[320px]' : 'w-[300px]',
-          isActive && 'border border-[#09373890]',
+          showActiveBorder && isActive && 'border border-[#09373890]',
           isClickable && 'cursor-pointer',
           className
         )}
@@ -51,7 +55,9 @@ export const MaykanaCard = React.forwardRef<HTMLDivElement, MaykanaCardProps>(
       >
         {children || (
           <CardContent className="flex flex-col p-6 h-[92px]">
-            <div className={`flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse justify-end' : 'justify-start'}`}>
+            <div
+              className={`flex items-center gap-2 ${language === 'ar' ? 'flex-row-reverse justify-end' : 'justify-start'}`}
+            >
               <div className="flex flex-col gap-1 flex-1 min-w-0">
                 <p className="[font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-semibold text-[#092e32] text-[0.9rem] truncate">
                   {title}
@@ -60,7 +66,10 @@ export const MaykanaCard = React.forwardRef<HTMLDivElement, MaykanaCardProps>(
                   {description}
                 </p>
               </div>
-              <div className={`flex items-center justify-center w-[50px] h-[50px] rounded-xl flex-shrink-0`} style={{ backgroundColor: bgColor }}>
+              <div
+                className={`flex items-center justify-center w-[50px] h-[50px] rounded-xl flex-shrink-0`}
+                style={{ backgroundColor: bgColor }}
+              >
                 {Icon && <Icon className="w-6 h-6 flex-shrink-0" style={{ color: iconColor }} />}
               </div>
             </div>

@@ -7,8 +7,6 @@ import {
   ShoppingCart,
   Package,
   FileCheck,
-  RefreshCcw,
-  Settings,
 } from 'lucide-react';
 
 export interface PurchaseCard {
@@ -94,22 +92,22 @@ export const getPurchaseCards = (t: (key: string) => string): PurchaseCard[] => 
     iconColor: '#7b1fa2',
     path: '/purchases/purchase-invoices',
   },
-  {
-    id: 'purchase-returns',
-    title: t('purchases.purchase_returns'),
-    description: t('purchases.purchase_returns_desc'),
-    icon: RefreshCcw,
-    bgColor: '#fff9f0',
-    iconColor: '#f57c00',
-    path: '/purchases/purchase-returns',
-  },
-  {
-    id: 'purchase-settings',
-    title: t('purchases.purchase_settings'),
-    description: t('purchases.purchase_settings_desc'),
-    icon: Settings,
-    bgColor: '#f5f5f5',
-    iconColor: '#616161',
-    path: '/purchases/settings',
-  },
+  // {
+  //   id: 'purchase-returns',
+  //   title: t('purchases.purchase_returns'),
+  //   description: t('purchases.purchase_returns_desc'),
+  //   icon: RefreshCcw,
+  //   bgColor: '#fff9f0',
+  //   iconColor: '#f57c00',
+  //   path: '/purchases/purchase-returns',
+  // },
+  // {
+  //   id: 'purchase-settings',
+  //   title: t('purchases.purchase_settings'),
+  //   description: t('purchases.purchase_settings_desc'),
+  //   icon: Settings,
+  //   bgColor: '#f5f5f5',
+  //   iconColor: '#616161',
+  //   path: '/purchases/settings',
+  // },
 ];
