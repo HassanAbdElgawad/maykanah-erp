@@ -40,28 +40,12 @@ export const ReportsPage = (): JSX.Element => {
   return (
     <Layout>
       <div dir={dir} className="space-y-4">
-        {/* Module Selector - Mobile Only */}
-        <div className="md:hidden bg-white rounded-xl border border-[#e2e2e2] p-4">
+        {/* Module Selector */}
+        <div className="bg-white rounded-xl border border-[#e2e2e2] p-4">
           <h3 className="text-sm font-semibold text-gray-700 mb-3 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
             {t('reports.select_module')}
           </h3>
-          
-          <select
-            value={selectedModule}
-            onChange={(e) => handleModuleChange(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm [font-family:'IBM_Plex_Sans_Arabic',Helvetica] focus:outline-none focus:ring-2 focus:ring-[#093738] focus:border-transparent"
-          >
-            {modules.map((module) => (
-              <option key={module.id} value={module.id}>
-                {module.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Buttons - Hidden completely */}
-        <div className="hidden">
-          <div className="hidden">
+          <div className="flex flex-wrap gap-2">
             {modules.map((module) => (
               <Button
                 key={module.id}
@@ -77,7 +61,7 @@ export const ReportsPage = (): JSX.Element => {
               </Button>
             ))}
           </div>
-          </div>
+        </div>
 
         {/* Report Cards */}
         <div className="flex flex-wrap gap-4 animate-fade-in opacity-0 [--animation-delay:200ms]">
