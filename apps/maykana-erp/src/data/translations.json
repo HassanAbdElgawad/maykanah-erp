@@ -1037,7 +1037,7 @@
         "supplier_categories": "تحديدات الموردين",
         "supplier_categories_desc": "ضبط المعايير الخاصة بالحسابات المالية.",
         "purchase_settings": "إعدادات المشتريات",
-        "purchase_settings_desc": "الهيكل التنظيمي فيما يتعلق بهد عمليات الشراء.",
+        "purchase_settings_desc": "الهيكل التنظيمي المتعلق بعمليات الشراء.",
         "purchase_tax_template": "قالب ضريبة الشراء",
         "purchase_tax_template_desc": "إدارة قوالب الضرائب المطبقة على المشتريات",
         "terms_conditions_template": "قالب الشروط والأحكام",

@@ -180,16 +180,16 @@ export const getSettingCards = (): SettingCard[] => [
     iconColor: '#3B82F6',
     module: 'purchases',
   },
-  {
-    id: 'approval-workflow',
-    titleKey: 'settings.purchases.approval_workflow',
-    descriptionKey: 'settings.purchases.approval_workflow_desc',
-    icon: WorkflowIcon,
-    path: '/settings/purchases/approval-workflow',
-    bgColor: '#8B5CF61a',
-    iconColor: '#8B5CF6',
-    module: 'purchases',
-  },
+  // {
+  //   id: 'approval-workflow',
+  //   titleKey: 'settings.purchases.approval_workflow',
+  //   descriptionKey: 'settings.purchases.approval_workflow_desc',
+  //   icon: WorkflowIcon,
+  //   path: '/settings/purchases/approval-workflow',
+  //   bgColor: '#8B5CF61a',
+  //   iconColor: '#8B5CF6',
+  //   module: 'purchases',
+  // },
   // Sales Settings
   {
     id: 'sales-settings',
