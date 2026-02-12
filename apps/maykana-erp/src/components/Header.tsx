@@ -116,17 +116,19 @@ export const Header = (): JSX.Element => {
 
   return (
     <header className="h-[61px] bg-white rounded-xl border border-solid border-[#e2e2e2]">
-      <div className="flex items-center justify-between h-full px-4 gap-3">
+      <div className="flex items-center justify-between h-full px-2 md:px-4 gap-2 md:gap-3">
         {/* Right Section - Breadcrumbs */}
-        <div className={`flex items-center gap-4`}>
+        <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
           <ModuleIcon />
-          <Breadcrumbs />
+          <div className="hidden md:block">
+            <Breadcrumbs />
+          </div>
         </div>
 
         {/* Left Section - Search + Language + Notifications + User */}
-        <div className="flex items-center gap-2">
-          {/* Search */}
-          <div className="relative w-[350px]" ref={searchRef}>
+        <div className="flex items-center gap-1.5 md:gap-2">
+          {/* Search - Hidden on mobile */}
+          <div className="hidden md:block relative w-[350px]" ref={searchRef}>
             <Input
               className={`w-full h-[45px] bg-[#F8FAFC] rounded-lg border-0 ${
                 dir === 'rtl' ? 'pr-10 text-right' : 'pl-10 text-left'
@@ -163,7 +165,7 @@ export const Header = (): JSX.Element => {
           </div>
 
           {/* Language Switcher - Flag with small dropdown icon */}
-          <div className="relative" ref={languageMenuRef}>
+          <div className="hidden md:block relative" ref={languageMenuRef}>
             <button
               onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
               className="h-[45px] px-3 bg-[#F8FAFC] hover:opacity-80 transition-opacity flex items-center justify-center gap-1.5 rounded-lg"

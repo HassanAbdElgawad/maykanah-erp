@@ -239,9 +239,9 @@ export const Inbox = (): JSX.Element => {
     <Layout>
       <div className="flex flex-col gap-4 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]" dir={dir}>
         {/* Header with Search and Actions */}
-        <div className="flex items-center justify-between gap-4 bg-white p-4 rounded-xl border border-[#e2e2e2]">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-[#e2e2e2]">
           {/* Right Side - Search */}
-          <div className="flex-1 max-w-lg">
+          <div className="flex-1 md:max-w-lg">
             <div className="relative">
               <Search className={`absolute ${dir === 'rtl' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5`} />
               <Input
@@ -254,11 +254,11 @@ export const Inbox = (): JSX.Element => {
             </div>
           </div>
           {/* Left Side - Actions */}
-          <div className="flex items-center gap-2">
-            {/* Show/Hide Columns Button */}
+          <div className="flex items-center gap-2 flex-wrap">
+            {/* Show/Hide Columns Button - Hidden on mobile */}
             <Button
               variant="outline"
-              className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
+              className="hidden md:flex px-4 py-2 border border-gray-300 rounded-lg items-center gap-2"
             >
               <Columns3 className="w-4 h-4" />
               <span>{t('inbox.show_hide_columns')}</span>
@@ -266,26 +266,26 @@ export const Inbox = (): JSX.Element => {
             {/* Download Button */}
             <Button
               variant="outline"
-              className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
+              className="px-3 md:px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
-              <span>{t('inbox.download')}</span>
+              <span className="hidden md:inline">{t('inbox.download')}</span>
             </Button>
             {/* Filter Button */}
             <Button
               variant="outline"
-              className="px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
+              className="px-3 md:px-4 py-2 border border-gray-300 rounded-lg flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              <span>{t('inbox.filter')}</span>
+              <span className="hidden md:inline">{t('inbox.filter')}</span>
             </Button>
             {/* New Entry Button */}
             <Button
               onClick={() => navigate('/inbox/new')}
-              className="bg-[#093738] hover:bg-[#0b4a4c] text-white px-4 py-2 rounded-lg flex items-center gap-2"
+              className="bg-[#093738] hover:bg-[#0b4a4c] text-white px-3 md:px-4 py-2 rounded-lg flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
-              <span>{t('inbox.new_entry')}</span>
+              <span className="hidden md:inline">{t('inbox.new_entry')}</span>
             </Button>
           </div>
         </div>
@@ -293,7 +293,7 @@ export const Inbox = (): JSX.Element => {
         {/* Tabs and Table Container */}
         <div className="bg-white rounded-xl border border-[#e2e2e2] overflow-hidden">
           {/* Tabs */}
-          <div className="flex border-b border-gray-200 bg-[#0C47490F]">
+          <div className="flex overflow-x-auto border-b border-gray-200 bg-[#0C47490F] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -301,17 +301,17 @@ export const Inbox = (): JSX.Element => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium transition-all border-b-2 ${
+                  className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-all border-b-2 ${
                     isActive
                       ? 'border-[#093738] text-[#093738] bg-[#093738]/5'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#093738]' : 'text-gray-400'}`} />
-                  <span>{tab.label}</span>
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#093738]' : 'text-gray-400'} hidden sm:block`} />
+                  <span className="whitespace-nowrap">{tab.label}</span>
                   {tab.count !== undefined && (
                     <span
-                      className={`inline-flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full text-xs font-semibold ${
+                      className={`inline-flex items-center justify-center min-w-[20px] sm:min-w-[24px] h-5 sm:h-6 px-1.5 sm:px-2 rounded-full text-xs font-semibold ${
                         isActive ? 'bg-[#093738] text-white' : 'bg-gray-100 text-gray-600'
                       }`}
                     >
@@ -331,19 +331,19 @@ export const Inbox = (): JSX.Element => {
                   <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
                     {t('inbox.request_owner')}
                   </th>
-                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                  <th className={`hidden md:table-cell px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
                     {t('inbox.request_type')}
                   </th>
                   <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
                     {t('inbox.request_name')}
                   </th>
-                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                  <th className={`hidden lg:table-cell px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
                     {t('inbox.request_date')}
                   </th>
-                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                  <th className={`hidden xl:table-cell px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
                     {t('inbox.branch')}
                   </th>
-                  <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
+                  <th className={`hidden xl:table-cell px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
                     {t('inbox.department')}
                   </th>
                   <th className={`px-4 py-4 ${dir === 'rtl' ? 'text-right' : 'text-left'} text-sm font-semibold text-[#0e0d24]`}>
@@ -383,7 +383,7 @@ export const Inbox = (): JSX.Element => {
                       </td>
 
                       {/* Request Type with Link */}
-                      <td className="px-4 py-4">
+                      <td className="hidden md:table-cell px-4 py-4">
                         <div className="flex items-center gap-2">
                           <button className="text-[#093738] hover:text-[#0b5556] text-sm font-medium flex items-center gap-1 hover:underline">
                             <RefreshCw className="w-4 h-4" />
@@ -396,13 +396,13 @@ export const Inbox = (): JSX.Element => {
                       <td className="px-4 py-4 text-sm text-gray-700">{request.requestName}</td>
 
                       {/* Request Date */}
-                      <td className="px-4 py-4 text-sm text-gray-700">{request.requestDate}</td>
+                      <td className="hidden lg:table-cell px-4 py-4 text-sm text-gray-700">{request.requestDate}</td>
 
                       {/* Branch */}
-                      <td className="px-4 py-4 text-sm text-gray-700">{request.branch}</td>
+                      <td className="hidden xl:table-cell px-4 py-4 text-sm text-gray-700">{request.branch}</td>
 
                       {/* Department */}
-                      <td className="px-4 py-4 text-sm text-gray-700">{request.department}</td>
+                      <td className="hidden xl:table-cell px-4 py-4 text-sm text-gray-700">{request.department}</td>
 
                       {/* Status */}
                       <td className="px-4 py-4">
@@ -423,21 +423,21 @@ export const Inbox = (): JSX.Element => {
           </div>
 
           {/* Pagination / Footer (optional) */}
-          <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
-            <div className="text-sm text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="text-xs sm:text-sm text-gray-500">
               {t('inbox.showing')} {filteredRequests.length} {t('inbox.of')} {getRequestsData().length} {t('inbox.requests')}
             </div>
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="px-3 py-1">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Button variant="outline" size="sm" className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
                 {t('inbox.previous')}
               </Button>
-              <Button variant="outline" size="sm" className="px-3 py-1 bg-[#093738] text-white">
+              <Button variant="outline" size="sm" className="px-2 sm:px-3 py-1 bg-[#093738] text-white text-xs sm:text-sm">
                 1
               </Button>
-              <Button variant="outline" size="sm" className="px-3 py-1">
+              <Button variant="outline" size="sm" className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
                 2
               </Button>
-              <Button variant="outline" size="sm" className="px-3 py-1">
+              <Button variant="outline" size="sm" className="px-2 sm:px-3 py-1 text-xs sm:text-sm">
                 {t('inbox.next')}
               </Button>
             </div>

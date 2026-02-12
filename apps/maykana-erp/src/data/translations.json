@@ -928,6 +928,7 @@
     "reports": {
       "page_title": "التقارير",
       "page_subtitle": "تفاصيل المركز المالي للحساب، والأرصدة، والوظائف",
+      "select_module": "اختر الوحدة",
       "general_ledger": {
         "title": "تقرير الأستاذ العام",
         "subtitle": "تفاصيل الحركات المالية لكل حساب مع الأرصدة الافتتاحية والختامية"
@@ -1009,6 +1010,7 @@
     "settings": {
       "page_title": "الإعدادات",
       "page_subtitle": "إدارة إعدادات النظام والوحدات",
+      "select_module": "اختر الوحدة",
       "accounting": {
         "company": "الشركة",
         "company_desc": "كيان تُسجَّل به البيانات والمعاملات المالي",
@@ -2491,6 +2493,7 @@
     "reports": {
       "page_title": "Reports",
       "page_subtitle": "Financial position details, balances, and operations",
+      "select_module": "Select Module",
       "general_ledger": {
         "title": "General Ledger Report",
         "subtitle": "Detailed financial transactions for each account with opening and closing balances"
@@ -2570,6 +2573,7 @@
     "settings": {
       "page_title": "Settings",
       "page_subtitle": "Manage system and module settings",
+      "select_module": "Select Module",
       "accounting": {
         "company": "Company",
         "company_desc": "Entity in which financial data and transactions are recorded",

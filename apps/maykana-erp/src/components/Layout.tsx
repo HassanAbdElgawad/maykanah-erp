@@ -27,21 +27,42 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
     return location.pathname === itemPath || location.pathname.startsWith(itemPath + '/');
   };
 
+  // Handle navigation and close sidebar on mobile
+  const handleNavigation = (path: string | undefined) => {
+    if (path) {
+      navigate(path);
+      // Close sidebar on mobile
+      if (window.innerWidth < 768) {
+        setIsSidebarOpen(false);
+      }
+    }
+  };
+
   return (
     <div className="relative min-h-screen w-full bg-[#f7f7f9]" dir={dir}>
       {/* Customization Button */}
       <CustomizationButton />
 
+      {/* Mobile Backdrop - only when sidebar is open */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-[25] md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Header */}
       <div
         className={`fixed top-2 z-20 transition-all duration-300 ${
+          dir === 'rtl'
+            ? 'right-[102px] left-4 md:right-[102px]'
+            : 'left-[102px] right-4 md:left-[102px]'
+        } ${
           isSidebarOpen
             ? dir === 'rtl'
-              ? 'right-[337px] left-4'
-              : 'left-[337px] right-4'
-            : dir === 'rtl'
-              ? 'right-[102px] left-4'
-              : 'left-[102px] right-4'
+              ? 'md:!right-[337px]'
+              : 'md:!left-[337px]'
+            : ''
         }`}
       >
         <Header />
@@ -49,14 +70,16 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
 
       {/* Main Content */}
       <main
-        className={`pt-[85px] pb-8 transition-all duration-300 ${
+        className={`pt-[85px] pb-8 px-4 transition-all duration-300 ${
+          dir === 'rtl'
+            ? 'mr-[102px] md:mr-[102px]'
+            : 'ml-[102px] md:ml-[102px]'
+        } ${
           isSidebarOpen
             ? dir === 'rtl'
-              ? 'mr-[337px] pl-4'
-              : 'ml-[337px] pr-4'
-            : dir === 'rtl'
-              ? 'mr-[102px] pl-4'
-              : 'ml-[102px] pr-4'
+              ? 'md:!mr-[337px]'
+              : 'md:!ml-[337px]'
+            : ''
         }`}
       >
         {children}
@@ -128,7 +151,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                 <Button
                   key={index}
                   variant="ghost"
-                  onClick={() => item.path && navigate(item.path)}
+                  onClick={() => handleNavigation(item.path)}
                   className={`w-full h-10 ${
                     isSidebarOpen ? 'justify-between' : 'justify-center'
                   } px-2 rounded-lg flex-row ${
@@ -219,7 +242,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
                 <Button
                   key={index}
                   variant="ghost"
-                  onClick={() => item.path && navigate(item.path)}
+                  onClick={() => handleNavigation(item.path)}
                   className={`w-full h-10 ${
                     isSidebarOpen ? 'justify-between' : 'justify-center'
                   } px-2 rounded-lg flex-row ${

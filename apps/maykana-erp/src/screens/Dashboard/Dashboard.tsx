@@ -36,49 +36,49 @@ export const Dashboard = (): JSX.Element => {
     <Layout>
       <div className="space-y-6">
         {/* Header */}
-        <div className={`flex items-center justify-between `}>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#093738] to-[#0d5556] flex items-center justify-center">
-              <LayoutDashboard className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-[#093738] to-[#0d5556] flex items-center justify-center">
+              <LayoutDashboard className="w-5 h-5 md:w-6 md:h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-[#0b4041] font-['IBM_Plex_Sans_Arabic']">
+              <h1 className="text-2xl md:text-3xl font-bold text-[#0b4041] font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.title')}
               </h1>
-              <p className="text-gray-600 mt-1 font-['IBM_Plex_Sans_Arabic']">
+              <p className="text-sm md:text-base text-gray-600 mt-1 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.subtitle')}
               </p>
             </div>
           </div>
-          <div className="text-sm text-gray-500 font-['IBM_Plex_Sans_Arabic']">
+          <div className="text-xs md:text-sm text-gray-500 font-['IBM_Plex_Sans_Arabic']">
             {t('dashboard.lastUpdate')}
           </div>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {statsCards.map((stat, index) => (
             <Card
               key={index}
               className="bg-white border-gray-200 hover:shadow-lg transition-shadow"
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600 font-['IBM_Plex_Sans_Arabic']">
+                    <p className="text-xs md:text-sm text-gray-600 font-['IBM_Plex_Sans_Arabic']">
                       {stat.title}
                     </p>
-                    <h3 className="text-2xl font-bold text-gray-900 mt-2 font-['IBM_Plex_Sans_Arabic']">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mt-1 md:mt-2 font-['IBM_Plex_Sans_Arabic']">
                       {stat.value}
                     </h3>
-                    <div className="flex items-center gap-1 mt-2">
+                    <div className="flex items-center gap-1 mt-1 md:mt-2">
                       {stat.trend === 'up' ? (
-                        <TrendingUp className="w-4 h-4 text-green-600" />
+                        <TrendingUp className="w-3 h-3 md:w-4 md:h-4 text-green-600" />
                       ) : (
-                        <TrendingDown className="w-4 h-4 text-red-600" />
+                        <TrendingDown className="w-3 h-3 md:w-4 md:h-4 text-red-600" />
                       )}
                       <span
-                        className={`text-sm font-medium font-['IBM_Plex_Sans_Arabic'] ${
+                        className={`text-xs md:text-sm font-medium font-['IBM_Plex_Sans_Arabic'] ${
                           stat.trend === 'up' ? 'text-green-600' : 'text-red-600'
                         }`}
                       >
@@ -87,9 +87,9 @@ export const Dashboard = (): JSX.Element => {
                     </div>
                   </div>
                   <div
-                    className={`w-12 h-12 rounded-lg ${stat.color} flex items-center justify-center`}
+                    className={`w-10 h-10 md:w-12 md:h-12 rounded-lg ${stat.color} flex items-center justify-center`}
                   >
-                    <stat.icon className="w-6 h-6" />
+                    <stat.icon className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
                 </div>
               </CardContent>
@@ -98,10 +98,10 @@ export const Dashboard = (): JSX.Element => {
         </div>
 
         {/* Charts Row 1 */}
-        <div className="flex flex-wrap gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Sales Bar Chart */}
-          <Card className="bg-white flex-[2] min-w-[350px] border-gray-200">
-            <CardContent className="p-6">
+          <Card className="bg-white lg:col-span-2 border-gray-200">
+            <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 font-['IBM_Plex_Sans_Arabic']">
                   {t('dashboard.monthlySales')}
@@ -132,8 +132,8 @@ export const Dashboard = (): JSX.Element => {
           </Card>
 
           {/* Purchase Status Pie Chart */}
-          <Card className="bg-white flex-1 min-w-[300px] border-gray-200">
-            <CardContent className="p-6">
+          <Card className="bg-white lg:col-span-1 border-gray-200">
+            <CardContent className="p-4 md:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.purchaseStatus')}
               </h3>
@@ -212,10 +212,10 @@ export const Dashboard = (): JSX.Element => {
         </div>
 
         {/* Charts Row 2 */}
-        <div className="flex flex-wrap gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Top Products Table */}
-          <Card className="bg-white flex-[2] min-w-[350px] border-gray-200">
-            <CardContent className="p-6">
+          <Card className="bg-white lg:col-span-2 border-gray-200">
+            <CardContent className="p-4 md:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.topProducts')}
               </h3>
@@ -240,8 +240,8 @@ export const Dashboard = (): JSX.Element => {
           </Card>
 
           {/* Recent Activities */}
-          <Card className="bg-white flex-1 min-w-[300px] border-gray-200">
-            <CardContent className="p-6">
+          <Card className="bg-white lg:col-span-1 border-gray-200">
+            <CardContent className="p-4 md:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.recentActivities')}
               </h3>
@@ -288,10 +288,10 @@ export const Dashboard = (): JSX.Element => {
         </div>
 
         {/* Charts Row 3 */}
-        <div className={`flex flex-wrap gap-6 `}>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Department Expenses */}
-          <Card className="bg-white flex-[2] min-w-[350px] border-gray-200">
-            <CardContent className="p-6">
+          <Card className="bg-white lg:col-span-2 border-gray-200">
+            <CardContent className="p-4 md:p-6">
               <h3
                 className={`text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic'] `}
               >
@@ -333,8 +333,8 @@ export const Dashboard = (): JSX.Element => {
           </Card>
 
           {/* Quick Stats */}
-          <Card className="bg-white flex-1 min-w-[300px] border-gray-200">
-            <CardContent className="p-6">
+          <Card className="bg-white lg:col-span-1 border-gray-200">
+            <CardContent className="p-4 md:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 font-['IBM_Plex_Sans_Arabic']">
                 {t('dashboard.quickStats')}
               </h3>
