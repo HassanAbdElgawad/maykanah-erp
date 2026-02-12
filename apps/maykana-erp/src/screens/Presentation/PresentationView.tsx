@@ -330,11 +330,11 @@ const Header = ({
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.2 }}
-      className="absolute top-0 left-0 right-0 z-50 p-6 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm pointer-events-none"
+      className="absolute top-0 left-0 right-0 z-50 p-3 md:p-6 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm pointer-events-none"
     >
       <div className="flex justify-between items-center max-w-8xl mx-0">
-        {/* Left: Logo & Title */}
-        <div className="flex items-center justify-center gap-4 min-w-[15%]">
+        {/* Left: Logo & Title - Hidden on mobile */}
+        <div className="hidden md:flex items-center justify-center gap-4 min-w-[15%]">
           <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3">
             <img src="/images/logo/LamdaX-logo.png" alt="LamdaX" className="h-8 w-auto" />
             <div className="flex flex-col">
@@ -350,12 +350,12 @@ const Header = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowSlideMenu(!showSlideMenu)}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium transition-all border border-white/20 pointer-events-auto flex items-center gap-2"
+            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3 md:px-4 py-2 rounded-lg text-white font-medium transition-all border border-white/20 pointer-events-auto flex items-center gap-2 text-sm md:text-base"
           >
             <span>{currentSlide + 1} / {totalSlides}</span>
             <motion.svg
               animate={{ rotate: showSlideMenu ? 180 : 0 }}
-              className="w-4 h-4"
+              className="w-3 h-3 md:w-4 md:h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -371,7 +371,7 @@ const Header = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className="absolute top-full mt-2 bg-gray-900/95 backdrop-blur-md rounded-lg border border-white/20 shadow-2xl pointer-events-auto max-h-[60vh] overflow-y-auto custom-scrollbar"
-              style={{ width: '280px' }}
+              style={{ width: '240px' }}
             >
               <div className="p-2">
                 {Array.from({ length: totalSlides }, (_, i) => (
@@ -382,15 +382,15 @@ const Header = ({
                       onSlideChange(i);
                       setShowSlideMenu(false);
                     }}
-                    className={`w-full text-left px-4 py-2.5 rounded-lg transition-all mb-1 ${
+                    className={`w-full text-left px-3 md:px-4 py-2 md:py-2.5 rounded-lg transition-all mb-1 ${
                       i === currentSlide
                         ? 'bg-emerald-500/30 text-emerald-400 border border-emerald-500/50'
                         : 'text-white/80 hover:bg-white/10 hover:text-white'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm font-bold">{i + 1}</span>
-                      <span className="text-sm flex-1">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <span className="text-xs md:text-sm font-bold">{i + 1}</span>
+                      <span className="text-xs md:text-sm flex-1">
                         {['Cover', 'Overview', 'Goals', 'TechStack', 'Strategy', 'HR', 'Accounting', 'SupplyChain', 'Assets', 'Workflow', 'Sales', 'Reports', 'UI/UX', 'Roadmap', 'Warehouses', 'Competitions', 'Integration', 'Security', 'Analytics', 'Closing'][i]}
                       </span>
                     </div>
@@ -402,33 +402,33 @@ const Header = ({
         </div>
 
         {/* Right: Controls */}
-        <div className="flex items-center justify-center gap-3 min-w-[15%]">
+        <div className="flex items-center justify-center gap-1.5 md:gap-3 min-w-[15%]">
           {/* Language Toggle */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onLanguageToggle}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-medium transition-all border border-white/20 pointer-events-auto"
+            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-2 md:px-4 py-2 rounded-lg text-white font-medium transition-all border border-white/20 pointer-events-auto text-xs md:text-base"
           >
-            {language === 'ar' ? '🇺🇸 EN' : '🇸🇦 AR'}
+            {language === 'ar' ? 'EN' : 'AR'}
           </motion.button>
 
-          {/* Fullscreen Toggle */}
+          {/* Fullscreen Toggle - Hidden on mobile */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onFullscreenToggle}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20 pointer-events-auto"
+            className="hidden md:block bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20 pointer-events-auto"
           >
             {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
           </motion.button>
 
-          {/* Home Button */}
+          {/* Home Button - Hidden on mobile */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onClose}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20 pointer-events-auto"
+            className="hidden md:block bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-white/20 pointer-events-auto"
           >
             <Home className="w-5 h-5" />
           </motion.button>
@@ -438,9 +438,9 @@ const Header = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onClose}
-            className="bg-red-500/20 hover:bg-red-500/30 backdrop-blur-sm p-2 rounded-lg text-white transition-all border border-red-500/30 pointer-events-auto"
+            className="bg-red-500/20 hover:bg-red-500/30 backdrop-blur-sm p-1.5 md:p-2 rounded-lg text-white transition-all border border-red-500/30 pointer-events-auto"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 md:w-5 md:h-5" />
           </motion.button>
         </div>
       </div>
@@ -469,9 +469,9 @@ const NavigationButton = ({ direction, onClick, disabled, isRTL }: NavigationBut
       transition={{ delay: 0.5 }}
       onClick={onClick}
       disabled={disabled}
-      className={`absolute ${side}-6 top-1/2 -translate-y-1/2 z-40 
+      className={`absolute ${side}-2 md:${side}-6 top-1/2 -translate-y-1/2 z-40 
         bg-white/10 hover:bg-white/20 disabled:hover:bg-white/10 
-        backdrop-blur-sm p-4 rounded-full 
+        backdrop-blur-sm p-2 md:p-4 rounded-full 
         transition-all border border-white/20
         disabled:cursor-not-allowed
         pointer-events-auto
@@ -479,7 +479,7 @@ const NavigationButton = ({ direction, onClick, disabled, isRTL }: NavigationBut
       whileHover={!disabled ? { scale: 1.1 } : {}}
       whileTap={!disabled ? { scale: 0.9 } : {}}
     >
-      <Icon className="w-8 h-8 text-white" />
+      <Icon className="w-5 h-5 md:w-8 md:h-8 text-white" />
     </motion.button>
   );
 };
@@ -497,15 +497,15 @@ const ProgressDots = ({ totalSlides, currentSlide, onDotClick }: ProgressDotsPro
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.5 }}
-      className="absolute bottom-5  z-40 flex justify-center items-center gap-3 w-full pointer-events-none"
+      className="absolute bottom-5 z-40 flex justify-center items-center gap-3 w-full pointer-events-none"
     >
-      <div className="flex gap-2">
+      <div className="flex gap-1.5 md:gap-2">
         {Array.from({ length: totalSlides }).map((_, index) => (
           <motion.button
             key={index}
             onClick={() => onDotClick(index)}
-            className={`h-3 rounded-full transition-all pointer-events-auto ${
-              index === currentSlide ? 'bg-[#2cc28d] w-12' : 'bg-white/40 hover:bg-white/60 w-3'
+            className={`h-2 md:h-3 rounded-full transition-all pointer-events-auto ${
+              index === currentSlide ? 'bg-[#2cc28d] w-8 md:w-12' : 'bg-white/40 hover:bg-white/60 w-2 md:w-3'
             }`}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
@@ -540,7 +540,7 @@ const ProgressBar = ({ current, total }: ProgressBarProps) => {
           transition={{ duration: 0.5, ease: 'easeOut' }}
         />
       </div>
-      <div className="absolute bottom-2 right-6 text-white/60 text-sm font-medium">
+      <div className="absolute bottom-1 md:bottom-2 right-3 md:right-6 text-white/60 text-xs md:text-sm font-medium">
         {Math.round(progress)}%
       </div>
     </motion.div>
