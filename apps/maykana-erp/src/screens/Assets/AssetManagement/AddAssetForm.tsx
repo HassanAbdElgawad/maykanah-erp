@@ -73,35 +73,35 @@ export function AddAssetForm() {
   // Depreciation table data
   const [depreciationTableData] = useState([
     {
-      month: '2024-05',
+      month: '2026-05',
       depValue: 'ر.س 272',
       bookValue: 'ر.س 7,896',
       entry: '--------',
       status: 'pending',
     },
     {
-      month: '2024-04',
+      month: '2026-04',
       depValue: 'ر.س 272',
       bookValue: 'ر.س 8,168',
       entry: 'GV-004',
       status: 'completed',
     },
     {
-      month: '2024-03',
+      month: '2026-03',
       depValue: 'ر.س 272',
       bookValue: 'ر.س 8,440',
       entry: 'GV-003',
       status: 'completed',
     },
     {
-      month: '2024-02',
+      month: '2026-02',
       depValue: 'ر.س 272',
       bookValue: 'ر.س 8,712',
       entry: 'GV-002',
       status: 'completed',
     },
     {
-      month: '2024-01',
+      month: '2026-01',
       depValue: 'ر.س 272',
       bookValue: 'ر.س 8,984',
       entry: 'GV-001',

@@ -41,7 +41,7 @@ export function MovementsTab() {
             <tbody className="divide-y divide-gray-200">
               {[
                 {
-                  date: '2024-05-12',
+                  date: '2026-05-12',
                   from: 'قسم IT',
                   to: 'قسم HR',
                   by: 'Admin',

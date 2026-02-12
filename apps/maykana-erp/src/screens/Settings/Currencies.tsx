@@ -26,7 +26,7 @@ export const Currencies = (): JSX.Element => {
       baseCurrency: 'USD',
       targetCurrency: 'SAR',
       exchangeRate: 3.75,
-      date: '2024-07-03',
+      date: '2026-07-03',
       isActive: true,
     },
     {
@@ -34,7 +34,7 @@ export const Currencies = (): JSX.Element => {
       baseCurrency: 'EUR',
       targetCurrency: 'SAR',
       exchangeRate: 4.4,
-      date: '2024-07-10',
+      date: '2026-07-10',
       isActive: true,
     },
     {
@@ -42,7 +42,7 @@ export const Currencies = (): JSX.Element => {
       baseCurrency: 'GBP',
       targetCurrency: 'SAR',
       exchangeRate: 4.7,
-      date: '2024-07-17',
+      date: '2026-07-17',
       isActive: false,
     },
   ]);

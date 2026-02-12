@@ -79,7 +79,7 @@ export function MaintenanceTab({
             <tbody className="divide-y divide-gray-200">
               {[
                 {
-                  date: '2024-03-18',
+                  date: '2026-03-18',
                   type: 'عطل في البطارية',
                   cost: 450,
                   status: 'مكتمل',

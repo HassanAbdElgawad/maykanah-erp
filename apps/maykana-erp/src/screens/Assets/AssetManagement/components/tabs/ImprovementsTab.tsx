@@ -46,7 +46,7 @@ export function ImprovementsTab({ formatCurrency, onOpenEditAssetValueModal }: I
             <tbody className="divide-y divide-gray-200">
               {[
                 {
-                  date: '2024-03-18',
+                  date: '2026-03-18',
                   type: 'زيادة RAM من 8GB إلى 16GB',
                   value: 700,
                   details: 'تحسين الأداء',

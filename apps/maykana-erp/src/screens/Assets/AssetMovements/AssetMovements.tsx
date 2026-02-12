@@ -26,7 +26,7 @@ export function AssetMovements() {
   const mockData = [
     {
       id: 1,
-      movementNumber: 'MV-2024-045',
+      movementNumber: 'MV-2026-045',
       assetName: 'Laptop Dell 5420',
       fromLocation: 'القسم الرئيسي – IT – مكتب 2',
       toLocation: 'القسم الرئيسي – HR – مكتب 1',
@@ -38,7 +38,7 @@ export function AssetMovements() {
     },
     {
       id: 2,
-      movementNumber: 'MV-2024-046',
+      movementNumber: 'MV-2026-046',
       assetName: 'مكتب خشبي',
       fromLocation: 'القسم الرئيسي – IT – مكتب 2',
       toLocation: 'القسم الرئيسي – HR – مكتب 1',
@@ -50,7 +50,7 @@ export function AssetMovements() {
     },
     {
       id: 3,
-      movementNumber: 'MV-2024-047',
+      movementNumber: 'MV-2026-047',
       assetName: 'كرسي مكتب متحرك',
       fromLocation: 'القسم الرئيسي – HR – مكتب 1',
       toLocation: 'القسم الرئيسي – IT – مكتب 2',
@@ -62,7 +62,7 @@ export function AssetMovements() {
     },
     {
       id: 4,
-      movementNumber: 'MV-2024-048',
+      movementNumber: 'MV-2026-048',
       assetName: 'لوحة مفاتيح + فأرة + سلكية',
       fromLocation: 'القسم الرئيسي – HR – مكتب 1',
       toLocation: 'القسم الرئيسي – IT – مكتب 2',

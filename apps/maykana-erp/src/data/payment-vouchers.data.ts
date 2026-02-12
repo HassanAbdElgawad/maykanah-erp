@@ -22,7 +22,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '1',
     voucherNumber: 'PAY-4592',
-    date: '2024-07-03',
+    date: '2026-07-03',
     beneficiaryName: 'ليلى خالد',
     totalAmount: 1500.00,
     paymentMethodReceive: 'بنكي',
@@ -32,7 +32,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '2',
     voucherNumber: 'PAY-8735',
-    date: '2024-07-10',
+    date: '2026-07-10',
     beneficiaryName: 'عمر عبد الكافي',
     totalAmount: 500.00,
     paymentMethodReceive: 'بنكي',
@@ -42,7 +42,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '3',
     voucherNumber: 'PAY-2387',
-    date: '2024-07-17',
+    date: '2026-07-17',
     beneficiaryName: 'نور الريفي',
     totalAmount: 0.00,
     paymentMethodReceive: 'نقداً',
@@ -52,7 +52,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '4',
     voucherNumber: 'PAY-9164',
-    date: '2024-07-24',
+    date: '2026-07-24',
     beneficiaryName: 'محمود ديوبش',
     totalAmount: 2000.00,
     paymentMethodReceive: 'شيك',
@@ -62,7 +62,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '5',
     voucherNumber: 'PAY-5829',
-    date: '2024-07-31',
+    date: '2026-07-31',
     beneficiaryName: 'فاطمة ناصر',
     totalAmount: 3000.00,
     paymentMethodReceive: 'نقداً',
@@ -72,7 +72,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '6',
     voucherNumber: 'PAY-1276',
-    date: '2024-08-07',
+    date: '2026-08-07',
     beneficiaryName: 'أحمد شوق',
     totalAmount: 0.00,
     paymentMethodReceive: 'نقداً',
@@ -82,7 +82,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '7',
     voucherNumber: 'PAY-7931',
-    date: '2024-08-14',
+    date: '2026-08-14',
     beneficiaryName: 'سامي رشيد',
     totalAmount: 250.00,
     paymentMethodReceive: 'بنكي',
@@ -92,7 +92,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   {
     id: '8',
     voucherNumber: 'PAY-3418',
-    date: '2024-08-21',
+    date: '2026-08-21',
     beneficiaryName: 'يوسف شاهين',
     totalAmount: 1200.00,
     paymentMethodReceive: 'بنكي',

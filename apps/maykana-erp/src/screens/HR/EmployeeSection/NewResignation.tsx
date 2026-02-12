@@ -12,7 +12,7 @@ export const NewResignation: React.FC = () => {
 
   const [formData, setFormData] = useState({
     employeeName: 'أحمد محمد العلي',
-    employeeNumber: 'EMP-2024-001',
+    employeeNumber: 'EMP-2026-001',
     department: '',
     resignationType: '',
     lastWorkingDay: '',

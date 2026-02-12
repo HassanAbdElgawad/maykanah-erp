@@ -152,7 +152,7 @@ export const BudgetEditForm = (): JSX.Element => {
                 >
                   <option value="2026">سنة 2026</option>
                   <option value="2025">سنة 2025</option>
-                  <option value="2024">سنة 2024</option>
+                  <option value="2026">سنة 2026</option>
                 </select>
                 <ChevronDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>

@@ -24,7 +24,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '1',
     voucherNumber: 'RCV-4592',
-    date: '2024-07-03',
+    date: '2026-07-03',
     client: 'ليلى خالد',
     totalAmount: 1500.00,
     paymentMethod: 'بنكي',
@@ -34,7 +34,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '2',
     voucherNumber: 'RCV-8735',
-    date: '2024-07-10',
+    date: '2026-07-10',
     client: 'عمر عبد الكافي',
     totalAmount: 500.00,
     paymentMethod: 'بنكي',
@@ -44,7 +44,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '3',
     voucherNumber: 'RCV-2387',
-    date: '2024-07-17',
+    date: '2026-07-17',
     client: 'نور الريفي',
     totalAmount: 0.00,
     paymentMethod: 'نقداً',
@@ -54,7 +54,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '4',
     voucherNumber: 'RCV-9164',
-    date: '2024-07-24',
+    date: '2026-07-24',
     client: 'محمود ديوبش',
     totalAmount: 2000.00,
     paymentMethod: 'شيك',
@@ -64,7 +64,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '5',
     voucherNumber: 'RCV-5829',
-    date: '2024-07-31',
+    date: '2026-07-31',
     client: 'فاطمة ناصر',
     totalAmount: 3000.00,
     paymentMethod: 'نقداً',
@@ -74,7 +74,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '6',
     voucherNumber: 'RCV-1276',
-    date: '2024-08-07',
+    date: '2026-08-07',
     client: 'أحمد شوق',
     totalAmount: 0.00,
     paymentMethod: 'نقداً',
@@ -84,7 +84,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '7',
     voucherNumber: 'RCV-7931',
-    date: '2024-08-14',
+    date: '2026-08-14',
     client: 'سامي رشيد',
     totalAmount: 250.00,
     paymentMethod: 'بنكي',
@@ -94,7 +94,7 @@ export const getReceiptVouchersSampleData = (): ReceiptVoucher[] => [
   {
     id: '8',
     voucherNumber: 'RCV-3418',
-    date: '2024-08-21',
+    date: '2026-08-21',
     client: 'يوسف شاهين',
     totalAmount: 1200.00,
     paymentMethod: 'بنكي',

@@ -176,8 +176,8 @@ export { AccountingEntries } from './AccountingEntries';
 ```typescript
 // بدلاً من HTML المتكرر
 const entries = [
-  { id: 1, number: 'QD-001', date: '2024-01-01', amount: 5000 },
-  { id: 2, number: 'QD-002', date: '2024-01-02', amount: 3000 },
+  { id: 1, number: 'QD-001', date: '2026-01-01', amount: 5000 },
+  { id: 2, number: 'QD-002', date: '2026-01-02', amount: 3000 },
 ];
 
 return (

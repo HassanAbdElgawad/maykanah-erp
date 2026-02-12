@@ -37,10 +37,10 @@ export function StrategicPlans() {
     },
     {
       id: '2',
-      planNumber: '2024-PL-005',
+      planNumber: '2026-PL-005',
       planName: 'الخطة الاستراتيجية للموارد البشرية',
       model: 'بطاقة الأداء المتوازن',
-      startYear: 2024,
+      startYear: 2026,
       endYear: 2026,
       manager: 'سارة الباجري',
       progress: 78,

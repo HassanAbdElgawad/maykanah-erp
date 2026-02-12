@@ -62,7 +62,7 @@ export function DepreciationTab({
           </div>
           <div>
             <div className="text-sm text-gray-500 mb-2">آخر تاريخ إهلاك</div>
-            <div className="text-base font-medium text-gray-900">2024-05</div>
+            <div className="text-base font-medium text-gray-900">2026-05</div>
           </div>
         </div>
       </div>
@@ -139,35 +139,35 @@ export function DepreciationTab({
               <tbody className="divide-y divide-gray-200">
                 {[
                   {
-                    month: '2024-01',
+                    month: '2026-01',
                     value: 272,
                     bookValue: 9984,
                     entry: 'GV-001',
                     status: 'مكتمل',
                   },
                   {
-                    month: '2024-02',
+                    month: '2026-02',
                     value: 272,
                     bookValue: 8712,
                     entry: 'GV-002',
                     status: 'مكتمل',
                   },
                   {
-                    month: '2024-03',
+                    month: '2026-03',
                     value: 272,
                     bookValue: 8440,
                     entry: 'GV-003',
                     status: 'مكتمل',
                   },
                   {
-                    month: '2024-04',
+                    month: '2026-04',
                     value: 272,
                     bookValue: 8168,
                     entry: 'GV-004',
                     status: 'مكتمل',
                   },
                   {
-                    month: '2024-05',
+                    month: '2026-05',
                     value: 272,
                     bookValue: 7896,
                     entry: '-------',

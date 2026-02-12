@@ -47,7 +47,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'أحمد محمد العلي',
       position: 'مدير مشاريع',
       department: 'قسم التطوير',
-      date: '2024-01-15',
+      date: '2026-01-15',
       status: 'pending',
     },
     {
@@ -55,7 +55,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'فاطمة خالد السعيد',
       position: 'محاسب',
       department: 'قسم المالية',
-      date: '2024-01-16',
+      date: '2026-01-16',
       status: 'approved',
     },
     {
@@ -63,7 +63,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'محمد عبدالله الشمري',
       position: 'مطور برمجيات',
       department: 'قسم التقنية',
-      date: '2024-01-17',
+      date: '2026-01-17',
       status: 'pending',
     },
   ];
@@ -75,7 +75,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'سارة أحمد الحربي',
       position: 'مدير موارد بشرية',
       department: 'الموارد البشرية',
-      date: '2024-01-18',
+      date: '2026-01-18',
       status: 'pending',
     },
     {
@@ -83,7 +83,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'خالد عبدالرحمن القحطاني',
       position: 'محلل مالي',
       department: 'قسم المالية',
-      date: '2024-01-17',
+      date: '2026-01-17',
       status: 'approved',
     },
     {
@@ -91,7 +91,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'نورة محمد الدوسري',
       position: 'مصمم جرافيك',
       department: 'قسم التسويق',
-      date: '2024-01-16',
+      date: '2026-01-16',
       status: 'approved',
     },
     {
@@ -99,7 +99,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'عبدالعزيز سعد المطيري',
       position: 'مهندس شبكات',
       department: 'قسم تقنية المعلومات',
-      date: '2024-01-15',
+      date: '2026-01-15',
       status: 'pending',
     },
   ];
@@ -111,7 +111,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'ريم عبدالله الشمري',
       position: 'مسؤول مشتريات',
       department: 'قسم المشتريات',
-      date: '2024-02-01',
+      date: '2026-02-01',
       status: 'pending',
     },
     {
@@ -119,7 +119,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'طلال فهد العتيبي',
       position: 'محاسب رئيسي',
       department: 'قسم المحاسبة',
-      date: '2024-02-05',
+      date: '2026-02-05',
       status: 'approved',
     },
     {
@@ -127,7 +127,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'منى سليمان الزهراني',
       position: 'مدير مبيعات',
       department: 'قسم المبيعات',
-      date: '2024-02-10',
+      date: '2026-02-10',
       status: 'pending',
     },
     {
@@ -135,7 +135,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'فيصل ماجد الغامدي',
       position: 'مدير مشروع',
       department: 'قسم المشاريع',
-      date: '2024-02-15',
+      date: '2026-02-15',
       status: 'rejected',
     },
     {
@@ -143,7 +143,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'هند عمر البقمي',
       position: 'مسؤول علاقات عامة',
       department: 'قسم العلاقات العامة',
-      date: '2024-02-20',
+      date: '2026-02-20',
       status: 'approved',
     },
   ];
@@ -155,7 +155,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'بدر أحمد الشهري',
       position: 'مطور واجهات',
       department: 'قسم التطوير',
-      date: '2024-01-20',
+      date: '2026-01-20',
       status: 'pending',
     },
     {
@@ -163,7 +163,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'أمل ناصر الحارثي',
       position: 'محلل بيانات',
       department: 'قسم التحليل',
-      date: '2024-01-18',
+      date: '2026-01-18',
       status: 'approved',
     },
     {
@@ -171,7 +171,7 @@ export const EmployeeCenter: React.FC = () => {
       name: 'يوسف راشد العمري',
       position: 'مدير عمليات',
       department: 'قسم العمليات',
-      date: '2024-01-15',
+      date: '2026-01-15',
       status: 'approved',
     },
   ];

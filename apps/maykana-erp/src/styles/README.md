@@ -353,5 +353,5 @@ import { buttonClasses } from '@/styles';
 ---
 
 **تم الإنشاء بواسطة**: GitHub Copilot
-**التاريخ**: 2024
+**التاريخ**: 2026
 **النسخة**: 1.0.0

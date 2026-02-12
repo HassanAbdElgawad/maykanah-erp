@@ -119,7 +119,7 @@ site map/
 ```json
 {
   "entries": [
-    { "id": 1, "date": "2024-01-01", "amount": 5000 }
+    { "id": 1, "date": "2026-01-01", "amount": 5000 }
   ]
 }
 ```

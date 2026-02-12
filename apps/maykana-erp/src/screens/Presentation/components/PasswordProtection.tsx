@@ -209,7 +209,7 @@ export const PasswordProtection = ({ onAuthenticated }: PasswordProtectionProps)
           transition={{ delay: 1 }}
           className="mt-6 text-center text-white/30 text-sm"
         >
-          <p>LamdaX © 2024 | رؤية 2030</p>
+          <p>LamdaX © 2026 | رؤية 2030</p>
         </motion.div>
       </motion.div>
     </div>
