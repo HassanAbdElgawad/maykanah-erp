@@ -1,12 +1,13 @@
 {
   "buildCommand": "cd ../.. && pnpm turbo run build --filter=maykana-erp-app",
-  "outputDirectory": "dist",
+  "outputDirectory": "apps/maykana-erp/dist",
   "installCommand": "cd ../.. && pnpm install",
   "framework": null,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/[^.]+",
+      "dest": "/",
+      "status": 200
     }
   ]
 }
