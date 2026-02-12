@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Paperclip } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { Label } from '../../../components/ui/label';
-import { Input } from '../../../components/ui/input';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { buttonClasses } from '../../../styles';
+import { Layout } from '@/components/Layout';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { buttonClasses } from '@/styles';
 
 export function AddEditCompetitionExtension() {
   const navigate = useNavigate();

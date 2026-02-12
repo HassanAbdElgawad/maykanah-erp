@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { X, ChevronDown, ChevronLeft } from 'lucide-react';
 
 interface Department {

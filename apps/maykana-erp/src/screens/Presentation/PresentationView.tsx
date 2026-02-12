@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Maximize, Minimize, Home, X } from 'lucide-react';
-import { useLanguage } from '../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { CoverSlide } from './components/slides/CoverSlide';
 import { PasswordProtection } from './components/PasswordProtection';
 import { OverviewSlide } from './components/slides/OverviewSlide';

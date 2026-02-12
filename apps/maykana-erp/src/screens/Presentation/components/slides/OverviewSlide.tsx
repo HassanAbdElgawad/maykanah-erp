@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { getTranslation, overviewSlide as overviewContent } from '../../translations';
 import { 
   Target, 

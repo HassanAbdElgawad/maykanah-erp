@@ -1,52 +1,79 @@
-// Central export for all data files
-export * from './accounting.data';
-export * from './accounting-cards.data';
-export * from './accounting-entries.data';
-export * from './auth.data';
-export * from './cash-custody.data';
-export * from './competitions-cards.data';
-export * from './customers.data';
-export * from './dashboard.data';
-export * from './entries.data';
-export * from './financial-position.data';
-export * from './general-ledger.data';
-export * from './income-statement.data';
-export * from './inbox.data';
-export * from './inventory-count.data';
-export * from './inventory-materials.data';
-export * from './maintenance.data';
-export * from './my-requests.data';
-export * from './payment-vouchers.data';
-export * from './price-quotes.data';
-export * from './purchases-analysis.data';
-export * from './purchases-prices-by-item.data';
-export * from './purchases-cards.data';
-export * from './receipt-vouchers.data';
-export * from './reports-cards.data';
-export * from './sales-cards.data';
-export * from './sales-invoices.data';
-export * from './delivery-notes.data';
-export * from './price-lists.data';
-export * from './sales-representatives.data';
-export * from './sales-reports.data';
-export * from './settings.data';
-export * from './settings-cards.data';
-export * from './strategy-cards.data';
-export * from './supplier-quotes-comparison.data';
-export * from './purchase-orders-analysis.data';
-export * from './purchase-prices-by-category.data';
-export * from './items-required-order-receipt.data';
-export * from './suppliers.data';
-export * from './support.data';
-export * from './tasks.data';
-export * from './tax-templates.data';
-export * from './terms-conditions-templates.data';
-export * from './trial-balance.data';
-export * from './trial-balance-movement.data';
-export * from './ui.data';
-export * from './vendor-qualification.data';
-export * from './verification-templates.data';
-export * from './warehouses-cards.data';
-export * from './workflow-cards.data';
-export * from './workflows.data';
-export * from './work-orders.data';
+// Central export for all data files - Organized by module
+
+// Cards - Navigation data
+export * from './cards/accounting-cards.data';
+export * from './cards/competitions-cards.data';
+export * from './cards/purchases-cards.data';
+export * from './cards/reports-cards.data';
+export * from './cards/sales-cards.data';
+export * from './cards/settings-cards.data';
+export * from './cards/strategy-cards.data';
+export * from './cards/warehouses-cards.data';
+export * from './cards/workflow-cards.data';
+
+// Accounting module
+export * from './accounting/accounting.data';
+export * from './accounting/accounting-entries.data';
+export * from './accounting/cash-custody.data';
+export * from './accounting/payment-vouchers.data';
+export * from './accounting/receipt-vouchers.data';
+export * from './accounting/entries.data';
+
+// Purchases module
+export * from './purchases/suppliers.data';
+export * from './purchases/price-quotes.data';
+
+// Sales module
+export * from './sales/customers.data';
+export * from './sales/sales-invoices.data';
+export * from './sales/delivery-notes.data';
+export * from './sales/price-lists.data';
+export * from './sales/sales-representatives.data';
+
+// Warehouses module
+export * from './warehouses/inventory-count.data';
+export * from './warehouses/inventory-materials.data';
+
+// Assets module
+export * from './assets/assets.data';
+export * from './assets/maintenance.data';
+
+// Competitions module
+export * from './competitions/vendor-qualification.data';
+export * from './competitions/work-orders.data';
+
+// HR module
+export * from './hr/my-requests.data';
+
+// Settings module
+export * from './settings/settings.data';
+
+// Reports
+export * from './reports/accounting/financial-position.data';
+export * from './reports/accounting/general-ledger.data';
+export * from './reports/accounting/income-statement.data';
+export * from './reports/accounting/trial-balance.data';
+export * from './reports/accounting/trial-balance-movement.data';
+export * from './reports/purchases/purchase-orders-analysis.data';
+export * from './reports/purchases/purchase-prices-by-category.data';
+export * from './reports/purchases/purchases-analysis.data';
+export * from './reports/purchases/purchases-prices-by-item.data';
+export * from './reports/purchases/supplier-quotes-comparison.data';
+export * from './reports/purchases/items-required-order-receipt.data';
+export * from './reports/sales/sales-reports.data';
+
+// Common data
+export * from './common/auth.data';
+export * from './common/dashboard.data';
+export * from './common/inbox.data';
+export * from './common/tasks.data';
+export * from './common/support.data';
+export * from './common/ui.data';
+
+// Templates
+export * from './templates/tax-templates.data';
+export * from './templates/terms-conditions-templates.data';
+export * from './templates/verification-templates.data';
+
+// Workflows
+export * from './workflows/workflows.data';

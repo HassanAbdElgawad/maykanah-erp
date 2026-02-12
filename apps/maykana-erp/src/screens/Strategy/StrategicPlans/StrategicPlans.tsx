@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Download, Filter, ChevronDown, MoreVertical, Plus } from 'lucide-react';
 
 interface Plan {

@@ -1,4 +1,4 @@
-import { TogglerWithLabel } from '../../../../components/ui/TogglerWithLabel';
+import { TogglerWithLabel } from '@/components/ui/TogglerWithLabel';
 import { AssetInfoCardProps } from './types';
 import { AssetImageSlider } from './AssetImageSlider';
 

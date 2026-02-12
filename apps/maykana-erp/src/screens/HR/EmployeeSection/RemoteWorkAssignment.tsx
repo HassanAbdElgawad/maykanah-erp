@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { AdvancedTable } from '../../../components/ui/Table';
-import { SideDrawer } from '../../../components/ui/SideDrawer';
-import { buttonClasses } from '../../../styles';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { AdvancedTable } from '@/components/ui/Table';
+import { SideDrawer } from '@/components/ui/SideDrawer';
+import { buttonClasses } from '@/styles';
 import { Filter, Download, ChevronRight } from 'lucide-react';
 
 export const RemoteWorkAssignment: React.FC = () => {

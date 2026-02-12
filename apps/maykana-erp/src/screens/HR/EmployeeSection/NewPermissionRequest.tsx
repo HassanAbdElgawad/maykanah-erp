@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowRight, ArrowLeft, Paperclip, ChevronUp } from 'lucide-react';
-import { buttonClasses } from '../../../styles';
+import { buttonClasses } from '@/styles';
 
 export const NewPermissionRequest: React.FC = () => {
   const navigate = useNavigate();

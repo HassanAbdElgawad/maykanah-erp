@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
 import { Download, Filter, ChevronDown, MoreVertical, Plus, Eye, Edit2, Trash2 } from 'lucide-react';
 
 interface Project {

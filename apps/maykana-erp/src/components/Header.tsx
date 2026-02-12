@@ -4,12 +4,12 @@ import { BellIcon, ChevronDownIcon, SearchIcon, LogOutIcon } from 'lucide-react'
 import { Input } from './ui/input';
 import { Breadcrumbs } from './Breadcrumbs';
 import { ModuleIcon } from './ModuleIcon';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useCustomization } from '../contexts/CustomizationContext';
-import { useAppDispatch } from '../store/hooks';
-import { logout } from '../store/slices/authSlice';
-import { SEARCHABLE_PAGES, MOCK_NOTIFICATIONS } from '../data/ui.data';
-import type { SearchResult } from '../data/ui.data';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useCustomization } from '@/contexts/CustomizationContext';
+import { useAppDispatch } from '@/store/hooks';
+import { logout } from '@/store/slices/authSlice';
+import { SEARCHABLE_PAGES, MOCK_NOTIFICATIONS } from '@/data/common/ui.data';
+import type { SearchResult } from '@/data/common/ui.data';
 
 const searchablePages = SEARCHABLE_PAGES;
 const notifications = MOCK_NOTIFICATIONS;

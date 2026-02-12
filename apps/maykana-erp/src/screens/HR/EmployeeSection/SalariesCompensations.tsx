@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { AdvancedTable } from '../../../components/ui/Table';
-import { buttonClasses } from '../../../styles';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { AdvancedTable } from '@/components/ui/Table';
+import { buttonClasses } from '@/styles';
 import { Filter, Download, ChevronRight, Plus } from 'lucide-react';
 
 interface TabButton {

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Package, ArrowDownToLine, ArrowUpFromLine, RefreshCw, TrendingUp, Layers } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const WarehousesSlideNew = () => {
   const { language } = useLanguage();

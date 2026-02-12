@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Rocket, CheckCircle, Clock, Sparkles, Mail, Phone } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const RoadmapSlideNew = () => {
   const { language } = useLanguage();

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Palette, Smartphone, Globe, Zap, Eye, Languages, Moon, Accessibility } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const UIUXSlideNew = () => {
   const { language } = useLanguage();

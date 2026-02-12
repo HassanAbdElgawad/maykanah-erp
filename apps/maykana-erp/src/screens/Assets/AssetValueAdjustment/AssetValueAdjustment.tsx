@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../../../components/ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
 import { Search, Filter, Download, Settings, ChevronDown } from 'lucide-react';
 import { AssetValueAdjustmentModal } from './AssetValueAdjustmentModal';
 

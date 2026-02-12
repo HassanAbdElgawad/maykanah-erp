@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { AdvancedTable } from '../../../components/ui/Table';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { AdvancedTable } from '@/components/ui/Table';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronRight } from 'lucide-react';
-import { buttonClasses } from '../../../styles';
+import { buttonClasses } from '@/styles';
 
 export const ContractRenewalRequests: React.FC = () => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { Button } from '../../../../../components/ui/button';
+import { Button } from '@/components/ui/button';
 
 interface ImprovementsTabProps {
   formatCurrency: (value: number) => React.ReactNode;

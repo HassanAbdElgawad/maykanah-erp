@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Users, UserPlus, GraduationCap, TrendingUp, Award, LogOut, Clock, CreditCard } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const HRSlideNew = () => {
   const { language } = useLanguage();

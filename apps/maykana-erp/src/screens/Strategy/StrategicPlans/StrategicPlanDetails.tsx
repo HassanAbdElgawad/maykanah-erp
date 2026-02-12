@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronRight, Trash2, Building, MessageSquare, Lightbulb } from 'lucide-react';
 
 type TabType = 'summary' | 'info' | 'framework' | 'goals' | 'initiatives' | 'kpis' | 'approval';

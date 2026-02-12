@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Goal {
   id: string;

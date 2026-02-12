@@ -6,9 +6,9 @@ import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import { Header } from './Header';
 import { CustomizationButton } from './CustomizationButton';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useCustomization } from '../contexts/CustomizationContext';
-import { useSidebar } from '../contexts/SidebarContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useCustomization } from '@/contexts/CustomizationContext';
+import { useSidebar } from '@/contexts/SidebarContext';
 import { sidebarMenuItems, bottomMenuItems } from '../config/navigation.config';
 
 interface LayoutProps {

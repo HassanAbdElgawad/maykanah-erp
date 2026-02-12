@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
-import { useLanguage } from '../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { MaykanaCard } from '@/components/ui/MaykanaCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Users,
   Calendar,

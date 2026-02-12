@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SlidersHorizontal, ChevronDown, ChevronUp, Pencil, Download, ArrowRight } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { Button } from '../../../components/ui/button';
-import { Label } from '../../../components/ui/label';
-import { AdvancedTable } from '../../../components/ui/Table';
-import { buttonClasses } from '../../../styles';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { AdvancedTable } from '@/components/ui/Table';
+import { buttonClasses } from '@/styles';
 
 interface VendorUser {
   id: string;

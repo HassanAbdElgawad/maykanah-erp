@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronRight, ChevronDown, ChevronUp, Upload, Trash2, Paperclip } from 'lucide-react';
 
 export function NewDocument() {

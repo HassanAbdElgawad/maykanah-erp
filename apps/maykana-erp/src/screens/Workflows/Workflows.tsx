@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
-import { CardContainer } from '../../components/ui/CardContainer';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
-import { useLanguage } from '../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { CardContainer } from '@/components/ui/CardContainer';
+import { MaykanaCard } from '@/components/ui/MaykanaCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Search, Plus, MoreVertical, Edit2, Copy, Workflow } from 'lucide-react';
-import { buttonClasses } from '../../styles';
+import { buttonClasses } from '@/styles';
 
 interface WorkflowCard {
   id: string;

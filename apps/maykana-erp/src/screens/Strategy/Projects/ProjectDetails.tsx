@@ -15,8 +15,8 @@ import {
   Zap,
   Slash,
 } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
 
 const tabs = [
   { id: 'overview', label: 'نظرة عامة', icon: Eye },

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { Label } from '../../../components/ui/label';
-import { Input } from '../../../components/ui/input';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { buttonClasses } from '../../../styles';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { buttonClasses } from '@/styles';
 
 export function BankGuaranteesForm() {
   const navigate = useNavigate();

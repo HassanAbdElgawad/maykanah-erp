@@ -1,8 +1,8 @@
 import { useState, useRef, DragEvent } from 'react';
 import { X, Maximize2, Upload, Paperclip, Trash2, Download } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from './ui/button';
-import { buttonClasses } from '../styles';
+import { buttonClasses } from '@/styles';
 
 interface AttachmentFile {
   id: string;

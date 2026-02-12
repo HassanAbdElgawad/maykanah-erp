@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronRight, Eye, FileText } from 'lucide-react';
-import { AdvancedTable } from '../../../components/ui/Table';
-import { buttonClasses } from '../../../styles';
-import { useMyRequestsData } from '../../../hooks';
+import { AdvancedTable } from '@/components/ui/Table';
+import { buttonClasses } from '@/styles';
+import { useMyRequestsData } from '@/hooks';
 
 export const MyRequests: React.FC = () => {
   const navigate = useNavigate();

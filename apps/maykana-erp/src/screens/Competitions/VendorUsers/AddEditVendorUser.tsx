@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronDown, Paperclip, ArrowRight } from 'lucide-react';
-import { buttonClasses } from '../../../styles';
+import { buttonClasses } from '@/styles';
 
 export const AddEditVendorUser: React.FC = () => {
   const navigate = useNavigate();

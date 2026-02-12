@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FileText, TrendingDown, DollarSign, Package, Settings, ArrowRight, Upload, Trash2, Eye, Paperclip } from 'lucide-react';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
-import { Label } from '../../../components/ui/label';
-import { TogglerWithLabel } from '../../../components/ui/TogglerWithLabel';
-import translations from '../../../data/translations.json';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { TogglerWithLabel } from '@/components/ui/TogglerWithLabel';
+import translations from '@/data/translations.json';
 
 interface StepConfig {
   id: number;

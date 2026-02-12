@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { MaykanaCard } from '@/components/ui/MaykanaCard';
 import { getWarehouseCards } from '../../data';
 
 export const Warehouses = (): JSX.Element => {

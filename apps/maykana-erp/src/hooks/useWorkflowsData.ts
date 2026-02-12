@@ -9,7 +9,7 @@ import {
   FIELD_TYPES,
   FLOW_INITIAL_NODES,
   FLOW_INITIAL_EDGES,
-} from '../data/workflows.data';
+} from '@/data/workflows/workflows.data';
 import type { FieldType, Section } from '../screens/Workflows/components/types';
 
 /**

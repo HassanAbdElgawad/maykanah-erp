@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronRight, Eye, Plus } from 'lucide-react';
-import { AdvancedTable } from '../../../components/ui/Table';
-import { buttonClasses } from '../../../styles';
+import { AdvancedTable } from '@/components/ui/Table';
+import { buttonClasses } from '@/styles';
 
 interface StartWorkRequest {
   id: string;

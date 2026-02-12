@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { TrendingUp, BarChart3, PieChart, Download, Calendar, Target, LineChart, Activity } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const AnalyticsSlideNew = () => {
   const { language } = useLanguage();

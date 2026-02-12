@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { Button } from '../../../../../components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../../../../../components/ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
 
 interface DepreciationTabProps {
   formatCurrency: (value: number) => React.ReactNode;

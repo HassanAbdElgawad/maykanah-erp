@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { workOrdersData, type WorkOrder } from '../data/work-orders.data';
+import { workOrdersData, type WorkOrder } from '@/data/competitions/work-orders.data';
 
 export const useWorkOrdersData = () => {
   const [workOrders, setWorkOrders] = useState<WorkOrder[]>(workOrdersData);

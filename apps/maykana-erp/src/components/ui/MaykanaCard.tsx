@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Card, CardContent } from './card';
 import { cn } from '../../lib/utils';
-import { useSidebar } from '../../contexts/SidebarContext';
-import { useLanguage } from '../../contexts/LanguageContext';
+import { useSidebar } from '@/contexts/SidebarContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { LucideIcon } from 'lucide-react';
 
 interface MaykanaCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {

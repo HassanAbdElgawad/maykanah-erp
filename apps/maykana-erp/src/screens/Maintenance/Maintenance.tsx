@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import { Label } from '../../components/ui/label';
-import { AdvancedTable } from '../../components/ui/Table';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { AdvancedTable } from '@/components/ui/Table';
 import { Search, SlidersHorizontal, ChevronDown, Download, Columns3, X, Eye, Edit2, Trash2 } from 'lucide-react';
-import { buttonClasses } from '../../styles';
-import { useMaintenanceData } from '../../hooks/useMaintenanceData';
-import type { MaintenanceRecord } from '../../data/maintenance.data';
+import { buttonClasses } from '@/styles';
+import { useMaintenanceData } from '@/hooks/useMaintenanceData';
+import type { MaintenanceRecord } from '@/data/assets/maintenance.data';
 
 export const Maintenance = (): JSX.Element => {
   const { t, dir } = useLanguage();

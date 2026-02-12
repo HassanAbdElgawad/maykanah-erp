@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
-import { getSettingCards } from '../../data';
-import { Button } from '../../components/ui/button';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { MaykanaCard } from '@/components/ui/MaykanaCard';
+import { getSettingCards } from '@/data';
+import { Button } from '@/components/ui/button';
 
 export const SettingsPage = (): JSX.Element => {
   const { t, dir } = useLanguage();
@@ -72,8 +72,8 @@ export const SettingsPage = (): JSX.Element => {
   return (
     <Layout>
       <div dir={dir} className="space-y-4">
-        {/* Module Selector */}
-        <div className="bg-white rounded-xl border border-[#e2e2e2] p-4">
+        {/* Module Selector - Visible only on mobile */}
+        <div className="md:hidden bg-white rounded-xl border border-[#e2e2e2] p-4">
           <h3 className="text-sm font-semibold text-gray-700 mb-3 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
             {t('settings.select_module')}
           </h3>

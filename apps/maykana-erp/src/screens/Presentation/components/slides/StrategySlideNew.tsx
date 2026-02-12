@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Target, TrendingUp, Award, Users, BarChart3, Zap } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const StrategySlideNew = () => {
   const { language } = useLanguage();

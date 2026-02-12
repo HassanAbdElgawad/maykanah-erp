@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
+import { Layout } from '@/components/Layout';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
-import { buttonClasses } from '../../styles/components/buttons';
+import { buttonClasses } from '@/styles/components/buttons';
 
 interface UnitOfMeasure {
   id: string;

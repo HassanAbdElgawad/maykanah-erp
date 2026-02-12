@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function LeaveRequestForm() {
   const { dir, t } = useLanguage();

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FileText, TrendingUp, DollarSign, AlertTriangle, ArrowRight, Trash2 } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
 
 interface StepConfig {
   id: number;

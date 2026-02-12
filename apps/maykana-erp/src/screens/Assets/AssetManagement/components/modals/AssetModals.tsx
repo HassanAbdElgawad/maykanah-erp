@@ -1,5 +1,5 @@
-import { Button } from '../../../../../components/ui/button';
-import { TogglerWithLabel } from '../../../../../components/ui/TogglerWithLabel';
+import { Button } from '@/components/ui/button';
+import { TogglerWithLabel } from '@/components/ui/TogglerWithLabel';
 
 interface AssetModalsProps {
   // Reset Depreciation Modal

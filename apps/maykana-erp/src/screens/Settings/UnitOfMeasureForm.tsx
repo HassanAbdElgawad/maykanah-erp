@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
+import { Layout } from '@/components/Layout';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
-import { buttonClasses } from '../../styles/components/buttons';
+import { buttonClasses } from '@/styles/components/buttons';
 
 export const UnitOfMeasureForm = (): JSX.Element => {
   const navigate = useNavigate();

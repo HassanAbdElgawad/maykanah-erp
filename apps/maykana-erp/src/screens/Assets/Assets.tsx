@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { MaykanaCard } from '../../components/ui/MaykanaCard';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { MaykanaCard } from '@/components/ui/MaykanaCard';
 import { 
   Package,
   ArrowRightLeft,

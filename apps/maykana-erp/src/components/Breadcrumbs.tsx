@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useBreadcrumbs } from '@/hooks/useBreadcrumbs';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { sidebarMenuItems } from '../config/navigation.config';
 import { useState, useRef, useEffect } from 'react';
 

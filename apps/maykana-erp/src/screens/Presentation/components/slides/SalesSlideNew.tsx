@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ShoppingBag, Users, FileText, Receipt, Truck, DollarSign, TrendingUp, Target } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const SalesSlideNew = () => {
   const { language } = useLanguage();

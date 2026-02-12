@@ -1,14 +1,14 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Accounting } from './screens/Accounting';
-import { AccountingEntries } from './screens/AccountingEntries';
-import { AccountingEntryForm } from './screens/AccountingEntryForm';
-import { ReceiptVouchers, ReceiptVoucherForm } from './screens/ReceiptVouchers';
-import { PaymentVouchers, PaymentVoucherForm } from './screens/PaymentVouchers';
-import { CashCustody, CashCustodyForm } from './screens/CashCustody';
-import { Purchases } from './screens/Purchases';
-import { Suppliers } from './screens/Suppliers';
-import { PurchaseInvoices, PurchaseInvoiceForm } from './screens/PurchaseInvoices';
-import { PurchaseSettings } from './screens/PurchaseSettings';
+import { Accounting } from './screens/Accounting/Accounting';
+import { AccountingEntries } from './screens/Accounting/AccountingEntries';
+import { AccountingEntryForm } from './screens/Accounting/AccountingEntryForm';
+import { ReceiptVouchers, ReceiptVoucherForm } from './screens/Accounting/ReceiptVouchers';
+import { PaymentVouchers, PaymentVoucherForm } from './screens/Accounting/PaymentVouchers';
+import { CashCustody, CashCustodyForm } from './screens/Accounting/CashCustody';
+import { Purchases } from './screens/Purchases/Purchases';
+import { Suppliers } from './screens/Purchases/Suppliers';
+import { PurchaseInvoices, PurchaseInvoiceForm } from './screens/Purchases/PurchaseInvoices';
+import { PurchaseSettings } from './screens/Purchases/PurchaseSettings';
 import {
   MaterialRequests,
   MaterialRequestForm,
@@ -18,23 +18,23 @@ import {
   MaterialRequestsList,
   MaterialRequestsListForm,
   AddEditMaterialRequest,
-} from './screens/MaterialRequests';
+} from './screens/Purchases/MaterialRequests';
 import {
   PriceQuoteRequests,
   PriceQuoteRequestFormPage,
   PriceQuoteDetailPage,
-} from './screens/PriceQuoteRequests';
-import { SupplierPriceQuotes } from './screens/SupplierPriceQuotes';
-import { Sales } from './screens/Sales';
-import { Customers, AddEditCustomer } from './screens/Customers';
-import { PriceQuotes, AddEditPriceQuote } from './screens/PriceQuotes';
-import { WorkOrders, AddEditWorkOrder } from './screens/WorkOrders';
-import { SalesInvoices, AddEditSalesInvoice } from './screens/SalesInvoices';
-import { DeliveryNotes, AddEditDeliveryNote } from './screens/DeliveryNotes';
-import { PriceLists, AddEditPriceList } from './screens/PriceLists';
-import { SalesRepresentatives } from './screens/SalesRepresentatives';
-import { Competitions } from './screens/Competitions';
-import { VendorQualification, AddEditVendorQualification } from './screens/VendorQualification';
+} from './screens/Purchases/PriceQuoteRequests';
+import { SupplierPriceQuotes } from './screens/Purchases/SupplierPriceQuotes';
+import { Sales } from './screens/Sales/Sales';
+import { Customers, AddEditCustomer } from './screens/Sales/Customers';
+import { PriceQuotes, AddEditPriceQuote } from './screens/Purchases/PriceQuotes';
+import { WorkOrders, AddEditWorkOrder } from './screens/Maintenance/WorkOrders';
+import { SalesInvoices, AddEditSalesInvoice } from './screens/Sales/SalesInvoices';
+import { DeliveryNotes, AddEditDeliveryNote } from './screens/Sales/DeliveryNotes';
+import { PriceLists, AddEditPriceList } from './screens/Sales/PriceLists';
+import { SalesRepresentatives } from './screens/Sales/SalesRepresentatives';
+import { Competitions } from './screens/Competitions/Competitions';
+import { VendorQualification, AddEditVendorQualification } from './screens/Competitions/VendorQualification';
 import { VendorUsers, AddEditVendorUser } from './screens/Competitions/VendorUsers';
 import {
   VendorNotifications,
@@ -79,9 +79,9 @@ import { AssetDetail, AssetManagement } from './screens/Assets/AssetManagement';
 import { AddAssetForm } from './screens/Assets/AssetManagement/AddAssetForm';
 import { AssetValueAdjustment } from './screens/Assets/AssetValueAdjustment';
 import { SaleDisposal } from './screens/Assets/SaleDisposal';
-import { Maintenance } from './screens/Maintenance';
-import { Strategy } from './screens/Strategy';
-import { Tasks, AddTask } from './screens/Tasks';
+import { Maintenance } from './screens/Maintenance/Maintenance';
+import { Strategy } from './screens/Strategy/Strategy';
+import { Tasks, AddTask } from './screens/Common/Tasks';
 import { Meetings, NewMeeting } from './screens/Strategy/Meetings';
 import { Documents, NewDocument } from './screens/Strategy/Documents';
 import { PlanTracking, NewPlanLink, PlanLinkDetails } from './screens/Strategy/PlanTracking';
@@ -91,35 +91,34 @@ import {
   StrategicPlanDetails,
 } from './screens/Strategy/StrategicPlans';
 import { Projects, NewProject, ProjectDetails } from './screens/Strategy/Projects';
-import { WorkflowEngine } from './screens/WorkflowEngine';
 import { Workflows, AddEditWorkflow } from './screens/Workflows';
 import {
   VerificationTemplates,
   AddEditVerificationTemplate,
-} from './screens/VerificationTemplates';
+} from './screens/Templates/VerificationTemplates';
 import { Warehouses } from './screens/Warehouses';
-import { ProductsList, AddEditProduct, ViewProduct } from './screens/ProductsList';
+import { ProductsList, AddEditProduct, ViewProduct } from './screens/Warehouses/ProductsList';
 import {
   InventoryMovementsList,
   AddEditInventoryMovement,
   ViewInventoryMovement,
-} from './screens/InventoryMovements';
+} from './screens/Warehouses/InventoryMovements';
 import {
   WarehouseMovementList,
   SelectMovementType,
   TransferStock,
   DamageStock,
-} from './screens/WarehouseMovement';
-import { InventoryClosingList, AddEditInventoryClosing } from './screens/InventoryClosing';
-import { InventoryMaterials } from './screens/InventoryMaterials';
-import { InventoryCount, AddEditInventoryCount } from './screens/InventoryCount';
-import { InventoryCategories, InventoryCategoryForm } from './screens/InventoryCategories';
-import { OpeningBalances, OpeningBalanceForm } from './screens/OpeningBalances';
-import { WarehousePriceLists, WarehousePriceListForm } from './screens/WarehousePriceLists';
-import { WarehouseBatches, WarehouseBatchForm } from './screens/WarehouseBatches';
-import { WarehouseItemPrice, WarehouseItemPriceForm } from './screens/WarehouseItemPrice';
-import { WarehouseSerialNumber, WarehouseSerialNumberForm } from './screens/WarehouseSerialNumber';
-import { WarehouseGoodsArrivalCost, WarehouseGoodsArrivalCostForm } from './screens/WarehouseGoodsArrivalCost';
+} from './screens/Warehouses/WarehouseMovement';
+import { InventoryClosingList, AddEditInventoryClosing } from './screens/Warehouses/InventoryClosing';
+import { InventoryMaterials } from './screens/Warehouses/InventoryMaterials';
+import { InventoryCount, AddEditInventoryCount } from './screens/Warehouses/InventoryCount';
+import { InventoryCategories, InventoryCategoryForm } from './screens/Warehouses/InventoryCategories';
+import { OpeningBalances, OpeningBalanceForm } from './screens/Accounting/OpeningBalances';
+import { WarehousePriceLists, WarehousePriceListForm } from './screens/Warehouses/WarehousePriceLists';
+import { WarehouseBatches, WarehouseBatchForm } from './screens/Warehouses/WarehouseBatches';
+import { WarehouseItemPrice, WarehouseItemPriceForm } from './screens/Warehouses/WarehouseItemPrice';
+import { WarehouseSerialNumber, WarehouseSerialNumberForm } from './screens/Warehouses/WarehouseSerialNumber';
+import { WarehouseGoodsArrivalCost, WarehouseGoodsArrivalCostForm } from './screens/Warehouses/WarehouseGoodsArrivalCost';
 import { HR } from './screens/HR';
 import { EmployeeCenter, AddEmployee } from './screens/HR/EmployeeCenter';
 import { MyRequests, NewRequest } from './screens/HR/MyRequests';
@@ -137,29 +136,29 @@ import { PerformanceDevelopment, AddEvaluation } from './screens/HR/PerformanceD
 import { CommunicationLibrary, NewAnnouncement } from './screens/HR/CommunicationLibrary';
 import { Recruitment, NewRecruitmentRequest } from './screens/HR/Recruitment';
 import { AlertsRequests, NewAlert } from './screens/HR/AlertsRequests';
-import { Dashboard } from './screens/Dashboard';
-import { Inbox, ChecklistDetails, NewEntry } from './screens/Inbox';
-import { LoginPage } from './screens/LoginPage';
-import { ForgotPasswordPage } from './screens/ForgotPasswordPage';
-import { ReportsPage } from './screens/ReportsPage';
-import { GeneralLedgerReport } from './screens/ReportsPage/GeneralLedgerReport';
-import { FinancialPositionReport } from './screens/ReportsPage/FinancialPositionReport';
-import { TrialBalanceReport } from './screens/ReportsPage/TrialBalanceReport';
-import { IncomeStatementReport } from './screens/ReportsPage/IncomeStatementReport';
-import { TrialBalanceMovementReport } from './screens/ReportsPage/TrialBalanceMovementReport';
-import { InventoryBalanceReport } from './screens/ReportsPage/InventoryBalanceReport';
-import { ItemMovementReport } from './screens/ReportsPage/ItemMovementReport';
-import { InventoryVarianceReport } from './screens/ReportsPage/InventoryVarianceReport';
-import { DamagedReturnedReport } from './screens/ReportsPage/DamagedReturnedReport';
+import { Dashboard } from './screens/Common/Dashboard';
+import { Inbox, ChecklistDetails, NewEntry } from './screens/Common/Inbox';
+import { LoginPage } from './screens/Auth/LoginPage';
+import { ForgotPasswordPage } from './screens/Auth/ForgotPasswordPage';
+import { ReportsPage } from './screens/Reports/ReportsPage';
+import { GeneralLedgerReport } from './screens/Reports/ReportsPage';
+import { FinancialPositionReport } from './screens/Reports/ReportsPage';
+import { TrialBalanceReport } from './screens/Reports/ReportsPage';
+import { IncomeStatementReport } from './screens/Reports/ReportsPage';
+import { TrialBalanceMovementReport } from './screens/Reports/ReportsPage';
+import { InventoryBalanceReport } from './screens/Reports/ReportsPage';
+import { ItemMovementReport } from './screens/Reports/ReportsPage';
+import { InventoryVarianceReport } from './screens/Reports/ReportsPage';
+import { DamagedReturnedReport } from './screens/Reports/ReportsPage';
 import {
   SalesRepresentativeCommissionReport,
   InactiveCustomersReport,
   CustomerAcquisitionReport,
   SalesReport,
   CustomerAgingReport,
-} from './screens/SalesReports';
-import { SettingsPage } from './screens/SettingsPage';
+} from './screens/Reports/Sales/SalesReports';
 import {
+  SettingsPage,
   CompanySettings,
   ChartOfAccounts,
   AccountSettings,
@@ -175,40 +174,40 @@ import {
   BudgetEditForm,
   SalesSettings,
   TermsTemplate,
+  AssetCategories,
+  AssetCategoryForm,
+  AssetCategoryEdit,
+  AssetCategoryDetails,
+  AssetLocations,
+  AssetLocationForm,
+  AssetLocationEdit,
+  MaintenanceTeam,
+  MaintenanceTeamForm,
+  MaintenanceTeamEdit,
+  MaintenanceTeamView,
+  WarehousesGeneralSettings,
+  UnitOfMeasures,
+  UnitOfMeasureForm,
+  UnitOfMeasureEdit,
+  ItemGroups,
+  WarehouseManagement,
+  WarehouseManagementForm,
+  WarehouseManagementEdit,
+  DepartmentManagement,
+  UserManagement,
+  BranchManagement,
 } from './screens/Settings';
-import { AssetCategories } from './screens/Settings/AssetCategories';
-import { AssetCategoryForm } from './screens/Settings/AssetCategoryForm';
-import { AssetCategoryEdit } from './screens/Settings/AssetCategoryEdit';
-import { AssetCategoryDetails } from './screens/Settings/AssetCategoryDetails';
-import { AssetLocations } from './screens/Settings/AssetLocations';
-import { AssetLocationForm } from './screens/Settings/AssetLocationForm';
-import { AssetLocationEdit } from './screens/Settings/AssetLocationEdit';
-import { MaintenanceTeam } from './screens/Settings/MaintenanceTeam';
-import { MaintenanceTeamForm } from './screens/Settings/MaintenanceTeamForm';
-import { MaintenanceTeamEdit } from './screens/Settings/MaintenanceTeamEdit';
-import { MaintenanceTeamView } from './screens/Settings/MaintenanceTeamView';
-import { WarehousesGeneralSettings } from './screens/Settings/WarehousesGeneralSettings';
-import { UnitOfMeasures } from './screens/Settings/UnitOfMeasures';
-import { UnitOfMeasureForm } from './screens/Settings/UnitOfMeasureForm';
-import { UnitOfMeasureEdit } from './screens/Settings/UnitOfMeasureEdit';
-import { ItemGroups } from './screens/Settings/ItemGroups';
-import { WarehouseManagement } from './screens/Settings/WarehouseManagement';
-import { WarehouseManagementForm } from './screens/Settings/WarehouseManagementForm';
-import { WarehouseManagementEdit } from './screens/Settings/WarehouseManagementEdit';
-import { DepartmentManagement } from './screens/Settings/DepartmentManagement';
-import { UserManagement } from './screens/Settings/UserManagement';
-import { BranchManagement } from './screens/Settings/BranchManagement';
-import { TaxTemplates } from './screens/TaxTemplates';
-import { TermsConditionsTemplates } from './screens/TermsConditionsTemplates';
-import { SupplierQuotesComparison } from './screens/SupplierQuotesComparison';
-import { PurchaseOrdersAnalysis } from './screens/PurchaseOrdersAnalysis';
-import { PurchasePricesByCategory } from './screens/PurchasePricesByCategory';
-import { ItemsRequiredOrderReceipt } from './screens/ItemsRequiredOrderReceipt';
-import { PurchasesAnalysis } from './screens/PurchasesAnalysis';
-import { PurchasesPricesByItem } from './screens/PurchasesPricesByItem';
-import { SupportPage } from './screens/SupportPage';
-import { ComingSoon } from './screens/ComingSoon';
-import { ErrorPage } from './screens/ErrorPage';
+import { TaxTemplates } from './screens/Templates/TaxTemplates';
+import { TermsConditionsTemplates } from './screens/Templates/TermsConditionsTemplates';
+import { SupplierQuotesComparison } from './screens/Reports/Purchases/SupplierQuotesComparison';
+import { PurchaseOrdersAnalysis } from './screens/Reports/Purchases/PurchaseOrdersAnalysis';
+import { PurchasePricesByCategory } from './screens/Reports/Purchases/PurchasePricesByCategory';
+import { ItemsRequiredOrderReceipt } from './screens/Reports/Purchases/ItemsRequiredOrderReceipt';
+import { PurchasesAnalysis } from './screens/Reports/Purchases/PurchasesAnalysis';
+import { PurchasesPricesByItem } from './screens/Reports/Purchases/PurchasesPricesByItem';
+import { SupportPage } from './screens/Common/SupportPage';
+import { ComingSoon } from './screens/Common/ComingSoon';
+import { ErrorPage } from './screens/Common/ErrorPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { PresentationView } from './screens/Presentation';
 
@@ -2665,7 +2664,7 @@ const router = createBrowserRouter([
     path: '/workflow-engine',
     element: (
       <ProtectedRoute>
-        <WorkflowEngine />
+        <Workflows />
       </ProtectedRoute>
     ),
   },

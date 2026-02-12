@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link2, Workflow, Zap, CheckCircle2 } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const IntegrationSlideNew = () => {
   const { language } = useLanguage();

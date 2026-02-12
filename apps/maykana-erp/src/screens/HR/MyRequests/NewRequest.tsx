@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, Paperclip, FileEdit, ChevronDown } from 'lucide-react';
-import { buttonClasses } from '../../../styles';
+import { buttonClasses } from '@/styles';
 
 export const NewRequest: React.FC = () => {
   const navigate = useNavigate();

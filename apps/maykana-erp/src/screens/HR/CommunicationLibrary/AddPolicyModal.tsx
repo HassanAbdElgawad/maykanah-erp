@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { Button } from '../../../components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
 import { X, Paperclip } from 'lucide-react';
 
 interface AddPolicyModalProps {

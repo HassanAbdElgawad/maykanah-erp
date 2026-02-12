@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MOCK_SUPPLIERS, type Supplier } from '../data/suppliers.data';
+import { MOCK_SUPPLIERS, type Supplier } from '@/data/purchases/suppliers.data';
 
 /**
  * Custom Hook for managing suppliers data

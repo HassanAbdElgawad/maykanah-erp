@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
-import InitialFilters from '../../components/InitialFilters';
+import { Layout } from '@/components/Layout';
+import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, MoreVertical, Edit2, Ban, Play } from 'lucide-react';
-import { buttonClasses } from '../../styles/components/buttons';
+import { buttonClasses } from '@/styles/components/buttons';
 
 interface UnitOfMeasure {
   id: string;

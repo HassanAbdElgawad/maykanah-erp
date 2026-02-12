@@ -1,5 +1,5 @@
 // useSupportData Hook - Provides support page data
-import { SUPPORT_CONTACT_METHODS, SUPPORT_WORKING_HOURS, SUPPORT_QUICK_LINKS } from '../data/support.data';
+import { SUPPORT_CONTACT_METHODS, SUPPORT_WORKING_HOURS, SUPPORT_QUICK_LINKS } from '@/data/common/support.data';
 
 export const useSupportData = () => {
   return {

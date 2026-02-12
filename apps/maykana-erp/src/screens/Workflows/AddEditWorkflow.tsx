@@ -1,8 +1,8 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '../../components/Layout';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { useCustomization } from '../../contexts/CustomizationContext';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useCustomization } from '@/contexts/CustomizationContext';
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -50,7 +50,7 @@ import {
   FieldType,
   useSectionHandlers,
 } from './components';
-import { useWorkflowsData } from '../../hooks/useWorkflowsData';
+import { useWorkflowsData } from '@/hooks/useWorkflowsData';
 
 export const AddEditWorkflow = (): JSX.Element => {
   const { dir } = useLanguage();

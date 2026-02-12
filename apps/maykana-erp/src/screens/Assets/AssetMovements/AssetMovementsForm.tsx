@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown, ChevronUp, Trash2, ExternalLink } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { Button } from '../../../components/ui/button';
-import { Label } from '../../../components/ui/label';
-import { Input } from '../../../components/ui/input';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { buttonClasses } from '../../../styles';
-import { assetsData } from '../../../data/assets.data';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { buttonClasses } from '@/styles';
+import { assetsData } from '@/data/assets/assets.data';
 
 export function AssetMovementsForm() {
   const navigate = useNavigate();

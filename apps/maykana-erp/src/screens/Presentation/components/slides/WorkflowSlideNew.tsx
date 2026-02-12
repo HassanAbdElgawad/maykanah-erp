@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { GitMerge, CheckCircle, Clock, Bell, Settings, Users, FileCheck, ArrowRight } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const WorkflowSlideNew = () => {
   const { language } = useLanguage();

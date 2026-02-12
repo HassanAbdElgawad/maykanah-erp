@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Shield, Lock, Key, UserCheck, FileCheck, Database, ShieldCheck, Clock } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const SecuritySlideNew = () => {
   const { language } = useLanguage();

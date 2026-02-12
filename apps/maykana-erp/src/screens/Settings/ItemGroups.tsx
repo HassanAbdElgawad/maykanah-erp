@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Layout } from '../../components/Layout';
-import InitialFilters from '../../components/InitialFilters';
+import { Layout } from '@/components/Layout';
+import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, MoreVertical, Edit2, Ban, Play, X, ChevronLeft } from 'lucide-react';
-import { buttonClasses } from '../../styles/components/buttons';
+import { buttonClasses } from '@/styles/components/buttons';
 
 interface ItemGroup {
   id: string;

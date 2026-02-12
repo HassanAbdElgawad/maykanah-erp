@@ -3,8 +3,8 @@ import { X, RotateCcw, Upload } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { useCustomization } from '../contexts/CustomizationContext';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useCustomization } from '@/contexts/CustomizationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CustomizationPanelProps {
   isOpen: boolean;

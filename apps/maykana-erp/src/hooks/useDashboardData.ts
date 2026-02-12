@@ -1,5 +1,5 @@
 // useDashboardData Hook - Provides dashboard data based on language context
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   getStatsCards,
   getSalesData,
@@ -7,7 +7,7 @@ import {
   getTopProducts,
   getRecentActivities,
   getDepartmentExpenses,
-} from '../data/dashboard.data';
+} from '@/data/common/dashboard.data';
 
 export const useDashboardData = () => {
   const { t, dir } = useLanguage();

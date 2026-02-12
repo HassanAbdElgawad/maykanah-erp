@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Calculator, FileText, PieChart, TrendingUp, CheckCircle, Receipt } from 'lucide-react';
-import { useLanguage } from '../../../../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const AccountingSlideNew = () => {
   const { language } = useLanguage();

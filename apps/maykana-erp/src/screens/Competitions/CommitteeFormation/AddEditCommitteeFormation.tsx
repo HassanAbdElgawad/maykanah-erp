@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Paperclip } from 'lucide-react';
-import { Layout } from '../../../components/Layout';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { buttonClasses } from '../../../styles';
+import { Layout } from '@/components/Layout';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { buttonClasses } from '@/styles';
 
 export function AddEditCommitteeFormation() {
   const navigate = useNavigate();

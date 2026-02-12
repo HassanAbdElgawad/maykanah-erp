@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   termsConditionsTemplatesData,
   type TermsConditionsTemplate,
-} from '../data/terms-conditions-templates.data';
+} from '@/data/templates/terms-conditions-templates.data';
 
 /**
  * Custom Hook for managing Terms and Conditions Templates data

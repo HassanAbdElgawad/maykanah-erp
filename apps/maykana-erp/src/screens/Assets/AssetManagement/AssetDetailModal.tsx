@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import { TogglerWithLabel } from '../../../components/ui/TogglerWithLabel';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TogglerWithLabel } from '@/components/ui/TogglerWithLabel';
 
 interface Asset {
   id: string;

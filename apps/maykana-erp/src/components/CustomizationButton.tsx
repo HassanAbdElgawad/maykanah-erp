@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Palette } from 'lucide-react';
 import { CustomizationPanel } from './CustomizationPanel';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const CustomizationButton = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
