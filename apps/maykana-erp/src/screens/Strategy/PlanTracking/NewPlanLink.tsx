@@ -4,52 +4,25 @@ import { ChevronRight } from 'lucide-react';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-interface Goal {
-  id: string;
-  number: string;
-  name: string;
-  isChecked: boolean;
-}
-
-interface Initiative {
-  id: string;
-  number: string;
-  name: string;
-  isChecked: boolean;
-}
-
-interface KPI {
-  id: string;
-  number: string;
-  name: string;
-  isChecked: boolean;
-}
+import {
+  getNewPlanLinkInitialGoals,
+  getNewPlanLinkInitialInitiatives,
+  getNewPlanLinkInitialKPIs,
+  type NewPlanLinkGoal,
+  type NewPlanLinkInitiative,
+  type NewPlanLinkKPI,
+} from '@/data/strategy/new-plan-link.data';
 
 export const NewPlanLink: React.FC = () => {
   const navigate = useNavigate();
   const { dir } = useLanguage();
   const [activeTab, setActiveTab] = useState<'goals' | 'initiatives' | 'kpis'>('goals');
 
-  // البيانات الوهمية للأهداف
-  const [goals, setGoals] = useState<Goal[]>([
-    { id: '1', number: '1', name: 'تحسين تجربة المستخدم', isChecked: true },
-    { id: '2', number: '2', name: 'تعزيز الأمن السيبراني', isChecked: true },
-    { id: '3', number: '3', name: 'تطوير البنيات الرقمية', isChecked: false },
-  ]);
-
-  // البيانات الوهمية للمبادرات
-  const [initiatives, setInitiatives] = useState<Initiative[]>([
-    { id: '1', number: '1', name: 'منصة الخدمات الموحدة', isChecked: true },
-    { id: '2', number: '2', name: 'تطوير مراكز البيانات', isChecked: true },
-    { id: '3', number: '3', name: 'برنامج تدريب الموظفين', isChecked: false },
-  ]);
-
-  // البيانات الوهمية لمؤشرات الأداء
-  const [kpis, setKPIs] = useState<KPI[]>([
-    { id: '1', number: '1', name: 'نسبة الخدمات الرقمية', isChecked: true },
-    { id: '2', number: '2', name: 'عدد الأنظمة المدمجة', isChecked: false },
-  ]);
+  const [goals, setGoals] = useState<NewPlanLinkGoal[]>(() => getNewPlanLinkInitialGoals());
+  const [initiatives, setInitiatives] = useState<NewPlanLinkInitiative[]>(
+    () => getNewPlanLinkInitialInitiatives()
+  );
+  const [kpis, setKPIs] = useState<NewPlanLinkKPI[]>(() => getNewPlanLinkInitialKPIs());
 
   const handleGoalToggle = (id: string) => {
     setGoals((prev) =>

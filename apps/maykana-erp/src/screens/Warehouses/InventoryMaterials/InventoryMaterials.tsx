@@ -14,7 +14,7 @@ import {
   Package,
 } from 'lucide-react';
 import { useInventoryMaterialsData } from '@/hooks/useInventoryMaterialsData';
-import type { InventoryMaterial } from '../../../data/warehouses/inventory-materials.data';
+import type { InventoryMaterial } from '@/data/warehouses/inventory-materials.data';
 
 export const InventoryMaterials = (): JSX.Element => {
   const navigate = useNavigate();

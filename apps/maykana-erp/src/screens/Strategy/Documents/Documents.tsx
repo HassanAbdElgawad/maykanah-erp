@@ -1,40 +1,16 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Download, Filter, ChevronDown, MoreVertical, Plus } from 'lucide-react';
-
-interface Document {
-  id: string;
-  name: string;
-  type: string;
-  linkedTo: string;
-  date: string;
-  size: string;
-  access: boolean;
-  version: string;
-  status: string;
-}
-
-const mockDocuments: Document[] = [
-  {
-    id: '1',
-    name: 'عقد التوريد',
-    type: 'PDF',
-    linkedTo: 'مشروع: منصة الخدمات',
-    date: '01/03/2025',
-    size: '10 MB',
-    access: true,
-    version: 'v1.01',
-    status: 'فريق المبرمج',
-  },
-];
+import { getDocumentsSampleData } from '@/data/strategy/documents.data';
 
 export function Documents() {
   const navigate = useNavigate();
   const { dir, t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
+  const mockDocuments = useMemo(() => getDocumentsSampleData(), []);
 
   return (
     <Layout>

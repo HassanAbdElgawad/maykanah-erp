@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, TrendingDown, DollarSign, Package, Settings, ArrowRight, Upload, Trash2, Eye, Paperclip } from 'lucide-react';
+import { ArrowRight, Upload, Trash2, Eye, Paperclip } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -8,23 +8,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { TogglerWithLabel } from '@/components/ui/TogglerWithLabel';
 import translations from '@/data/translations.json';
-
-interface StepConfig {
-  id: number;
-  icon: React.ElementType;
-  label: string;
-  labelEn: string;
-}
-
-const steps: StepConfig[] = [
-  { id: 1, icon: FileText, label: 'معلومات أساسية', labelEn: 'Basic Info' },
-  { id: 2, icon: Package, label: 'نوع الأصل', labelEn: 'Asset Type' },
-  { id: 3, icon: TrendingDown, label: 'الإهلاك', labelEn: 'Depreciation' },
-  { id: 4, icon: DollarSign, label: 'المعلومات المالية', labelEn: 'Financial Info' },
-  { id: 5, icon: Settings, label: 'المعلومات المالية', labelEn: 'Financial Info' },
-];
+import {
+  getAddAssetFormSteps,
+  getAddAssetFormDepreciationTableData,
+  getAddAssetFormInitialUploadedFiles,
+} from '@/data/assets/add-asset-form.data';
 
 export function AddAssetForm() {
+  const steps = getAddAssetFormSteps();
   const { dir, language } = useLanguage();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
@@ -70,71 +61,9 @@ export function AddAssetForm() {
     valueAfterDepreciation: '8,984', // Auto-calculated
   });
 
-  // Depreciation table data
-  const [depreciationTableData] = useState([
-    {
-      month: '2026-05',
-      depValue: 'ر.س 272',
-      bookValue: 'ر.س 7,896',
-      entry: '--------',
-      status: 'pending',
-    },
-    {
-      month: '2026-04',
-      depValue: 'ر.س 272',
-      bookValue: 'ر.س 8,168',
-      entry: 'GV-004',
-      status: 'completed',
-    },
-    {
-      month: '2026-03',
-      depValue: 'ر.س 272',
-      bookValue: 'ر.س 8,440',
-      entry: 'GV-003',
-      status: 'completed',
-    },
-    {
-      month: '2026-02',
-      depValue: 'ر.س 272',
-      bookValue: 'ر.س 8,712',
-      entry: 'GV-002',
-      status: 'completed',
-    },
-    {
-      month: '2026-01',
-      depValue: 'ر.س 272',
-      bookValue: 'ر.س 8,984',
-      entry: 'GV-001',
-      status: 'completed',
-    },
-  ]);
-
+  const [depreciationTableData] = useState(() => getAddAssetFormDepreciationTableData());
   const [selectedMonths, setSelectedMonths] = useState(6);
-
-  // Uploaded files data
-  const [uploadedFiles, setUploadedFiles] = useState([
-    {
-      id: 1,
-      name: 'فاتورة الشراء',
-      type: 'PDF',
-      size: '4.5 ميجابايت',
-      date: '09:23 - 23 يناير 2025',
-    },
-    {
-      id: 2,
-      name: 'صور الأصل',
-      type: 'JPEG',
-      size: '4.5 ميجابايت',
-      date: '09:23 - 23 يناير 2025',
-    },
-    {
-      id: 3,
-      name: 'صور الأصل',
-      type: 'PNG',
-      size: '4.5 ميجابايت',
-      date: '09:23 - 23 يناير 2025',
-    },
-  ]);
+  const [uploadedFiles, setUploadedFiles] = useState(() => getAddAssetFormInitialUploadedFiles());
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

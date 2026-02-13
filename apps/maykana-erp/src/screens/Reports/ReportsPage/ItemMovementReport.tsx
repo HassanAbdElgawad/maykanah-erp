@@ -1,18 +1,11 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Layout } from '@/components/Layout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Download, Columns3, List } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface ItemMovementItem {
-  id: string;
-  date: string;
-  movementType: string;
-  incomingQuantity: string;
-  balanceAfterMovement: string;
-}
+import { getItemMovementSampleData } from '@/data/reports/warehouses/item-movement.data';
 
 export const ItemMovementReport = (): JSX.Element => {
   const [dateFrom, setDateFrom] = useState('');
@@ -21,16 +14,7 @@ export const ItemMovementReport = (): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const [data] = useState<ItemMovementItem[]>([
-    { id: '1', date: '1/18/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-    { id: '2', date: '3/16/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-    { id: '3', date: '7/16/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-    { id: '4', date: '2/20/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-    { id: '5', date: '4/10/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-    { id: '6', date: '5/05/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-    { id: '7', date: '6/15/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-    { id: '8', date: '7/22/2025', movementType: 'نوع الحركة', incomingQuantity: 'الكمية الداخلة', balanceAfterMovement: 'الرصيد بعد الحركة' },
-  ]);
+  const data = useMemo(() => getItemMovementSampleData(), []);
 
   const filteredData = data.filter(item => {
     const matchesType = !movementTypeFilter || item.movementType.includes(movementTypeFilter);

@@ -15,7 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { buttonClasses } from '@/styles';
 import { ArrowRight, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
 import { usePriceQuotesData } from '@/hooks/usePriceQuotesData';
-import type { PriceQuote, PriceQuoteItem } from '../../../data/purchases/price-quotes.data';
+import type { PriceQuote, PriceQuoteItem } from '@/data/purchases/price-quotes.data';
 
 export const AddEditPriceQuote = (): JSX.Element => {
   const navigate = useNavigate();

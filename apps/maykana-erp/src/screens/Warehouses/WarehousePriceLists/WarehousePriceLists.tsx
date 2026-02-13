@@ -6,36 +6,20 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Filter, Download, Columns3, MoreVertical, Eye, Edit, XCircle, CheckCircle } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface PriceList {
-  id: string;
-  code: string;
-  name: string;
-  currency: string;
-  hasPurchases: boolean;
-  hasSales: boolean;
-  isActive: boolean;
-  createdAt: string;
-}
+import { getWarehousePriceListsSampleData, type WarehousePriceList } from '@/data/warehouses/warehouse-price-lists.data';
 
 export const WarehousePriceLists = (): JSX.Element => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [menuPosition, setMenuPosition] = useState<{ top: number; left: number } | null>(null);
-  const [selectedPriceList, setSelectedPriceList] = useState<PriceList | null>(null);
+  const [selectedPriceList, setSelectedPriceList] = useState<WarehousePriceList | null>(null);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [actionType, setActionType] = useState<'activate' | 'deactivate'>('deactivate');
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const [priceLists, setPriceLists] = useState<PriceList[]>([
-    { id: '1', code: 'PL-001', name: 'قائمة الأسعار الأساسية', currency: 'ريال سعودي', hasPurchases: true, hasSales: true, isActive: true, createdAt: '13/11/2025' },
-    { id: '2', code: 'PL-002', name: 'قائمة أسعار الجملة', currency: 'ريال سعودي', hasPurchases: false, hasSales: true, isActive: true, createdAt: '01/11/2025' },
-    { id: '3', code: 'PL-003', name: 'قائمة أسعار التجزئة', currency: 'ريال سعودي', hasPurchases: false, hasSales: true, isActive: true, createdAt: '10/04/2025' },
-    { id: '4', code: 'PL-004', name: 'قائمة أسعار الموردين', currency: 'دولار أمريكي', hasPurchases: true, hasSales: false, isActive: true, createdAt: '10/05/2025' },
-    { id: '5', code: 'PL-005', name: 'قائمة أسعار خاصة', currency: 'ريال سعودي', hasPurchases: true, hasSales: true, isActive: false, createdAt: '11/03/2025' },
-  ]);
+  const [priceLists, setPriceLists] = useState<WarehousePriceList[]>(() => getWarehousePriceListsSampleData());
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -49,7 +33,7 @@ export const WarehousePriceLists = (): JSX.Element => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleMenuClick = (e: React.MouseEvent, priceList: PriceList) => {
+  const handleMenuClick = (e: React.MouseEvent, priceList: WarehousePriceList) => {
     e.stopPropagation();
     const rect = e.currentTarget.getBoundingClientRect();
     const menuWidth = 192;

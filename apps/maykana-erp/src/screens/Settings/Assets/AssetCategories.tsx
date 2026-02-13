@@ -8,54 +8,12 @@ import { SideDrawer } from '@/components/ui/SideDrawer';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical, Settings, Eye, Edit2, Trash2, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface AssetCategory {
-  id: string;
-  code: string;
-  name: string;
-  depreciationMethod: string;
-  usefulLife: string;
-  residualValue: string;
-  assetAccount: string;
-  isActive: boolean;
-}
+import { getAssetCategoriesSampleData, type AssetCategory } from '@/data/settings/asset-categories.data';
 
 export const AssetCategories = (): JSX.Element => {
   const { dir } = useLanguage();
   const navigate = useNavigate();
-
-  const [categories, setCategories] = useState<AssetCategory[]>([
-    {
-      id: '1',
-      code: 'CAT-001',
-      name: 'أجهزة الحاسوب',
-      depreciationMethod: 'القسط الثابت',
-      usefulLife: '5 سنوات',
-      residualValue: '10%',
-      assetAccount: '150101',
-      isActive: true,
-    },
-    {
-      id: '2',
-      code: 'CAT-002',
-      name: 'الأثاث المكتبي',
-      depreciationMethod: 'القسط الثابت',
-      usefulLife: '10 سنوات',
-      residualValue: '5%',
-      assetAccount: '150201',
-      isActive: true,
-    },
-    {
-      id: '3',
-      code: 'CAT-003',
-      name: 'المركبات',
-      depreciationMethod: 'القسط الثابت',
-      usefulLife: '4 سنوات',
-      residualValue: '₪ 5,000',
-      assetAccount: '150301',
-      isActive: true,
-    },
-  ]);
+  const [categories, setCategories] = useState<AssetCategory[]>(() => getAssetCategoriesSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

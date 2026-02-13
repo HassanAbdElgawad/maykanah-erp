@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Input } from '@/components/ui/input';
@@ -7,52 +7,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { AdvancedTable } from '@/components/ui/Table';
 import { buttonClasses } from '@/styles';
 import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react';
-
-interface Product {
-  id: string;
-  productCode: string;
-  productNameAr: string;
-  productNameEn: string;
-  categoryAr: string;
-  categoryEn: string;
-  type: string;
-  price: number;
-  quantity: number;
-  status: 'active' | 'medium' | 'inactive' | 'hidden';
-}
+import { getProductsSampleData } from '@/data/warehouses/products.data';
 
 export const ProductsList = (): JSX.Element => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Mock data
-  const products: Product[] = [
-    {
-      id: '1',
-      productCode: 'PRD-001',
-      productNameAr: 'منتج تجريبي 1',
-      productNameEn: 'Test Product 1',
-      categoryAr: 'إلكترونيات',
-      categoryEn: 'Electronics',
-      type: 'خدمة',
-      price: 1500,
-      quantity: 50,
-      status: 'active',
-    },
-    {
-      id: '2',
-      productCode: 'PRD-002',
-      productNameAr: 'منتج تجريبي 2',
-      productNameEn: 'Test Product 2',
-      categoryAr: 'أثاث',
-      categoryEn: 'Furniture',
-      type: 'منتج',
-      price: 2500,
-      quantity: 30,
-      status: 'medium',
-    },
-  ];
+  const products = useMemo(() => getProductsSampleData(), []);
 
   const filteredProducts = products.filter((product) => {
     const name = language === 'ar' ? product.productNameAr : product.productNameEn;

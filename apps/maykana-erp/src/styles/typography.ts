@@ -10,7 +10,7 @@ export const typography = {
   // Font Families
   fontFamily: {
     primary: "'IBM Plex Sans Arabic', Helvetica, sans-serif",
-    secondary: "'Graphik Arabic', sans-serif",
+    secondary: "'IBM Plex Sans Arabic', sans-serif",
     english: "'Plus Jakarta Sans', sans-serif",
   },
 

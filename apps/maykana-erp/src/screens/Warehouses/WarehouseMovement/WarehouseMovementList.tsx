@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Input } from '@/components/ui/input';
@@ -14,18 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
-interface WarehouseMovement {
-  id: string;
-  code: string;
-  movementNumber: string;
-  date: string;
-  movementType: 'transfer' | 'damage';
-  itemName: string;
-  warehouseFrom: string;
-  warehouseTo: string;
-  costCenter: string;
-}
+import { getWarehouseMovementSampleData } from '@/data/warehouses/warehouse-movement.data';
 
 export const WarehouseMovementList = (): JSX.Element => {
   const navigate = useNavigate();
@@ -33,42 +22,7 @@ export const WarehouseMovementList = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
 
-  // Mock data
-  const movements: WarehouseMovement[] = [
-    {
-      id: '1',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      movementType: 'transfer',
-      itemName: 'هوائي',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: 'مستودع جدة',
-      costCenter: 'مركز التكلفة الرئيسي',
-    },
-    {
-      id: '2',
-      code: '547B12300016',
-      movementNumber: '1222237',
-      date: '2025-5-21',
-      movementType: 'damage',
-      itemName: 'مادة تالفة',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: '-',
-      costCenter: 'مركز التكلفة الفرعي',
-    },
-    {
-      id: '3',
-      code: '547B12300017',
-      movementNumber: '1222238',
-      date: '2025-5-22',
-      movementType: 'transfer',
-      itemName: 'قطع غيار',
-      warehouseFrom: 'مستودع مكة',
-      warehouseTo: 'مستودع الدمام',
-      costCenter: 'مركز التكلفة الرئيسي',
-    },
-  ];
+  const movements = useMemo(() => getWarehouseMovementSampleData(), []);
 
   const getMovementTypeLabel = (type: string) => {
     const labels: { [key: string]: string } = {

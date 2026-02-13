@@ -13,7 +13,7 @@ export interface Meeting {
   status: string;
 }
 
-export const meetingsData: Meeting[] = [
+const meetingsData: Meeting[] = [
   {
     id: '1',
     meetingNumber: 'MTG-004-2025',
@@ -27,3 +27,5 @@ export const meetingsData: Meeting[] = [
     status: 'مكتمل',
   },
 ];
+
+export const getMeetingsSampleData = (): Meeting[] => [...meetingsData];

@@ -25,7 +25,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { usePriceListsData } from '@/hooks/usePriceListsData';
-import type { PriceList, PriceListType } from '../../../data/sales/price-lists.data';
+import type { PriceList, PriceListType } from '@/data/sales/price-lists.data';
 
 export const PriceLists = (): JSX.Element => {
   const navigate = useNavigate();

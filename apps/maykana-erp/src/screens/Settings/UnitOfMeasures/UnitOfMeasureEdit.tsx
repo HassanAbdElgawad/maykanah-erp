@@ -1,22 +1,35 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { ArrowRight, ChevronLeft } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
+import { getUnitById } from '@/data/settings/unit-of-measures.data';
 
-export const ItemGroupForm = (): JSX.Element => {
+export const UnitOfMeasureEdit = (): JSX.Element => {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const unit = useMemo(() => (id ? getUnitById(id) : null), [id]);
 
   const [formData, setFormData] = useState({
-    name: '',
-    inventoryAccount: '',
-    isActive: true,
+    name: unit?.name || '',
+    symbol: unit?.symbol || '',
+    isActive: unit?.isActive ?? true,
   });
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData);
-    navigate('/settings/warehouses/item-groups');
+    console.log('Form updated:', formData);
+    navigate('/settings/warehouses/unit-of-measures');
   };
+
+  if (!unit) {
+    return (
+      <Layout>
+        <div className="text-center py-12">
+          <p className="text-[#093738]">وحدة القياس غير موجودة</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -25,20 +38,20 @@ export const ItemGroupForm = (): JSX.Element => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
-              onClick={() => navigate('/settings/warehouses/item-groups')}
+              onClick={() => navigate('/settings/warehouses/unit-of-measures')}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
               title="رجوع"
             >
               <ArrowRight className="w-5 h-5 text-[#093738]" />
             </button>
             <h1 className="text-2xl font-semibold text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-              إضافة مجموعة أصناف جديدة
+              تعديل وحدة القياس - {unit.name}
             </h1>
           </div>
           <div className="flex gap-3">
             <button
               className="px-4 py-2 h-[38px] rounded-lg border border-[#e2e2e2] text-[#093738] hover:bg-gray-50 [font-family:'IBM_Plex_Sans_Arabic',Helvetica] text-sm"
-              onClick={() => navigate('/settings/warehouses/item-groups')}
+              onClick={() => navigate('/settings/warehouses/unit-of-measures')}
             >
               إلغاء
             </button>
@@ -46,7 +59,7 @@ export const ItemGroupForm = (): JSX.Element => {
               className={`${buttonClasses.primary} flex items-center gap-2 h-[38px]`}
               onClick={handleSubmit}
             >
-              <span>إرسال الطلب</span>
+              <span>حفظ التعديلات</span>
               <ChevronLeft className="w-4 h-4" />
             </button>
           </div>
@@ -56,36 +69,33 @@ export const ItemGroupForm = (): JSX.Element => {
         <div className="bg-white rounded-lg border border-[#e2e2e2] p-6">
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* اسم المجموعة */}
+              {/* اسم الوحدة */}
               <div>
                 <label className="block text-sm font-medium text-[#093738] mb-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                  اسم المجموعة <span className="text-red-500">*</span>
+                  اسم الوحدة <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-3 py-2 border border-[#e2e2e2] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#093738] focus:border-transparent [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                  placeholder="أدخل اسم المجموعة"
+                  placeholder="أدخل اسم الوحدة"
                   required
                 />
               </div>
 
-              {/* حساب المخزون */}
+              {/* رمز الوحدة */}
               <div>
                 <label className="block text-sm font-medium text-[#093738] mb-2 [font-family:'IBM_Plex_Sans_Arabic',Helvetica]">
-                  حساب المخزون <span className="text-red-500">*</span>
+                  رمز الوحدة
                 </label>
-                <select
-                  value={formData.inventoryAccount}
-                  onChange={(e) => setFormData({ ...formData, inventoryAccount: e.target.value })}
+                <input
+                  type="text"
+                  value={formData.symbol}
+                  onChange={(e) => setFormData({ ...formData, symbol: e.target.value })}
                   className="w-full px-3 py-2 border border-[#e2e2e2] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#093738] focus:border-transparent [font-family:'IBM_Plex_Sans_Arabic',Helvetica]"
-                  required
-                >
-                  <option value="">اختر حساب المخزون</option>
-                  <option value="حساب المخزون">حساب المخزون</option>
-                  <option value="حساب آخر">حساب آخر</option>
-                </select>
+                  placeholder="مثال: كجم، م، ل"
+                />
               </div>
             </div>
 
@@ -99,7 +109,7 @@ export const ItemGroupForm = (): JSX.Element => {
                   className="w-5 h-5 text-[#093738] border-gray-300 rounded focus:ring-[#093738]"
                 />
                 <span className="text-[#093738] [font-family:'IBM_Plex_Sans_Arabic',Helvetica] font-medium">
-                  مجموعة مفعلة
+                  وحدة قياس مفعلة
                 </span>
               </label>
             </div>

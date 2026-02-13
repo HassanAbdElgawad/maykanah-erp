@@ -6,49 +6,11 @@ import { SideDrawer } from '@/components/ui/SideDrawer';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical, Settings } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface TaxSetting {
-  id: string;
-  name: string;
-  taxRate: number;
-  accountName: string;
-  includedInBasePrice: boolean;
-  application: 'sales' | 'purchases';
-  isActive: boolean;
-}
+import { getTaxSettingsSampleData, type TaxSetting } from '@/data/settings/tax-settings.data';
 
 export const TaxSettings = (): JSX.Element => {
   const { dir } = useLanguage();
-
-  const [taxSettings, setTaxSettings] = useState<TaxSetting[]>([
-    {
-      id: '1',
-      name: 'ضريبة القيمة المضافة 15%',
-      taxRate: 15,
-      accountName: '2300 - ضريبة القيمة المضافة',
-      includedInBasePrice: false,
-      application: 'sales',
-      isActive: true,
-    },
-    {
-      id: '2',
-      name: 'ضريبة القيمة المضافة 5%',
-      taxRate: 5,
-      accountName: '2300 - ضريبة القيمة المضافة',
-      includedInBasePrice: false,
-      application: 'sales',
-      isActive: true,
-    },
-    {
-      id: '3',
-      name: 'ضريبة مبيعات محلية',
-      taxRate: 10,
-      accountName: '2310 - ضريبة مبيعات',
-      includedInBasePrice: false,
-      application: 'purchases',
-      isActive: false,
-    },
-  ]);
+  const [taxSettings, setTaxSettings] = useState<TaxSetting[]>(() => getTaxSettingsSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

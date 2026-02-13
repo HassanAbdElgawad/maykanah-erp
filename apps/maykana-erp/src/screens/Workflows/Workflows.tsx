@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { CardContainer } from '@/components/ui/CardContainer';
@@ -6,15 +6,7 @@ import { MaykanaCard } from '@/components/ui/MaykanaCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Search, Plus, MoreVertical, Edit2, Copy, Workflow } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface WorkflowCard {
-  id: string;
-  title: string;
-  description: string;
-  iconColor: string;
-  iconBg: string;
-  status: 'launched' | 'draft';
-}
+import { getWorkflowCardsConfig } from '@/data/workflows/workflows.data';
 
 export const Workflows = (): JSX.Element => {
   const { t, dir } = useLanguage();
@@ -22,72 +14,15 @@ export const Workflows = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState('');
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-  const workflowCards: WorkflowCard[] = [
-    {
-      id: '1',
-      title: t('workflow_engine.workflow_cards.purchase_request'),
-      description: t('workflow_engine.workflow_cards.purchase_request_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'draft',
-    },
-    {
-      id: '2',
-      title: t('workflow_engine.workflow_cards.leave_request'),
-      description: t('workflow_engine.workflow_cards.leave_request_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'draft',
-    },
-    {
-      id: '3',
-      title: t('workflow_engine.workflow_cards.invoice_approval'),
-      description: t('workflow_engine.workflow_cards.invoice_approval_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'launched',
-    },
-    {
-      id: '4',
-      title: t('workflow_engine.workflow_cards.new_recruitment'),
-      description: t('workflow_engine.workflow_cards.new_recruitment_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'launched',
-    },
-    {
-      id: '5',
-      title: t('workflow_engine.workflow_cards.maintenance_request'),
-      description: t('workflow_engine.workflow_cards.maintenance_request_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'draft',
-    },
-    {
-      id: '6',
-      title: t('workflow_engine.workflow_cards.business_travel'),
-      description: t('workflow_engine.workflow_cards.business_travel_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'launched',
-    },
-    {
-      id: '7',
-      title: t('workflow_engine.workflow_cards.new_project'),
-      description: t('workflow_engine.workflow_cards.new_project_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'draft',
-    },
-    {
-      id: '8',
-      title: t('workflow_engine.workflow_cards.ui_design'),
-      description: t('workflow_engine.workflow_cards.ui_design_desc'),
-      iconColor: '#8B5CF6',
-      iconBg: '#F3F4F6',
-      status: 'launched',
-    },
-  ];
+  const workflowCards = useMemo(
+    () =>
+      getWorkflowCardsConfig().map((cfg) => ({
+        ...cfg,
+        title: t(cfg.titleKey),
+        description: t(cfg.descriptionKey),
+      })),
+    [t]
+  );
 
   const filteredCards = workflowCards.filter(
     (card) =>

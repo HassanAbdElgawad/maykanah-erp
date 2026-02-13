@@ -18,7 +18,7 @@ import {
 import { AdvancedTable } from '@/components/ui/Table';
 import { useSalesRepresentativesData } from '@/hooks/useSalesRepresentativesData';
 import { AddEditSalesRepresentativeModal } from './AddEditSalesRepresentativeModal';
-import type { SalesRepresentative } from '../../../data/sales/sales-representatives.data';
+import type { SalesRepresentative } from '@/data/sales/sales-representatives.data';
 
 export const SalesRepresentatives = (): JSX.Element => {
   const { representatives, setRepresentatives } = useSalesRepresentativesData();

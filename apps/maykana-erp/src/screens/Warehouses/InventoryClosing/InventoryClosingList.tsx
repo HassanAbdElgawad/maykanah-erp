@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Input } from '@/components/ui/input';
@@ -6,26 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { CardContainer } from '@/components/ui/CardContainer';
 import { AdvancedTable } from '@/components/ui/Table';
 import { Search, Plus, Edit2, Trash2, ChevronDown, Download, Filter, Settings } from 'lucide-react';
-
-interface InventoryClosing {
-  id: number;
-  warehouseName: string;
-  closingDate: string;
-  quantity: number;
-  amount: number;
-}
-
-// Mock data
-const mockData: InventoryClosing[] = [
-  { id: 1, warehouseName: 'مستودع 1', closingDate: '2025-5-20', quantity: 15, amount: 15 },
-  { id: 2, warehouseName: 'مستودع 2', closingDate: '2025-5-20', quantity: 15, amount: 15 },
-  { id: 3, warehouseName: 'مستودع 3', closingDate: '2025-5-20', quantity: 15, amount: 15 },
-  { id: 5, warehouseName: 'مستودع 5', closingDate: '2025-5-20', quantity: 36, amount: 36 },
-  { id: 6, warehouseName: 'مستودع 6', closingDate: '2025-5-20', quantity: 36, amount: 36 },
-  { id: 7, warehouseName: 'مستودع 7', closingDate: '2025-5-20', quantity: 36, amount: 36 },
-  { id: 17, warehouseName: 'مستودع 17', closingDate: '2025-5-20', quantity: 36, amount: 36 },
-  { id: 18, warehouseName: 'مستودع 18', closingDate: '2025-5-20', quantity: 23, amount: 23 },
-];
+import { getInventoryClosingListSampleData } from '@/data/warehouses/inventory-closing-list.data';
 
 export const InventoryClosingList: React.FC = () => {
   const { t } = useLanguage();
@@ -33,7 +14,8 @@ export const InventoryClosingList: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showOperationsMenu, setShowOperationsMenu] = useState(false);
 
-  const filteredData = mockData.filter((item) =>
+  const data = useMemo(() => getInventoryClosingListSampleData(), []);
+  const filteredData = data.filter((item) =>
     item.warehouseName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 

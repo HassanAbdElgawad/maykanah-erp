@@ -1,55 +1,27 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, TrendingUp, DollarSign, AlertTriangle, ArrowRight, Trash2 } from 'lucide-react';
+import { ArrowRight, Trash2 } from 'lucide-react';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
-
-interface StepConfig {
-  id: number;
-  icon: React.ElementType;
-  label: string;
-}
-
-interface Risk {
-  id: number;
-  risk: string;
-  severity: string;
-  mitigation: string;
-}
-
-interface ApprovalStage {
-  id: number;
-  stage: string;
-  department: string;
-  responsible: string;
-  details: string;
-}
-
-const steps: StepConfig[] = [
-  { id: 1, icon: FileText, label: 'المعلومات الأساسية والجدول الزمني' },
-  { id: 2, icon: DollarSign, label: 'الميزانية والمخرجات' },
-  { id: 3, icon: TrendingUp, label: 'المخاطر' },
-  { id: 4, icon: AlertTriangle, label: 'مرحلة الإعتماد' },
-];
+import {
+  getNewProjectSteps,
+  getNewProjectInitialRisks,
+  getNewProjectInitialApprovalStages,
+  type NewProjectRisk,
+  type NewProjectApprovalStage,
+} from '@/data/strategy/new-project.data';
 
 export function NewProject() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
 
-  // Risks state
-  const [risks, setRisks] = useState<Risk[]>([
-    { id: 1, risk: '', severity: '', mitigation: '' },
-    { id: 2, risk: '', severity: '', mitigation: '' },
-    { id: 3, risk: '', severity: '', mitigation: '' },
-  ]);
+  const steps = getNewProjectSteps();
+  const [risks, setRisks] = useState<NewProjectRisk[]>(() => getNewProjectInitialRisks());
   const [risksRowCount, setRisksRowCount] = useState(10);
 
-  // Approval stages state
-  const [approvalStages, setApprovalStages] = useState<ApprovalStage[]>([
-    { id: 1, stage: '', department: '', responsible: '', details: '' },
-    { id: 2, stage: '', department: '', responsible: '', details: '' },
-    { id: 3, stage: '', department: '', responsible: '', details: '' },
-  ]);
+  const [approvalStages, setApprovalStages] = useState<NewProjectApprovalStage[]>(
+    () => getNewProjectInitialApprovalStages()
+  );
   const [approvalRowCount, setApprovalRowCount] = useState(10);
 
   const [formData, setFormData] = useState({
@@ -72,7 +44,7 @@ export function NewProject() {
   };
 
   const addRiskRows = () => {
-    const newRisks: Risk[] = [];
+    const newRisks: NewProjectRisk[] = [];
     const startId = risks.length > 0 ? Math.max(...risks.map((r) => r.id)) + 1 : 1;
     for (let i = 0; i < risksRowCount; i++) {
       newRisks.push({
@@ -89,12 +61,12 @@ export function NewProject() {
     setRisks(risks.filter((risk) => risk.id !== id));
   };
 
-  const updateRisk = (id: number, field: keyof Risk, value: string) => {
+  const updateRisk = (id: number, field: keyof NewProjectRisk, value: string) => {
     setRisks(risks.map((risk) => (risk.id === id ? { ...risk, [field]: value } : risk)));
   };
 
   const addApprovalRows = () => {
-    const newStages: ApprovalStage[] = [];
+    const newStages: NewProjectApprovalStage[] = [];
     const startId =
       approvalStages.length > 0 ? Math.max(...approvalStages.map((s) => s.id)) + 1 : 1;
     for (let i = 0; i < approvalRowCount; i++) {
@@ -113,7 +85,7 @@ export function NewProject() {
     setApprovalStages(approvalStages.filter((stage) => stage.id !== id));
   };
 
-  const updateApprovalStage = (id: number, field: keyof ApprovalStage, value: string) => {
+  const updateApprovalStage = (id: number, field: keyof NewProjectApprovalStage, value: string) => {
     setApprovalStages(
       approvalStages.map((stage) => (stage.id === id ? { ...stage, [field]: value } : stage))
     );

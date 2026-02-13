@@ -12,12 +12,7 @@ import {
   Trash2,
   GripVertical,
 } from 'lucide-react';
-
-interface ChecklistItem {
-  id: string;
-  text: string;
-  type: 'checkbox' | 'text' | 'number' | 'yesno';
-}
+import { getVerificationTemplateInitialChecklistItems, type ChecklistItem } from '@/data/templates/verification-templates.data';
 
 export const AddEditVerificationTemplate = (): JSX.Element => {
   const navigate = useNavigate();
@@ -25,9 +20,7 @@ export const AddEditVerificationTemplate = (): JSX.Element => {
   const { language, t } = useLanguage();
   const [templateName, setTemplateName] = useState('');
   const [description, setDescription] = useState('');
-  const [items, setItems] = useState<ChecklistItem[]>([
-    { id: '1', text: '', type: 'checkbox' },
-  ]);
+  const [items, setItems] = useState<ChecklistItem[]>(() => getVerificationTemplateInitialChecklistItems());
 
   const addItem = () => {
     setItems([...items, { id: Date.now().toString(), text: '', type: 'checkbox' }]);

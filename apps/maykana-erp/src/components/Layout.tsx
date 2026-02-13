@@ -217,7 +217,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
               >
                 <img src="/images/icons/Assistant.svg" alt="Assistant" className="w-5 h-5" />
                 <span
-                  style={{ fontFamily: "'Graphik Arabic', Helvetica, sans-serif !important" }}
+                  style={{ fontFamily: "'IBM Plex Sans Arabic', Helvetica, sans-serif !important" }}
                   className="font-medium text-base"
                 >
                   {t('common.virtual_assistant')}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { meetingsData, Meeting } from '@/data/strategy/meetings.data';
+import { getMeetingsSampleData, Meeting } from '@/data/strategy/meetings.data';
 
 export const useMeetingsData = () => {
   const [data, setData] = useState<Meeting[]>([]);
@@ -9,7 +9,7 @@ export const useMeetingsData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(meetingsData);
+      setData(getMeetingsSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

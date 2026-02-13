@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MaykanaCard } from '@/components/ui/MaykanaCard';
-import { getSalesCards } from '../../data';
+import { getSalesCards } from '@/data';
 
 export const Sales = (): JSX.Element => {
   const { t } = useLanguage();

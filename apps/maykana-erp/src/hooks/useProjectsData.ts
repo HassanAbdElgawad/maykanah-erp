@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { projectsData, Project } from '@/data/strategy/projects.data';
+import { getProjectsSampleData, Project } from '@/data/strategy/projects.data';
 
 export const useProjectsData = () => {
   const [data, setData] = useState<Project[]>([]);
@@ -9,7 +9,7 @@ export const useProjectsData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(projectsData);
+      setData(getProjectsSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

@@ -1,33 +1,24 @@
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { CardContainer } from '@/components/ui/CardContainer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, ArrowRightLeft, AlertTriangle } from 'lucide-react';
+import { getMovementTypesConfig } from '@/data/warehouses/warehouse-movement.data';
 
 export const SelectMovementType = (): JSX.Element => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
 
-  const movementTypes = [
-    {
-      type: 'transfer',
-      title: t('warehouses.transfer_stock'),
-      description: t('warehouses.transfer_stock_desc'),
-      icon: ArrowRightLeft,
-      bgColor: 'bg-blue-50',
-      iconColor: 'text-blue-600',
-      path: '/warehouses/warehouse-movement/transfer/add',
-    },
-    {
-      type: 'damage',
-      title: t('warehouses.damage_stock'),
-      description: t('warehouses.damage_stock_desc'),
-      icon: AlertTriangle,
-      bgColor: 'bg-red-50',
-      iconColor: 'text-red-600',
-      path: '/warehouses/warehouse-movement/damage/add',
-    },
-  ];
+  const movementTypes = useMemo(
+    () =>
+      getMovementTypesConfig(ArrowRightLeft, AlertTriangle).map((cfg) => ({
+        ...cfg,
+        title: t(cfg.titleKey),
+        description: t(cfg.descriptionKey),
+      })),
+    [t]
+  );
 
   return (
     <Layout>

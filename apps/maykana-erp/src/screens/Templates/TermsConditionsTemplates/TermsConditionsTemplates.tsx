@@ -19,7 +19,7 @@ import { useTermsConditionsTemplatesData } from '@/hooks/useTermsConditionsTempl
 import type {
   TermsConditionsTemplate,
   TemplateStatus,
-} from '../../../data/templates/terms-conditions-templates.data';
+} from '@/data/templates/terms-conditions-templates.data';
 
 export const TermsConditionsTemplates = (): JSX.Element => {
   const { templates, setTemplates } = useTermsConditionsTemplatesData();

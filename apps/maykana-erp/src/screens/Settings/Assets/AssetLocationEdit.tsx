@@ -1,47 +1,14 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { ChevronDown, ChevronUp, ChevronLeft, ArrowRight } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
-
-// Mock data for existing locations
-const mockLocations: Record<string, any> = {
-  '1': {
-    id: '1',
-    code: 'LOC-RYD-001',
-    name: 'مستودع الرياض',
-    city: 'الرياض',
-    branch: 'الفرع الرئيسي',
-    department: 'تقنية المعلومات',
-    notes: 'مستودع رئيسي للمعدات التقنية',
-    isActive: false,
-  },
-  '2': {
-    id: '2',
-    code: 'LOC-JED-002',
-    name: 'مستودع جدة',
-    city: 'جدة',
-    branch: 'جدة الرئيسي',
-    department: 'المالية',
-    notes: 'مستودع فرع جدة',
-    isActive: true,
-  },
-  '3': {
-    id: '3',
-    code: 'LOC-RYD-003',
-    name: 'مستودع الرياض',
-    city: 'الرياض',
-    branch: 'الفرع الرئيسي',
-    department: 'التشغيل',
-    notes: '',
-    isActive: true,
-  },
-};
+import { getAssetLocationById } from '@/data/settings/asset-locations.data';
 
 export const AssetLocationEdit = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const location = id ? mockLocations[id] : null;
+  const location = useMemo(() => (id ? getAssetLocationById(id) : null), [id]);
 
   const [expandedSections, setExpandedSections] = useState({
     definition: true,

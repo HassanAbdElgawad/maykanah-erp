@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import {
@@ -12,143 +12,12 @@ import {
   Copy,
 } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
-
-interface TeamMember {
-  id: string;
-  fullName: string;
-  phone: string;
-  email: string;
-  isLeader: boolean;
-  status: 'active' | 'inactive';
-}
-
-// Mock data for existing teams
-const mockTeams: Record<string, any> = {
-  '1': {
-    id: '1',
-    code: 'TEAM-MNT-01',
-    name: 'صيانة السيارات',
-    type: 'داخلي',
-    company: 'مستودع الرياض',
-    notes: 'فريق متخصص في صيانة السيارات والمعدات الثقيلة',
-    isActive: false,
-    members: [
-      {
-        id: 'member-1',
-        fullName: 'سامي النعيمي',
-        phone: '+1123456789',
-        email: 'mike.brown@samplemail.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-2',
-        fullName: 'علي السعيدي',
-        phone: '+1234567890',
-        email: 'alex.johnson@example.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-3',
-        fullName: 'فريد الجوهري',
-        phone: '+1987654321',
-        email: 'sara.connor@fakemail.com',
-        isLeader: true,
-        status: 'inactive' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-4',
-        fullName: 'عمر الفريق',
-        phone: '+1678901234',
-        email: 'emily.jones@fauxmail.com',
-        isLeader: false,
-        status: 'inactive' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-5',
-        fullName: 'سامي الحميدي',
-        phone: '+1456789012',
-        email: 'mike.brown@samplemail.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-6',
-        fullName: 'عمر الفريق',
-        phone: '+1234509876',
-        email: 'emily.jones@fauxmail.com',
-        isLeader: false,
-        status: 'inactive' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-7',
-        fullName: 'سامي النعيمي',
-        phone: '+1098765432',
-        email: 'mike.brown@samplemail.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-8',
-        fullName: 'طارق الحلو',
-        phone: '+1345678901',
-        email: 'john.doe@imaginarymail.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-9',
-        fullName: 'محمود الرحمن',
-        phone: '+1456789013',
-        email: 'david.smith@mockemail.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-10',
-        fullName: 'يوسف القحطاني',
-        phone: '+1098765433',
-        email: 'alex.johnson@example.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-      {
-        id: 'member-11',
-        fullName: 'عبدالله المري',
-        phone: '+1678901235',
-        email: 'sara.connor@fakemail.com',
-        isLeader: false,
-        status: 'active' as 'active' | 'inactive',
-      },
-    ],
-  },
-  '2': {
-    id: '2',
-    code: 'TEAM-IT-02',
-    name: 'تقنية المعلومات',
-    type: 'داخلي',
-    company: '',
-    notes: 'فريق تقنية المعلومات',
-    isActive: true,
-    members: [],
-  },
-  '3': {
-    id: '3',
-    code: 'TEAM-EXT-03',
-    name: 'صيانة الرياض',
-    type: 'داخلي',
-    company: '',
-    notes: '',
-    isActive: true,
-    members: [],
-  },
-};
+import { getMaintenanceTeamById, type TeamMember } from '@/data/settings/maintenance-team.data';
 
 export const MaintenanceTeamEdit = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const team = id ? mockTeams[id] : null;
+  const team = useMemo(() => (id ? getMaintenanceTeamById(id) : null), [id]);
 
   const [expandedSections, setExpandedSections] = useState({
     definition: true,

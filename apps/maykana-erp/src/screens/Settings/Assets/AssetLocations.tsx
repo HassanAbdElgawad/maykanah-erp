@@ -5,49 +5,11 @@ import { Card } from '@/components/ui/card';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, MoreVertical, Eye, Edit2, Ban, Play, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
-
-interface AssetLocation {
-  id: string;
-  code: string;
-  name: string;
-  city: string;
-  branch: string;
-  department: string;
-  isActive: boolean;
-}
+import { getAssetLocationsSampleData, type AssetLocation } from '@/data/settings/asset-locations.data';
 
 export const AssetLocations = (): JSX.Element => {
   const navigate = useNavigate();
-
-  const [locations, setLocations] = useState<AssetLocation[]>([
-    {
-      id: '1',
-      code: 'LOC-RYD-001',
-      name: 'مستودع الرياض',
-      city: 'الرياض',
-      branch: 'الفرع الرئيسي',
-      department: 'تقنية المعلومات',
-      isActive: false,
-    },
-    {
-      id: '2',
-      code: 'LOC-JED-002',
-      name: 'مستودع جدة',
-      city: 'جدة',
-      branch: 'جدة الرئيسي',
-      department: 'المالية',
-      isActive: true,
-    },
-    {
-      id: '3',
-      code: 'LOC-RYD-003',
-      name: 'مستودع الرياض',
-      city: 'الرياض',
-      branch: 'الفرع الرئيسي',
-      department: 'التشغيل',
-      isActive: true,
-    },
-  ]);
+  const [locations, setLocations] = useState<AssetLocation[]>(() => getAssetLocationsSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);

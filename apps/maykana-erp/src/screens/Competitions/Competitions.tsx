@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { MaykanaCard } from "@/components/ui/MaykanaCard";
-import { getCompetitionCards } from "../../data";
+import { getCompetitionCards } from '@/data';
 
 export const Competitions: React.FC = () => {
   const navigate = useNavigate();

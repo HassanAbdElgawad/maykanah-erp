@@ -6,34 +6,11 @@ import { SideDrawer } from '@/components/ui/SideDrawer';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface PaymentMethod {
-  id: string;
-  name: string;
-  type: string;
-  linkedAccount: string;
-  isActive: boolean;
-}
+import { getPaymentMethodsSampleData, type PaymentMethod } from '@/data/settings/payment-methods.data';
 
 export const PaymentMethods = (): JSX.Element => {
   const { dir } = useLanguage();
-
-  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([
-    {
-      id: '1',
-      name: 'نقدي من الصندوق',
-      type: 'نقدي',
-      linkedAccount: '2300- حساب المبيعات',
-      isActive: true,
-    },
-    {
-      id: '2',
-      name: 'بنك الراجحي',
-      type: 'بنك',
-      linkedAccount: '2300- حساب المشتريات',
-      isActive: true,
-    },
-  ]);
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>(() => getPaymentMethodsSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

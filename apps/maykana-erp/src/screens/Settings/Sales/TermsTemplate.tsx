@@ -7,45 +7,11 @@ import { SideDrawer } from '@/components/ui/SideDrawer';
 import InitialFilters from '@/components/InitialFilters';
 import { ArrowRight, Filter, Download, MoreVertical, ChevronDown } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface TermTemplate {
-  id: string;
-  templateName: string;
-  description: string;
-  content: string;
-  appliedTo: string;
-  isActive: boolean;
-}
+import { getTermsTemplatesSampleData, type TermTemplate } from '@/data/settings/terms-template.data';
 
 export const TermsTemplate = (): JSX.Element => {
   const navigate = useNavigate();
-
-  const [templates, setTemplates] = useState<TermTemplate[]>([
-    {
-      id: '1',
-      templateName: 'شرط للمبيعات',
-      description: 'تفاصيل شروط المبيعات هنا',
-      content: 'نوع المستند هنا',
-      appliedTo: 'مطبقة علي',
-      isActive: true,
-    },
-    {
-      id: '2',
-      templateName: 'شرط للمشتريات',
-      description: 'تفاصيل شروط المشتريات هنا',
-      content: 'نوع المستند هنا',
-      appliedTo: 'مطبقة علي',
-      isActive: true,
-    },
-    {
-      id: '3',
-      templateName: 'شرط لقرارات الشراء',
-      description: 'تفاصيل شروط القرارات الشرائية هنا',
-      content: 'نوع المستند هنا د',
-      appliedTo: 'مطبقة علي',
-      isActive: false,
-    },
-  ]);
+  const [templates, setTemplates] = useState<TermTemplate[]>(() => getTermsTemplatesSampleData());
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<TermTemplate | null>(null);

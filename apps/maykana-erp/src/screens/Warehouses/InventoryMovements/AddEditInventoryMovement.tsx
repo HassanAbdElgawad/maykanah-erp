@@ -14,25 +14,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
-interface OrderItem {
-  id: string;
-  itemCode: string;
-  itemName: string;
-  description: string;
-  unit: string;
-  quantity: number;
-  price: number;
-  total: number;
-}
-
-interface AdditionalCost {
-  id: string;
-  number: string;
-  expenseAccount: string;
-  description: string;
-  price: number;
-}
+import {
+  getInitialOrderItems,
+  getInitialAdditionalCosts,
+  type OrderItem,
+  type AdditionalCost,
+} from '@/data/warehouses/inventory-movement-form.data';
 
 export const AddEditInventoryMovement = (): JSX.Element => {
   const navigate = useNavigate();
@@ -48,28 +35,10 @@ export const AddEditInventoryMovement = (): JSX.Element => {
     generalNotes: '',
   });
 
-  const [orderItems, setOrderItems] = useState<OrderItem[]>([
-    {
-      id: '1',
-      itemCode: 'AS220-SD',
-      itemName: 'مادة لمعاملة جيدة',
-      description: 'وصف هنا ال, وصف هنا ال',
-      unit: 'كيلو',
-      quantity: 2,
-      price: 250,
-      total: 500,
-    },
-  ]);
-
-  const [additionalCosts, setAdditionalCosts] = useState<AdditionalCost[]>([
-    {
-      id: '1',
-      number: '1',
-      expenseAccount: 'مصاريف تحويل',
-      description: 'تضمين',
-      price: 500,
-    },
-  ]);
+  const [orderItems, setOrderItems] = useState<OrderItem[]>(() => getInitialOrderItems());
+  const [additionalCosts, setAdditionalCosts] = useState<AdditionalCost[]>(() =>
+    getInitialAdditionalCosts()
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

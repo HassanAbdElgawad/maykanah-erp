@@ -344,3 +344,27 @@ export const FLOW_INITIAL_EDGES: Edge[] = [
     labelBgStyle: { fill: 'white', fillOpacity: 0.8 }
   }
 ];
+
+// ============================================
+// Workflow Cards (قائمة سير العمل)
+// ============================================
+
+export interface WorkflowCardConfig {
+  id: string;
+  titleKey: string;
+  descriptionKey: string;
+  iconColor: string;
+  iconBg: string;
+  status: 'launched' | 'draft';
+}
+
+export const getWorkflowCardsConfig = (): WorkflowCardConfig[] => [
+  { id: '1', titleKey: 'workflow_engine.workflow_cards.purchase_request', descriptionKey: 'workflow_engine.workflow_cards.purchase_request_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'draft' },
+  { id: '2', titleKey: 'workflow_engine.workflow_cards.leave_request', descriptionKey: 'workflow_engine.workflow_cards.leave_request_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'draft' },
+  { id: '3', titleKey: 'workflow_engine.workflow_cards.invoice_approval', descriptionKey: 'workflow_engine.workflow_cards.invoice_approval_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'launched' },
+  { id: '4', titleKey: 'workflow_engine.workflow_cards.new_recruitment', descriptionKey: 'workflow_engine.workflow_cards.new_recruitment_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'launched' },
+  { id: '5', titleKey: 'workflow_engine.workflow_cards.maintenance_request', descriptionKey: 'workflow_engine.workflow_cards.maintenance_request_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'draft' },
+  { id: '6', titleKey: 'workflow_engine.workflow_cards.business_travel', descriptionKey: 'workflow_engine.workflow_cards.business_travel_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'launched' },
+  { id: '7', titleKey: 'workflow_engine.workflow_cards.new_project', descriptionKey: 'workflow_engine.workflow_cards.new_project_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'draft' },
+  { id: '8', titleKey: 'workflow_engine.workflow_cards.ui_design', descriptionKey: 'workflow_engine.workflow_cards.ui_design_desc', iconColor: '#8B5CF6', iconBg: '#F3F4F6', status: 'launched' },
+];

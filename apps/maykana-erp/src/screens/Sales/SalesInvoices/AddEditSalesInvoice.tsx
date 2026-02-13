@@ -14,7 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { buttonClasses } from '@/styles';
 import { Trash2, Plus, ChevronUp, ChevronDown, ArrowRight } from 'lucide-react';
 import { useSalesInvoicesData } from '@/hooks/useSalesInvoicesData';
-import type { SalesInvoice, SalesInvoiceItem } from '../../../data/sales/sales-invoices.data';
+import type { SalesInvoice, SalesInvoiceItem } from '@/data/sales/sales-invoices.data';
 
 export const AddEditSalesInvoice = (): JSX.Element => {
   const navigate = useNavigate();

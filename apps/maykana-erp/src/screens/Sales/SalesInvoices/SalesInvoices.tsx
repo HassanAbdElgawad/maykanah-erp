@@ -25,7 +25,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { useSalesInvoicesData } from '@/hooks/useSalesInvoicesData';
-import type { SalesInvoice, SalesInvoiceStatus } from '../../../data/sales/sales-invoices.data';
+import type { SalesInvoice, SalesInvoiceStatus } from '@/data/sales/sales-invoices.data';
 
 export const SalesInvoices = (): JSX.Element => {
   const navigate = useNavigate();

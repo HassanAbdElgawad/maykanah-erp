@@ -1,42 +1,16 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Download, Filter, ChevronDown, MoreVertical, Plus } from 'lucide-react';
-
-interface Meeting {
-  id: string;
-  meetingNumber: string;
-  title: string;
-  date: string;
-  type: string;
-  facilitator: string;
-  linkedTo: string;
-  attendees: number;
-  attachments: number;
-  status: string;
-}
-
-const mockMeetings: Meeting[] = [
-  {
-    id: '1',
-    meetingNumber: 'MTG-004-2025',
-    title: 'اجتماع متابعة المشروع الفصلية',
-    date: '15/09/2025',
-    type: 'متابعة تنفيذ',
-    facilitator: 'خالد',
-    linkedTo: 'مشروع: منصة الخدمات',
-    attendees: 6,
-    attachments: 2,
-    status: 'مكتمل',
-  },
-];
+import { getMeetingsSampleData } from '@/data/strategy/meetings.data';
 
 export function Meetings() {
   const navigate = useNavigate();
   const { dir, t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
+  const mockMeetings = useMemo(() => getMeetingsSampleData(), []);
 
   const getStatusColor = (status: string) => {
     switch (status) {

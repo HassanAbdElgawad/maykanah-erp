@@ -14,7 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { buttonClasses } from '@/styles';
 import { Trash2, Plus, ChevronUp, ChevronDown, ArrowRight } from 'lucide-react';
 import { useDeliveryNotesData } from '@/hooks/useDeliveryNotesData';
-import type { DeliveryNote, DeliveryNoteItem } from '../../../data/sales/delivery-notes.data';
+import type { DeliveryNote, DeliveryNoteItem } from '@/data/sales/delivery-notes.data';
 
 export const AddEditDeliveryNote = (): JSX.Element => {
   const navigate = useNavigate();

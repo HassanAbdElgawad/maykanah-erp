@@ -1,53 +1,24 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronRight } from 'lucide-react';
-
-interface Goal {
-  id: string;
-  name: string;
-  progress: number;
-  source: string;
-}
-
-interface Initiative {
-  id: string;
-  name: string;
-  progress: number;
-  source: string;
-}
-
-interface KPI {
-  id: string;
-  name: string;
-  progress: number;
-  source: string;
-}
+import {
+  getPlanLinkDetailsPlanData,
+  getPlanLinkDetailsGoals,
+  getPlanLinkDetailsInitiatives,
+  getPlanLinkDetailsKPIs,
+} from '@/data/strategy/plan-link-details.data';
 
 export function PlanLinkDetails() {
   const navigate = useNavigate();
   const { dir } = useLanguage();
   const [activeTab, setActiveTab] = useState<'goals' | 'initiatives' | 'kpis'>('goals');
 
-  // بيانات وهمية
-  const planData = {
-    planNumber: 'PL-001-2025',
-    mainPlan: 'رؤية 2030',
-    usedModel: 'خطة التحول الرقمي 2025',
-    linkType: 'وزارة كاملة',
-    linkDate: '5 فبراير 2025',
-    notes: 'الخطة الثانية تساهم في التحول الوطني',
-  };
-
-  const goals: Goal[] = [
-    { id: '1', name: 'تحسين تجربة المستخدم', progress: 90, source: 'رئيسية' },
-    { id: '2', name: 'تعزيز الأمن السيبراني', progress: 40, source: 'رئيسية' },
-    { id: '3', name: 'تطوير البنيات الرقمية', progress: 90, source: 'رئيسية' },
-  ];
-
-  const initiatives: Initiative[] = [];
-  const kpis: KPI[] = [];
+  const planData = useMemo(() => getPlanLinkDetailsPlanData(), []);
+  const goals = useMemo(() => getPlanLinkDetailsGoals(), []);
+  const initiatives = useMemo(() => getPlanLinkDetailsInitiatives(), []);
+  const kpis = useMemo(() => getPlanLinkDetailsKPIs(), []);
 
   const tabs = [
     { id: 'goals', label: 'الأهداف الموروثة', badgeCount: goals.length },

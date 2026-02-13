@@ -16,7 +16,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { useTaxTemplatesData } from '@/hooks/useTaxTemplatesData';
-import type { TaxTemplate } from '../../../data/templates/tax-templates.data';
+import type { TaxTemplate } from '@/data/templates/tax-templates.data';
 
 export const TaxTemplates = (): JSX.Element => {
   const { taxTemplates, setTaxTemplates } = useTaxTemplatesData();

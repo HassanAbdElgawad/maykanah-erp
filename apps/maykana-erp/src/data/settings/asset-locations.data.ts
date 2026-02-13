@@ -9,7 +9,7 @@ export interface AssetLocation {
   isActive: boolean;
 }
 
-export const mockLocations: Record<string, AssetLocation> = {
+const mockLocations: Record<string, AssetLocation> = {
   '1': {
     id: '1',
     code: 'LOC-RYD-001',
@@ -41,3 +41,6 @@ export const mockLocations: Record<string, AssetLocation> = {
     isActive: true,
   },
 };
+
+export const getAssetLocationById = (id: string): AssetLocation | null => mockLocations[id] ?? null;
+export const getAssetLocationsSampleData = (): AssetLocation[] => Object.values(mockLocations);

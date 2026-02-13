@@ -8,7 +8,7 @@ import { AdvancedTable } from '@/components/ui/Table';
 import { Filter, Upload, RowsIcon, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '@/styles';
 import { useTasksData } from '@/hooks/useTasksData';
-import type { Task } from '../../../data/common/tasks.data';
+import type { Task } from '@/data/common/tasks.data';
 
 export const Tasks = (): JSX.Element => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { strategicPlansData, Plan } from '@/data/strategy/strategic-plans.data';
+import { getStrategicPlansSampleData, Plan } from '@/data/strategy/strategic-plans.data';
 
 export const useStrategicPlansData = () => {
   const [data, setData] = useState<Plan[]>([]);
@@ -9,7 +9,7 @@ export const useStrategicPlansData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(strategicPlansData);
+      setData(getStrategicPlansSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

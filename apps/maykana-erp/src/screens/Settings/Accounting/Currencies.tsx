@@ -7,45 +7,11 @@ import { SideDrawer } from '@/components/ui/SideDrawer';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical, Settings } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface Currency {
-  id: string;
-  baseCurrency: string;
-  targetCurrency: string;
-  exchangeRate: number;
-  date: string;
-  isActive: boolean;
-}
+import { getCurrenciesSampleData, type Currency } from '@/data/settings/currencies.data';
 
 export const Currencies = (): JSX.Element => {
   const { dir } = useLanguage();
-
-  const [currencies, setCurrencies] = useState<Currency[]>([
-    {
-      id: '1',
-      baseCurrency: 'USD',
-      targetCurrency: 'SAR',
-      exchangeRate: 3.75,
-      date: '2026-07-03',
-      isActive: true,
-    },
-    {
-      id: '2',
-      baseCurrency: 'EUR',
-      targetCurrency: 'SAR',
-      exchangeRate: 4.4,
-      date: '2026-07-10',
-      isActive: true,
-    },
-    {
-      id: '3',
-      baseCurrency: 'GBP',
-      targetCurrency: 'SAR',
-      exchangeRate: 4.7,
-      date: '2026-07-17',
-      isActive: false,
-    },
-  ]);
+  const [currencies, setCurrencies] = useState<Currency[]>(() => getCurrenciesSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

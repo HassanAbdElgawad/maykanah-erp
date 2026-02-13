@@ -22,7 +22,7 @@ export interface MaintenanceTeam {
   members: TeamMember[];
 }
 
-export const mockTeams: Record<string, MaintenanceTeam> = {
+const mockTeams: Record<string, MaintenanceTeam> = {
   '1': {
     id: '1',
     code: 'TEAM-MNT-01',
@@ -31,6 +31,9 @@ export const mockTeams: Record<string, MaintenanceTeam> = {
     company: 'مستودع الرياض',
     notes: 'فريق متخصص في صيانة السيارات والمعدات الثقيلة',
     isActive: false,
+    createdDate: '23/12/2025',
+    lastModified: '10/01/2026',
+    status: 'inactive',
     members: [
       {
         id: 'member-1',
@@ -39,6 +42,7 @@ export const mockTeams: Record<string, MaintenanceTeam> = {
         email: 'mike.brown@samplemail.com',
         isLeader: false,
         status: 'active',
+        role: 'فني صيانة',
       },
       {
         id: 'member-2',
@@ -47,6 +51,7 @@ export const mockTeams: Record<string, MaintenanceTeam> = {
         email: 'alex.johnson@example.com',
         isLeader: false,
         status: 'active',
+        role: 'فني صيانة',
       },
       {
         id: 'member-3',
@@ -55,6 +60,7 @@ export const mockTeams: Record<string, MaintenanceTeam> = {
         email: 'sara.connor@fakemail.com',
         isLeader: true,
         status: 'inactive',
+        role: 'مسؤول الفريق',
       },
       {
         id: 'member-4',
@@ -143,3 +149,29 @@ export const mockTeams: Record<string, MaintenanceTeam> = {
     members: [],
   },
 };
+
+export const getMaintenanceTeamById = (id: string): MaintenanceTeam | null => mockTeams[id] ?? null;
+export const getMaintenanceTeamsSampleData = (): MaintenanceTeam[] => Object.values(mockTeams);
+
+export interface MaintenanceTeamListItem {
+  id: string;
+  code: string;
+  name: string;
+  type: string;
+  leaderName: string;
+  memberCount: number;
+  isActive: boolean;
+}
+export const getMaintenanceTeamsListSampleData = (): MaintenanceTeamListItem[] =>
+  Object.values(mockTeams).map((t) => {
+    const leader = t.members.find((m) => m.isLeader);
+    return {
+      id: t.id,
+      code: t.code,
+      name: t.name,
+      type: t.type,
+      leaderName: leader?.fullName ?? '-',
+      memberCount: t.members.length,
+      isActive: t.isActive,
+    };
+  });

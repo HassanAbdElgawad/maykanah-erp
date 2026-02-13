@@ -1,108 +1,14 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { ArrowRight, ChevronUp, ChevronDown, ChevronLeft } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
-
-interface TeamMember {
-  id: string;
-  fullName: string;
-  phone: string;
-  email: string;
-  isLeader: boolean;
-  status: 'active' | 'inactive';
-  role: string;
-}
-
-interface Team {
-  id: string;
-  code: string;
-  name: string;
-  type: string;
-  company: string;
-  createdDate: string;
-  lastModified: string;
-  status: 'active' | 'inactive';
-  notes: string;
-  isActive: boolean;
-  members: TeamMember[];
-}
-
-const mockTeams: Record<string, Team> = {
-  '1': {
-    id: '1',
-    code: 'TEAM-MNT-01',
-    name: 'مستودع الرياض',
-    type: 'فريق داخلي',
-    company: 'مورد خارجي',
-    createdDate: '23/12/2025',
-    lastModified: '10/01/2026',
-    status: 'inactive',
-    notes: '',
-    isActive: false,
-    members: [
-      {
-        id: 'member-1',
-        fullName: 'علي السعيدي',
-        phone: '+12345678901',
-        email: 'alex.johnson@example.com',
-        isLeader: true,
-        status: 'inactive',
-        role: 'مسؤول الفريق',
-      },
-      {
-        id: 'member-2',
-        fullName: 'فريد الجوهري',
-        phone: '+12445668891',
-        email: 'alex.johnson@example.com',
-        isLeader: false,
-        status: 'active',
-        role: 'فني صيانة',
-      },
-      {
-        id: 'member-3',
-        fullName: 'سامي النعيمي',
-        phone: '+12331267647',
-        email: 'alex.johnson@example.com',
-        isLeader: false,
-        status: 'active',
-        role: 'فني صيانة',
-      },
-      {
-        id: 'member-4',
-        fullName: 'محمود الزهري',
-        phone: '+12345678901',
-        email: 'alex.johnson@example.com',
-        isLeader: false,
-        status: 'inactive',
-        role: 'مسؤول الفريق',
-      },
-      {
-        id: 'member-5',
-        fullName: 'فريد الجوهري',
-        phone: '+12445668891',
-        email: 'alex.johnson@example.com',
-        isLeader: false,
-        status: 'active',
-        role: 'فني صيانة',
-      },
-      {
-        id: 'member-6',
-        fullName: 'عمر الفرزي',
-        phone: '+12331267647',
-        email: 'alex.johnson@example.com',
-        isLeader: false,
-        status: 'active',
-        role: 'فني صيانة',
-      },
-    ],
-  },
-};
+import { getMaintenanceTeamById } from '@/data/settings/maintenance-team.data';
 
 export const MaintenanceTeamView = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const team = id ? mockTeams[id] : null;
+  const team = useMemo(() => (id ? getMaintenanceTeamById(id) : null), [id]);
 
   const [expandedSections, setExpandedSections] = useState({
     definition: true,

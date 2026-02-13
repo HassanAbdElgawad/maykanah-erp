@@ -7,41 +7,11 @@ import { TogglerWithLabel } from '@/components/ui/TogglerWithLabel';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface TermsCondition {
-  id: string;
-  name: string;
-  type: string;
-  details: string;
-  isActive: boolean;
-}
+import { getTermsConditionsSampleData, type TermsCondition } from '@/data/settings/terms-conditions.data';
 
 export const TermsConditions = (): JSX.Element => {
   const { dir } = useLanguage();
-
-  const [terms, setTerms] = useState<TermsCondition[]>([
-    {
-      id: '1',
-      name: 'شرط المبيعات',
-      type: 'مشتريات',
-      details: 'تفاصيل شروط المبيعات هنا',
-      isActive: true,
-    },
-    {
-      id: '2',
-      name: 'شرط المشتريات',
-      type: 'مشتريات',
-      details: 'تفاصيل شروط المشتريات هنا',
-      isActive: true,
-    },
-    {
-      id: '3',
-      name: 'شرط العقود المشرية',
-      type: 'مشتريات',
-      details: 'تفاصيل شروط العقود المشرية هنا',
-      isActive: false,
-    },
-  ]);
+  const [terms, setTerms] = useState<TermsCondition[]>(() => getTermsConditionsSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

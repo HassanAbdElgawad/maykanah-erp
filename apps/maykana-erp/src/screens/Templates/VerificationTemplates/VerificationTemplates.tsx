@@ -14,7 +14,7 @@ import {
   CheckSquare,
 } from 'lucide-react';
 import { useVerificationTemplatesData } from '@/hooks/useVerificationTemplatesData';
-import type { VerificationTemplate } from '../../../data/templates/verification-templates.data';
+import type { VerificationTemplate } from '@/data/templates/verification-templates.data';
 
 export const VerificationTemplates = (): JSX.Element => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Card } from '@/components/ui/card';
@@ -6,32 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowRight, ChevronUp, ChevronDown, ClipboardList, FileText, ShoppingCart, CreditCard, Eye } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface PurchaseReceiptItem {
-  id: string;
-  number: number;
-  documentType: string;
-  receiptDocument: string;
-  supplier: string;
-  totalAfterTax: string;
-}
-
-interface ReceiptPartItem {
-  id: string;
-  number: number;
-  itemCode: string;
-  description: string;
-  quantity: number;
-  value: string;
-}
-
-interface AccountDataItem {
-  id: string;
-  number: number;
-  account: string;
-  description: string;
-  value: string;
-}
+import { getGoodsArrivalCostFormSampleData } from '@/data/warehouses/goods-arrival-cost-form.data';
 
 export const WarehouseGoodsArrivalCostForm = (): JSX.Element => {
   const navigate = useNavigate();
@@ -48,17 +23,10 @@ export const WarehouseGoodsArrivalCostForm = (): JSX.Element => {
   const [distributionBasis, setDistributionBasis] = useState('quantity');
 
   // Tables data
-  const [purchaseReceipts] = useState<PurchaseReceiptItem[]>([
-    { id: '1', number: 1, documentType: 'مادة لاصقة شديدة', receiptDocument: 'INV-0001 وصف هنا ال', supplier: 'وصف هنا', totalAfterTax: 'ر.س' },
-  ]);
-
-  const [receiptParts] = useState<ReceiptPartItem[]>([
-    { id: '1', number: 1, itemCode: '2333255555', description: 'INV-0001 وصف هنا ال', quantity: 22, value: 'ر.س' },
-  ]);
-
-  const [accountData] = useState<AccountDataItem[]>([
-    { id: '1', number: 1, account: 'مصاريف نقل', description: 'INV-0001 وصف هنا ال', value: '500 ر.س' },
-  ]);
+  const { purchaseReceipts, receiptParts, accountData } = useMemo(
+    () => getGoodsArrivalCostFormSampleData(),
+    []
+  );
 
   const handleSubmit = () => {
     console.log('Form submitted:', {

@@ -14,16 +14,7 @@ import {
   FolderOpen,
 } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface Department {
-  id: string;
-  code: string;
-  name: string;
-  isPrimary: boolean;
-  accountType: string;
-  isActive: boolean;
-  children?: Department[];
-}
+import { getDepartmentsSampleData, type Department } from '@/data/settings/department-management.data';
 
 export const DepartmentManagement = (): JSX.Element => {
   const { dir } = useLanguage();
@@ -31,85 +22,7 @@ export const DepartmentManagement = (): JSX.Element => {
   const [expandedDepartments, setExpandedDepartments] = useState<Set<string>>(new Set());
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-
-  const [departments, setDepartments] = useState<Department[]>([
-    {
-      id: '1',
-      code: 'CC-1',
-      name: 'قسم-1',
-      isPrimary: true,
-      accountType: 'رئيسي',
-      isActive: true,
-      children: [
-        {
-          id: '11',
-          code: 'CC-11',
-          name: 'قسم-2',
-          isPrimary: false,
-          accountType: '',
-          isActive: true,
-        },
-        {
-          id: '12',
-          code: 'CC-12',
-          name: 'قسم-3',
-          isPrimary: false,
-          accountType: '',
-          isActive: false,
-        },
-      ],
-    },
-    {
-      id: '2',
-      code: 'CC-2',
-      name: 'قسم-1',
-      isPrimary: true,
-      accountType: 'رئيسي',
-      isActive: true,
-      children: [
-        {
-          id: '21',
-          code: 'CC-21',
-          name: 'قسم-2',
-          isPrimary: false,
-          accountType: '',
-          isActive: true,
-        },
-        {
-          id: '22',
-          code: 'CC-22',
-          name: 'قسم-3',
-          isPrimary: false,
-          accountType: '',
-          isActive: true,
-        },
-        {
-          id: '23',
-          code: 'CC-23',
-          name: 'قسم-4',
-          isPrimary: false,
-          accountType: '',
-          isActive: false,
-        },
-        {
-          id: '24',
-          code: 'CC-24',
-          name: 'قسم-5',
-          isPrimary: false,
-          accountType: '',
-          isActive: true,
-        },
-      ],
-    },
-    {
-      id: '3',
-      code: 'CC-2',
-      name: 'قسم-1',
-      isPrimary: true,
-      accountType: 'رئيسي',
-      isActive: false,
-    },
-  ]);
+  const [departments, setDepartments] = useState<Department[]>(() => getDepartmentsSampleData());
 
   // Recursive function to filter and flatten the tree for search
   const filterDepartmentsRecursive = (depts: Department[], query: string): Department[] => {

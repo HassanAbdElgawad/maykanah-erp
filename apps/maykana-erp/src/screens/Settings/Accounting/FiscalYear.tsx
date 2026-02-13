@@ -6,37 +6,11 @@ import { SideDrawer } from '@/components/ui/SideDrawer';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface FiscalYear {
-  id: string;
-  name: string;
-  startDate: string;
-  endDate: string;
-}
+import { getFiscalYearsSampleData, type FiscalYear } from '@/data/settings/fiscal-year.data';
 
 export const FiscalYear = (): JSX.Element => {
   const { dir } = useLanguage();
-
-  const [fiscalYears] = useState<FiscalYear[]>([
-    {
-      id: '1',
-      name: '2025',
-      startDate: '01/01/2025',
-      endDate: '31/12/2025',
-    },
-    {
-      id: '2',
-      name: '2026',
-      startDate: '01/01/2026',
-      endDate: '31/12/2026',
-    },
-    {
-      id: '3',
-      name: '2027',
-      startDate: '01/01/2027',
-      endDate: '31/12/2027',
-    },
-  ]);
+  const [fiscalYears] = useState<FiscalYear[]>(() => getFiscalYearsSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

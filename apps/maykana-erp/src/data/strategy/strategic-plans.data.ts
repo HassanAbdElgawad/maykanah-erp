@@ -12,7 +12,7 @@ export interface Plan {
   status: 'active' | 'pending' | 'completed';
 }
 
-export const strategicPlansData: Plan[] = [
+const strategicPlansData: Plan[] = [
   {
     id: '1',
     planNumber: '2025-PL-001',
@@ -47,3 +47,5 @@ export const strategicPlansData: Plan[] = [
     status: 'pending',
   },
 ];
+
+export const getStrategicPlansSampleData = (): Plan[] => [...strategicPlansData];

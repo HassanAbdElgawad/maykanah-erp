@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -18,122 +18,15 @@ import ReactFlow, {
   MarkerType,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-
-interface Plan {
-  id: string;
-  planNumber: string;
-  planName: string;
-  mainPlan: string;
-  linkType: string;
-  linkDate: string;
-  progress: number;
-  isActive: boolean;
-  level: number;
-  parentId?: string;
-  children?: Plan[];
-}
-
-const buildTreeData = (): Plan[] => {
-  return [
-    {
-      id: '1',
-      planNumber: 'PL-001-2025',
-      planName: 'رؤية المملكة 2030',
-      mainPlan: 'الخطة الأم',
-      linkType: 'الخطة الأم',
-      linkDate: '11/11/2025',
-      progress: 40,
-      isActive: true,
-      level: 0,
-      children: [
-        {
-          id: '2',
-          planNumber: 'PL-001-2025-01',
-          planName: 'خطة التحول الرقمي 2025',
-          mainPlan: 'رؤية المملكة 2030',
-          linkType: 'وزارة كاملة',
-          linkDate: '11/11/2025',
-          progress: 90,
-          isActive: false,
-          level: 1,
-          parentId: '1',
-          children: [
-            {
-              id: '3',
-              planNumber: 'PL-001-2025-01-01',
-              planName: 'خطة جودة البيانات 2025',
-              mainPlan: 'خطة التحول الرقمي 2025',
-              linkType: 'وزارة كاملة',
-              linkDate: '11/11/2025',
-              progress: 40,
-              isActive: true,
-              level: 2,
-              parentId: '2',
-            },
-            {
-              id: '4',
-              planNumber: 'PL-001-2025-01-02',
-              planName: 'خطة تجربة المستفيد 2025',
-              mainPlan: 'خطة التحول الرقمي 2025',
-              linkType: 'وزارة جزئية',
-              linkDate: '11/11/2025',
-              progress: 90,
-              isActive: true,
-              level: 2,
-              parentId: '2',
-            },
-          ],
-        },
-        {
-          id: '5',
-          planNumber: 'PL-001-2025-02',
-          planName: 'خطة الاستدامة 2027',
-          mainPlan: 'رؤية المملكة 2030',
-          linkType: 'وزارة كاملة',
-          linkDate: '11/11/2025',
-          progress: 90,
-          isActive: true,
-          level: 1,
-          parentId: '1',
-        },
-        {
-          id: '6',
-          planNumber: 'PL-001-2025-03',
-          planName: 'الخطة الاستراتيجية للأمن السيبراني 2026',
-          mainPlan: 'رؤية المملكة 2030',
-          linkType: 'وزارة جزئية',
-          linkDate: '11/11/2025',
-          progress: 90,
-          isActive: true,
-          level: 1,
-          parentId: '1',
-          children: [
-            {
-              id: '7',
-              planNumber: 'PL-001-2025-03-01',
-              planName: 'خطة الاستجابة للحوادث السيبرانية 2026',
-              mainPlan: 'الخطة الاستراتيجية للأمن السيبراني 2026',
-              linkType: 'وزارة جزئية',
-              linkDate: '11/11/2025',
-              progress: 40,
-              isActive: true,
-              level: 2,
-              parentId: '6',
-            },
-          ],
-        },
-      ],
-    },
-  ];
-};
+import { buildPlanTrackingTreeData, type PlanTrackingPlan } from '@/data/strategy/plan-tracking.data';
 
 // تحويل البيانات الشجرية إلى nodes و edges لـ ReactFlow
-const convertTreeToFlowData = (treeData: Plan[]) => {
+const convertTreeToFlowData = (treeData: PlanTrackingPlan[]) => {
   const nodes: Node[] = [];
   const edges: Edge[] = [];
   let yOffset = 0;
 
-  const processNode = (plan: Plan, x: number, y: number, parentId?: string) => {
+  const processNode = (plan: PlanTrackingPlan, x: number, y: number, parentId?: string) => {
     const borderColor = plan.level === 0 ? '#41D1FE' : (plan.progress >= 70 ? '#2CC28D' : '#F00');
     const statusColor = plan.isActive ? '#4caf50' : '#9e9e9e';
 
@@ -233,7 +126,7 @@ export function PlanTracking() {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set(['1']));
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
-  const treeData = buildTreeData();
+  const treeData = useMemo(() => buildPlanTrackingTreeData(), []);
   const flowData = convertTreeToFlowData(treeData);
 
   const [nodes, , onNodesChange] = useNodesState(flowData.nodes);
@@ -264,7 +157,7 @@ export function PlanTracking() {
     return progress >= 70 ? '#2CC28D' : '#F00';
   };
 
-  const renderPlanRow = (plan: Plan): React.ReactNode[] => {
+  const renderPlanRow = (plan: PlanTrackingPlan): React.ReactNode[] => {
     const rows: React.ReactNode[] = [];
     const isExpanded = expandedIds.has(plan.id);
     const hasChildren = plan.children && plan.children.length > 0;
@@ -391,7 +284,6 @@ export function PlanTracking() {
     return rows;
   };
 
-  const treeDataList = buildTreeData();
 
   return (
     <Layout>
@@ -524,7 +416,7 @@ export function PlanTracking() {
                   </tr>
                 </thead>
                 <tbody>
-                  {treeDataList.map((plan) => renderPlanRow(plan))}
+                  {treeData.map((plan) => renderPlanRow(plan))}
                 </tbody>
               </table>
             </div>

@@ -6,7 +6,7 @@ export interface InventoryClosing {
   amount: number;
 }
 
-export const inventoryClosingListData: InventoryClosing[] = [
+const inventoryClosingListData: InventoryClosing[] = [
   {
     id: 1,
     warehouseName: 'مستودع 1',
@@ -64,3 +64,6 @@ export const inventoryClosingListData: InventoryClosing[] = [
     amount: 23,
   },
 ];
+
+export const getInventoryClosingListSampleData = (): InventoryClosing[] =>
+  [...inventoryClosingListData];

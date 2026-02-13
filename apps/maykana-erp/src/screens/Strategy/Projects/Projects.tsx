@@ -1,21 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Download, Filter, ChevronDown, MoreVertical, Plus, Eye, Edit2, Trash2 } from 'lucide-react';
-
-interface Project {
-  id: string;
-  projectNumber: string;
-  projectName: string;
-  currentStage: string;
-  projectManager: string;
-  startDate: string;
-  endDate: string;
-  projectType: string;
-  progress: number;
-  isActive: boolean;
-}
+import { getProjectsSampleData } from '@/data/strategy/projects.data';
 
 export function Projects() {
   const navigate = useNavigate();
@@ -24,20 +12,7 @@ export function Projects() {
   const [showColumnSelector, setShowColumnSelector] = useState(false);
   const [menuPosition, setMenuPosition] = useState<{ top: number; left: number } | null>(null);
 
-  const mockProjects: Project[] = [
-    {
-      id: '1',
-      projectNumber: 'PRJ-001-2025',
-      projectName: 'منصة الخدمات',
-      currentStage: 'التنفيذ',
-      projectManager: 'خالد الذبيحي',
-      startDate: '01/03/2025',
-      endDate: '30/12/2025',
-      projectType: 'مشروع',
-      progress: 40,
-      isActive: true,
-    },
-  ];
+  const mockProjects = useMemo(() => getProjectsSampleData(), []);
 
   const filteredProjects = mockProjects.filter(project =>
     project.projectName.toLowerCase().includes(searchTerm.toLowerCase()) ||

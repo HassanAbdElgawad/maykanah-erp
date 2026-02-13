@@ -6,15 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Filter, Download, Columns3, MoreVertical, Eye, Edit, XCircle, CheckCircle } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface InventoryCategory {
-  id: string;
-  code: string;
-  nameAr: string;
-  nameEn: string;
-  itemsCount: number;
-  isActive: boolean;
-}
+import { getInventoryCategoriesSampleData, type InventoryCategory } from '@/data/warehouses/inventory-categories.data';
 
 export const InventoryCategories = (): JSX.Element => {
   const navigate = useNavigate();
@@ -27,12 +19,7 @@ export const InventoryCategories = (): JSX.Element => {
   const [actionType, setActionType] = useState<'activate' | 'deactivate'>('deactivate');
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const [categories, setCategories] = useState<InventoryCategory[]>([
-    { id: '1', code: 'CAT-001', nameAr: 'مواد خام', nameEn: 'Raw Materials', itemsCount: 45, isActive: true },
-    { id: '2', code: 'CAT-002', nameAr: 'منتجات تامة', nameEn: 'Finished Products', itemsCount: 120, isActive: true },
-    { id: '3', code: 'CAT-003', nameAr: 'قطع غيار', nameEn: 'Spare Parts', itemsCount: 89, isActive: true },
-    { id: '4', code: 'CAT-004', nameAr: 'أدوات مكتبية', nameEn: 'Office Supplies', itemsCount: 32, isActive: false },
-  ]);
+  const [categories, setCategories] = useState<InventoryCategory[]>(() => getInventoryCategoriesSampleData());
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

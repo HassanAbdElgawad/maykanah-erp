@@ -13,7 +13,7 @@ export interface Project {
   isActive: boolean;
 }
 
-export const projectsData: Project[] = [
+const projectsData: Project[] = [
   {
     id: '1',
     projectNumber: 'PRJ-001-2025',
@@ -27,3 +27,5 @@ export const projectsData: Project[] = [
     isActive: true,
   },
 ];
+
+export const getProjectsSampleData = (): Project[] => [...projectsData];

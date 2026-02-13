@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Input } from '@/components/ui/input';
@@ -7,106 +7,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { AdvancedTable } from '@/components/ui/Table';
 import { buttonClasses } from '@/styles';
 import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react';
-
-interface InventoryMovement {
-  id: string;
-  code: string;
-  movementNumber: string;
-  date: string;
-  itemName: string;
-  movementType: string;
-  warehouseFrom: string;
-  warehouseTo: string;
-}
+import { getInventoryMovementsSampleData } from '@/data/warehouses/inventory-movements.data';
 
 export const InventoryMovementsList = (): JSX.Element => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Mock data
-  const movements: InventoryMovement[] = [
-    {
-      id: '1',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'صرف',
-      warehouseFrom: 'مستودع الرياض - A',
-      warehouseTo: 'مستودع الرياض - A',
-    },
-    {
-      id: '2',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'استلام',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: 'مستودع الرياض',
-    },
-    {
-      id: '3',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'استلام',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: 'مستودع الرياض',
-    },
-    {
-      id: '4',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'تحويل',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: 'مستودع الرياض',
-    },
-    {
-      id: '5',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'تحويل',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: 'مستودع الرياض',
-    },
-    {
-      id: '6',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'استلام',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: 'مستودع الرياض',
-    },
-    {
-      id: '7',
-      code: '547B12300015',
-      movementNumber: '1222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'استلام',
-      warehouseFrom: 'مستودع الرياض',
-      warehouseTo: 'مستودع الرياض',
-    },
-    {
-      id: '8',
-      code: '547B12300015',
-      movementNumber: '12222361222236',
-      date: '2025-5-20',
-      itemName: 'هوائي',
-      movementType: 'استلام',
-      warehouseFrom: 'مستودع ماريابش',
-      warehouseTo: 'مستودع ماريابش',
-    },
-  ];
+  const movements = useMemo(() => getInventoryMovementsSampleData(), []);
 
   const filteredMovements = movements.filter((movement) => {
     return (

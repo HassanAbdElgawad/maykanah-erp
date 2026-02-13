@@ -6,17 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, Filter, Download, Columns3, MoreVertical, Eye, Edit, XCircle, CheckCircle } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-interface ItemPrice {
-  id: string;
-  code: string;
-  name: string;
-  unit: string;
-  priceList: string;
-  currency: string;
-  price: number;
-  isActive: boolean;
-}
+import { getWarehouseItemPriceSampleData, type ItemPrice } from '@/data/warehouses/warehouse-item-price.data';
 
 export const WarehouseItemPrice = (): JSX.Element => {
   const navigate = useNavigate();
@@ -29,13 +19,7 @@ export const WarehouseItemPrice = (): JSX.Element => {
   const [actionType, setActionType] = useState<'activate' | 'deactivate'>('deactivate');
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const [items, setItems] = useState<ItemPrice[]>([
-    { id: '1', code: 'ITM-001', name: 'آيفون', unit: 'قطعة', priceList: 'قائمة الأسعار الأساسية', currency: 'ريال سعودي', price: 4500, isActive: true },
-    { id: '2', code: 'ITM-002', name: 'سامسونج جالاكسي', unit: 'قطعة', priceList: 'قائمة الأسعار الأساسية', currency: 'ريال سعودي', price: 3200, isActive: true },
-    { id: '3', code: 'ITM-003', name: 'لابتوب ديل', unit: 'قطعة', priceList: 'قائمة أسعار الجملة', currency: 'ريال سعودي', price: 5800, isActive: true },
-    { id: '4', code: 'ITM-004', name: 'شاشة LG', unit: 'قطعة', priceList: 'قائمة الأسعار الأساسية', currency: 'دولار أمريكي', price: 1200, isActive: false },
-    { id: '5', code: 'ITM-005', name: 'طابعة HP', unit: 'قطعة', priceList: 'قائمة أسعار التجزئة', currency: 'ريال سعودي', price: 890, isActive: true },
-  ]);
+  const [items, setItems] = useState<ItemPrice[]>(() => getWarehouseItemPriceSampleData());
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

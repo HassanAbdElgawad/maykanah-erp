@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'graphik-ar': ['Graphik Arabic', 'sans-serif'],
+        'graphik-ar': ['IBM Plex Sans Arabic', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

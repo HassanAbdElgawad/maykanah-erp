@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { inventoryClosingListData, InventoryClosing } from '@/data/warehouses/inventory-closing-list.data';
+import {
+  getInventoryClosingListSampleData,
+  type InventoryClosing,
+} from '@/data/warehouses/inventory-closing-list.data';
 
 export const useInventoryClosingListData = () => {
   const [data, setData] = useState<InventoryClosing[]>([]);
@@ -9,7 +12,7 @@ export const useInventoryClosingListData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(inventoryClosingListData);
+      setData(getInventoryClosingListSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

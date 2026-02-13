@@ -17,7 +17,7 @@ import {
   X
 } from 'lucide-react';
 import { useSuppliersData } from '@/hooks/useSuppliersData';
-import type { Supplier } from '../../../data/purchases/suppliers.data';
+import type { Supplier } from '@/data/purchases/suppliers.data';
 
 export const Suppliers = (): JSX.Element => {
   const { t, dir } = useLanguage();

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { documentsData, Document } from '@/data/strategy/documents.data';
+import { getDocumentsSampleData, Document } from '@/data/strategy/documents.data';
 
 export const useDocumentsData = () => {
   const [data, setData] = useState<Document[]>([]);
@@ -9,7 +9,7 @@ export const useDocumentsData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(documentsData);
+      setData(getDocumentsSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

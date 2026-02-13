@@ -5,49 +5,11 @@ import { Card } from '@/components/ui/card';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, MoreVertical, Eye, Edit2, Ban, Play, X } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
-
-interface MaintenanceTeam {
-  id: string;
-  code: string;
-  name: string;
-  type: string;
-  leaderName: string;
-  memberCount: number;
-  isActive: boolean;
-}
+import { getMaintenanceTeamsListSampleData, type MaintenanceTeamListItem } from '@/data/settings/maintenance-team.data';
 
 export const MaintenanceTeam = (): JSX.Element => {
   const navigate = useNavigate();
-
-  const [teams, setTeams] = useState<MaintenanceTeam[]>([
-    {
-      id: '1',
-      code: 'TEAM-MNT-01',
-      name: 'صيانة السيارات',
-      type: 'داخلي',
-      leaderName: 'فريد السعيدي',
-      memberCount: 14,
-      isActive: false,
-    },
-    {
-      id: '2',
-      code: 'TEAM-IT-02',
-      name: 'تقنية المعلومات',
-      type: 'داخلي',
-      leaderName: 'سامي الجوهري',
-      memberCount: 7,
-      isActive: true,
-    },
-    {
-      id: '3',
-      code: 'TEAM-EXT-03',
-      name: 'صيانة الرياض',
-      type: 'داخلي',
-      leaderName: 'سامي فريد',
-      memberCount: 19,
-      isActive: true,
-    },
-  ]);
+  const [teams, setTeams] = useState<MaintenanceTeamListItem[]>(() => getMaintenanceTeamsListSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
@@ -56,7 +18,7 @@ export const MaintenanceTeam = (): JSX.Element => {
   // Modals for deactivate/activate confirmation
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
   const [isActivateModalOpen, setIsActivateModalOpen] = useState(false);
-  const [teamToToggle, setTeamToToggle] = useState<MaintenanceTeam | null>(null);
+  const [teamToToggle, setTeamToToggle] = useState<MaintenanceTeamListItem | null>(null);
 
   // Toast notification state
   const [showToast, setShowToast] = useState(false);
@@ -83,7 +45,7 @@ export const MaintenanceTeam = (): JSX.Element => {
     return matchesSearch && matchesStatus && matchesType;
   });
 
-  const handleViewDetails = (team: MaintenanceTeam) => {
+  const handleViewDetails = (team: MaintenanceTeamListItem) => {
     navigate(`/settings/assets/maintenance-team/view/${team.id}`);
   };
 
@@ -91,13 +53,13 @@ export const MaintenanceTeam = (): JSX.Element => {
     navigate(`/settings/assets/maintenance-team/edit/${id}`);
   };
 
-  const handleDeactivateClick = (team: MaintenanceTeam) => {
+  const handleDeactivateClick = (team: MaintenanceTeamListItem) => {
     setTeamToToggle(team);
     setIsDeactivateModalOpen(true);
     setOpenMenuId(null);
   };
 
-  const handleActivateClick = (team: MaintenanceTeam) => {
+  const handleActivateClick = (team: MaintenanceTeamListItem) => {
     setTeamToToggle(team);
     setIsActivateModalOpen(true);
     setOpenMenuId(null);

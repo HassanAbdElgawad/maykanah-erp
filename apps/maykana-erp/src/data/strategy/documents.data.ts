@@ -12,7 +12,7 @@ export interface Document {
   status: string;
 }
 
-export const documentsData: Document[] = [
+const documentsData: Document[] = [
   {
     id: '1',
     name: 'عقد التوريد',
@@ -25,3 +25,5 @@ export const documentsData: Document[] = [
     status: 'فريق المبرمج',
   },
 ];
+
+export const getDocumentsSampleData = (): Document[] => [...documentsData];

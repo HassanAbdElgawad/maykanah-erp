@@ -15,7 +15,7 @@ export interface AssetCategory {
   description?: string;
 }
 
-export const mockCategories: Record<string, AssetCategory> = {
+const mockCategories: Record<string, AssetCategory> = {
   '1': {
     id: '1',
     code: 'CAT-001',
@@ -66,3 +66,6 @@ export const mockCategories: Record<string, AssetCategory> = {
     description: 'تصنيف للمركبات الخاصة بالشركة',
   },
 };
+
+export const getAssetCategoryById = (id: string): AssetCategory | null => mockCategories[id] ?? null;
+export const getAssetCategoriesSampleData = (): AssetCategory[] => Object.values(mockCategories);

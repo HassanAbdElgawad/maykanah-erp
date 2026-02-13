@@ -1,69 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Layout } from '@/components/Layout';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, MoreVertical, Edit2, Ban, Play, X, ChevronLeft } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
+import { getItemGroupListItemsListSampleData, type ItemGroupListItemListItem } from '@/data/settings/item-groups.data';
 
-interface ItemGroup {
-  id: string;
-  name: string;
-  nameAr: string;
-  status: string;
-  owner: string;
-  linkedAccount: string;
-  inventoryAccount: string;
-  salesAccount: string;
-  costOfGoodsSoldAccount: string;
-  importsAccount: string;
-  expensesAccount: string;
-  isActive: boolean;
-}
-
-export const ItemGroups = (): JSX.Element => {
-  const [groups, setGroups] = useState<ItemGroup[]>([
-    {
-      id: '1',
-      name: 'اسم المجموعة',
-      nameAr: 'اسم المجموعة',
-      status: 'حساب الخصومات او',
-      owner: '',
-      linkedAccount: '',
-      inventoryAccount: 'حساب المخزون',
-      salesAccount: 'حساب المبيعات',
-      costOfGoodsSoldAccount: 'حساب تكلفة البضاعة المباعة',
-      importsAccount: 'حساب الواردات',
-      expensesAccount: 'حساب المروفات',
-      isActive: true,
-    },
-    {
-      id: '2',
-      name: 'اسم المجموعة',
-      nameAr: 'اسم المجموعة',
-      status: 'حساب الخصومات او',
-      owner: '',
-      linkedAccount: '',
-      inventoryAccount: 'حساب المخزون',
-      salesAccount: 'حساب المبيعات',
-      costOfGoodsSoldAccount: 'حساب تكلفة البضاعة المباعة',
-      importsAccount: 'حساب الواردات',
-      expensesAccount: 'حساب المروفات',
-      isActive: true,
-    },
-    {
-      id: '3',
-      name: 'اسم المجموعة',
-      nameAr: 'اسم المجموعة',
-      status: 'حساب الخصومات او',
-      owner: '',
-      linkedAccount: '',
-      inventoryAccount: 'حساب المخزون',
-      salesAccount: 'حساب المبيعات',
-      costOfGoodsSoldAccount: 'حساب تكلفة البضاعة المباعة',
-      importsAccount: 'حساب الواردات',
-      expensesAccount: 'حساب المروفات',
-      isActive: false,
-    },
-  ]);
+export const ItemGroupListItems = (): JSX.Element => {
+  const [groups, setGroups] = useState<ItemGroupListItemListItem[]>(() => getItemGroupListItemsListSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
@@ -73,7 +16,7 @@ export const ItemGroups = (): JSX.Element => {
 
   // Side Modal states
   const [isSideModalOpen, setIsSideModalOpen] = useState(false);
-  const [editingGroup, setEditingGroup] = useState<ItemGroup | null>(null);
+  const [editingGroup, setEditingGroup] = useState<ItemGroupListItem | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     nameAr: '',
@@ -91,7 +34,7 @@ export const ItemGroups = (): JSX.Element => {
   // Toggle modals
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
   const [isActivateModalOpen, setIsActivateModalOpen] = useState(false);
-  const [groupToToggle, setGroupToToggle] = useState<ItemGroup | null>(null);
+  const [groupToToggle, setGroupToToggle] = useState<ItemGroupListItem | null>(null);
 
   // Toast notification state
   const [showToast, setShowToast] = useState(false);
@@ -128,7 +71,7 @@ export const ItemGroups = (): JSX.Element => {
     setIsSideModalOpen(true);
   };
 
-  const openEditModal = (group: ItemGroup) => {
+  const openEditModal = (group: ItemGroupListItem) => {
     setEditingGroup(group);
     setFormData({
       name: group.name,
@@ -165,7 +108,7 @@ export const ItemGroups = (): JSX.Element => {
       setToastMessage('تم تحديث مجموعة الأصناف بنجاح');
     } else {
       // Add new group
-      const newGroup: ItemGroup = {
+      const newGroup: ItemGroupListItem = {
         id: `group-${Date.now()}`,
         ...formData,
       };
@@ -184,13 +127,13 @@ export const ItemGroups = (): JSX.Element => {
     }
   };
 
-  const handleDeactivateClick = (group: ItemGroup) => {
+  const handleDeactivateClick = (group: ItemGroupListItem) => {
     setGroupToToggle(group);
     setIsDeactivateModalOpen(true);
     setOpenMenuId(null);
   };
 
-  const handleActivateClick = (group: ItemGroup) => {
+  const handleActivateClick = (group: ItemGroupListItem) => {
     setGroupToToggle(group);
     setIsActivateModalOpen(true);
     setOpenMenuId(null);

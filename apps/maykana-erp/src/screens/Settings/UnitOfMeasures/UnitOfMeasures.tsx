@@ -1,36 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, MoreVertical, Edit2, Ban, Play } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
-
-interface UnitOfMeasure {
-  id: string;
-  name: string;
-  isActive: boolean;
-}
+import { getUnitOfMeasuresSampleData, type UnitOfMeasure } from '@/data/settings/unit-of-measures.data';
 
 export const UnitOfMeasures = (): JSX.Element => {
   const navigate = useNavigate();
-
-  const [units, setUnits] = useState<UnitOfMeasure[]>([
-    {
-      id: '1',
-      name: 'اسم الوحدة',
-      isActive: true,
-    },
-    {
-      id: '2',
-      name: 'اسم الوحدة',
-      isActive: true,
-    },
-    {
-      id: '3',
-      name: 'اسم الوحدة',
-      isActive: false,
-    },
-  ]);
+  const [units, setUnits] = useState<UnitOfMeasure[]>(() => getUnitOfMeasuresSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);

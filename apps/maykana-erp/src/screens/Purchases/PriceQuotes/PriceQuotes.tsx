@@ -28,7 +28,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { usePriceQuotesData } from '@/hooks/usePriceQuotesData';
-import type { PriceQuote, PriceQuoteStatus } from '../../../data/purchases/price-quotes.data';
+import type { PriceQuote, PriceQuoteStatus } from '@/data/purchases/price-quotes.data';
 
 export const PriceQuotes = (): JSX.Element => {
   const navigate = useNavigate();

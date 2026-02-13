@@ -18,7 +18,7 @@ import {
   Trash2,
 } from 'lucide-react';
 import { useAccountingEntriesData } from '@/hooks/useAccountingEntriesData';
-import type { AccountingEntryItem } from '../../../data/accounting/accounting-entries.data';
+import type { AccountingEntryItem } from '@/data/accounting/accounting-entries.data';
 
 // Entry Type Badge Component
 const EntryTypeBadge = ({ type }: { type: AccountingEntryItem['type'] }) => {

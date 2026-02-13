@@ -14,7 +14,7 @@ import {
 import { buttonClasses } from '@/styles';
 import { ArrowRight, ChevronUp, ChevronDown, Plus, Trash2 } from 'lucide-react';
 import { usePriceListsData } from '@/hooks/usePriceListsData';
-import type { PriceList, PriceListItem, PriceListType } from '../../../data/sales/price-lists.data';
+import type { PriceList, PriceListItem, PriceListType } from '@/data/sales/price-lists.data';
 
 export const AddEditPriceList = (): JSX.Element => {
   const navigate = useNavigate();

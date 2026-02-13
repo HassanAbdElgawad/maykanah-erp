@@ -25,7 +25,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { useDeliveryNotesData } from '@/hooks/useDeliveryNotesData';
-import type { DeliveryNote, DeliveryNoteStatus } from '../../../data/sales/delivery-notes.data';
+import type { DeliveryNote, DeliveryNoteStatus } from '@/data/sales/delivery-notes.data';
 
 export const DeliveryNotes = (): JSX.Element => {
   const navigate = useNavigate();

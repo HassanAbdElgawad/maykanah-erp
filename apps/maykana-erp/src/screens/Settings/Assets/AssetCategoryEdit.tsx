@@ -1,62 +1,14 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { ChevronDown, ChevronUp, ArrowRight, ChevronLeft } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-
-// Mock data - same as in AssetCategories
-const mockCategories: Record<string, any> = {
-  '1': {
-    id: '1',
-    code: 'CAT-001',
-    name: 'أجهزة الحاسوب',
-    description: 'نستخدم هذه الفئة لتصنيف جميع أجهزة الحاسوب المحمولة والمكتبية الخاصة بالموظفين، وتشمل الأجهزة المحمولة للعمل الإداري والفني.',
-    depreciationMethod: 'القسط الثابت',
-    usefulLife: '5',
-    residualValue: '10',
-    assetAccount: '150101',
-    accumulatedDepreciationAccount: '160101',
-    depreciationExpenseAccount: '510101',
-    depreciationPeriods: '60',
-    depreciationRate: '20',
-    isActive: true,
-  },
-  '2': {
-    id: '2',
-    code: 'CAT-002',
-    name: 'الأثاث المكتبي',
-    description: 'تصنيف للأثاث المكتبي والمعدات',
-    depreciationMethod: 'القسط الثابت',
-    usefulLife: '10',
-    residualValue: '5',
-    assetAccount: '150201',
-    accumulatedDepreciationAccount: '160201',
-    depreciationExpenseAccount: '510201',
-    depreciationPeriods: '120',
-    depreciationRate: '10',
-    isActive: true,
-  },
-  '3': {
-    id: '3',
-    code: 'CAT-003',
-    name: 'المركبات',
-    description: 'تصنيف للمركبات الخاصة بالشركة',
-    depreciationMethod: 'القسط الثابت',
-    usefulLife: '4',
-    residualValue: '5000',
-    assetAccount: '150301',
-    accumulatedDepreciationAccount: '160301',
-    depreciationExpenseAccount: '510301',
-    depreciationPeriods: '48',
-    depreciationRate: '25',
-    isActive: true,
-  },
-};
+import { getAssetCategoryById } from '@/data/settings/asset-categories.data';
 
 export const AssetCategoryEdit = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const category = id ? mockCategories[id] : null;
+  const category = useMemo(() => (id ? getAssetCategoryById(id) : null), [id]);
 
   const [expandedSections, setExpandedSections] = useState({
     definition: true,

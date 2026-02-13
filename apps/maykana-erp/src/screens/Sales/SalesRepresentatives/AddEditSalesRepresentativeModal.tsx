@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/select';
 import { buttonClasses } from '@/styles';
 import { X, Plus, Trash2 } from 'lucide-react';
-import type { SalesRepresentative, SalesRepresentativeItem } from '../../../data/sales/sales-representatives.data';
+import type { SalesRepresentative, SalesRepresentativeItem } from '@/data/sales/sales-representatives.data';
 
 interface AddEditSalesRepresentativeModalProps {
   isOpen: boolean;

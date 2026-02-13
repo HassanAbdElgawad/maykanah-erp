@@ -18,7 +18,7 @@ import {
   UserPlus
 } from 'lucide-react';
 import { useCustomersData } from '@/hooks/useCustomersData';
-import type { Customer } from '../../../data/sales/customers.data';
+import type { Customer } from '@/data/sales/customers.data';
 
 export const Customers = (): JSX.Element => {
   const { t } = useLanguage();

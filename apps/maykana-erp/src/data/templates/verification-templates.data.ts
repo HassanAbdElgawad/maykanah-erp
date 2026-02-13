@@ -1,4 +1,15 @@
 // Verification Templates Data - Sample templates for verification processes
+
+export interface ChecklistItem {
+  id: string;
+  text: string;
+  type: 'checkbox' | 'text' | 'number' | 'yesno';
+}
+
+export const getVerificationTemplateInitialChecklistItems = (): ChecklistItem[] => [
+  { id: '1', text: '', type: 'checkbox' },
+];
+
 export interface VerificationTemplate {
   id: string;
   title: string;

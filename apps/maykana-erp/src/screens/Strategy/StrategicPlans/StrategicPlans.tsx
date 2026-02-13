@@ -1,21 +1,10 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Download, Filter, ChevronDown, MoreVertical, Plus } from 'lucide-react';
-
-interface Plan {
-  id: string;
-  planNumber: string;
-  planName: string;
-  model: string;
-  startYear: number;
-  endYear: number;
-  manager: string;
-  progress: number;
-  status: 'active' | 'pending' | 'completed';
-}
+import { getStrategicPlansSampleData } from '@/data/strategy/strategic-plans.data';
 
 export function StrategicPlans() {
   const navigate = useNavigate();
@@ -23,41 +12,7 @@ export function StrategicPlans() {
   const [searchTerm, setSearchTerm] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
-  const mockPlans: Plan[] = [
-    {
-      id: '1',
-      planNumber: '2025-PL-001',
-      planName: 'خطة التحول الرقمي 2025-2027',
-      model: 'بطاقة الأداء المتوازن (Balanced Scorecard)',
-      startYear: 2025,
-      endYear: 2027,
-      manager: 'م. أحمد العرفاني',
-      progress: 35,
-      status: 'active',
-    },
-    {
-      id: '2',
-      planNumber: '2026-PL-005',
-      planName: 'الخطة الاستراتيجية للموارد البشرية',
-      model: 'بطاقة الأداء المتوازن',
-      startYear: 2026,
-      endYear: 2026,
-      manager: 'سارة الباجري',
-      progress: 78,
-      status: 'active',
-    },
-    {
-      id: '3',
-      planNumber: '2025-PL-002',
-      planName: 'خطة الأمن السيبراني',
-      model: 'نموذج التميز المؤسسي',
-      startYear: 2025,
-      endYear: 2028,
-      manager: 'خالد الديومي',
-      progress: 15,
-      status: 'pending',
-    },
-  ];
+  const mockPlans = useMemo(() => getStrategicPlansSampleData(), []);
 
   const getStatusColor = (status: string) => {
     switch (status) {

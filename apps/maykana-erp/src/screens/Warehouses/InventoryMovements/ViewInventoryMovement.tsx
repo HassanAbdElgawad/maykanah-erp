@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { CardContainer } from '@/components/ui/CardContainer';
@@ -5,43 +6,17 @@ import { CollapsibleSection } from '@/components/ui/CollapsibleSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowLeft, ArrowRight, Edit2 } from 'lucide-react';
 import { buttonClasses } from '@/styles';
+import { getInventoryMovementViewSampleData } from '@/data/warehouses/inventory-movement-view.data';
 
 export const ViewInventoryMovement = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { t, language } = useLanguage();
 
-  // Mock data
-  const movement = {
-    movementNumber: '1222236',
-    movementType: 'تحويل',
-    movementDate: '2025-5-20',
-    costCenter: 'مركز التكلفة الرئيسي',
-    generalNotes: 'ملاحظات عامة هنا',
-  };
-
-  const orderItems = [
-    {
-      id: '1',
-      itemCode: 'AS220-SD',
-      itemName: 'مادة لمعاملة جيدة',
-      description: 'وصف هنا ال, وصف هنا ال',
-      unit: 'كيلو',
-      quantity: 2,
-      price: 250,
-      total: 500,
-    },
-  ];
-
-  const additionalCosts = [
-    {
-      id: '1',
-      number: '1',
-      expenseAccount: 'مصاريف تحويل',
-      description: 'تضمين',
-      price: 500,
-    },
-  ];
+  const { movement, orderItems, additionalCosts } = useMemo(
+    () => getInventoryMovementViewSampleData(),
+    []
+  );
 
   const InfoRow = ({ label, value }: { label: string; value: string }) => (
     <div className="space-y-1">
