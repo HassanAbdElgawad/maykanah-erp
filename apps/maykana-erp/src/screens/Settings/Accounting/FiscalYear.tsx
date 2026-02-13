@@ -6,19 +6,19 @@ import { SideDrawer } from '@/components/ui/SideDrawer';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, Search, MoreVertical } from 'lucide-react';
 import { buttonClasses } from '@/styles';
-import { getFiscalYearsSampleData, type FiscalYear } from '@/data/settings/fiscal-year.data';
+import { getFiscalYearsSampleData, type FiscalYearItem } from '@/data/settings/fiscal-year.data';
 
 export const FiscalYear = (): JSX.Element => {
   const { dir } = useLanguage();
-  const [fiscalYears] = useState<FiscalYear[]>(() => getFiscalYearsSampleData());
+  const [fiscalYears] = useState<FiscalYearItem[]>(() => getFiscalYearsSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [selectedYear, setSelectedYear] = useState<FiscalYear | null>(null);
+  const [selectedYear, setSelectedYear] = useState<FiscalYearItem | null>(null);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
-  const handleEditYear = (year: FiscalYear) => {
+  const handleEditYear = (year: FiscalYearItem) => {
     setSelectedYear(year);
     setIsEditModalOpen(true);
     setOpenMenuId(null);

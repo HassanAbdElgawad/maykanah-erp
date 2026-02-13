@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { mockGroups, ItemGroup } from '@/data/settings/item-groups.data';
+import { getItemGroupsSampleData, ItemGroup } from '@/data/settings/item-groups.data';
 
 export const useItemGroupsData = () => {
   const [data, setData] = useState<ItemGroup[]>([]);
@@ -9,7 +9,7 @@ export const useItemGroupsData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(Object.values(mockGroups));
+      setData(getItemGroupsSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

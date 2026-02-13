@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Upload, Trash2, Eye, Paperclip } from 'lucide-react';
+import { ArrowRight, Upload, Trash2, Eye, Paperclip, Package } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Layout } from '@/components/Layout';
 import { Button } from '@/components/ui/button';

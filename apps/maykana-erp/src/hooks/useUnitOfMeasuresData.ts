@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { mockUnits, UnitOfMeasure } from '@/data/settings/unit-of-measures.data';
+import { getUnitOfMeasuresSampleData, UnitOfMeasure } from '@/data/settings/unit-of-measures.data';
 
 export const useUnitOfMeasuresData = () => {
   const [data, setData] = useState<UnitOfMeasure[]>([]);
@@ -9,7 +9,7 @@ export const useUnitOfMeasuresData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(Object.values(mockUnits));
+      setData(getUnitOfMeasuresSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

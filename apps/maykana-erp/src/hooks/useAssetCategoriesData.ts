@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { mockCategories, AssetCategory } from '@/data/settings/asset-categories.data';
+import { getAssetCategoriesSampleData, AssetCategory } from '@/data/settings/asset-categories.data';
 
 export const useAssetCategoriesData = () => {
   const [data, setData] = useState<AssetCategory[]>([]);
@@ -9,7 +9,7 @@ export const useAssetCategoriesData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(Object.values(mockCategories));
+      setData(getAssetCategoriesSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { mockTeams, MaintenanceTeam } from '@/data/settings/maintenance-team.data';
+import { getMaintenanceTeamsSampleData, MaintenanceTeam } from '@/data/settings/maintenance-team.data';
 
 export const useMaintenanceTeamData = () => {
   const [data, setData] = useState<MaintenanceTeam[]>([]);
@@ -9,7 +9,7 @@ export const useMaintenanceTeamData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(Object.values(mockTeams));
+      setData(getMaintenanceTeamsSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {

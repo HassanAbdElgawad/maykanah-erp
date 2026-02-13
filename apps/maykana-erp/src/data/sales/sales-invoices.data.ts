@@ -1,5 +1,5 @@
 export type SalesInvoiceStatus = 'paid' | 'unpaid' | 'partial' | 'cancelled';
-export type PaymentMethod = 'cash' | 'bank' | 'check' | 'credit';
+export type SalesPaymentMethod = 'cash' | 'bank' | 'check' | 'credit';
 
 export interface SalesInvoiceItem {
   id: number;

@@ -10,7 +10,7 @@ export interface PaymentVoucher {
   status: 'completed' | 'pending' | 'cancelled';
 }
 
-export interface Account {
+export interface PaymentVoucherAccount {
   id: string;
   accountNumber: string;
   accountName: string;
@@ -101,7 +101,7 @@ export const getPaymentVouchersSampleData = (): PaymentVoucher[] => [
   },
 ];
 
-export const getAccountsSampleData = (): Account[] => [
+export const getAccountsSampleData = (): PaymentVoucherAccount[] => [
   {
     id: '1',
     accountNumber: '1',

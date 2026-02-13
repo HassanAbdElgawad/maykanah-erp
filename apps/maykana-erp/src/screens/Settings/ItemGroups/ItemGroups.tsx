@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout } from '@/components/Layout';
 import InitialFilters from '@/components/InitialFilters';
 import { Download, Filter, Plus, MoreVertical, Edit2, Ban, Play, X, ChevronLeft } from 'lucide-react';
 import { buttonClasses } from '@/styles/components/buttons';
-import { getItemGroupListItemsListSampleData, type ItemGroupListItemListItem } from '@/data/settings/item-groups.data';
+import { getItemGroupsListSampleData, type ItemGroupListItem } from '@/data/settings/item-groups.data';
 
-export const ItemGroupListItems = (): JSX.Element => {
-  const [groups, setGroups] = useState<ItemGroupListItemListItem[]>(() => getItemGroupListItemsListSampleData());
+export const ItemGroups = (): JSX.Element => {
+  const [groups, setGroups] = useState<ItemGroupListItem[]>(() => getItemGroupsListSampleData());
 
   const [searchQuery, setSearchQuery] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { mockLocations, AssetLocation } from '@/data/settings/asset-locations.data';
+import { getAssetLocationsSampleData, AssetLocation } from '@/data/settings/asset-locations.data';
 
 export const useAssetLocationsData = () => {
   const [data, setData] = useState<AssetLocation[]>([]);
@@ -9,7 +9,7 @@ export const useAssetLocationsData = () => {
   useEffect(() => {
     setLoading(true);
     try {
-      setData(Object.values(mockLocations));
+      setData(getAssetLocationsSampleData());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
