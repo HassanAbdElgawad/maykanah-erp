@@ -1,0 +1,261 @@
+﻿Contents
+1.Introduction2
+2. Key Components3
+3. Host Application (Shell / Container)4
+3.2What the Shell Owns vs What MFEs Own4
+3.3 Global Layout (Header / Sidebar / Footer / Workspace)5
+3.4 Global Navigation and Menu Orchestration6
+1.Introduction
+Micro-Frontend approach to support a large-scale platform with multiple business domains and independently evolving modules. It is designed to fit enterprise scenarios—such as ERP systems—where the platform includes modules like HR, Inventory, Sales, Finance, Procurement, CRM, and Reporting, while still delivering unified user experience.
+In this model, the platform is composed of a central Host Application (Shell/Container) and multiple domain-based micro-frontends. The Shell/Container serves as the main platform entry point and orchestration layer, responsible for the shared application frame (such as navigation, layout, and global context), while each domain module is implemented as an independent micro-frontend (for example: MFE-HR, MFE-Inventory, MFE-Sales, MFE-Finance).
+Each micro-fronted is treated as a mini application with clear ownership and internal boundaries. Within each micro-frontend, thefollowing:
+Clean Architecture for separation of domain logic, application flow, infrastructure, and presentation
+Across all micro-frontends, a shared Atomic Design base is used to support structured UI composition and reusable interface building blocks.
+In addition, the platform includes shared components and utilities to ensure consistency across modules (for example: common UI primitives, shared utilities, API base integration, authentication/session helpers, localization, and telemetry support).
+This approach enables the ERP frontend to scale in a controlled and maintainable way by combining:
+Modular business-domain ownership
+Consistent platform user experience
+Shared platform standards
+Maintainable internal architecture per module
+2. Key Components
+Host Application (Shell / Container)
+Domain Micro-Frontends (MFE Modules)
+MFE-HR
+MFE-Inventory
+MFE-Sales
+MFE-Finance
+MFE-Procurement
+MFE-CRM
+MFE-Reporting
+Micro-Frontend Internal Architecture
+Clean Architecture
+Atomic Design Base
+Shared Components Layer
+Shared Utilities / Platform Services Layer
+Micro-Frontend Registration / Manifest Contract
+Routing and Navigation Model
+Cross-Micro-Frontend Integration / Communication Model
+Observability, Logging, and Error Handling Foundation
+3. Host Application (Shell / Container)
+The Host Application (Shell / Container) is the central entry point of the platform and the orchestration layer for all micro-frontends. It provides the shared application frame and coordinates how domain modules are discovered, loaded, and presented to the user.
+The Shell is responsible for establishing a consistent platform experience across all modules while allowing each micro-frontend to remain independently implemented and evolved.
+Core responsibilities include:
+Providing the global application layout and frame
+Managing top-level navigation and menu orchestration
+Initializing authentication and user session context
+Applying permission-based module visibility and route access
+Registering and loading micro-frontends
+Providing shared global providers (theme, localization, tenant context, telemetry)
+Handling global error boundaries and fallback behavior
+Exposing an integration contract for micro-frontends
+3.2What the Shell Owns vs What MFEs Own
+The Shell Owns
+Platform entry point
+Global layout (header, sidebar, footer, workspace frame)
+Top-level routing (module base routes)
+Global navigation/menu rendering
+Authentication bootstrap and session initialization
+Permission-based visibility of modules and menu items
+Shared providers and cross-cutting context
+MFE discovery, registration, and runtime orchestration
+Global error boundaries and fallback UI
+Platform-level telemetry context
+Each Micro-Frontend Owns
+Domain-specific pages and workflows
+Internal routing under its assigned base route
+Domain UI components and page composition
+Feature state and UI interactions
+Domain validation and frontend business logic
+Backend integration adapters for that domain
+Local error handling (inside module scope)
+Module-specific telemetry events
+Boundary rule:Shell owns the platform frame and orchestration; MFEs own the domain experience inside their module boundary.
+3.3 Global Layout (Header / Sidebar / Footer / Workspace)
+Shell provides the shared layout structure used by all modules to ensure unified user experience.
+Typical Layout Regions
+Header
+Platform branding/logo
+User profile/session actions
+Notifications entry 
+Language switcher 
+Tenant/company selector (if applicable)
+Sidebar
+Main module navigation (HR, Inventory, Sales, Finance, etc.)
+Grouped navigation sections
+Permission-aware menu items
+Collapsible behavior (optional)
+Footer
+Environment/version indicators (optional)
+Support/help links (optional)
+Copyright/product info
+Workspace / Content Area
+Main rendering area where the active micro-frontend is mounted
+Page-level shell wrappers (breadcrumbs, page title host zone if applicable)
+Loading/fallback state rendering area
+3.4 Global Navigation and Menu Orchestration
+Shell is responsible for orchestrating global navigation and building the platform menu across all registered modules.
+Responsibilities
+Resolve available modules from registration/manifest data
+Build the sidebar/top navigation structure
+Apply ordering/grouping rules
+Apply feature flags (if enabled/disabled)
+Filter menu items based on user permissions/claims
+Route users to the selected module base route
+Menu Source Strategy
+The menu should be generated from a combination of:
+Shell configuration (groups, ordering, platform rules)
+MFE manifests (module metadata, route, display name, icon, permissions)
+This ensures the Shell maintains control over the user experience while allowing modules to declare their integration metadata.
+Best practice:Shell renders the menu; MFEs provide registration metadata, not direct menu rendering logic.
+3.5 Authentication / Session Bootstrap
+Shell performs the initial authentication and session bootstrap process before loading protected modules.
+Responsibilities
+Detect authentication state (authenticated / unauthenticated)
+Trigger login flow or redirect to identity provider (if required)
+Retrieve and initialize session context (tokens, user profile, tenant/company context)
+Initialize user claims/permissions
+Handle token refresh lifecycle (or delegate via shared auth SDK)
+Expose session/auth context to MFEs through shared providers/contract
+Expected Outcome
+Before the domain MFE is mounted, Shell should have established:
+authenticated user identity
+current tenant/company/branch context (if applicable)
+permission/role claims
+locale/language preferences (if platform-level)
+global telemetry correlation context (if applicable)
+This guarantees all modules start with a consistent and trusted platform context.
+3.6 Permission-Based Module Visibility
+The Shell controls which modules and navigation entries are visible and accessible based on the user’s permissions, roles, or claims.
+Shell Responsibilities
+Evaluate permissions for each registered module
+Hide or disable unavailable modules in the menu
+Prevent navigation to unauthorized module routes
+Render unauthorized fallback screens/messages when needed
+Pass relevant permission context to MFEs (if required for finer UI control)
+Important Rule
+Permission checks in Shell improve UX and navigation control, but they do not replace backend authorization.
+Security rule: The Shell enforces UI-level visibility and routing guards; backend services remain the source of truth for access control.
+3.7 Global Providers (Theme, i18n, Tenant, Telemetry)
+The Shell initializes and hosts platform-wide providers that should be shared consistently across all micro-frontends.
+Typical Global Providers
+Theme Provider
+Design tokens
+Light/dark mode (if applicable)
+UI density/layout settings (optional)
+Localization / i18n Provider
+Language selection (e.g., English / Arabic)
+Locale formatting behavior
+RTL/LTR direction support
+Tenant / Company Context Provider
+Current tenant/company/branch
+Context switching support (if platform supports it)
+Telemetry / Logging Context Provider
+Correlation IDs
+User/session metadata (as permitted)
+Tenant/module context propagation support
+Auth / Session Provider
+User identity
+Claims/permissions
+Session status
+Shell should provide these through stable contracts so all MFEs consume the same platform context model rather than re-implementing it independently.
+3.8 MFE Loading / Orchestration Lifecycle
+Shell manages the lifecycle of micro-frontends from registration to rendering.
+Typical Lifecycle Steps
+Initialize Shell
+Start app bootstrap
+Initialize providers (auth, theme, i18n, telemetry, tenant)
+Load Module Registry / Manifests
+Discover registered MFEs
+Validate required metadata (id, route, permissions, load entry)
+Build Navigation
+Filter modules by permissions/feature flags
+Render menu structure
+Resolve Route
+Match current URL to a module base route
+Load Target MFE
+Load module entry/runtime bundle
+Initialize integration context
+Mount into workspace
+Handle Runtime States
+Loading state while MFE loads
+Error fallback if MFE fails
+Unmount/remount when navigating to another module
+Track Telemetry
+Log module load success/failure
+Capture route/module navigation events
+Lifecycle Design Goal
+A failure in one MFE should not crash into the entire platform. The Shell must isolate module failures and preserve the platform frame.
+3.9 Error Boundaries and Fallback Behavior
+Shell provides platform-level resilience through global error boundaries and fallback behavior.
+Shell-Level Error Handling Responsibilities
+Catch rendering/runtime errors at the module boundary
+Display a user-friendly fallback screen for failed modules
+Preserve Shell navigation and platform frame
+Log error details with module context
+Offer retry/reload actions (where applicable)
+Fallback Scenarios
+MFE bundle fails to load
+MFE runtime initialization fails
+Manifest is invalid/missing required fields
+Unauthorized route access
+Unsupported route/module not found
+Example Fallback Behavior
+If MFE-Reporting fails to load:
+Shell keeps header/sidebar visible
+Workspace shows a fallback panel:
+“Reporting module is temporarily unavailable”
+Retry action
+Support reference/error ID (optional)
+3.10 Shell Integration Contract with MFEs
+Shell and each micro-frontend must communicate through a clear and stable integration contract to prevent tight coupling.
+Contract Purpose
+The integration contract defines how an MFE:
+registers itself (manifest)
+is loaded by the Shell
+receives host/platform context
+interacts with platform capabilities (navigation, telemetry, auth/session context)
+Contract Areas (Conceptual)
+Registration Metadata (Manifest)
+module id, display name, base route, permissions, icon, version, load entry
+Mount / Unmount Lifecycle
+how the Shell mounts the MFE into the workspace
+Host Context
+user/session context
+tenant/company context
+theme/i18n settings
+navigation helper access (optional)
+telemetry context access
+Optional Event Integration
+typed UI events for limited cross-module coordination
+Boundary Rule
+MFEs should integrate with Shellonly through approved contracts and should not depend on Shell internals.
+3.11 Example Shell Flow (ERP Login → Menu → Module Load)
+The following example illustrates a typical Shell orchestration flow in an ERP platform.
+Scenario: User logs in and opens Inventory module
+User opens the ERP platform
+Shell starts and initializes core providers
+Authentication bootstrap begins
+Shell validates session or redirects to login
+User authenticates successfully
+Session context is initialized
+User profile, tenant/company, claims/permissions, locale are loaded
+MFE manifests are loaded/validated
+Shell reads registered modules (HR, Inventory, Sales, Finance, etc.)
+Menu is built
+Shell filters modules based on permissions
+Example: users can see Inventory and Sales, but not Finance
+User clicks “Inventory”
+Shell routes to /inventory/*
+Inventory MFE is loaded
+Shell loads MFE-Inventory
+Shell passes host context (auth/session, tenant, theme, i18n, telemetry context)
+MFE mounts in workspace
+Inventory MFE handles internal pages
+Example routes inside module:
+/inventory/items
+/inventory/warehouses
+/inventory/stock-transfer
+If module load fails
+Shell displays module fallback panels without breaking the overall ERP frame
+This flow ensures a consistent platform experience while preserving independent module ownership.
+3.11.1 Shell Flow sequence diagram 

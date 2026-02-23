@@ -1,0 +1,1429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Micro-Frontend Architecture - ERP Platform</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --primary: #0f766e;
+        --primary-soft: #ecfdf5;
+        --accent: #1d4ed8;
+        --accent-soft: #eff6ff;
+        --warn: #b45309;
+        --warn-soft: #fffbeb;
+        --danger: #b91c1c;
+        --danger-soft: #fef2f2;
+        --radius: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        background: radial-gradient(
+          1200px 800px at 100% 0%,
+          #eef7ff 0%,
+          var(--bg) 46%,
+          #f2f4f8 100%
+        );
+        color: var(--text);
+        line-height: 1.75;
+        padding: 24px;
+      }
+
+      .container {
+        max-width: 1220px;
+        margin: 0 auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(16, 24, 40, 0.04);
+      }
+
+      .hero {
+        background: linear-gradient(180deg, #ffffff 0%, #f9f5ff 100%);
+        border-color: #c7d2fe;
+      }
+
+      .hero h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+        line-height: 1.3;
+        color: var(--primary);
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 24px;
+        color: var(--primary);
+        border-bottom: 2px solid var(--primary-soft);
+        padding-bottom: 8px;
+      }
+
+      h3 {
+        margin: 16px 0 8px;
+        font-size: 18px;
+        color: #111827;
+      }
+
+      h4 {
+        margin: 12px 0 6px;
+        font-size: 16px;
+        color: #1f2937;
+      }
+
+      p {
+        margin: 0 0 10px;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        margin-right: 6px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+      }
+
+      .pill.primary {
+        background: var(--primary-soft);
+        color: var(--primary);
+        border-color: #99f6e4;
+      }
+      .pill.accent {
+        background: var(--accent-soft);
+        color: var(--accent);
+        border-color: #bfdbfe;
+      }
+      .pill.warn {
+        background: var(--warn-soft);
+        color: var(--warn);
+        border-color: #fde68a;
+      }
+
+      .toc {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+      }
+
+      .toc a {
+        display: block;
+        text-decoration: none;
+        color: #0b3c8a;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 13px;
+        transition: all 0.2s ease;
+      }
+
+      .toc a:hover {
+        background: #eff6ff;
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      ul, ol {
+        margin: 0 0 10px;
+        padding-left: 24px;
+      }
+
+      li {
+        margin: 6px 0;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 12px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
+      }
+
+      .box {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 12px;
+        background: #fcfcfd;
+      }
+
+      .box h4 {
+        margin: 0 0 8px;
+      }
+
+      .box ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .box li {
+        margin: 4px 0;
+        font-size: 14px;
+      }
+
+      .highlight {
+        border-left: 4px solid var(--primary);
+        background: #f0fdf4;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin: 10px 0;
+      }
+
+      .highlight.info {
+        border-left-color: var(--accent);
+        background: #f0f9ff;
+      }
+
+      .highlight.warning {
+        border-left-color: #ef6444;
+        background: #fef2f2;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin: 10px 0;
+      }
+
+      th, td {
+        border: 1px solid var(--line);
+        padding: 10px 12px;
+        text-align: left;
+        background: #fff;
+      }
+
+      th {
+        background: #f3f4f6;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      code {
+        background: #f3f4f6;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        padding: 2px 6px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        color: #c4161c;
+      }
+
+      .diagram {
+        margin-top: 14px;
+        border: 1px dashed #d1d5db;
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+        overflow-x: auto;
+      }
+
+      .diagram-title {
+        margin: 0 0 10px;
+        font-size: 13px;
+        color: #4b5563;
+        font-weight: 600;
+      }
+
+      svg text {
+        font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        fill: #1f2937;
+      }
+
+      .section-group {
+        margin: 20px 0;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <!-- HERO SECTION -->
+      <section class="card hero" id="top">
+        <span class="pill primary">Enterprise Architecture</span>
+        <span class="pill accent">ERP Platform</span>
+        <span class="pill warn">Micro-Frontend Pattern</span>
+        <h1>Micro-Frontend Architecture</h1>
+        <p>
+          A comprehensive guide to implementing a scalable, enterprise-grade micro-frontend architecture
+          for large-scale ERP platforms with independent domain modules.
+        </p>
+        <p class="muted">
+          This document outlines architectural principles, Shell orchestration patterns, and domain-based
+          micro-frontend module design for platforms like HR, Inventory, Sales, Finance, Procurement,
+          CRM, and Reporting.
+        </p>
+      </section>
+
+      <!-- TABLE OF CONTENTS -->
+      <section class="card">
+        <h2>Contents</h2>
+        <div class="toc">
+          <a href="#intro">1) Introduction</a>
+          <a href="#components">2) Key Components</a>
+          <a href="#host">3) Host Application (Shell)</a>
+          <a href="#ownership">3.2) Shell vs MFEs</a>
+          <a href="#layout">3.3) Global Layout</a>
+          <a href="#navigation">3.4) Navigation</a>
+          <a href="#auth">3.5) Authentication</a>
+          <a href="#permissions">3.6) Module Visibility</a>
+          <a href="#providers">3.7) Global Providers</a>
+          <a href="#lifecycle">3.8) MFE Lifecycle</a>
+          <a href="#fallback">3.9) Error Boundaries</a>
+          <a href="#contract">3.10) Integration Contract</a>
+          <a href="#flow">3.11) Example Flow</a>
+          <a href="#mfes">4) Domain MFEs</a>
+          <a href="#clean-arch">5) Clean Architecture</a>
+        </div>
+      </section>
+
+      <!-- 1. INTRODUCTION -->
+      <section class="card" id="intro">
+        <h2>1) Introduction</h2>
+        <p>
+          This architecture describes a <strong>Micro-Frontend approach</strong> to support a large-scale
+          platform with multiple business domains and independently evolving modules. It is designed for
+          enterprise scenarios—such as ERP systems—where the platform includes modules like HR, Inventory,
+          Sales, Finance, Procurement, CRM, and Reporting, while maintaining a unified user experience.
+        </p>
+        <p>
+          The platform is composed of a <strong>central Host Application (Shell/Container)</strong> and
+          <strong>multiple domain-based micro-frontends</strong>. The Shell serves as the main entry point
+          and orchestration layer, responsible for shared application frame, navigation, layout, and global
+          context. Each domain module is implemented as an independent micro-frontend (e.g., MFE-HR,
+          MFE-Inventory, MFE-Sales, MFE-Finance).
+        </p>
+
+        <h3>Core Principles</h3>
+        <ul>
+          <li>
+            <strong>Clean Architecture:</strong> Each MFE separates domain logic, application flow,
+            infrastructure, and presentation layers.
+          </li>
+          <li>
+            <strong>Atomic Design:</strong> Shared design system with reusable UI components across all
+            modules.
+          </li>
+          <li>
+            <strong>Modular Ownership:</strong> Clear domain boundaries enabling independent development,
+            testing, and deployment.
+          </li>
+          <li>
+            <strong>Consistent Experience:</strong> Unified platform frame, authentication, providers,
+            design tokens, and standards.
+          </li>
+          <li>
+            <strong>Resilience:</strong> Module failures do not crash the entire platform—Shell preserves
+            frame and provides fallback UI.
+          </li>
+        </ul>
+
+        <div class="highlight">
+          <strong>Goal:</strong> Enable ERP frontend to scale in a controlled and maintainable way by
+          combining modular business-domain ownership, consistent platform UX, shared platform standards,
+          and maintainable internal architecture per module.
+        </div>
+      </section>
+
+      <!-- 2. KEY COMPONENTS -->
+      <section class="card" id="components">
+        <h2>2) Key Components</h2>
+        <h3>Platform Structure</h3>
+        <div class="grid-3">
+          <div class="box">
+            <h4>Host Application (Shell)</h4>
+            <ul>
+              <li>Central orchestration layer</li>
+              <li>Entry point for the platform</li>
+              <li>Manages module discovery &amp; loading</li>
+              <li>Provides global layout &amp; navigation</li>
+              <li>Bootstraps auth &amp; session</li>
+              <li>Hosts shared providers</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h4>Domain Micro-Frontends</h4>
+            <ul>
+              <li>MFE-HR</li>
+              <li>MFE-Inventory</li>
+              <li>MFE-Sales</li>
+              <li>MFE-Finance</li>
+              <li>MFE-Procurement</li>
+              <li>MFE-CRM &amp; Reporting</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h4>Shared Foundations</h4>
+            <ul>
+              <li>Atomic Design system</li>
+              <li>Shared UI components</li>
+              <li>Common utilities</li>
+              <li>API integration base</li>
+              <li>Auth/session helpers</li>
+              <li>Telemetry &amp; logging</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Architecture Layers</h3>
+        <ul>
+          <li><strong>Micro-Frontend Registration Contract:</strong> Manifest-based module discovery</li>
+          <li><strong>Routing &amp; Navigation Model:</strong> Shell orchestrates top-level routes</li>
+          <li><strong>Integration &amp; Communication:</strong> Typed contracts for stable coupling</li>
+          <li><strong>Observability &amp; Error Handling:</strong> Centralized logging &amp; resilience</li>
+        </ul>
+
+        <div class="diagram">
+          <div class="diagram-title">Platform Architecture Overview</div>
+          <svg viewBox="0 0 800 500" style="width: 100%; height: auto; background: white;">
+            <!-- Shell Container -->
+            <rect x="50" y="50" width="700" height="400" fill="#f0fdf4" stroke="#0f766e" stroke-width="2" rx="8"/>
+            <text x="60" y="75" font-size="14" font-weight="bold" fill="#0f766e">Host Application (Shell)</text>
+
+            <!-- Shell Internal (Header, Layout) -->
+            <rect x="70" y="90" width="660" height="60" fill="#d1fae5" stroke="#0f766e" stroke-width="1.5" rx="4"/>
+            <text x="80" y="115" font-size="12" font-weight="bold" fill="#0f766e">Layout: Header | Sidebar | Workspace | Providers (Auth, Theme, i18n, Telemetry)</text>
+
+            <!-- MFE Container -->
+            <rect x="70" y="170" width="660" height="250" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5" rx="4"/>
+            <text x="80" y="190" font-size="12" font-weight="bold" fill="#1d4ed8">Workspace - Active Micro-Frontend</text>
+
+            <!-- MFE Boxes -->
+            <g id="mfe1">
+              <rect x="90" y="210" width="130" height="90" fill="#ffffff" stroke="#0f766e" stroke-width="1" rx="4"/>
+              <text x="100" y="230" font-size="11" font-weight="bold" fill="#0f766e">MFE-HR</text>
+              <text x="100" y="250" font-size="10" fill="#666">/hr/*</text>
+              <text x="100" y="265" font-size="9" fill="#999">Domain Pages</text>
+              <text x="100" y="278" font-size="9" fill="#999">State & Routes</text>
+              <text x="100" y="291" font-size="9" fill="#999">API Integration</text>
+            </g>
+
+            <g id="mfe2">
+              <rect x="240" y="210" width="130" height="90" fill="#ffffff" stroke="#0f766e" stroke-width="1" rx="4"/>
+              <text x="250" y="230" font-size="11" font-weight="bold" fill="#0f766e">MFE-Inventory</text>
+              <text x="250" y="250" font-size="10" fill="#666">/inventory/*</text>
+              <text x="250" y="265" font-size="9" fill="#999">Domain Pages</text>
+              <text x="250" y="278" font-size="9" fill="#999">State & Routes</text>
+              <text x="250" y="291" font-size="9" fill="#999">API Integration</text>
+            </g>
+
+            <g id="mfe3">
+              <rect x="390" y="210" width="130" height="90" fill="#ffffff" stroke="#0f766e" stroke-width="1" rx="4"/>
+              <text x="400" y="230" font-size="11" font-weight="bold" fill="#0f766e">MFE-Sales</text>
+              <text x="400" y="250" font-size="10" fill="#666">/sales/*</text>
+              <text x="400" y="265" font-size="9" fill="#999">Domain Pages</text>
+              <text x="400" y="278" font-size="9" fill="#999">State & Routes</text>
+              <text x="400" y="291" font-size="9" fill="#999">API Integration</text>
+            </g>
+
+            <g id="mfe4">
+              <rect x="540" y="210" width="130" height="90" fill="#ffffff" stroke="#0f766e" stroke-width="1" rx="4"/>
+              <text x="550" y="230" font-size="11" font-weight="bold" fill="#0f766e">MFE-Finance</text>
+              <text x="550" y="250" font-size="10" fill="#666">/finance/*</text>
+              <text x="550" y="265" font-size="9" fill="#999">Domain Pages</text>
+              <text x="550" y="278" font-size="9" fill="#999">State & Routes</text>
+              <text x="550" y="291" font-size="9" fill="#999">API Integration</text>
+            </g>
+
+            <!-- Shared Layer Bottom -->
+            <rect x="70" y="320" width="660" height="80" fill="#fef3c7" stroke="#b45309" stroke-width="1" rx="4"/>
+            <text x="80" y="340" font-size="12" font-weight="bold" fill="#b45309">Shared Foundations</text>
+            <text x="80" y="360" font-size="10" fill="#666">• Atomic Design System (UI Components) • Utilities • API Base • Auth/Session Helpers</text>
+            <text x="80" y="378" font-size="10" fill="#666">• Telemetry • Logging • Error Boundaries • Platform Contracts</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 3. HOST APPLICATION (SHELL) -->
+      <section class="card" id="host">
+        <h2>3) Host Application (Shell / Container)</h2>
+        <p>
+          The <strong>Host Application (Shell)</strong> is the central entry point and orchestration layer
+          for all micro-frontends. It provides the shared application frame and coordinates how domain
+          modules are discovered, loaded, and presented to the user.
+        </p>
+        <p>
+          The Shell establishes a consistent platform experience across all modules while allowing each
+          micro-frontend to remain independently implemented and evolved.
+        </p>
+
+        <h3>Core Responsibilities</h3>
+        <ul>
+          <li>Providing the global application layout and frame</li>
+          <li>Managing top-level navigation and menu orchestration</li>
+          <li>Initializing authentication and user session context</li>
+          <li>Applying permission-based module visibility and route access</li>
+          <li>Registering and loading micro-frontends dynamically</li>
+          <li>Providing shared global providers (theme, localization, tenant context, telemetry)</li>
+          <li>Handling global error boundaries and fallback behavior</li>
+          <li>Exposing a stable integration contract for micro-frontends</li>
+        </ul>
+      </section>
+
+      <!-- 3.2 OWNERSHIP -->
+      <section class="card" id="ownership">
+        <h2>3.2) What the Shell Owns vs What MFEs Own</h2>
+        <div class="grid-2">
+          <div class="box">
+            <h4>Shell Owns</h4>
+            <ul>
+              <li>Platform entry point</li>
+              <li>Global layout (header, sidebar, footer, workspace)</li>
+              <li>Top-level routing (module base routes)</li>
+              <li>Global navigation/menu rendering</li>
+              <li>Auth bootstrap &amp; session initialization</li>
+              <li>Permission-based module visibility</li>
+              <li>Shared providers &amp; cross-cutting context</li>
+              <li>MFE discovery, registration &amp; orchestration</li>
+              <li>Global error boundaries &amp; fallback UI</li>
+              <li>Platform-level telemetry context</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h4>Each Micro-Frontend Owns</h4>
+            <ul>
+              <li>Domain-specific pages &amp; workflows</li>
+              <li>Internal routing under its base route</li>
+              <li>Domain UI components &amp; page composition</li>
+              <li>Feature state &amp; UI interactions</li>
+              <li>Domain validation &amp; business logic</li>
+              <li>Backend integration adapters</li>
+              <li>Local error handling (module scope)</li>
+              <li>Module-specific telemetry events</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="highlight">
+          <strong>Boundary Rule:</strong> Shell owns the platform frame and orchestration; MFEs own the
+          domain experience inside their module boundary.
+        </div>
+
+        <div class="diagram">
+          <div class="diagram-title">Shell vs MFE Ownership Map</div>
+          <svg viewBox="0 0 800 420" style="width: 100%; height: auto; background: white;">
+            <!-- Shell Section (Left) -->
+            <g>
+              <rect x="20" y="20" width="350" height="380" fill="#d1fae5" stroke="#0f766e" stroke-width="2" rx="8"/>
+              <text x="35" y="45" font-size="14" font-weight="bold" fill="#0f766e">Shell Owns</text>
+              
+              <rect x="30" y="60" width="330" height="330" fill="white" stroke="#0f766e" stroke-width="1" rx="4" opacity="0.8"/>
+              
+              <g id="shell-items">
+                <text x="45" y="85" font-size="11" fill="#0f766e">
+                  <tspan x="45" dy="0">✓ Platform entry point</tspan>
+                  <tspan x="45" dy="18">✓ Global layout (header/sidebar)</tspan>
+                  <tspan x="45" dy="18">✓ Top-level routing</tspan>
+                  <tspan x="45" dy="18">✓ Global navigation/menu</tspan>
+                  <tspan x="45" dy="18">✓ Auth bootstrap</tspan>
+                  <tspan x="45" dy="18">✓ Session initialization</tspan>
+                  <tspan x="45" dy="18">✓ Permission-based visibility</tspan>
+                  <tspan x="45" dy="18">✓ Shared providers</tspan>
+                  <tspan x="45" dy="18">✓ MFE discovery/registration</tspan>
+                  <tspan x="45" dy="18">✓ Module orchestration</tspan>
+                  <tspan x="45" dy="18">✓ Error boundaries</tspan>
+                  <tspan x="45" dy="18">✓ Fallback UI</tspan>
+                  <tspan x="45" dy="18">✓ Platform telemetry</tspan>
+                </text>
+              </g>
+            </g>
+
+            <!-- MFE Section (Right) -->
+            <g>
+              <rect x="430" y="20" width="350" height="380" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" rx="8"/>
+              <text x="445" y="45" font-size="14" font-weight="bold" fill="#1d4ed8">Each MFE Owns</text>
+              
+              <rect x="440" y="60" width="330" height="330" fill="white" stroke="#1d4ed8" stroke-width="1" rx="4" opacity="0.8"/>
+              
+              <g id="mfe-items">
+                <text x="455" y="85" font-size="11" fill="#1d4ed8">
+                  <tspan x="455" dy="0">✓ Domain-specific pages</tspan>
+                  <tspan x="455" dy="18">✓ Internal routing</tspan>
+                  <tspan x="455" dy="18">✓ Domain UI components</tspan>
+                  <tspan x="455" dy="18">✓ Page composition</tspan>
+                  <tspan x="455" dy="18">✓ Feature state/UI</tspan>
+                  <tspan x="455" dy="18">✓ Domain interactions</tspan>
+                  <tspan x="455" dy="18">✓ Domain validation</tspan>
+                  <tspan x="455" dy="18">✓ Business logic</tspan>
+                  <tspan x="455" dy="18">✓ Backend adapters</tspan>
+                  <tspan x="455" dy="18">✓ API integration</tspan>
+                  <tspan x="455" dy="18">✓ Local error handling</tspan>
+                  <tspan x="455" dy="18">✓ Module telemetry</tspan>
+                  <tspan x="455" dy="18">✓ Clean architecture</tspan>
+                </text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 3.3 GLOBAL LAYOUT -->
+      <section class="card" id="layout">
+        <h2>3.3) Global Layout (Header / Sidebar / Footer)</h2>
+        <p>
+          Shell provides the shared layout structure used by all modules to ensure unified user experience
+          and consistent visual appearance across the platform.
+        </p>
+
+        <h3>Typical Layout Regions</h3>
+
+        <h4>Header</h4>
+        <ul>
+          <li>Platform branding/logo</li>
+          <li>User profile/session actions</li>
+          <li>Notifications entry point</li>
+          <li>Language switcher</li>
+          <li>Tenant/company selector (if applicable)</li>
+        </ul>
+
+        <h4>Sidebar / Left Navigation</h4>
+        <ul>
+          <li>Main module navigation (HR, Inventory, Sales, Finance, etc.)</li>
+          <li>Grouped navigation sections</li>
+          <li>Permission-aware menu items</li>
+          <li>Collapsible behavior (optional)</li>
+        </ul>
+
+        <h4>Footer</h4>
+        <ul>
+          <li>Environment/version indicators (optional)</li>
+          <li>Support/help links (optional)</li>
+          <li>Copyright/product information</li>
+        </ul>
+
+        <h4>Workspace / Content Area</h4>
+        <ul>
+          <li>Main rendering area where active micro-frontend is mounted</li>
+          <li>Page-level shell wrappers (breadcrumbs, page title zones)</li>
+          <li>Loading/fallback state rendering</li>
+        </ul>
+      </section>
+
+      <!-- 3.4 NAVIGATION -->
+      <section class="card" id="navigation">
+        <h2>3.4) Global Navigation and Menu Orchestration</h2>
+        <p>
+          Shell is responsible for orchestrating global navigation and building the platform menu by
+          combining Shell configuration with MFE manifest declarations.
+        </p>
+
+        <h3>Shell Responsibilities</h3>
+        <ul>
+          <li>Resolve available modules from registration/manifest data</li>
+          <li>Build the sidebar/top navigation structure</li>
+          <li>Apply ordering and grouping rules</li>
+          <li>Apply feature flags (if enabled/disabled)</li>
+          <li>Filter menu items based on user permissions/claims</li>
+          <li>Route users to selected module base route</li>
+        </ul>
+
+        <h3>Menu Source Strategy</h3>
+        <p>
+          The menu should be generated from a combination of:
+        </p>
+        <ul>
+          <li><strong>Shell configuration:</strong> Groups, ordering, platform rules</li>
+          <li><strong>MFE manifests:</strong> Module metadata, route, display name, icon, permissions</li>
+        </ul>
+
+        <div class="highlight info">
+          <strong>Best Practice:</strong> Shell renders the menu; MFEs provide registration metadata, not
+          direct menu rendering logic.
+        </div>
+      </section>
+
+      <!-- 3.5 AUTHENTICATION -->
+      <section class="card" id="auth">
+        <h2>3.5) Authentication / Session Bootstrap</h2>
+        <p>
+          Shell performs the initial authentication and session bootstrap process before loading protected
+          modules.
+        </p>
+
+        <h3>Shell Responsibilities</h3>
+        <ul>
+          <li>Detect authentication state (authenticated / unauthenticated)</li>
+          <li>Trigger login flow or redirect to identity provider (if required)</li>
+          <li>Retrieve and initialize session context (tokens, user profile, tenant/company)</li>
+          <li>Initialize user claims/permissions</li>
+          <li>Handle token refresh lifecycle (or delegate via shared auth SDK)</li>
+          <li>Expose session/auth context to MFEs through shared providers/contract</li>
+        </ul>
+
+        <h3>Expected Outcome Before MFE Mount</h3>
+        <p>Shell should establish:</p>
+        <ul>
+          <li>Authenticated user identity</li>
+          <li>Current tenant/company/branch context (if applicable)</li>
+          <li>Permission/role claims</li>
+          <li>Locale/language preferences (if platform-level)</li>
+          <li>Global telemetry correlation context (if applicable)</li>
+        </ul>
+
+        <div class="highlight">
+          This guarantees all modules start with a consistent and trusted platform context.
+        </div>
+      </section>
+
+      <!-- 3.6 PERMISSIONS -->
+      <section class="card" id="permissions">
+        <h2>3.6) Permission-Based Module Visibility</h2>
+        <p>
+          The Shell controls which modules and navigation entries are visible and accessible based on the
+          user's permissions, roles, or claims.
+        </p>
+
+        <h3>Shell Responsibilities</h3>
+        <ul>
+          <li>Evaluate permissions for each registered module</li>
+          <li>Hide or disable unavailable modules in the menu</li>
+          <li>Prevent navigation to unauthorized module routes</li>
+          <li>Render unauthorized fallback screens/messages when needed</li>
+          <li>Pass relevant permission context to MFEs (if required for finer UI control)</li>
+        </ul>
+
+        <div class="highlight warning">
+          <strong>Security Rule:</strong> Permission checks in Shell improve UX and navigation control, but
+          do not replace backend authorization. Backend services remain the source of truth for access
+          control.
+        </div>
+      </section>
+
+      <!-- 3.7 PROVIDERS -->
+      <section class="card" id="providers">
+        <h2>3.7) Global Providers (Theme, i18n, Tenant, Telemetry)</h2>
+        <p>
+          The Shell initializes and hosts platform-wide providers that should be shared consistently
+          across all micro-frontends.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Provider</th>
+              <th>Provides</th>
+              <th>Impact on MFEs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Theme Provider</strong></td>
+              <td>Design tokens, light/dark mode, UI density settings</td>
+              <td>Consistent visual appearance across all modules</td>
+            </tr>
+            <tr>
+              <td><strong>i18n / Localization</strong></td>
+              <td>Language selection, locale formatting, RTL/LTR support</td>
+              <td>Unified language &amp; direction across the platform</td>
+            </tr>
+            <tr>
+              <td><strong>Tenant / Company Context</strong></td>
+              <td>Current tenant/company/branch, context switching</td>
+              <td>All modules operate on same tenant context</td>
+            </tr>
+            <tr>
+              <td><strong>Telemetry / Logging</strong></td>
+              <td>Correlation IDs, user/session metadata</td>
+              <td>Unified observability across all modules</td>
+            </tr>
+            <tr>
+              <td><strong>Auth / Session Provider</strong></td>
+              <td>User identity, claims/permissions, session status</td>
+              <td>Consistent security model without re-implementation</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight">
+          Shell should provide these through stable contracts so all MFEs consume the same platform context
+          model rather than re-implementing it independently.
+        </div>
+      </section>
+
+      <!-- 3.8 LIFECYCLE -->
+      <section class="card" id="lifecycle">
+        <h2>3.8) MFE Loading / Orchestration Lifecycle</h2>
+        <p>
+          Shell manages the complete lifecycle of micro-frontends from registration through rendering and
+          unmounting.
+        </p>
+
+        <h3>Typical Lifecycle Steps</h3>
+        <ol>
+          <li><strong>Initialize Shell:</strong> Start app bootstrap</li>
+          <li><strong>Initialize Providers:</strong> Auth, theme, i18n, telemetry, tenant</li>
+          <li><strong>Load Module Registry:</strong> Discover registered MFEs, validate metadata</li>
+          <li><strong>Build Navigation:</strong> Filter modules by permissions, render menu</li>
+          <li><strong>Resolve Route:</strong> Match current URL to module base route</li>
+          <li><strong>Load Target MFE:</strong> Load module bundle, initialize context</li>
+          <li><strong>Mount into Workspace:</strong> Inject host context, render module</li>
+          <li><strong>Handle Runtime States:</strong> Loading, error fallback, unmount/remount</li>
+          <li><strong>Track Telemetry:</strong> Log module load success/failure, navigation events</li>
+        </ol>
+
+        <div class="highlight">
+          <strong>Design Goal:</strong> A failure in one MFE should not crash the entire platform. Shell
+          must isolate module failures and preserve the platform frame.
+        </div>
+
+        <div class="diagram">
+          <div class="diagram-title">MFE Loading Lifecycle (Sequence)</div>
+          <svg viewBox="0 0 900 450" style="width: 100%; height: auto; background: white;">
+            <!-- Timeline Header -->
+            <text x="20" y="30" font-size="13" font-weight="bold" fill="#0f766e">Step-by-Step Lifecycle</text>
+
+            <!-- Step Boxes -->
+            <g id="steps">
+              <!-- Step 1 -->
+              <rect x="20" y="50" width="85" height="50" fill="#fff7ed" stroke="#b45309" stroke-width="1.5" rx="4"/>
+              <text x="30" y="70" font-size="10" font-weight="bold" fill="#b45309">1. Init</text>
+              <text x="30" y="85" font-size="9" fill="#666">Shell</text>
+              <text x="30" y="97" font-size="9" fill="#666">starts</text>
+              
+              <!-- Arrow 1 -->
+              <path d="M 107 75 L 127 75" stroke="#999" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+              
+              <!-- Step 2 -->
+              <rect x="127" y="50" width="85" height="50" fill="#fef3c7" stroke="#b45309" stroke-width="1.5" rx="4"/>
+              <text x="137" y="70" font-size="10" font-weight="bold" fill="#b45309">2. Init</text>
+              <text x="137" y="85" font-size="9" fill="#666">Providers</text>
+              <text x="137" y="97" font-size="9" fill="#666">(Auth, Theme)</text>
+
+              <!-- Arrow 2 -->
+              <path d="M 212 75 L 232 75" stroke="#999" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+              <!-- Step 3 -->
+              <rect x="232" y="50" width="85" height="50" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5" rx="4"/>
+              <text x="242" y="70" font-size="10" font-weight="bold" fill="#1d4ed8">3. Load</text>
+              <text x="242" y="85" font-size="9" fill="#666">Registry</text>
+              <text x="242" y="97" font-size="9" fill="#666">Manifest</text>
+
+              <!-- Arrow 3 -->
+              <path d="M 317 75 L 337 75" stroke="#999" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+              <!-- Step 4 -->
+              <rect x="337" y="50" width="85" height="50" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5" rx="4"/>
+              <text x="347" y="70" font-size="10" font-weight="bold" fill="#1d4ed8">4. Build</text>
+              <text x="347" y="85" font-size="9" fill="#666">Menu</text>
+              <text x="347" y="97" font-size="9" fill="#666">(Filter perms)</text>
+
+              <!-- Arrow 4 -->
+              <path d="M 422 75 L 442 75" stroke="#999" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+              <!-- Step 5 -->
+              <rect x="442" y="50" width="85" height="50" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5" rx="4"/>
+              <text x="452" y="70" font-size="10" font-weight="bold" fill="#1d4ed8">5. Resolve</text>
+              <text x="452" y="85" font-size="9" fill="#666">Route</text>
+              <text x="452" y="97" font-size="9" fill="#666">Match URL</text>
+
+              <!-- Arrow 5 -->
+              <path d="M 527 75 L 547 75" stroke="#999" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+              <!-- Step 6 -->
+              <rect x="547" y="50" width="85" height="50" fill="#e0e7ff" stroke="#1d4ed8" stroke-width="1.5" rx="4"/>
+              <text x="557" y="70" font-size="10" font-weight="bold" fill="#0f3a66">6. Load</text>
+              <text x="557" y="85" font-size="9" fill="#666">MFE</text>
+              <text x="557" y="97" font-size="9" fill="#666">Bundle</text>
+
+              <!-- Arrow 6 -->
+              <path d="M 632 75 L 652 75" stroke="#999" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+              <!-- Step 7 -->
+              <rect x="652" y="50" width="85" height="50" fill="#dcfce7" stroke="#059669" stroke-width="1.5" rx="4"/>
+              <text x="662" y="70" font-size="10" font-weight="bold" fill="#059669">7. Mount</text>
+              <text x="662" y="85" font-size="9" fill="#666">MFE</text>
+              <text x="662" y="97" font-size="9" fill="#666">Render</text>
+
+              <!-- Arrow 7 -->
+              <path d="M 737 75 L 757 75" stroke="#999" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+              <!-- Step 8 -->
+              <rect x="757" y="50" width="85" height="50" fill="#dcfce7" stroke="#059669" stroke-width="1.5" rx="4"/>
+              <text x="767" y="70" font-size="10" font-weight="bold" fill="#059669">8. Ready</text>
+              <text x="767" y="85" font-size="9" fill="#666">User</text>
+              <text x="767" y="97" font-size="9" fill="#666">Interacts</text>
+            </g>
+
+            <!-- Error Path -->
+            <line x1="20" y1="130" x2="850" y2="130" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="20" y="155" font-size="11" font-weight="bold" fill="#b91c1c">Error Path (If MFE Load Fails)</text>
+
+            <g id="error-path">
+              <!-- Error Step 1 -->
+              <rect x="20" y="170" width="100" height="55" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5" rx="4"/>
+              <text x="30" y="192" font-size="10" font-weight="bold" fill="#b91c1c">MFE Load</text>
+              <text x="30" y="207" font-size="10" font-weight="bold" fill="#b91c1c">Fails</text>
+
+              <!-- Arrow Error 1 -->
+              <path d="M 120 197 L 140 197" stroke="#b91c1c" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-error)"/>
+
+              <!-- Error Step 2 -->
+              <rect x="140" y="170" width="100" height="55" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5" rx="4"/>
+              <text x="150" y="192" font-size="10" font-weight="bold" fill="#b91c1c">Shell Catches</text>
+              <text x="150" y="207" font-size="10" font-weight="bold" fill="#b91c1c">Error</text>
+
+              <!-- Arrow Error 2 -->
+              <path d="M 240 197 L 260 197" stroke="#b91c1c" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-error)"/>
+
+              <!-- Error Step 3 -->
+              <rect x="260" y="170" width="100" height="55" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5" rx="4"/>
+              <text x="270" y="192" font-size="10" font-weight="bold" fill="#b91c1c">Log Error</text>
+              <text x="270" y="207" font-size="10" font-weight="bold" fill="#b91c1c">w/ Context</text>
+
+              <!-- Arrow Error 3 -->
+              <path d="M 360 197 L 380 197" stroke="#b91c1c" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-error)"/>
+
+              <!-- Error Step 4 -->
+              <rect x="380" y="170" width="100" height="55" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5" rx="4"/>
+              <text x="390" y="192" font-size="10" font-weight="bold" fill="#b91c1c">Display</text>
+              <text x="390" y="207" font-size="10" font-weight="bold" fill="#b91c1c">Fallback</text>
+
+              <!-- Arrow Error 4 -->
+              <path d="M 480 197 L 500 197" stroke="#b91c1c" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-error)"/>
+
+              <!-- Error Step 5 -->
+              <rect x="500" y="170" width="150" height="55" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5" rx="4"/>
+              <text x="510" y="192" font-size="10" font-weight="bold" fill="#b91c1c">Shell Frame</text>
+              <text x="510" y="207" font-size="10" font-weight="bold" fill="#b91c1c">Still Preserved</text>
+            </g>
+
+            <!-- Marker Definition -->
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#999"/>
+              </marker>
+              <marker id="arrowhead-error" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#b91c1c"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 3.9 ERROR BOUNDARIES -->
+      <section class="card" id="fallback">
+        <h2>3.9) Error Boundaries and Fallback Behavior</h2>
+        <p>
+          Shell provides platform-level resilience through global error boundaries and fallback behavior.
+        </p>
+
+        <h3>Shell-Level Error Handling Responsibilities</h3>
+        <ul>
+          <li>Catch rendering/runtime errors at module boundaries</li>
+          <li>Display user-friendly fallback screens for failed modules</li>
+          <li>Preserve Shell navigation and platform frame</li>
+          <li>Log error details with module context</li>
+          <li>Offer retry/reload actions (where applicable)</li>
+        </ul>
+
+        <h3>Fallback Scenarios</h3>
+        <ul>
+          <li>MFE bundle fails to load</li>
+          <li>MFE runtime initialization fails</li>
+          <li>Manifest is invalid/missing required fields</li>
+          <li>Unauthorized route access</li>
+          <li>Unsupported route/module not found</li>
+        </ul>
+
+        <div class="highlight">
+          <strong>Example:</strong> If MFE-Reporting fails to load, Shell keeps header/sidebar visible and
+          displays fallback panel with "Module unavailable", retry action, and support reference.
+        </div>
+      </section>
+
+      <!-- 3.10 CONTRACT -->
+      <section class="card" id="contract">
+        <h2>3.10) Shell Integration Contract with MFEs</h2>
+        <p>
+          Shell and each micro-frontend communicate through a clear and stable integration contract to
+          prevent tight coupling.
+        </p>
+
+        <h3>Contract Purpose</h3>
+        <p>The integration contract defines how an MFE:</p>
+        <ul>
+          <li>Registers itself (manifest)</li>
+          <li>Is loaded by the Shell</li>
+          <li>Receives host/platform context</li>
+          <li>Interacts with platform capabilities (navigation, telemetry, auth/session)</li>
+        </ul>
+
+        <h3>Contract Areas</h3>
+        <ul>
+          <li>
+            <strong>Registration Metadata (Manifest):</strong> module id, display name, base route,
+            permissions, icon, version, load entry
+          </li>
+          <li>
+            <strong>Mount / Unmount Lifecycle:</strong> How Shell mounts the MFE into workspace
+          </li>
+          <li>
+            <strong>Host Context:</strong> user/session context, tenant/company, theme/i18n, navigation
+            helpers, telemetry context
+          </li>
+          <li>
+            <strong>Optional Event Integration:</strong> Typed UI events for limited cross-module
+            coordination
+          </li>
+        </ul>
+
+        <div class="highlight">
+          <strong>Boundary Rule:</strong> MFEs should integrate with Shell only through approved contracts
+          and should not depend on Shell internals.
+        </div>
+      </section>
+
+      <!-- 3.11 EXAMPLE FLOW -->
+      <section class="card" id="flow">
+        <h2>3.11) Example Shell Flow (ERP Login → Menu → Module Load)</h2>
+        <p>
+          The following example illustrates a typical Shell orchestration flow in an ERP platform.
+        </p>
+
+        <h3>Scenario: User logs in and opens Inventory module</h3>
+        <ol>
+          <li>User opens the ERP platform</li>
+          <li>Shell starts and initializes core providers</li>
+          <li>
+            <strong>Authentication bootstrap begins:</strong>
+            <ul>
+              <li>Shell validates session or redirects to login</li>
+              <li>User authenticates successfully</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Session context initialized:</strong>
+            <ul>
+              <li>User profile, tenant/company, claims/permissions, locale loaded</li>
+            </ul>
+          </li>
+          <li>
+            <strong>MFE manifests loaded/validated:</strong>
+            <ul>
+              <li>Shell reads registered modules (HR, Inventory, Sales, Finance, etc.)</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Menu is built:</strong>
+            <ul>
+              <li>Shell filters modules based on permissions</li>
+              <li>Example: users can see Inventory and Sales, but not Finance</li>
+            </ul>
+          </li>
+          <li>
+            <strong>User clicks "Inventory":</strong>
+            <ul>
+              <li>Shell routes to <code>/inventory/*</code></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Inventory MFE is loaded:</strong>
+            <ul>
+              <li>Shell loads MFE-Inventory</li>
+              <li>Shell passes host context (auth/session, tenant, theme, i18n, telemetry)</li>
+              <li>MFE mounts in workspace</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Inventory MFE handles internal pages:</strong>
+            <ul>
+              <li>Internal routes: <code>/inventory/items</code>, <code>/inventory/warehouses</code>, etc.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>If module load fails:</strong>
+            <ul>
+              <li>Shell displays fallback panel without breaking ERP frame</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="highlight">
+          This flow ensures a consistent platform experience while preserving independent module ownership.
+        </div>
+      </section>
+
+      <!-- 4. DOMAIN MFES -->
+      <section class="card" id="mfes">
+        <h2>4) Domain Micro-Frontends (MFE Modules)</h2>
+
+        <h3>4.1) Definition of a Micro-Frontend</h3>
+        <p>
+          In this architecture, a Micro-Frontend (MFE) is a domain-based frontend module integrated into
+          the platform through the Host Application (Shell / Container).
+        </p>
+        <p>
+          Each MFE is treated as a mini application with:
+        </p>
+        <ul>
+          <li>Clear domain ownership</li>
+          <li>Internal routing under a dedicated base route</li>
+          <li>Domain UI and workflows</li>
+          <li>Controlled integration with Shell through defined contracts</li>
+        </ul>
+
+        <h3>4.2) MFE Boundaries and Responsibilities</h3>
+        <p>Each MFE owns its domain-specific frontend scope:</p>
+        <ul>
+          <li>Domain pages and workflows</li>
+          <li>Internal routing under its base route</li>
+          <li>Domain UI components and screen composition</li>
+          <li>Local state and interaction orchestration</li>
+          <li>Domain API integration adapters</li>
+          <li>Module-level validations and UI behavior</li>
+          <li>Module-level telemetry events (aligned with platform standards)</li>
+        </ul>
+
+        <h3>4.3) Base Route Ownership per MFE</h3>
+        <p>Each MFE must have a unique base route assigned by the platform:</p>
+        <ul>
+          <li>MFE-HR → <code>/hr/*</code></li>
+          <li>MFE-Inventory → <code>/inventory/*</code></li>
+          <li>MFE-Sales → <code>/sales/*</code></li>
+          <li>MFE-Finance → <code>/finance/*</code></li>
+        </ul>
+        <p>
+          Internal sub-routes are fully MFE-owned. Example (Inventory):
+          <code>/inventory/items</code>, <code>/inventory/warehouses</code>, <code>/inventory/stock-transfer</code>
+        </p>
+
+        <div class="highlight">
+          <strong>Rule:</strong> Base routes are platform-assigned and unique; internal sub-routes are
+          MFE-owned.
+        </div>
+
+        <h3>4.4) Independent Development and Deployment</h3>
+        <p>
+          Each MFE should support independent development and, where applicable, independent deployment.
+        </p>
+        <p>The owning team can:</p>
+        <ul>
+          <li>Develop and test the module independently</li>
+          <li>Evolve domain workflows without changing unrelated MFEs</li>
+          <li>Release changes while maintaining compatibility with platform contracts</li>
+        </ul>
+
+        <div class="highlight">
+          <strong>Principle:</strong> Independent delivery with platform consistency.
+        </div>
+
+        <h3>4.5) MFE Boundary Do's and Don'ts</h3>
+
+        <h4 style="color: #059669;">✅ Do</h4>
+        <ul>
+          <li>Design MFEs around business domains (HR, Inventory, Finance)</li>
+          <li>Keep domain UI and workflows inside the owning MFE</li>
+          <li>Own and manage internal routes under the assigned base route</li>
+          <li>Use shared platform components/utilities for generic reusable needs</li>
+          <li>Follow the Shell integration contract (manifest, mount, host context)</li>
+          <li>Emit telemetry using platform standards</li>
+          <li>Isolate module failures and handle local errors gracefully</li>
+          <li>Keep domain-specific validation and business logic local to the MFE</li>
+        </ul>
+
+        <h4 style="color: #b91c1c;">❌ Don't</h4>
+        <ul>
+          <li>Import internals from another MFE</li>
+          <li>Place domain business logic in shared components/utilities</li>
+          <li>Re-implement shell responsibilities (global menu, auth bootstrap, layout)</li>
+          <li>Own routes outside your assigned base route namespace</li>
+          <li>Bypass platform contracts to access shell internals</li>
+          <li>Create hidden runtime coupling between MFEs</li>
+          <li>Use the shared layer as a dumping ground for module-specific code</li>
+          <li>Assume frontend permission checks replace backend authorization</li>
+        </ul>
+      </section>
+
+      <!-- 5. CLEAN ARCHITECTURE -->
+      <section class="card" id="clean-arch">
+        <h2>5) Clean Architecture (Inside MFE)</h2>
+        <p>
+          Each micro-frontend implements Clean Architecture principles to maintain clear separation of
+          concerns and enable independent evolution.
+        </p>
+
+        <h3>5.1) Typical MFE Directory Structure</h3>
+        <pre style="background: #f3f4f6; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 12px;">
+project-root/
+├── src/
+│   ├── domain/                    # Business Logic
+│   │   ├── entities/
+│   │   ├── valueObjects/
+│   │   ├── useCases/
+│   │   ├── interfaces/
+│   │   └── services/              # Optional
+│   │
+│   ├── application/               # State & Application Services
+│   │   ├── services/
+│   │   ├── state/                 # Redux / Zustand / Context
+│   │   ├── hooks/
+│   │   ├── commands/              # Optional
+│   │   ├── queries/               # Optional
+│   │   ├── dto/
+│   │   └── mappers/
+│   │
+│   ├── infrastructure/            # External Integrations
+│   │   ├── api/
+│   │   ├── repositories/
+│   │   ├── authentication/
+│   │   ├── storage/
+│   │   ├── telemetry/
+│   │   ├── cache/
+│   │   ├── mappers/
+│   │   └── utils/
+│   │
+│   ├── presentation/              # UI Layer (Atomic Design)
+│   │   ├── atoms/
+│   │   ├── molecules/
+│   │   ├── organisms/
+│   │   ├── templates/
+│   │   ├── pages/
+│   │   ├── routes/                # Local MFE routes
+│   │   ├── forms/                 # Optional
+│   │   └── viewModels/            # Optional
+│   │
+│   ├── integration/               # Shell/MFE Integration
+│   │   ├── manifest/
+│   │   ├── hostContracts/
+│   │   └── events/                # Optional
+│   │
+│   ├── bootstrap/                 # MFE mount/unmount
+│   │   ├── mount.tsx
+│   │   └── unmount.ts
+│   │
+│   ├── assets/
+│   ├── tests/
+│   ├── index.ts                   # Public exports
+│   └── main.tsx                   # Optional standalone entry
+        </pre>
+
+        <h3>5.2) Layer Responsibilities</h3>
+
+        <h4>Domain Layer</h4>
+        <p>
+          Contains core business concepts and rules. Must be independent from UI frameworks, HTTP
+          libraries, and browser-specific APIs.
+        </p>
+        <ul>
+          <li><strong>No React/UI code</strong></li>
+          <li><strong>No API calls</strong></li>
+          <li><strong>No storage/browser dependencies</strong></li>
+          <li><strong>No framework-specific imports</strong></li>
+        </ul>
+
+        <h4>Application Layer</h4>
+        <p>
+          Coordinates use cases and application flow. Acts as the bridge between Presentation and
+          Domain.
+        </p>
+        <ul>
+          <li>Use case implementations / orchestration services</li>
+          <li>Application services and commands/queries</li>
+          <li>State orchestration logic</li>
+          <li>DTO-to-domain / domain-to-view model coordination</li>
+        </ul>
+
+        <h4>Infrastructure Layer</h4>
+        <p>
+          Technical implementations for interacting with external systems and platform services.
+        </p>
+        <ul>
+          <li>HTTP/API clients (domain-specific adapters)</li>
+          <li>Repository implementations</li>
+          <li>Storage and data source adapters</li>
+          <li>Telemetry/logging adapters</li>
+          <li>Error translation adapters</li>
+        </ul>
+
+        <h4>Presentation Layer</h4>
+        <p>User interface and interaction logic.</p>
+        <ul>
+          <li>Pages / Screens</li>
+          <li>UI components (Atomic Design structure)</li>
+          <li>Local routes (under MFE base route)</li>
+          <li>Forms and UI-level validations</li>
+          <li>View models / presentation mappers</li>
+          <li>Loading/error/empty states</li>
+        </ul>
+
+        <div class="diagram">
+          <div class="diagram-title">Clean Architecture Layers & Dependency Flow</div>
+          <svg viewBox="0 0 900 550" style="width: 100%; height: auto; background: white;">
+            <!-- Layer Stack (Right side) -->
+            <g id="layers">
+              <!-- Presentation Layer (Top) -->
+              <rect x="480" y="30" width="380" height="100" fill="#fef3c7" stroke="#b45309" stroke-width="2" rx="6"/>
+              <text x="500" y="55" font-size="14" font-weight="bold" fill="#b45309">Presentation Layer</text>
+              <text x="500" y="75" font-size="11" fill="#666">React Components (Atomic Design)</text>
+              <text x="500" y="92" font-size="11" fill="#666">Pages • Routes • Forms • VM Mappers • UI State</text>
+              <text x="500" y="109" font-size="11" fill="#666" font-style="italic">Most volatile (UI changes frequently)</text>
+
+              <!-- Application Layer (Middle-Upper) -->
+              <rect x="480" y="150" width="380" height="100" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2" rx="6"/>
+              <text x="500" y="175" font-size="14" font-weight="bold" fill="#1d4ed8">Application Layer</text>
+              <text x="500" y="195" font-size="11" fill="#666">Use Cases • Services • State Orchestration</text>
+              <text x="500" y="212" font-size="11" fill="#666">Commands/Queries • DTO Coordination</text>
+              <text x="500" y="229" font-size="11" fill="#666" font-style="italic">Depends on Domain & Infrastructure contracts</text>
+
+              <!-- Infrastructure Layer (Middle-Lower) -->
+              <rect x="480" y="270" width="380" height="100" fill="#dcfce7" stroke="#059669" stroke-width="2" rx="6"/>
+              <text x="500" y="295" font-size="14" font-weight="bold" fill="#059669">Infrastructure Layer</text>
+              <text x="500" y="315" font-size="11" fill="#666">HTTP Clients • Repository Implementations</text>
+              <text x="500" y="332" font-size="11" fill="#666">Storage • Cache • Telemetry • Error Adapters</text>
+              <text x="500" y="349" font-size="11" fill="#666" font-style="italic">Implements Domain contracts</text>
+
+              <!-- Domain Layer (Bottom) -->
+              <rect x="480" y="390" width="380" height="100" fill="#f0fdf4" stroke="#0f766e" stroke-width="2" rx="6"/>
+              <text x="500" y="415" font-size="14" font-weight="bold" fill="#0f766e">Domain Layer</text>
+              <text x="500" y="435" font-size="11" fill="#666">Entities • Value Objects • Business Rules</text>
+              <text x="500" y="452" font-size="11" fill="#666">Interfaces/Contracts • Domain Services</text>
+              <text x="500" y="469" font-size="11" fill="#666" font-style="italic">Most stable (business changes rarely)</text>
+            </g>
+
+            <!-- Dependency Arrows (Left side) -->
+            <g id="dependencies" stroke-width="2" fill="none">
+              <!-- Presentation → Application -->
+              <path d="M 450 80 Q 420 80 450 150" stroke="#1d4ed8" marker-end="url(#arrowhead-dep)"/>
+              <text x="350" y="115" font-size="10" fill="#1d4ed8" font-weight="bold">depends on</text>
+
+              <!-- Application → Infrastructure -->
+              <path d="M 450 200 Q 420 200 450 270" stroke="#1d4ed8" marker-end="url(#arrowhead-dep)"/>
+              <text x="330" y="235" font-size="10" fill="#1d4ed8" font-weight="bold">implements contracts from</text>
+
+              <!-- Application → Domain -->
+              <path d="M 450 250 Q 400 250 450 390" stroke="#0f766e" marker-end="url(#arrowhead-dep)"/>
+              <text x="300" y="320" font-size="10" fill="#0f766e" font-weight="bold">depends on</text>
+
+              <!-- Infrastructure → Domain -->
+              <path d="M 450 440 L 400 440" stroke="#0f766e" marker-end="url(#arrowhead-dep)"/>
+              <text x="330" y="455" font-size="10" fill="#0f766e" font-weight="bold">depends on</text>
+            </g>
+
+            <!-- Forbidden Dependencies (Red X marks) -->
+            <g id="forbidden">
+              <!-- Domain → others (WRONG) -->
+              <circle cx="300" cy="440" r="4" fill="none" stroke="#b91c1c" stroke-width="2"/>
+              <line x1="296" y1="436" x2="304" y2="444" stroke="#b91c1c" stroke-width="2"/>
+              <line x1="304" y1="436" x2="296" y2="444" stroke="#b91c1c" stroke-width="2"/>
+              <text x="310" y="445" font-size="10" fill="#b91c1c" font-weight="bold">NO reverse deps</text>
+
+              <!-- App → Presentation (WRONG) -->
+              <circle cx="300" cy="200" r="4" fill="none" stroke="#b91c1c" stroke-width="2"/>
+              <line x1="296" y1="196" x2="304" y2="204" stroke="#b91c1c" stroke-width="2"/>
+              <line x1="304" y1="196" x2="296" y2="204" stroke="#b91c1c" stroke-width="2"/>
+              <text x="310" y="205" font-size="10" fill="#b91c1c" font-weight="bold">NO Presentation deps</text>
+            </g>
+
+            <!-- Legend -->
+            <g id="legend">
+              <text x="20" y="520" font-size="11" font-weight="bold" fill="#1f2937">Dependency Rules:</text>
+              <text x="20" y="540" font-size="10" fill="#666">✓ Outer layers depend on inner layers  |  ✗ Inner layers never know outer layers</text>
+            </g>
+
+            <!-- Arrow Marker -->
+            <defs>
+              <marker id="arrowhead-dep" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#1d4ed8"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 5.3 DEPENDENCY RULES -->
+      <section class="card">
+        <h2>5.3) Dependency Direction Rules</h2>
+        <p><strong>Allowed dependency direction:</strong></p>
+        <ul>
+          <li>Presentation → Application</li>
+          <li>Application → Domain</li>
+          <li>Infrastructure → Domain / Application contracts</li>
+        </ul>
+
+        <p><strong>Not allowed:</strong></p>
+        <ul>
+          <li>Domain → Application / Infrastructure / Presentation</li>
+          <li>Application → Presentation</li>
+          <li>Domain → UI framework / HTTP libraries</li>
+        </ul>
+
+        <div class="highlight">
+          <strong>Core Principle:</strong> Outer layers depend on inner layers; inner layers define the
+          rules. Inner layers must not know implementation details of outer layers.
+        </div>
+
+        <h3>5.4) DTO and Mapper Guidelines</h3>
+        <p>
+          To avoid coupling between layers and external APIs, use DTOs and mappers explicitly:
+        </p>
+        <ul>
+          <li><strong>Request/Response DTOs:</strong> Infrastructure/API-facing</li>
+          <li><strong>Application DTOs:</strong> Use case inputs/outputs</li>
+          <li><strong>View Models / Presentation Models:</strong> UI-facing</li>
+        </ul>
+
+        <p>
+          Keep mapping logic centralized (mappers/adapters), not scattered across pages/components. Do not
+          expose raw API response objects directly to Presentation.
+        </p>
+      </section>
+
+      <!-- CLOSING SECTION -->
+      <section class="card">
+        <h2>Summary</h2>
+        <p>
+          This micro-frontend architecture provides a scalable, maintainable approach to building
+          large-scale ERP platforms by:
+        </p>
+        <ul>
+          <li>Separating domain concerns into independent modules with clear ownership</li>
+          <li>Centralizing platform orchestration and shared services in the Shell</li>
+          <li>Enforcing stable integration contracts between Shell and MFEs</li>
+          <li>Enabling resilience through module isolation and fallback behavior</li>
+          <li>Maintaining consistent user experience through shared providers and design systems</li>
+          <li>Supporting independent development and deployment of domain modules</li>
+        </ul>
+
+        <div class="highlight">
+          <strong>Key Success Factors:</strong> Clear boundary enforcement, stable contracts, shared
+          standards, and consistent communication between platform layers.
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

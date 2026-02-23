@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Micro-Frontends - ملخص سريع وتطبيق داخل المشروع</title>
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --ink: #1f1b16;
+      --accent: #0b6e4f;
+      --accent-2: #b3501e;
+      --card: #ffffff;
+      --border: #e2ddd4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 0%, #fff7e7 0%, #f6f4ef 55%, #f1efe9 100%);
+      color: var(--ink);
+      line-height: 1.7;
+      padding: 24px;
+    }
+    header {
+      background: linear-gradient(135deg, #fff 0%, #f5efe2 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+    }
+    h1 { margin: 0 0 8px; font-size: 26px; }
+    h2 { margin: 0 0 10px; font-size: 20px; }
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .pill {
+      display: inline-block;
+      background: #e9f4ef;
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-inline-end: 6px;
+    }
+    ul { padding: 0 18px; margin: 6px 0; }
+    code, pre {
+      font-family: "Cascadia Code", Consolas, monospace;
+      background: #fbf7ef;
+      border: 1px solid #efe6d6;
+      border-radius: 8px;
+    }
+    pre { padding: 10px; overflow: auto; }
+    code { padding: 2px 6px; }
+    .accent { color: var(--accent-2); font-weight: 600; }
+    .note { font-size: 13px; color: #5b5247; }
+    .diagram {
+      background: #fffdf7;
+      border: 1px dashed #e3d8c3;
+      border-radius: 12px;
+      padding: 10px;
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+    svg text { font-family: "Segoe UI", Tahoma, sans-serif; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: right;
+      vertical-align: top;
+      background: #fff;
+    }
+    th { background: #f5efe2; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: #f0ebe0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="pill">ملخص سريع</span>
+    <span class="pill">تطبيق عملي</span>
+    <h1>Micro-Frontends باختصار وببساطة</h1>
+    <p>الفكرة: بدلاً من تطبيق واجهة واحدة ضخمة، نقسم الواجهة إلى <span class="accent">تطبيقات صغيرة مستقلة</span> (Micro Apps) وكل جزء مسؤول عن شاشة/مجال معيّن، ثم نجمعهم في تطبيق Host واحد.</p>
+  </header>
+
+  <div class="grid">
+    <section class="card">
+      <h2>ليه نستخدمها؟</h2>
+      <ul>
+        <li>فرق متعددة تشتغل بشكل مستقل.</li>
+        <li>إطلاق أجزاء محددة بسرعة بدون انتظار باقي التطبيق.</li>
+        <li>قابلية توسعة وتبديل تقنية جزء معين لاحقاً.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>الفكرة التقنية بسرعة</h2>
+      <ul>
+        <li>Host App يجمع التطبيقات الصغيرة.</li>
+        <li>كل Micro App يُبنى ويُنشر مستقل.</li>
+        <li>التواصل غالباً عبر Props أو Events أو Shared State بسيطة.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>أشهر طرق الدمج</h2>
+      <ul>
+        <li>Module Federation (Webpack / Vite).</li>
+        <li>Web Components.</li>
+        <li>Runtime iframe (أقل مرونة).</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>الفرق بين Monorepo و Micro-Frontends</h2>
+    <ul>
+      <li><span class="accent">Monorepo</span>: طريقة تنظيم الكود في مستودع واحد يحتوي عدة تطبيقات وحزم. الهدف إداري وتنظيمي.</li>
+      <li><span class="accent">Micro-Frontends</span>: طريقة معمارية لتقسيم الواجهة إلى تطبيقات صغيرة مستقلة تتجمع في Host.</li>
+      <li>Monorepo ممكن يستخدم Micro-Frontends، وممكن لا. وممكن تعمل Micro-Frontends حتى لو كل تطبيق في Repo منفصل.</li>
+    </ul>
+    <div class="diagram" aria-label="رسم توضيحي الفرق">
+      <svg viewBox="0 0 800 220" width="100%" height="220" role="img" aria-label="Monorepo vs Micro-Frontends">
+        <rect x="20" y="20" width="340" height="180" rx="12" fill="#f4efe4" stroke="#d9cfbf" />
+        <text x="190" y="45" text-anchor="middle" font-size="16" fill="#1f1b16">Monorepo (تنظيم الكود)</text>
+        <rect x="50" y="70" width="120" height="40" rx="8" fill="#ffffff" stroke="#d9cfbf" />
+        <rect x="190" y="70" width="120" height="40" rx="8" fill="#ffffff" stroke="#d9cfbf" />
+        <rect x="50" y="130" width="260" height="40" rx="8" fill="#ffffff" stroke="#d9cfbf" />
+        <text x="110" y="95" text-anchor="middle" font-size="12">App A</text>
+        <text x="250" y="95" text-anchor="middle" font-size="12">App B</text>
+        <text x="180" y="155" text-anchor="middle" font-size="12">Shared UI / Utils / Configs</text>
+
+        <rect x="440" y="20" width="340" height="180" rx="12" fill="#e9f4ef" stroke="#bcd9cc" />
+        <text x="610" y="45" text-anchor="middle" font-size="16" fill="#1f1b16">Micro-Frontends (تقسيم الواجهة)</text>
+        <rect x="470" y="70" width="100" height="40" rx="8" fill="#ffffff" stroke="#bcd9cc" />
+        <rect x="590" y="70" width="100" height="40" rx="8" fill="#ffffff" stroke="#bcd9cc" />
+        <rect x="530" y="130" width="140" height="40" rx="8" fill="#ffffff" stroke="#bcd9cc" />
+        <text x="520" y="95" text-anchor="middle" font-size="12">HR</text>
+        <text x="640" y="95" text-anchor="middle" font-size="12">Accounting</text>
+        <text x="600" y="155" text-anchor="middle" font-size="12">Host App</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>مقارنة مباشرة (باختصار مفيد)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>البند</th>
+          <th>Monorepo</th>
+          <th>Micro-Frontends</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>الهدف</td>
+          <td>تنظيم وإدارة الكود في مكان واحد</td>
+          <td>تقسيم الواجهة لتطبيقات مستقلة</td>
+        </tr>
+        <tr>
+          <td>الاعتماد على البنية</td>
+          <td>اختياري (مجرد هيكلة مستودع)</td>
+          <td>أساسي (Host + Micro Apps)</td>
+        </tr>
+        <tr>
+          <td>النشر</td>
+          <td>قد يكون موحدا أو منفصلا</td>
+          <td>يفضل نشر مستقل لكل Micro App</td>
+        </tr>
+        <tr>
+          <td>الفِرق</td>
+          <td>يسهل التعاون ومشاركة الحزم</td>
+          <td>يوفر استقلالية فرق الواجهات</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>إيه التداخل بينهم؟</h2>
+    <ul>
+      <li>الـ Monorepo يسهل مشاركة الحزم (UI, utils, configs) بين التطبيقات الصغيرة.</li>
+      <li>يسهل توحيد إصدار React والاعتمادات المشتركة لتقليل التعارضات.</li>
+      <li>يسهل إدارة النشر والنسخ في مكان واحد بدون فقدان استقلالية كل Micro App.</li>
+    </ul>
+    <div class="diagram" aria-label="رسم يوضح التداخل">
+      <svg viewBox="0 0 820 220" width="100%" height="220" role="img" aria-label="Overlap diagram">
+        <rect x="30" y="30" width="330" height="160" rx="14" fill="#f4efe4" stroke="#d9cfbf" />
+        <rect x="180" y="50" width="330" height="160" rx="14" fill="#e9f4ef" stroke="#bcd9cc" />
+        <text x="195" y="75" font-size="13" fill="#1f1b16">Monorepo</text>
+        <text x="445" y="75" font-size="13" fill="#1f1b16">Micro-Frontends</text>
+        <text x="300" y="135" text-anchor="middle" font-size="12">Shared packages</text>
+        <text x="420" y="140" text-anchor="middle" font-size="12">Integration</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>الصورة الكاملة للمعمارية</h2>
+    <p>الـ Host مسؤول عن <span class="badge">Layout</span> و <span class="badge">Routing</span> و <span class="badge">Auth</span>، وكل Micro App مسؤول عن شاشاته الداخلية.</p>
+    <div class="diagram" aria-label="معمارية كاملة">
+      <svg viewBox="0 0 860 280" width="100%" height="280" role="img" aria-label="Architecture diagram">
+        <rect x="20" y="20" width="820" height="240" rx="16" fill="#f4efe4" stroke="#d9cfbf" />
+        <text x="430" y="45" text-anchor="middle" font-size="16">Host App</text>
+
+        <rect x="60" y="70" width="200" height="60" rx="10" fill="#ffffff" stroke="#d9cfbf" />
+        <rect x="330" y="70" width="200" height="60" rx="10" fill="#ffffff" stroke="#d9cfbf" />
+        <rect x="600" y="70" width="200" height="60" rx="10" fill="#ffffff" stroke="#d9cfbf" />
+        <text x="160" y="105" text-anchor="middle" font-size="12">Global Layout</text>
+        <text x="430" y="105" text-anchor="middle" font-size="12">Routing</text>
+        <text x="700" y="105" text-anchor="middle" font-size="12">Auth / Shell</text>
+
+        <rect x="80" y="160" width="200" height="60" rx="10" fill="#ffffff" stroke="#bcd9cc" />
+        <rect x="330" y="160" width="200" height="60" rx="10" fill="#ffffff" stroke="#bcd9cc" />
+        <rect x="580" y="160" width="200" height="60" rx="10" fill="#ffffff" stroke="#bcd9cc" />
+        <text x="180" y="195" text-anchor="middle" font-size="12">HR Micro App</text>
+        <text x="430" y="195" text-anchor="middle" font-size="12">Accounting Micro App</text>
+        <text x="680" y="195" text-anchor="middle" font-size="12">Purchases Micro App</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>معلومات مهمة بسرعة</h2>
+    <ul>
+      <li>Micro-Frontends ليست بديل لكل شيء؛ مفيدة لو عندك فرق كبيرة وشاشات متعددة.</li>
+      <li>تكلفة البداية أعلى: إعداد البناء والتشغيل والـ routing يحتاج وقت.</li>
+      <li>الاتفاق على Contracts واضحة (Props, Events) يقلل الترابط.</li>
+      <li>اختبر تجربة المستخدم: لا تجعل الانتقال بين الشاشات بطيء بسبب التحميل.</li>
+    </ul>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>Horizontal vs Vertical Micro-Frontends (مهم جداً)</h2>
+    <p>فيه طريقتين أساسيتين لتقسيم التطبيق:</p>
+    
+    <h3 style="margin-top:12px; font-size:16px;">1️⃣ Horizontal (أفقي - حسب الطبقة)</h3>
+    <ul>
+      <li>التقسيم يكون حسب <span class="accent">الطبقة التقنية</span> أو الـ UI Layer.</li>
+      <li>مثال: Header Micro App، Sidebar Micro App، Footer Micro App.</li>
+      <li>كل جزء مسؤول عن مكون واجهة مشترك عبر كل الصفحات.</li>
+      <li><span class="badge">❌ أقل شيوعاً</span> لأنه يزيد الترابط ويصعب الصيانة.</li>
+    </ul>
+    <div class="diagram" aria-label="Horizontal splitting">
+      <svg viewBox="0 0 800 280" width="100%" height="280" role="img" aria-label="Horizontal Micro-frontends">
+        <rect x="20" y="20" width="760" height="240" rx="14" fill="#fff9f0" stroke="#e8d5c0" />
+        <text x="400" y="45" text-anchor="middle" font-size="15" fill="#1f1b16">Horizontal Split (حسب الطبقة)</text>
+        
+        <!-- Header -->
+        <rect x="50" y="70" width="700" height="50" rx="8" fill="#ffd6a5" stroke="#d9a76e" />
+        <text x="400" y="100" text-anchor="middle" font-size="13" fill="#1f1b16">Header Micro App (Navigation, Logo, User Menu)</text>
+        
+        <!-- Main Content -->
+        <rect x="50" y="140" width="500" height="100" rx="8" fill="#caffbf" stroke="#89c9a0" />
+        <text x="300" y="175" text-anchor="middle" font-size="13" fill="#1f1b16">Main Content Micro App</text>
+        <text x="300" y="195" text-anchor="middle" font-size="11" fill="#5b5247">(All pages content)</text>
+        
+        <!-- Sidebar -->
+        <rect x="570" y="140" width="180" height="100" rx="8" fill="#a0c4ff" stroke="#6b94d4" />
+        <text x="660" y="185" text-anchor="middle" font-size="12" fill="#1f1b16">Sidebar</text>
+        <text x="660" y="200" text-anchor="middle" font-size="12" fill="#1f1b16">Micro App</text>
+      </svg>
+    </div>
+
+    <h3 style="margin-top:16px; font-size:16px;">2️⃣ Vertical (عمودي - حسب المجال)</h3>
+    <ul>
+      <li>التقسيم حسب <span class="accent">المجال الوظيفي</span> أو Business Domain.</li>
+      <li>مثال: HR Micro App (كل شاشات الموارد البشرية)، Accounting Micro App، Sales Micro App.</li>
+      <li>كل Micro App مستقل تماماً: له routing خاص، state خاص، وشاشات متكاملة.</li>
+      <li><span class="badge">✅ الأكثر شيوعاً</span> لأنه يحقق استقلالية حقيقية ويتبع Domain-Driven Design.</li>
+    </ul>
+    <div class="diagram" aria-label="Vertical splitting">
+      <svg viewBox="0 0 800 320" width="100%" height="320" role="img" aria-label="Vertical Micro-frontends">
+        <rect x="20" y="20" width="760" height="280" rx="14" fill="#f0f9ff" stroke="#c0daf0" />
+        <text x="400" y="45" text-anchor="middle" font-size="15" fill="#1f1b16">Vertical Split (حسب المجال الوظيفي)</text>
+        
+        <!-- HR Domain -->
+        <rect x="50" y="70" width="220" height="210" rx="10" fill="#caffbf" stroke="#89c9a0" />
+        <text x="160" y="95" text-anchor="middle" font-size="14" font-weight="600" fill="#1f1b16">HR Micro App</text>
+        <text x="160" y="120" text-anchor="middle" font-size="11" fill="#5b5247">- Employees</text>
+        <text x="160" y="140" text-anchor="middle" font-size="11" fill="#5b5247">- Attendance</text>
+        <text x="160" y="160" text-anchor="middle" font-size="11" fill="#5b5247">- Payroll</text>
+        <text x="160" y="180" text-anchor="middle" font-size="11" fill="#5b5247">- Leaves</text>
+        <text x="160" y="200" text-anchor="middle" font-size="11" fill="#5b5247">- Reports</text>
+        <rect x="70" y="220" width="180" height="40" rx="6" fill="#ffffff" stroke="#89c9a0" />
+        <text x="160" y="245" text-anchor="middle" font-size="10">Own Routing & State</text>
+        
+        <!-- Accounting Domain -->
+        <rect x="290" y="70" width="220" height="210" rx="10" fill="#ffd6a5" stroke="#d9a76e" />
+        <text x="400" y="95" text-anchor="middle" font-size="14" font-weight="600" fill="#1f1b16">Accounting Micro App</text>
+        <text x="400" y="120" text-anchor="middle" font-size="11" fill="#5b5247">- Invoices</text>
+        <text x="400" y="140" text-anchor="middle" font-size="11" fill="#5b5247">- Payments</text>
+        <text x="400" y="160" text-anchor="middle" font-size="11" fill="#5b5247">- Suppliers</text>
+        <text x="400" y="180" text-anchor="middle" font-size="11" fill="#5b5247">- Budget</text>
+        <text x="400" y="200" text-anchor="middle" font-size="11" fill="#5b5247">- Reports</text>
+        <rect x="310" y="220" width="180" height="40" rx="6" fill="#ffffff" stroke="#d9a76e" />
+        <text x="400" y="245" text-anchor="middle" font-size="10">Own Routing & State</text>
+        
+        <!-- Sales Domain -->
+        <rect x="530" y="70" width="220" height="210" rx="10" fill="#a0c4ff" stroke="#6b94d4" />
+        <text x="640" y="95" text-anchor="middle" font-size="14" font-weight="600" fill="#1f1b16">Sales Micro App</text>
+        <text x="640" y="120" text-anchor="middle" font-size="11" fill="#5b5247">- Customers</text>
+        <text x="640" y="140" text-anchor="middle" font-size="11" fill="#5b5247">- Quotes</text>
+        <text x="640" y="160" text-anchor="middle" font-size="11" fill="#5b5247">- Orders</text>
+        <text x="640" y="180" text-anchor="middle" font-size="11" fill="#5b5247">- Contracts</text>
+        <text x="640" y="200" text-anchor="middle" font-size="11" fill="#5b5247">- Analytics</text>
+        <rect x="550" y="220" width="180" height="40" rx="6" fill="#ffffff" stroke="#6b94d4" />
+        <text x="640" y="245" text-anchor="middle" font-size="10">Own Routing & State</text>
+      </svg>
+    </div>
+
+    <h3 style="margin-top:16px; font-size:16px;">مقارنة سريعة</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>الجانب</th>
+          <th>Horizontal (أفقي)</th>
+          <th>Vertical (عمودي)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>التقسيم</td>
+          <td>حسب UI Layer (Header, Sidebar...)</td>
+          <td>حسب Business Domain (HR, Sales...)</td>
+        </tr>
+        <tr>
+          <td>الاستقلالية</td>
+          <td>ضعيفة - يوجد ترابط بين الأجزاء</td>
+          <td>قوية - كل جزء domain مستقل</td>
+        </tr>
+        <tr>
+          <td>فِرق العمل</td>
+          <td>تنظيم حسب الدور التقني</td>
+          <td>تنظيم حسب المجال الوظيفي</td>
+        </tr>
+        <tr>
+          <td>الصيانة</td>
+          <td>أصعب - تغيير Header يؤثر عالكل</td>
+          <td>أسهل - تغيير HR لا يؤثر على Sales</td>
+        </tr>
+        <tr>
+          <td>الانتشار</td>
+          <td>نادر الاستخدام</td>
+          <td>الأكثر شيوعاً وانتشاراً</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="note" style="margin-top:10px;">
+      <strong>نصيحة:</strong> في مشروعنا Maykana ERP، الأنسب هو <span class="accent">Vertical Splitting</span> - كل وحدة (HR, Accounting, Purchases) تكون Micro App مستقل.
+    </p>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>هل يمكن التداخل بينهم؟ (Hybrid Approach)</h2>
+    <p>نعم! ممكن جداً، وفي الواقع كثير من المشاريع الكبيرة تستخدم <span class="accent">Hybrid Approach</span> - مزيج من النوعين.</p>
+    
+    <h3 style="margin-top:12px; font-size:16px;">🔹 كيف يعمل المزيج؟</h3>
+    <ul>
+      <li><strong>الطبقة الأساسية (Horizontal):</strong> مكونات مشتركة مثل Header, Auth Shell, Global Navigation.</li>
+      <li><strong>المحتوى الرئيسي (Vertical):</strong> كل domain يكون Micro App مستقل (HR, Sales...).</li>
+      <li>الـ <span class="accent">Host App</span> يجمع المكونات المشتركة + يحمل الـ Micro Apps الرأسية حسب الحاجة.</li>
+    </ul>
+
+    <h3 style="margin-top:12px; font-size:16px;">📊 مثال عملي (الأكثر شيوعاً)</h3>
+    <div class="diagram" aria-label="Hybrid approach">
+      <svg viewBox="0 0 820 400" width="100%" height="400" role="img" aria-label="Hybrid Micro-frontends">
+        <rect x="20" y="20" width="780" height="360" rx="14" fill="#faf8f5" stroke="#d9cfbf" />
+        <text x="410" y="45" text-anchor="middle" font-size="15" fill="#1f1b16">Hybrid Approach (الأكثر واقعية)</text>
+        
+        <!-- Global Header (Horizontal) -->
+        <rect x="50" y="70" width="720" height="50" rx="8" fill="#ffd6a5" stroke="#d9a76e" />
+        <text x="410" y="100" text-anchor="middle" font-size="13" fill="#1f1b16">🔹 Shared Header Micro App (Horizontal)</text>
+        <text x="410" y="115" text-anchor="middle" font-size="10" fill="#5b5247">Logo, Global Nav, User Menu, Notifications</text>
+        
+        <!-- Main Container -->
+        <rect x="50" y="140" width="720" height="220" rx="10" fill="#f5f3ef" stroke="#d9cfbf" />
+        <text x="410" y="165" text-anchor="middle" font-size="13" fill="#1f1b16">Host App Container (Router)</text>
+        
+        <!-- Vertical Micro Apps -->
+        <rect x="80" y="185" width="200" height="150" rx="8" fill="#caffbf" stroke="#89c9a0" />
+        <text x="180" y="210" text-anchor="middle" font-size="12" font-weight="600">HR Micro App</text>
+        <text x="180" y="230" text-anchor="middle" font-size="10" fill="#5b5247">(Vertical)</text>
+        <text x="180" y="250" text-anchor="middle" font-size="10">✓ Employees</text>
+        <text x="180" y="265" text-anchor="middle" font-size="10">✓ Payroll</text>
+        <text x="180" y="280" text-anchor="middle" font-size="10">✓ Attendance</text>
+        <text x="180" y="295" text-anchor="middle" font-size="10">✓ Own Routes</text>
+        
+        <rect x="310" y="185" width="200" height="150" rx="8" fill="#ffd6a5" stroke="#d9a76e" />
+        <text x="410" y="210" text-anchor="middle" font-size="12" font-weight="600">Accounting</text>
+        <text x="410" y="230" text-anchor="middle" font-size="10" fill="#5b5247">(Vertical)</text>
+        <text x="410" y="250" text-anchor="middle" font-size="10">✓ Invoices</text>
+        <text x="410" y="265" text-anchor="middle" font-size="10">✓ Payments</text>
+        <text x="410" y="280" text-anchor="middle" font-size="10">✓ Suppliers</text>
+        <text x="410" y="295" text-anchor="middle" font-size="10">✓ Own Routes</text>
+        
+        <rect x="540" y="185" width="200" height="150" rx="8" fill="#a0c4ff" stroke="#6b94d4" />
+        <text x="640" y="210" text-anchor="middle" font-size="12" font-weight="600">Sales Micro App</text>
+        <text x="640" y="230" text-anchor="middle" font-size="10" fill="#5b5247">(Vertical)</text>
+        <text x="640" y="250" text-anchor="middle" font-size="10">✓ Customers</text>
+        <text x="640" y="265" text-anchor="middle" font-size="10">✓ Orders</text>
+        <text x="640" y="280" text-anchor="middle" font-size="10">✓ Quotes</text>
+        <text x="640" y="295" text-anchor="middle" font-size="10">✓ Own Routes</text>
+      </svg>
+    </div>
+
+    <h3 style="margin-top:12px; font-size:16px;">✅ متى نستخدم Hybrid؟</h3>
+    <ul>
+      <li>عندما يوجد مكونات مشتركة <strong>ثابتة</strong> (Header, Auth) عبر كل التطبيق.</li>
+      <li>عندما نريد استقلالية كاملة للمجالات الوظيفية (Domains).</li>
+      <li>لتقليل التكرار في الـ UI المشتركة مع الحفاظ على مرونة المجالات.</li>
+    </ul>
+
+    <h3 style="margin-top:12px; font-size:16px;">⚠️ ملاحظات مهمة</h3>
+    <ul>
+      <li>الـ Horizontal Components يجب أن تكون <strong>Stable</strong> وقليلة التغيير.</li>
+      <li>حدد بوضوح مسؤولية كل جزء لتجنب الـ overlap.</li>
+      <li>الـ Vertical Apps يجب ألا تعتمد على بعضها البعض مباشرة.</li>
+    </ul>
+
+    <table style="margin-top:10px;">
+      <thead>
+        <tr>
+          <th>العنصر</th>
+          <th>النوع</th>
+          <th>المسؤولية</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Header / Auth Shell</td>
+          <td><span class="badge">Horizontal</span></td>
+          <td>المكونات المشتركة الثابتة</td>
+        </tr>
+        <tr>
+          <td>HR / Sales / Accounting</td>
+          <td><span class="badge">Vertical</span></td>
+          <td>المجالات الوظيفية المستقلة</td>
+        </tr>
+        <tr>
+          <td>Host / Router</td>
+          <td><span class="badge">Orchestrator</span></td>
+          <td>التنسيق والتحميل الديناميكي</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>تطبيق المفهوم داخل مشروعنا الحالي (Maykana ERP)</h2>
+    <p>المشروع Monorepo وفيه <span class="accent">apps/maykana-erp</span>. نقدر نعمل تقسيم بسيط بالشكل التالي:</p>
+    <ul>
+      <li>Host: التطبيق الحالي <span class="accent">apps/maykana-erp</span>.</li>
+      <li>Micro Apps: إنشاء تطبيقات جديدة مثل <span class="accent">apps/erp-hr</span> أو <span class="accent">apps/erp-accounting</span>.</li>
+    </ul>
+    <p class="note">الهدف: كل فريق يملك تطبيقه الصغير ويبنيه وينشره منفصل، والـ Host يسحب الشاشات المطلوبة.</p>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>خطوات مختصرة للتطبيق هنا (اقتراح عملي)</h2>
+    <ol>
+      <li>إنشاء تطبيق جديد داخل <span class="accent">apps/</span> لتجربة Micro App.</li>
+      <li>تجهيز Module Federation على Vite في Host و Micro App.</li>
+      <li>تصدير شاشة من الـ Micro App واستيرادها داخل الـ Host.</li>
+    </ol>
+    <p class="note">لو حابب، أقدر أجهز لك إعدادات Module Federation كاملة على Vite هنا في المشروع.</p>
+    <div class="diagram" aria-label="رسم تدفق بسيط">
+      <svg viewBox="0 0 780 160" width="100%" height="160" role="img" aria-label="Flow diagram">
+        <rect x="20" y="50" width="180" height="60" rx="10" fill="#ffffff" stroke="#d9cfbf" />
+        <rect x="300" y="50" width="180" height="60" rx="10" fill="#ffffff" stroke="#bcd9cc" />
+        <rect x="580" y="50" width="180" height="60" rx="10" fill="#ffffff" stroke="#bcd9cc" />
+        <text x="110" y="85" text-anchor="middle" font-size="12">Build Micro App</text>
+        <text x="390" y="85" text-anchor="middle" font-size="12">Expose Module</text>
+        <text x="670" y="85" text-anchor="middle" font-size="12">Consume in Host</text>
+        <line x1="200" y1="80" x2="300" y2="80" stroke="#6d6357" stroke-width="2" />
+        <line x1="480" y1="80" x2="580" y2="80" stroke="#6d6357" stroke-width="2" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>رحلة الصفحة عند المستخدم (بصورة أوضح)</h2>
+    <div class="diagram" aria-label="تسلسل التحميل">
+      <svg viewBox="0 0 900 200" width="100%" height="200" role="img" aria-label="User flow">
+        <rect x="20" y="60" width="160" height="60" rx="10" fill="#ffffff" stroke="#d9cfbf" />
+        <rect x="220" y="60" width="200" height="60" rx="10" fill="#ffffff" stroke="#d9cfbf" />
+        <rect x="460" y="60" width="200" height="60" rx="10" fill="#ffffff" stroke="#bcd9cc" />
+        <rect x="700" y="60" width="160" height="60" rx="10" fill="#ffffff" stroke="#bcd9cc" />
+        <text x="100" y="95" text-anchor="middle" font-size="12">Open App</text>
+        <text x="320" y="95" text-anchor="middle" font-size="12">Host Loads Shell</text>
+        <text x="560" y="95" text-anchor="middle" font-size="12">Load Micro App</text>
+        <text x="780" y="95" text-anchor="middle" font-size="12">Render Screen</text>
+        <line x1="180" y1="90" x2="220" y2="90" stroke="#6d6357" stroke-width="2" />
+        <line x1="420" y1="90" x2="460" y2="90" stroke="#6d6357" stroke-width="2" />
+        <line x1="660" y1="90" x2="700" y2="90" stroke="#6d6357" stroke-width="2" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>مثال بسيط (شكل الفكرة)</h2>
+    <pre><code>// داخل micro app
+export default function HrDashboard() {
+  return &lt;div&gt;HR Dashboard&lt;/div&gt;;
+}
+
+// داخل host app
+const HrDashboard = lazy(() =&gt; import("erp-hr/HrDashboard"));
+</code></pre>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>ملاحظات مهمة بسرعة</h2>
+    <ul>
+      <li>اتفاق على Shared UI و Libraries لتقليل حجم الباندل.</li>
+      <li>توحيد Version للـ React بين التطبيقات لتجنب تعارضات.</li>
+      <li>اختيار Naming واضح لمنافذ الـ Federation.</li>
+      <li>حدد حدود واضحة: مين يملك الـ routing ومين يملك الـ layout.</li>
+    </ul>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h2>متى لا ننصح بـ Micro-Frontends؟</h2>
+    <ul>
+      <li>لو التطبيق صغير وفريق واحد فقط.</li>
+      <li>لو لا يوجد احتياج لنشر مستقل.</li>
+      <li>لو البنية الحالية مستقرة ولا يوجد ضغط توسعة.</li>
+    </ul>
+  </section>
+</body>
+</html>
