@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from '../../components/Layout';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { MaykanaCard } from '../../components/ui/MaykanaCard';
@@ -9,14 +9,25 @@ import { Button } from '../../components/ui/button';
 export const ReportsPage = (): JSX.Element => {
   const { t, dir } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Get the selected module from URL params
-  const urlParams = new URLSearchParams(window.location.search);
-  const selectedParam = urlParams.get('selected');
-  
-  // If selected=reports or no selection, default to accounting
-  const defaultModule = selectedParam === 'reports' || !selectedParam ? 'accounting' : selectedParam;
+  const getSelectedModuleFromSearch = (search: string) => {
+    const urlParams = new URLSearchParams(search);
+    const selectedParam = urlParams.get('selected');
+
+    if (selectedParam === 'accounting' || selectedParam === 'purchases' || selectedParam === 'sales' || selectedParam === 'warehouses') {
+      return selectedParam;
+    }
+
+    return 'accounting';
+  };
+
+  const defaultModule = getSelectedModuleFromSearch(location.search);
   const [selectedModule, setSelectedModule] = useState(defaultModule);
+
+  useEffect(() => {
+    setSelectedModule(getSelectedModuleFromSearch(location.search));
+  }, [location.search]);
 
   const allReportCards = getReportCards();
   const reportCards = allReportCards.filter(card => card.module === selectedModule);
